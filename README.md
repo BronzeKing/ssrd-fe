@@ -26,19 +26,19 @@ npm run build
 │    ├── mixins      		# vue多页面共用mixins
 │    ├── pages      		# pages
 │    ├── routers      		# vue-router前端路由
-│    ├── scss  				# scss
+│    ├── scss               # scss
 │    │    ├── font  		# iconfont
 │    │    ├── base  		# 基础的全局scss变量以及全局css
 │    │    ├── components  	# 组件相关样式，组件内单独引用
 │    │    └── pages   		# 页面相关样式，页面内单独引用
 │    │
 │    ├── settings      		# 全局设置
-│    ├── utils 				# 扩展相关函数以及封装
-│    ├── vuexs  	  		# vuex数据流管理相关
+│    ├── utils              # 扩展相关函数以及封装
+│    ├── vuexs              # vuex数据流管理相关
 │    │    └── modules   	# 按模块使用
 │    │
-│	 ├── App.vue  			# 入口
-│    └── main.js   			# 入口
+│    ├── App.vue            # 入口
+│    └── main.js            # 入口
 │
 ├── node_modules    # 依赖
 ├── static          # 静态文件
