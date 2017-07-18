@@ -15,7 +15,7 @@ npm run dev
 npm run build
 ```
 ## 项目结构
-
+```
 ┌── src             		# main
 │    ├── api 				# API接口地址以及获取数据函数
 │    ├── assets     		# image source
@@ -51,3 +51,4 @@ npm run build
 ├── .postcssrc.js   # postcss配置
 ├── index.html      # index入口文件
 └── package.json    # package info
+```
