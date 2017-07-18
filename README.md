@@ -2,6 +2,9 @@
 
 > ssrd fe project
 
+## 编码规范
+[CodeGuide](./CODEGUIDE.md)
+
 ## 生成步骤
 
 ``` bash
@@ -34,6 +37,8 @@ npm run build
 │    │
 │    ├── settings      		# 全局设置
 │    ├── utils              # 扩展相关函数以及封装
+│    │    ├── ajax  		# ajax函数封装
+│    │    └── text  		# 所有提示语文件
 │    ├── vuexs              # vuex数据流管理相关
 │    │    └── modules   	# 按模块使用
 │    │
