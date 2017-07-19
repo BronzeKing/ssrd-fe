@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+// vue 数据未加载时避免显示占位符
+[v-cloak] {
+    display: none;
+}
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
+    outline: none;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	//-webkit-overflow-scrolling: auto;      // 滑动页面具有回弹效果
+	-webkit-overflow-scrolling: touch;      // 滑动页面具有回弹效果
+    -webkit-text-size-adjust: 100%;         // chrome内核浏览器 字体小于12px会保持12px 禁止浏览器调整字体大小
+}
+
+body{
+    font-family: "Microsoft YaHei UI Light", 'Avenir', "Helvetica Neue", "Helvetica", "Arial", "sans-serif" !important;
+    font-size: 0.14rem;
+    line-height: 0.24rem;
+	min-width: 3.2rem;
+	max-width: 5.4rem;
+	margin: 0 auto !important;
+    background-color: $bg-body;
+    position: relative;
+}
+
+#newlife-merchant,
+.merchant-page-wraper{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    -webkit-touch-callout: none;
+}
+
+.merchant-page-wraper{
+    flex: 1;
+    //overflow: auto;
+}
+.merchant-content{
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+        display: none;
+        z-index: 0;
+    }
+}
+
+.loadmore{
+    overflow: visible !important;      // 解决loadMore卡顿问题
+}
+
+input, textarea, select {
+    font-family: "Helvetica Neue",Helvetica,sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a{
+    text-decoration: none;
+    &:link,
+    &:visited{
+        color: $font-base;
+    }
+    &:hover,
+    &:active{
+        color: $blue-base;
+    }
+}

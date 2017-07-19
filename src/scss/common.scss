@@ -1,0 +1,19 @@
+@charset 'UTF-8';
+
+// 基础样式，变量，和样式reset
+@import "./base/var";
+@import "./base/base";
+
+// 通用函数类minxins
+@import "./base/mixins";
+
+// 字体图标
+@import "./base/iconfont";
+
+@import "./base/defined";
+
+// 公用全局组件样式
+// @import "./components/button";
+// @import "./components/checkbox-radio";
+// @import "./components/picker";
+// @import "./components/toast";
