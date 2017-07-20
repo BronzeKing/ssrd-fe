@@ -7,6 +7,8 @@ import store  from 'vuexs';                                               // 所
 // 是否开启浏览器vue-devtools调试
 Vue.config.productionTip = (process.env.NODE_ENV !== 'production');
 
+
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
