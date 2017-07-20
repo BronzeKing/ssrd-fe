@@ -6,14 +6,19 @@ import * as filters             from 'filters';
 import {LineThrough, Hello}     from 'components';
 import * as enums               from 'enums';
 
+import Core                     from './core';
+
 // 注册vue filters;
-filters.keys.forEach(name => {
+Object.keys(filters).forEach(name => {
     Vue.filter(name, filters[name]);
 });
 
 // 注册全局组件
 Vue.component('LineThrough', LineThrough);
 Vue.component('Hello', Hello);
+
+// 注册全局函数
+Vue.use(Core);
 
 // 原型挂在常用变量
 Vue.prototype.$enums = enums;

@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <img src="./assets/logo.png">
+        <img class="app-logo" src="./assets/logo.png">
         <transition name="router-fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -10,7 +10,7 @@
 <script>
     export default {
         name: 'app'
-    }
+    };
 </script>
 
 <style lang="scss">
@@ -22,9 +22,13 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-        margin-top: 50px;
+        margin-top: .5rem;
     }
     
+    .app-logo{
+        width: 2rem;
+        height: 2rem;
+    }
     
     .router-fade-enter-active,
     .router-fade-leave-active {

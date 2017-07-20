@@ -17,9 +17,9 @@ export default new Router({
             path: '/views',
             name: 'Hello',
             component: Hello,
-            children: {
+            children: [
                 ...Home
-            }
+            ]
         }
     ]
 });

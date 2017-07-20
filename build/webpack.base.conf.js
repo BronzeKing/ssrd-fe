@@ -26,6 +26,7 @@ module.exports = {
       'apis': resolve('src/apis'),
       'assets': resolve('src/assets'),
       'components': resolve('src/components'),
+      'configs': resolve('src/configs'),
       'enums': resolve('src/enums'),
       'filters': resolve('src/filters'),
       'pages': resolve('src/pages'),
@@ -78,9 +79,9 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-        },
-        publicPath: '../../'
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
+          publicPath: '../../'
+        }
       }
     ]
   }
