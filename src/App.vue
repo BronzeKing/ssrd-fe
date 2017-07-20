@@ -14,6 +14,8 @@
 </script>
 
 <style lang="scss">
+    @import 'scss/common.scss'; // 全局通用样式
+
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -23,7 +25,7 @@
         margin-top: 60px;
     }
     
-    @import 'scss/common.scss';
+    
     .router-fade-enter-active,
     .router-fade-leave-active {
         transition: opacity .3s;
