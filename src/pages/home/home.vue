@@ -13,3 +13,7 @@
         }
     };
 </script>
+<style lang="scss">
+    @import "~scss/pages/home";
+</style>
+
