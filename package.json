@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "element-ui": "^1.4.1",
     "mint-ui": "^2.2.7",
     "sass-loader": "^6.0.6",
     "vue": "^2.3.3",

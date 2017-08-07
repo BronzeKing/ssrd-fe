@@ -6,7 +6,13 @@ import * as filters             from 'filters';
 import {LineThrough, Hello}     from 'components';
 import * as enums               from 'enums';
 
-import Core                     from './core';
+import Core from './core';
+
+// 引入elemtn-ui
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-default/index.css';
+
+Vue.use(ElementUI);
 
 // 注册vue filters;
 Object.keys(filters).forEach(name => {

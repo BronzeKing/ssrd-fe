@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Hello from 'src/components/Hello';
-import Home from './modules/home';
+import views from './modules/views';
+// const viewsPage = r => require.ensure([], () => r(require('pages/views/views')), 'views');
 
 Vue.use(Router);
 
@@ -10,16 +10,9 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'Hello',
-            component: Hello
+            // name: 'views',
+            redirect: 'views'
         },
-        {
-            path: '/views',
-            name: 'Home',
-            component: Home,
-            children: [
-                ...Home
-            ]
-        }
+        views
     ]
 });
