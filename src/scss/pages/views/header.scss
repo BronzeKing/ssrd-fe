@@ -3,4 +3,16 @@
 
 .page-header{
     line-height: 30px;
+    // 顶部欢迎以及登陆注册
+    .header-bar {
+        background-color: $bg-grey;
+    }
+
+    /* 用户操作项样式 */
+    .user-option-item{
+        padding: 0 6px;
+        &.active{
+            color: $base-color;
+        }
+    }
 }

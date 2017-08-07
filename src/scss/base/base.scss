@@ -4,20 +4,17 @@
 [v-cloak] {
     display: none;
 }
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;       // 点击反馈延时
-    -webkit-overflow-scrolling: touch;              // ios下弹性滑动
-    outline: none;                                  // 外边框
-}
 
 html,
 body {
     height: 100%;
     width: 100%;
+    outline: none;
     display: block;
     overflow: hidden;
     -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;       // 点击反馈延时
+    box-sizing: border-box;
     user-select: none;
     -webkit-user-select: none;
     -webkit-font-smoothing: antialiased;
@@ -31,6 +28,7 @@ body{
     font-family: "Microsoft YaHei", "Microsoft YaHei UI Light", 'Avenir', "Helvetica Neue", "Helvetica", "Arial", "sans-serif" !important;
     font-size: 14px;
     line-height: 1.3;
+    color: $font-base;
 	// min-width: 3.2rem;
 	// max-width: 5.4rem;
 	margin: 0 auto !important;
@@ -39,12 +37,18 @@ body{
 }
 
 .container{
-    max-width: 1200px;
+    width: 1200px;
     margin: 0 auto;
+    &.flex{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 a{
     text-decoration: none;
+    cursor: pointer;
     &:link,
     &:visited{
         color: $font-base;
