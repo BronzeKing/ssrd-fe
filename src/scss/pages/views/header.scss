@@ -26,9 +26,6 @@
     .header-nav{
         background-color: $base-color;
         line-height: 48px;
-        &-wrapper{
-            // font-size: 0;
-        }
         &-item{
             // font-size: $f16;
             display: inline-block;
@@ -55,14 +52,17 @@
         text-align: center;
         padding: 0 10px;
         border-radius: 40px;
+        /*搜索图标*/
         .icon-search{
             flex-basis: 30px;
         }
+        /*搜索输入框*/
         .header-search-input{
             flex: 1;
             border-width: 0;
             outline: none;
             font-size: $f14;
+            /*搜索占位文字*/
             &::-webkit-input-placeholder{
                 font-size: $f14;
             }
