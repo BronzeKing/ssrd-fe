@@ -1,0 +1,86 @@
+@charset 'UTF-8';
+@import "../../base/mixins";
+.page-footer {
+    /* 整个尾部上外边距53px*/
+    .footer-bar {
+        width: 100%;
+    }
+    /*尾部上半部分的样式*/
+    .container-upper-part {
+        display: flex;
+        background-color: #626262;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: #fff;
+        /*上半部分左边的菜单*/
+        ul.container-left {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            // text-align: center;
+            /*每一列菜单相隔右间距51px*/
+            li.left-sub {
+                margin-right: 51px;
+                ul.left-sub-flex {
+                    list-style: none;
+                    padding: 0;
+                }
+                li.left-progeny {
+                    margin-bottom: 10px;
+                    a.left-content {
+                        font-size: 14px;
+                        color: #fff;
+                    }
+                }
+                /*每一列第一排的字体为16px*/
+                li.left-progeny:first-child a.left-content {
+                    font-size: 16px;
+                }
+            }
+        }
+        /*上半部分右边的样式*/
+        .container-right {
+            display: flex;
+            justify-content: center;
+            /*右边子元素靠左部分的样式*/
+            .left-sub {
+                margin-top: 30px;
+                margin-right: 60px;
+                .iconfont{
+                    font-size: 32px;
+                    margin-right: 5px;
+                }
+                .first-item {
+                    padding-bottom: 3px;
+                    border-bottom: 1px solid #fff;
+                }
+                h2.second-item {
+                    margin: 0;
+                    font-size: 24px;
+                    margin-top: 20px;
+                    margin-bottom: 31px;
+                }
+            }
+            /*右边子元素靠右部分的样式*/
+            .right-sub {
+                text-align: center;
+                .f14 {
+                    color: #f3f3f3
+                }
+                img.right-sub-img {
+                    width: 135px;
+                    height: 135px;
+                }
+            }
+        }
+    }
+    /*尾部下半部分的样式*/
+    .container-next-part {
+        padding-top: 20px;
+        padding-bottom: 21px;
+        background-color: #535353;
+        color: #f3f3f3;
+        text-align: center;
+    }
+}

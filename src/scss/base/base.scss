@@ -5,18 +5,26 @@
     display: none;
 }
 
+* {
+    box-sizing: inherit;
+    outline: inherit;
+    -webkit-touch-callout: inherit;
+    -webkit-tap-highlight-color: inherit;       // 点击反馈延时
+    user-select: inherit;
+}
+
 html,
 body {
     height: 100%;
     width: 100%;
     outline: none;
     display: block;
-    overflow: hidden;
+    // overflow: hidden;
+    // overflow-y: scroll;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;       // 点击反馈延时
     box-sizing: border-box;
     user-select: none;
-    -webkit-user-select: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 	//-webkit-overflow-scrolling: auto;     // 滑动页面具有回弹效果
@@ -57,4 +65,23 @@ a{
     &:active{
         color: $base-color;
     }
+}
+
+ul,
+ol,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    margin: 0;
+    padding: 0
+}
+
+ul,
+ol{
+    list-style: none;
+    padding-left: 0px;
 }

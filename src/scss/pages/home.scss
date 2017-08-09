@@ -1,0 +1,85 @@
+@charset 'UTF-8';
+@import "../base/mixins";
+
+/* 官网首页 */
+.page-home{
+    
+    /* 首页广告信息区域*/
+    .home-information{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* 首页广告图 */
+    .home-banner{
+        width: 830px;
+        height: 370px;
+    }
+
+    /* 公告区域 */
+    .home-info{
+        width: 350px;
+        height: 370px;
+        border: 1px solid $border-deep;
+        border-bottom-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .home-article{
+            padding: 18px;
+            padding-top: 5px;
+        }
+        /*最新公告 标题*/
+        .home-article-title{
+            margin: 0;
+            line-height: 35px;
+            border-bottom: 1px solid $border-deep;
+            position: relative;
+            padding-left: 12px;
+            color: $base-color;
+            margin-bottom: 8px;
+            &::before{
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                width: 80px;
+                height: 3px;
+                background-color: $base-color;
+            }
+        }
+        /*公告条目*/
+        .home-article-item{
+            display: block;
+            line-height: 30px;
+        }
+        /*个人中心入口导航*/
+        .home-user-nav{
+            display: flex;
+            flex-wrap: wrap;
+            border-top: 1px solid $border-deep;
+            .home-user-item{
+                width: 50%;
+                text-align: center;
+                border-right: 1px solid $border-deep;
+                border-bottom: 1px solid $border-deep;
+                padding-top: 18px;
+                font-size: 16px;
+                &:nth-child(2n){
+                    border-right-width: 0;
+                }
+            }
+            .iconfont{
+                font-size: 25px;
+                color: $base-color;
+            }
+            p {
+                padding-top: 5px;
+                padding-bottom: 13px;
+            }
+        }
+    }
+}

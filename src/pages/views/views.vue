@@ -1,9 +1,8 @@
-<template>
-    <div class="views">
-        <page-header></page-header>
-        <router-view></router-view>     
-        <page-footer></page-footer>        
-    </div>
+<template lang="pug">
+    .views
+        page-header
+        router-view
+        page-footer
 </template>
 <script>
     import pageHeader from './header';      // 官网部分公众头部
@@ -16,7 +15,4 @@
         }
     };
 </script>
-<style lang="scss">
-    @import "~scss/pages/home";
-</style>
 
