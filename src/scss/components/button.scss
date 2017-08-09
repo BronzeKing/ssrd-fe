@@ -1,0 +1,66 @@
+@charset "UTF-8";
+/* 按钮UI封装 */
+
+// 按钮基础样式
+.btn{
+    // height: 40px;
+    padding: 5px 0;
+    border: 0;
+    background: #ffffff;
+    color: #3D4B65;
+    cursor: pointer;
+    outline: none;
+    min-width: 100px;
+    border-radius: 5px;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity .2s;
+    &:active {
+        opacity: 0.6;
+    }
+
+    &-round {
+        border-radius: 42px;
+    }
+    &.disable{
+        opacity: .6;
+    }
+}
+
+// 宽度100%的按钮
+.btn-block {
+    width: 100%;
+    display: block;
+}
+
+// 默认按钮样式
+.btn-default {
+    &.outline{
+        border: 1px solid $font-grey;
+    }
+}
+
+// 蓝色按钮样式
+.btn-primary {
+    background-color: $btn-blue;
+    color: $font-white;
+    &.outline{
+        color: $btn-blue;
+        background-color: $bg-white;
+        border: 1px solid $btn-blue;
+    }
+}
+
+// 红色按钮样式
+.btn-error {
+    background-color: $font-red;
+    color: $font-white;
+    &.outline{
+        color: $font-red;
+        background-color: $bg-white;
+        border: 1px solid $font-red;
+    }
+}
+
+.btn-wrapper{
+    padding: 0  15px;
+}

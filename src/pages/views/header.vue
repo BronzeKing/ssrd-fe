@@ -9,8 +9,25 @@
                     a.user-option-item(href="javascript: void(0);") 会员中心
                     a.user-option-item(href="javascript: void(0);") 购物车
                     a.user-option-item(href="javascript: void(0);") 快捷下单
-        .container.flex
+        .container.flex.pt10.pb10
             img(src="~assets/logo.png")
+            .div
+                button.btn.btn-primary.btn-round.mr20
+                    i.iconfont.icon-order
+                    |  工程下单
+                i.iconfont.icon-tel.font-blue.company-tel 0755-8218-2153
+        .header-nav
+            .container.flex
+                nav.herder-nav-wrapper
+                    a.header-nav-item.active(href="javascript: void(0);") 首页
+                    a.header-nav-item(href="javascript: void(0);") 系统展示
+                    a.header-nav-item(href="javascript: void(0);") 系统产品
+                    a.header-nav-item(href="javascript: void(0);") 设备辅件
+                    a.header-nav-item(href="javascript: void(0);") 关于我们
+                    a.header-nav-item(href="javascript: void(0);") 爱心社区
+                .header-serch
+                    i.iconfont.icon-search
+                    input.header-search-input(type="text" placeholder="请输入您要搜索的内容...") 
 </template>
 <script>
     export default {

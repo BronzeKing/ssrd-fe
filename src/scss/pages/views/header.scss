@@ -2,10 +2,11 @@
 @import "../../base/mixins";
 
 .page-header{
-    line-height: 30px;
-    // 顶部欢迎以及登陆注册
+    
+    /* 顶部欢迎以及登陆注册 */
     .header-bar {
         background-color: $bg-grey;
+        line-height: 30px;
     }
 
     /* 用户操作项样式 */
@@ -13,6 +14,58 @@
         padding: 0 6px;
         &.active{
             color: $base-color;
+        }
+    }
+
+    /* 公司电话 */
+    .company-tel{
+        font-size: 24px;
+    }
+
+    /* 顶部导航栏部分 */
+    .header-nav{
+        background-color: $base-color;
+        line-height: 48px;
+        &-wrapper{
+            // font-size: 0;
+        }
+        &-item{
+            // font-size: $f16;
+            display: inline-block;
+            // padding: 0 40px;
+            width: 147px;
+            font-size: $f16;
+            text-align: center;
+            color: $font-white;
+            &.active,
+            &:hover{
+                background-color: $blue-hover;
+            }
+        }
+    }
+
+    /* 导航栏搜索框 */
+    .header-serch{
+        width: 215px;
+        background-color: $bg-white;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+        padding: 0 10px;
+        border-radius: 40px;
+        .icon-search{
+            flex-basis: 30px;
+        }
+        .header-search-input{
+            flex: 1;
+            border-width: 0;
+            outline: none;
+            font-size: $f14;
+            &::-webkit-input-placeholder{
+                font-size: $f14;
+            }
         }
     }
 }
