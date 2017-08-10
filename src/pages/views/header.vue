@@ -10,12 +10,14 @@
                     a.user-option-item(href="javascript: void(0);") 购物车
                     a.user-option-item(href="javascript: void(0);") 快捷下单
         .container.flex.pt10.pb10
-            img(src="~assets/logo.png")
+            img(src="~assets/logo-large.png")
             .div
                 button.btn.btn-primary.btn-round.mr20
                     i.iconfont.icon-order
                     |  工程下单
-                i.iconfont.icon-tel.font-blue.company-tel 0755-8218-2153
+                span.font-blue.f18
+                    i.iconfont.icon-tel.f24.company-tel.mr5
+                    | 0755-8218-2153
         .header-nav
             .container.flex
                 nav.herder-nav-wrapper

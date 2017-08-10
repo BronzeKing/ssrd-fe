@@ -10,7 +10,6 @@
         align-items: center;
         justify-content: space-between;
         padding-top: 20px;
-        margin-bottom: 20px;
     }
 
     /* 首页广告图 */
@@ -79,6 +78,183 @@
             p {
                 padding-top: 5px;
                 padding-bottom: 13px;
+            }
+        }
+    }
+
+    /*下单流程*/
+    .home-flow{
+       line-height: 50px;
+       display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+       .home-flow-item{
+            // float: left;
+            background-color: $bg-grey;
+            text-align: center;
+            flex: 1;
+            margin-right: 10px;
+            position: relative;
+            font-size: $f16;
+            padding-left: 20px;
+            &.active{
+                background-color: $base-color;
+                color: #fff;
+                &::after{
+                    border-left-color: $base-color;
+                }
+            }
+            &::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 0;
+                display: block;
+                border-width: 25px 20px;
+                // border-left-width: 20px;
+                // border-top-width: 25px;
+                // border-bottom-width: 25px;
+                border-style: solid;
+                border-color: transparent;
+                // border: 50px solid transparent;
+                border-left-color: #fff;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                top: 0;
+                right: -40px;
+                width: 0;
+                height: 0;
+                display: block;
+                border-width: 25px 20px;
+                // border-left-width: 20px;
+                // border-top-width: 25px;
+                // border-bottom-width: 25px;
+                border-style: solid;
+                border-color: transparent;
+                // border: 50px solid transparent;
+                border-left-color: $bg-grey;
+                z-index: 1;
+            }
+            
+            &:last-child{
+                margin-right: 0;
+                &::after{
+                    border-left-width: 0; 
+                }
+            }
+            &:first-child{
+                &::before{
+                    border-left-width: 0; 
+                }
+            }
+            &.head{
+                width: 300;
+                flex: 2;
+            }
+       }
+    }
+    /*工程案例*/
+    .home-introduce{
+        display: flex;
+        
+        .home-introduce-text{
+            background-color: $base-color;
+            color: $font-white;
+            padding: 31px 32px 20px 26px;
+            margin-right: 20px;
+            position: relative;
+        }
+        .introduce-text-title{
+            font-size: $f16;
+            line-height: 1.6;
+        }
+        .introduce-text-content{
+            line-height: 1.5;
+        }
+        .introduce-date{
+            position: absolute;
+            left: 31px;
+            bottom: 20px;
+            font-size: 24px;
+        }
+        .introduce-icon{
+            position: absolute;
+            right: 32px;
+            bottom: 20px;
+        }
+
+        .home-introduce-case{
+            padding: 11px 18px 27px 18px;
+            border: 1px solid $border-ad;
+            margin-right: 20px;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+
+    /*行业链接标题*/
+    .home-links-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    /*行业链接轮播*/
+    .home-carousel{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        margin-bottom: 35px; 
+        .iconfont{
+            flex-basis: 30px;
+            display: inline-block;
+            height: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+
+    
+    /*行业案例列表*/
+    .industry-list{
+        
+        // display: flex;
+        // flex-wrap: nowrap;
+        // justify-content: flex-start;
+        // position: absolute;
+        // left: 35px;
+        // right: 35px;
+        flex: 1;
+        overflow: hidden;
+        // overflow-x: scroll;
+        white-space: nowrap;
+        // &::-webkit-scrollbar{
+        //     width: 0;
+        //     height: 0;
+        // }
+        
+        
+        &-item{
+            display: inline-block;
+            width: 190px;
+            height: 60px;
+            border: 1px solid $border-ad;
+            margin: 0 23px;
+            background: {
+                repeat: no-repeat;
+                position: center center;
+            }
+            &:first-child{
+                margin-left: 0;
+            }
+            &:last-child{
+                margin-right: 0;
             }
         }
     }

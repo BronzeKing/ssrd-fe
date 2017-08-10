@@ -55,16 +55,19 @@
                             i.iconfont.icon-tel.font-white
                             span.f18 联系我们 
                             span.f12 CONTACT
-                        h2.second-item 0755-8218-2153
+                        h2.second-item.fn 0755-8218-2153
                         .last-item
-                            i.iconfont.icon-wechat
-                            i.iconfont.icon-qq
-                            i.iconfont.icon-weibo
+                            a.font-white(href="javascript: void(0);")
+                                i.iconfont.icon-qq
+                            a.font-white(href="javascript: void(0);")
+                                i.iconfont.icon-wechat.ml5.mr5
+                            a.font-white(href="javascript: void(0);")
+                                i.iconfont.icon-weibo
                     .right-sub
-                        p.f14 官方微信公众号
-                        img.right-sub-img 
+                        p.f14.mb10 官方微信公众号
+                        img.right-sub-img(src="~assets/qrcode.png")
         .container-next-part
-            p.f12 版权所有 Copyright &copy; 2006 2010 深圳市盛世润达智能科技有限公司 粤ICP备06083171号   
+            p.f14 版权所有 Copyright &copy; 2006 2010 深圳市盛世润达智能科技有限公司 粤ICP备06083171号   
 </template>
 <script>
     export default {
