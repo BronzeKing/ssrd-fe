@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        我是login页面,{{data}}
+        我是login页面,{{data}}111111
     </div>
 </template>
 <script>
