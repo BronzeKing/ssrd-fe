@@ -4,14 +4,14 @@
 <script>
 // 资讯生活-公司新闻页面
 export default{
-    name: 'company-news',
+    name: 'page-error',
     data () {
         return {
             errorInfo: null
         };
     },
     created () {
-        this.errorInfo = this.$route.meta.errorCode;
+        this.errorInfo = this.$route.query.errorCode;
     }
 };
 </script>

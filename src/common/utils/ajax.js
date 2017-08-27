@@ -85,7 +85,9 @@ Axios.interceptors.response.use(
         return res.data;
     },
     error => {
+        /* eslint-disable */
         console.error('pesponseError: ', JSON.stringify(error.response.data));
+        /* eslint-enable */
         // 用户登录的时候会拿到一个基础信息,比如用户名,token,过期时间戳
         // 直接丢localStorage或者sessionStorage
         // if (!member.getCredential()) {
@@ -98,7 +100,7 @@ Axios.interceptors.response.use(
         if (error.response.status === 403) {
             router.push({
                 path: '/error',
-                meta: {
+                query: {
                     errorCode: 403
                 }
             });
@@ -106,7 +108,7 @@ Axios.interceptors.response.use(
         if (error.response.status === 500) {
             router.push({
                 path: '/error',
-                meta: {
+                query: {
                     errorCode: 500
                 }
             });
@@ -114,7 +116,7 @@ Axios.interceptors.response.use(
         if (error.response.status === 502) {
             router.push({
                 path: '/error',
-                meta: {
+                query: {
                     errorCode: 502
                 }
             });
@@ -122,7 +124,7 @@ Axios.interceptors.response.use(
         if (error.response.status === 404) {
             router.push({
                 path: '/error',
-                meta: {
+                query: {
                     errorCode: 404
                 }
             });
@@ -136,7 +138,8 @@ Axios.interceptors.response.use(
 export default {
     install: function (Vue, Option) {
         Object.defineProperty(Vue.prototype, '$http', { value: Axios });
-    }
+    },
+    Axios   // 这里写的是为了apis里面可以引用这个页面的Axios实例
 };
 
 // export default new Ajax();

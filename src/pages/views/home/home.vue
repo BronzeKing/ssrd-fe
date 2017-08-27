@@ -67,23 +67,32 @@
                 i.iconfont.icon-arrow-right.font-grey
 </template>
 <script>
-    export default {
-        name: 'home',
-        data () {
-            return  {
-                data: 'Hello,World.'
-            };
-        },
-        created () {
-            this.$http.post('api/token', {
+import  { getNews } from 'apis';
+export default {
+    name: 'home',
+    data () {
+        return  {
+            data: 'Hello,World.'
+        };
+    },
+    created () {
+        // 获取新闻内容咯
+        this.getNews();
+    },
+    methods: {
+        // 获取新闻接口
+        getNews () {
+            getNews({
                 email: 'admin@test.com',
                 password: 123456
-            })
-            .then(res => {
+            }).then(res => {
+                /* eslint-disable */
                 console.log('homeres', res);
+                /* eslint-enable */
             });
         }
-    };
+    }
+};
 </script>
 <style lang="scss">
     @import "~scss/pages/home";
