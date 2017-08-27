@@ -86,7 +86,7 @@ const typeOf = obj => {
     return map[toString.call(obj)];
 };
 
-module.exports = {
+export {
     assign,
     isEmptyObject,
     getUrlParams,

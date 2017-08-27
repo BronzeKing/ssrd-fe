@@ -73,6 +73,15 @@
             return  {
                 data: 'Hello,World.'
             };
+        },
+        created () {
+            this.$http.post('api/token', {
+                email: 'admin@test.com',
+                password: '123456'
+            })
+            .then(res => {
+                console.log('homeres', res);
+            });
         }
     };
 </script>

@@ -6,7 +6,12 @@ import * as filters             from 'filters';
 import {LineThrough, Hello}     from 'components';
 import * as enums               from 'enums';
 
+// import Core from './core';
 import Core from './core';
+import axiosPlugin from 'utils/ajax';
+
+// ajax封装
+Vue.use(axiosPlugin);
 
 // 引入elemtn-ui
 import ElementUI from 'element-ui';
@@ -24,7 +29,7 @@ Vue.component('LineThrough', LineThrough);
 Vue.component('Hello', Hello);
 
 // 注册全局函数
-Vue.use(Core);
+// Vue.use(Core);
 
 // 原型挂在常用变量
 Vue.prototype.$enums = enums;

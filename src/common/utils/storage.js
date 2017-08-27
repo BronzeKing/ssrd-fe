@@ -131,4 +131,4 @@ let storage =
         }
     };
 
-module.exports = storage;
+export default storage;
