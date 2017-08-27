@@ -75,7 +75,7 @@
             };
         },
         created () {
-            this.$http.post('api/token', {
+            this.$http.post('/api/token', {
                 email: 'admin@test.com',
                 password: '123456'
             })

@@ -29,11 +29,11 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
        '/api': {
-            target: 'https://api.mum5.cn',
+            target: 'http://api.mum5.cn',
             changeOrigin: true,
-            secure: true,
+            logLevel: 'debug',
             pathRewrite: {
-                '^/api': '/'
+                '^/api': ''
             }
         },
     },
