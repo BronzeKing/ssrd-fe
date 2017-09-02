@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import views from './modules/views';
+const login = r => require.ensure([], () => r(require('pages/login')), 'login');
 const error = r => require.ensure([], () => r(require('pages/views/error')), 'views');
 // const viewsPage = r => require.ensure([], () => r(require('pages/views/views')), 'views');
 
@@ -13,6 +14,11 @@ export default new Router({
             path: '/',
             // name: 'views',
             redirect: 'views'
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: login
         },
         {
             path: '/error',
