@@ -31,7 +31,7 @@
                         <el-input type="password" v-model="signupForm.password" auto-complete="off" placeholder="密码"></el-input>
                     </el-form-item>
                     <el-form-item style="width:100%;">
-                    <el-button type="primary" style="width:100%;" @click.native.prevent="signupSubmit" :loading="logining">注 册</el-button>
+                    <el-button type="primary" style="width:100%;" @click.native.prevent="signupSubmit  " :loading="logining">注 册</el-button>
                     <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
                     </el-form-item>
                 </el-form>
