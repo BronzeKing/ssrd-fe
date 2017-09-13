@@ -24,4 +24,4 @@ export const register   = options => send(options, API.register);               
 export const logout     = options => send(options, API.logout);                   // 注销接口
 
 /* 新闻 */
-export const getNews    = options => send(options, API.news, 'post');             // 注销接口
+export const getNews    = options => send(options, API.news, 'get');             // 获取新闻

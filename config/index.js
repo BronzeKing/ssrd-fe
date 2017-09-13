@@ -29,7 +29,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
        '/api': {
-            target: 'http://api.mum5.cn',
+            target: 'https://api.mum5.cn',
+            secure: true,
             changeOrigin: true,
             logLevel: 'debug',
             pathRewrite: {
