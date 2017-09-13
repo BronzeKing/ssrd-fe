@@ -2,4 +2,5 @@
  * 全局设置
  */
 
-export const apiUrl = 'api';
+let debug = process.env.NODE_ENV == 'development'
+export const apiUrl = debug ? 'api' : 'https://api.mum5.cn';
