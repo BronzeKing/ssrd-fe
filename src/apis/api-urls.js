@@ -10,5 +10,9 @@ export default {
     register:   `${apiUrl}/signup`,                              // 注册接口
 
     // 新闻
-    news:       `${apiUrl}/news`                                            // 获取新闻
+    news:       `${apiUrl}/news`,                                            // 获取新闻
+
+    // 关于我们
+    recruitments:       `${apiUrl}/recruitments`                 // 招聘
+
 };

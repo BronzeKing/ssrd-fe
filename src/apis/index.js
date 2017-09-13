@@ -25,3 +25,6 @@ export const logout     = options => send(options, API.logout);                 
 
 /* 新闻 */
 export const getNews    = options => send(options, API.news, 'get');             // 获取新闻
+
+/* 关于我们 */
+export const recruitments    = options => send(options, API.recruitments, 'get');             // 招聘
