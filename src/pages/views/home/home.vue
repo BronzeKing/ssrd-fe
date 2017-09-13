@@ -83,8 +83,10 @@ export default {
         // 获取新闻接口
         getNews () {
             getNews({
-                email: 'admin@test.com',
-                password: 123456
+                params:{
+                    email: 'admin@test.com',
+                    password: 123456
+                }
             }).then(res => {
                 /* eslint-disable */
                 console.log('homeres', res);
