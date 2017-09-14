@@ -33,7 +33,8 @@ const _priviate = {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
-    }
+    },
+    requestOptions: null
 };
 
 const Axios = axios.create(_priviate.defaultSettings);
@@ -42,6 +43,7 @@ const Axios = axios.create(_priviate.defaultSettings);
 Axios.interceptors.request.use(
     config => {
         // console.log('config', config);
+        _priviate.requestOptions = config;
         // 在发送请求之前做某件事
         if (
             config.method === 'post' ||
@@ -49,7 +51,7 @@ Axios.interceptors.request.use(
             config.method === 'delete'
         ) {
             // 序列化
-            config.data = qs.stringify(config.data, { arrayFormat: 'indices' });
+            config.data = qs.stringify(config.data.params || config.data, { arrayFormat: 'indices' });
         }
 
         // 若是有做鉴权token , 就给头部带上token
@@ -86,7 +88,10 @@ Axios.interceptors.response.use(
     },
     error => {
         /* eslint-disable */
-        console.error('pesponseError: ', JSON.stringify(error.response.data));
+        console.log('===URL: ', JSON.stringify(_priviate.requestOptions.url));
+        console.log('===RESPONSE: ', JSON.stringify(error.response));
+        console.error('============== ErrorCode: ', JSON.stringify(error.response && error.response.status), "==============");
+        console.error('pesponseError: ', JSON.stringify(error.response && error.response.data));
         /* eslint-enable */
         // 用户登录的时候会拿到一个基础信息,比如用户名,token,过期时间戳
         // 直接丢localStorage或者sessionStorage
@@ -97,38 +102,38 @@ Axios.interceptors.response.use(
         //     });
         // }
         // 下面是接口回调的satus ,因为我做了一些错误页面,所以都会指向对应的报错页面
-        if (error.response.status === 403) {
-            router.push({
-                path: '/error',
-                query: {
-                    errorCode: 403
-                }
-            });
-        }
-        if (error.response.status === 500) {
-            router.push({
-                path: '/error',
-                query: {
-                    errorCode: 500
-                }
-            });
-        }
-        if (error.response.status === 502) {
-            router.push({
-                path: '/error',
-                query: {
-                    errorCode: 502
-                }
-            });
-        }
-        if (error.response.status === 404) {
-            router.push({
-                path: '/error',
-                query: {
-                    errorCode: 404
-                }
-            });
-        }
+        // if (error.response.status === 403) {
+        //     router.push({
+        //         path: '/error',
+        //         query: {
+        //             errorCode: 403
+        //         }
+        //     });
+        // }
+        // if (error.response.status === 500) {
+        //     router.push({
+        //         path: '/error',
+        //         query: {
+        //             errorCode: 500
+        //         }
+        //     });
+        // }
+        // if (error.response.status === 502) {
+        //     router.push({
+        //         path: '/error',
+        //         query: {
+        //             errorCode: 502
+        //         }
+        //     });
+        // }
+        // if (error.response.status === 404) {
+        //     router.push({
+        //         path: '/error',
+        //         query: {
+        //             errorCode: 404
+        //         }
+        //     });
+        // }
         // 返回 response 里的错误信息
         return Promise.reject(error);
     }

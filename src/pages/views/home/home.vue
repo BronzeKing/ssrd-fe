@@ -2,7 +2,10 @@
     .page-home.container
         .home-information.mb20
             .home-banner
-                img(src="~assets/banner.png")
+                el-carousel(:interval="5000" arrow="always" height="370px")
+                    el-carousel-item(v-for="item in homeBanners" :key="item")
+                        img(:src="item")
+                //- img(src="~assets/home_banner.png")
             article.home-info
                 .home-article
                     h4.home-article-title 最新公告
@@ -72,7 +75,11 @@ export default {
     name: 'home',
     data () {
         return  {
-            data: 'Hello,World.'
+            data: 'Hello,World.',
+            homeBanners: [
+                require('assets/home_banner.png'),
+                require('assets/home_banner1.png')
+            ]
         };
     },
     created () {

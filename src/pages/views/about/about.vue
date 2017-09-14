@@ -1,7 +1,7 @@
 <template lang="pug">
     .page-about.container
         .about-banner
-            img(src="~assets/banner.png")
+            img(src="~assets/home_banner.png")
         .about-content
             .about-menu
             .about-info.mt20
