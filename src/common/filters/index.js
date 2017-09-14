@@ -3,7 +3,8 @@
  */
 
 export {
-    FormartPrice
+    FormartPrice,
+    dateFilter
 };
 
 const FormartPrice = (val) => {
@@ -41,4 +42,38 @@ const FormartPrice = (val) => {
 
         return NumPart.join('') + FloatPart;
     }
+};
+
+/**
+ * 时间格式化
+ */
+const dateFilter = (value, type) => {
+    let result;
+    if (value === 0) {
+        return '无限';
+    } else {
+        value = value * 1000;
+    }
+    switch (type) {
+        // 年月日
+        case 1:
+            if (window.attachEvent) {
+                result = new Date(parseInt(value)).toLocaleDateString();
+            } else {
+                result = new Date(parseInt(value)).toLocaleDateString('chinese', { hour12: false });
+            }
+            break;
+            // 年月日时间
+        case 2:
+            if (window.attachEvent) {
+                result = new Date(parseInt(value)).toLocaleString();
+            } else {
+                result = new Date(parseInt(value)).toLocaleString('chinese', { hour12: false });
+            }
+            break;
+        default:
+            result = '未知';
+            break;
+    }
+    return result;
 };
