@@ -17,8 +17,9 @@
                                     span 公司简介
                                     i.iconfont.icon-arrow-right
                             li
-                                span 企业文化
-                                i.iconfont.icon-arrow-right
+                                router-link(:to="{name: 'corporateCulture'}")
+                                    span 企业文化
+                                    i.iconfont.icon-arrow-right
                             li
                                 span 荣誉资质
                                 i.iconfont.icon-arrow-right

@@ -5,12 +5,6 @@
 .about-contact-us{
 
     .company-info-wrapper{
-        // display: table;
-        // table-layout: fixed;
-        // width: 100%;
-        // align-items: flex-starts;
-        // justify-content: space-between;
-        // flex-wrap: wrap;
         margin-bottom: 15px;
         @include clearfix()
     }
