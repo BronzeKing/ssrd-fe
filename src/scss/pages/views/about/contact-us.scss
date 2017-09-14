@@ -1,0 +1,29 @@
+@charset 'UTF-8';
+@import "~scss/base/mixins";
+
+// 联系我们
+.about-contact-us{
+
+    .company-info-wrapper{
+        // display: table;
+        // table-layout: fixed;
+        // width: 100%;
+        // align-items: flex-starts;
+        // justify-content: space-between;
+        // flex-wrap: wrap;
+        margin-bottom: 15px;
+        @include clearfix()
+    }
+    .company-info-aside{
+        float: left;
+        width: 50%;
+    }
+    .company-info-item{
+        display: inline-block;
+        width: 50%;
+        font-size: 12px;
+    }
+    .iconfont {
+        margin-right: 5px;
+    }
+}

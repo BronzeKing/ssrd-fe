@@ -28,7 +28,7 @@
 import  { recruitments } from 'apis';
 import  { dateFilter } from 'filters';
 export default {
-    name: 'home',
+    name: 'recruit',
     data () {
         return  {
             inputValue: '',
@@ -64,7 +64,7 @@ export default {
         handleCurrentChange (data) {
             this.activeType = 'detail';
             this.detailData = data;
-            console.log('1111', data);
+            // console.log('1111', data);
         }
     }
 };

@@ -13,8 +13,9 @@
                     .menu-wrap
                         ul
                             li.active
-                                span 公司简介
-                                i.iconfont.icon-arrow-right
+                                router-link(:to="{name: 'companyProfile'}")
+                                    span 公司简介
+                                    i.iconfont.icon-arrow-right
                             li
                                 span 企业文化
                                 i.iconfont.icon-arrow-right
@@ -28,16 +29,15 @@
                                 span 招贤纳士
                                 i.iconfont.icon-arrow-right
                             li
-                                span 联系我们
-                                i.iconfont.icon-arrow-right
+                                router-link(:to="{name: 'contactUs'}")
+                                    span 联系我们
+                                    i.iconfont.icon-arrow-right
                 .about-case
                     .case-title
 
                 .about-info.mt5
                     transition(name="router-fade" mode="out-in")
                         router-view
-
-                
 </template>
 <script>
     // 关于我们页面
