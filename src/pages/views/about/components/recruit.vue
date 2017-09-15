@@ -21,17 +21,17 @@
                 p.f14.mt20 任职要求：
                 .line.mt10 
                 p.mt10 {{detailData.jobDetail}}
-                el-button.mt10(type="primary" @click="applyFor") 申请职位
+                el-button.mt10(type="primary" @click="dialogShow") 申请职位
         el-dialog(title="职位申请" :visible.sync="dialogFormVisible")
-            el-form(:model="form" :label-position="right" label-width="80px")
+            el-form(:model="formData" label-position="right" label-width="80px")
                 el-form-item(label="职位" )
-                    el-input(v-model="detailData.name" auto-complete="off")
+                    el-input(v-model="formData.job" auto-complete="off")
                 el-form-item(label="姓名")
-                    el-input(v-model="detailData.name" auto-complete="off")
+                    el-input(v-model="formData.name" auto-complete="off")
                 el-form-item(label="电话")
-                    el-input(v-model="detailData.name" auto-complete="off")
+                    el-input(v-model="formData.mobile" auto-complete="off")
                 el-form-item(label="邮箱")
-                    el-input(v-model="detailData.name" auto-complete="off")
+                    el-input(v-model="formData.email" auto-complete="off")
                 el-form-item(label="附件")
                     input(type="file" name="file" @change="uploadFile") 
                 el-form-item
@@ -42,7 +42,7 @@
 
 </template>
 <script>
-import  { recruitments } from 'apis';
+import  { recruitments, jobs } from 'apis';
 import  { dateFilter } from 'filters';
 export default {
     name: 'recruit',
@@ -54,9 +54,15 @@ export default {
             total:0,
             tableData:[],
             activeType:'index',
-            detailData:{name:123},
-            dialogFormVisible: true,
-            formData:null
+            detailData:{},
+            dialogFormVisible: false,
+            formData:{
+                name:'',
+                job:'',
+                mobile:'',
+                email:'',
+                files:null
+            }
         };
     },
     created () {
@@ -85,19 +91,38 @@ export default {
             this.detailData = data;
             // console.log('1111', data);
         },
-        applyFor () {
-
+        dialogShow () {
+            this.dialogFormVisible = true;
+            this.formData = {
+                name:'',
+                job: this.detailData.name,
+                mobile:'',
+                email:'',
+                formData:null
+            };
         },
         uploadFile (e) {
             var files = e.target.files || e.dataTransfer.files;
             if (files.length) {
-                var formData = new FormData();
-                formData.append('attatchment', files[0]);
-                this.formData = formData;
+                this.formData.files = files[0];
             }
         },
         submit () {
-
+            var formData = new FormData();
+            formData.append('attatchment', this.formData.files);
+            formData.append('name', this.formData.name);
+            formData.append('job', this.formData.job);
+            formData.append('mobile', this.formData.mobile);
+            formData.append('email', this.formData.email);
+            jobs({
+                data: formData
+            }).then(res => {
+                /* eslint-disable */
+                console.log('homeres', res);
+                this.total = res.RecordCount
+                this.tableData = res.Records
+                /* eslint-enable */
+            });
         }
     }
 };
