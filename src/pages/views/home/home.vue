@@ -7,10 +7,6 @@
                         img(:src="item")
                 //- img(src="~assets/home_banner.png")
             article.home-info
-                .home-article
-                    h4.home-article-title 最新公告
-                    nav.home-article-list
-                        a.home-article-item(href="javascript: void(0);" v-for="item in 4") [新闻公告] 深睿观察：智能家居如何走向平民化？
                 nav.home-user-nav
                     a.home-user-item(href="javascript: void(0);")
                         i.iconfont.icon-team
@@ -24,6 +20,10 @@
                     a.home-user-item(href="javascript: void(0);")
                         i.iconfont.icon-manage
                         p 内部管理中心
+                .home-article
+                    h4.home-article-title 最新公告
+                    nav.home-article-list
+                        a.home-article-item(href="javascript: void(0);" v-for="item in 4") [新闻公告] 深睿观察：智能家居如何走向平民化？
         ul.home-flow.mb20
             li.home-flow-item.head
                 i.iconfont.icon-flow.font-blue.f24.fb

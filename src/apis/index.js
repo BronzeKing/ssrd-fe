@@ -30,3 +30,4 @@ export const getNews        = options => send(options, API.news, 'post');       
 
 /* 关于我们 */
 export const recruitments   = options => send(options, API.recruitments, 'get');            // 招聘
+export const jobs           = options => send(options, API.jobs, 'post');                    // 提交简历

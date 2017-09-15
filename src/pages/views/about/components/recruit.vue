@@ -21,7 +21,24 @@
                 p.f14.mt20 任职要求：
                 .line.mt10 
                 p.mt10 {{detailData.jobDetail}}
-                el-button.mt10(type="primary" @click="") 申请职位
+                el-button.mt10(type="primary" @click="applyFor") 申请职位
+        el-dialog(title="职位申请" :visible.sync="dialogFormVisible")
+            el-form(:model="form" :label-position="right" label-width="80px")
+                el-form-item(label="职位" )
+                    el-input(v-model="detailData.name" auto-complete="off")
+                el-form-item(label="姓名")
+                    el-input(v-model="detailData.name" auto-complete="off")
+                el-form-item(label="电话")
+                    el-input(v-model="detailData.name" auto-complete="off")
+                el-form-item(label="邮箱")
+                    el-input(v-model="detailData.name" auto-complete="off")
+                el-form-item(label="附件")
+                    input(type="file" name="file" @change="uploadFile") 
+                el-form-item
+                    el-button(type="primary" @click="submit") 提交
+                    el-button(@click="submit") 取消
+
+
 
 </template>
 <script>
@@ -37,7 +54,9 @@ export default {
             total:0,
             tableData:[],
             activeType:'index',
-            detailData:{}
+            detailData:{name:123},
+            dialogFormVisible: true,
+            formData:null
         };
     },
     created () {
@@ -65,6 +84,20 @@ export default {
             this.activeType = 'detail';
             this.detailData = data;
             // console.log('1111', data);
+        },
+        applyFor () {
+
+        },
+        uploadFile (e) {
+            var files = e.target.files || e.dataTransfer.files;
+            if (files.length) {
+                var formData = new FormData();
+                formData.append('attatchment', files[0]);
+                this.formData = formData;
+            }
+        },
+        submit () {
+
         }
     }
 };
