@@ -43,6 +43,7 @@
 </template>
 <script>
 import  { recruitments, jobs } from 'apis';
+import  { post } from 'axios';
 import  { dateFilter } from 'filters';
 export default {
     name: 'recruit',
@@ -108,17 +109,16 @@ export default {
             }
         },
         submit () {
-            var formData = new FormData();
+            let formData = new FormData();
             formData.append('attatchment', this.formData.files);
             formData.append('name', this.formData.name);
             formData.append('job', this.formData.job);
             formData.append('mobile', this.formData.mobile);
             formData.append('email', this.formData.email);
-            jobs({
-                data: formData
-            }).then(res => {
+            console.log('formData', formData.entries());
+            jobs(formData).then(res => {
                 /* eslint-disable */
-                console.log('homeres', res);
+                console.log('homeressssss', res);
                 this.total = res.RecordCount
                 this.tableData = res.Records
                 /* eslint-enable */

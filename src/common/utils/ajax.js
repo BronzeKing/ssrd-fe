@@ -50,8 +50,13 @@ Axios.interceptors.request.use(
             config.method === 'put' ||
             config.method === 'delete'
         ) {
-            // 序列化
-            config.data = qs.stringify(config.data.params || config.data, { arrayFormat: 'indices' });
+            let isForm = config.data instanceof FormData;
+            // 数据是否为表单类型
+            isForm
+                // 设置请求类型为表单
+                ? (config.headers['Content-Type'] = 'multipart/form-data')
+                // 序列化
+                : (config.data = qs.stringify(config.data.params || config.data, { arrayFormat: 'indices' }));
         }
 
         // 若是有做鉴权token , 就给头部带上token
