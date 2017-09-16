@@ -17,7 +17,7 @@
             div.detail-container(v-show="activeType==='detail'")
                 span.f16 {{detailData.name}}
                 span.f14.ml30 工作地点：{{detailData.address}}
-                span.f14.ml30 招聘人数：{{detailData.number}}人
+                span.f14.ml30 招聘人数：{{detailData.number}}
                 p.f14.mt20 任职要求：
                 .line.mt10 
                 p.mt10 {{detailData.jobDetail}}
