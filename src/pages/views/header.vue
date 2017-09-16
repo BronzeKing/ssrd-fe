@@ -21,11 +21,11 @@
         .header-nav
             .container.flex
                 nav.herder-nav-wrapper
-                    router-link.header-nav-item.active(to="/views/home") 首页
+                    router-link.header-nav-item.active(to="/home") 首页
                     a.header-nav-item(href="javascript: void(0);") 系统展示
                     a.header-nav-item(href="javascript: void(0);") 系统产品
                     a.header-nav-item(href="javascript: void(0);") 设备辅件
-                    router-link.header-nav-item(to="/views/about") 关于我们
+                    router-link.header-nav-item(to="/about") 关于我们
                     a.header-nav-item(href="javascript: void(0);") 爱心社区
                 .header-serch
                     i.iconfont.icon-search

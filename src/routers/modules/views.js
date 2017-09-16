@@ -15,7 +15,7 @@ import login      from './login';
 
 export default {
     // path: '/',
-    path: '/views',
+    path: '/',
     // name: 'views',
     component: views,
     children: [

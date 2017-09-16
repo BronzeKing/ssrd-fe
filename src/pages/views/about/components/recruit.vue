@@ -17,7 +17,11 @@
             div.detail-container(v-show="activeType==='detail'")
                 span.f16 {{detailData.name}}
                 span.f14.ml30 工作地点：{{detailData.address}}
+                span.f14.ml30 薪资待遇：{{detailData.salary}}
                 span.f14.ml30 招聘人数：{{detailData.number}}
+                p.f14.mt20 岗位职责:
+                .line.mt10 
+                p.mt10 {{detailData.jobResponsibilities}}
                 p.f14.mt20 任职要求：
                 .line.mt10 
                 p.mt10 {{detailData.jobDetail}}

@@ -10,11 +10,6 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
-            path: '/',
-            // name: 'views',
-            redirect: 'views'
-        },
-        {
             path: '/error',
             name: 'error',
             component: error
