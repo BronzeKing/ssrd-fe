@@ -21,7 +21,7 @@
                 span.f14.ml30 招聘人数：{{detailData.number}}
                 p.f14.mt20 岗位职责:
                 .line.mt10 
-                p.mt10 {{detailData.jobResponsibilities}}
+                p.mt10 {{detailData.jobResponsibilities | wrapDeal}}
                 p.f14.mt20 任职要求：
                 .line.mt10 
                 p.mt10 {{detailData.jobDetail}}
@@ -41,9 +41,6 @@
                 el-form-item
                     el-button(type="primary" @click="submit") 提交
                     el-button(@click="submit") 取消
-
-
-
 </template>
 <script>
 import  { recruitments, jobs } from 'apis';
@@ -119,7 +116,7 @@ export default {
             formData.append('job', this.formData.job);
             formData.append('mobile', this.formData.mobile);
             formData.append('email', this.formData.email);
-            console.log('formData', formData.entries());
+            // console.log('formData', formData.entries());
             jobs(formData).then(res => {
                 /* eslint-disable */
                 console.log('homeressssss', res);

@@ -4,6 +4,12 @@
 // 联系我们
 .about-contact-us{
 
+    // 地图部分
+    #bd-map{
+        width: 100%;
+        height: 400px;
+    }
+
     .company-info-wrapper{
         margin-bottom: 15px;
         @include clearfix()

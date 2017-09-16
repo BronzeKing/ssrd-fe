@@ -4,7 +4,8 @@
 
 export {
     FormartPrice,
-    dateFilter
+    dateFilter,
+    wrapDeal
 };
 
 const FormartPrice = (val) => {
@@ -76,4 +77,9 @@ const dateFilter = (value, type) => {
             break;
     }
     return result;
+};
+
+// 文本换行处理
+const wrapDeal = (text) => {
+    return text && text.replace(/\n/g, '\r\n');
 };
