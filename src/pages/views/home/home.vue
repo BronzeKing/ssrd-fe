@@ -78,7 +78,8 @@ export default {
             data: 'Hello,World.',
             homeBanners: [
                 require('assets/home_banner.png'),
-                require('assets/home_banner1.png')
+                require('assets/home_banner1.png'),
+                require('assets/home_banner2.png')
             ]
         };
     },
