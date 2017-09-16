@@ -21,11 +21,29 @@
                 p.f14.mt20 任职要求：
                 .line.mt10 
                 p.mt10 {{detailData.jobDetail}}
-                el-button.mt10(type="primary" @click="") 申请职位
+                el-button.mt10(type="primary" @click="dialogShow") 申请职位
+        el-dialog(title="职位申请" :visible.sync="dialogFormVisible")
+            el-form(:model="formData" label-position="right" label-width="80px")
+                el-form-item(label="职位" )
+                    el-input(v-model="formData.job" auto-complete="off")
+                el-form-item(label="姓名")
+                    el-input(v-model="formData.name" auto-complete="off")
+                el-form-item(label="电话")
+                    el-input(v-model="formData.mobile" auto-complete="off")
+                el-form-item(label="邮箱")
+                    el-input(v-model="formData.email" auto-complete="off")
+                el-form-item(label="附件")
+                    input(type="file" name="file" @change="uploadFile") 
+                el-form-item
+                    el-button(type="primary" @click="submit") 提交
+                    el-button(@click="submit") 取消
+
+
 
 </template>
 <script>
-import  { recruitments } from 'apis';
+import  { recruitments, jobs } from 'apis';
+import  { post } from 'axios';
 import  { dateFilter } from 'filters';
 export default {
     name: 'recruit',
@@ -37,7 +55,15 @@ export default {
             total:0,
             tableData:[],
             activeType:'index',
-            detailData:{}
+            detailData:{},
+            dialogFormVisible: false,
+            formData:{
+                name:'',
+                job:'',
+                mobile:'',
+                email:'',
+                files:null
+            }
         };
     },
     created () {
@@ -65,6 +91,38 @@ export default {
             this.activeType = 'detail';
             this.detailData = data;
             // console.log('1111', data);
+        },
+        dialogShow () {
+            this.dialogFormVisible = true;
+            this.formData = {
+                name:'',
+                job: this.detailData.name,
+                mobile:'',
+                email:'',
+                formData:null
+            };
+        },
+        uploadFile (e) {
+            var files = e.target.files || e.dataTransfer.files;
+            if (files.length) {
+                this.formData.files = files[0];
+            }
+        },
+        submit () {
+            let formData = new FormData();
+            formData.append('attatchment', this.formData.files);
+            formData.append('name', this.formData.name);
+            formData.append('job', this.formData.job);
+            formData.append('mobile', this.formData.mobile);
+            formData.append('email', this.formData.email);
+            console.log('formData', formData.entries());
+            jobs(formData).then(res => {
+                /* eslint-disable */
+                console.log('homeressssss', res);
+                this.total = res.RecordCount
+                this.tableData = res.Records
+                /* eslint-enable */
+            });
         }
     }
 };

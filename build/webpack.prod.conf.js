@@ -8,6 +8,15 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var QiniuPlugin = require('qiniu-webpack-plugin');
+
+
+var qiniuPlugin = new QiniuPlugin({
+  ACCESS_KEY: 'NtO1B6ILEpI33oQq1NpiCSAzpgaASsrmmJzNQsNG',
+  SECRET_KEY: 'Z2ztsscMNJZVZiZpDc8UCZnChMR46ncGQpuIrld9',
+  bucket: 'mumumu',
+  path: '[hash]'
+});
 
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -23,11 +32,13 @@ var webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].js'),
+    //chunkFilename: utils.assetsPath('js/[id].[chunkhash].js'),
+    publicPath: 'https://static.mum5.cn/[hash]/'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    qiniuPlugin,
     new webpack.DefinePlugin({
       'process.env': env
     }),

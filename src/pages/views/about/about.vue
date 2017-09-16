@@ -21,14 +21,17 @@
                                     span 企业文化
                                     i.iconfont.icon-arrow-right
                             li
-                                span 荣誉资质
-                                i.iconfont.icon-arrow-right
+                                router-link(:to="{name: 'honor'}")
+                                    span 荣誉资质
+                                    i.iconfont.icon-arrow-right
                             li
-                                span 合作伙伴
-                                i.iconfont.icon-arrow-right
+                                router-link(:to="{name: 'cooperativePartner'}")
+                                    span 合作伙伴
+                                    i.iconfont.icon-arrow-right
                             li
-                                span 招贤纳士
-                                i.iconfont.icon-arrow-right
+                                router-link(:to="{name: 'recruit'}")
+                                    span 招贤纳士
+                                    i.iconfont.icon-arrow-right
                             li
                                 router-link(:to="{name: 'contactUs'}")
                                     span 联系我们

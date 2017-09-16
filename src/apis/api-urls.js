@@ -13,6 +13,7 @@ export default {
     news                :`${apiUrl}/news`,                                  // 获取新闻
 
     // 关于我们
-    recruitments        :`${apiUrl}/recruitments`                           // 招聘
+    recruitments        :`${apiUrl}/recruitments`,                          // 招聘
+    jobs                :`${apiUrl}/jobs`                                   // 提交简历
 
 };

@@ -59,6 +59,7 @@
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "ora": "^1.2.0",
+    "qiniu-webpack-plugin": "^0.4.2",
     "rimraf": "^2.6.0",
     "selenium-server": "^3.0.1",
     "semver": "^5.4.1",
