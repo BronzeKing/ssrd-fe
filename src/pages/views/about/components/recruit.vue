@@ -21,7 +21,7 @@
                 span.f14.ml30 招聘人数：{{detailData.number}}
                 p.f14.mt20 岗位职责:
                 .line.mt10 
-                p.mt10 {{detailData.jobResponsibilities | wrapDeal}}
+                p.mt10(v-html="dealWrap(detailData.jobResponsibilities)")
                 p.f14.mt20 任职要求：
                 .line.mt10 
                 p.mt10 {{detailData.jobDetail}}

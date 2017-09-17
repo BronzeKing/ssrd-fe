@@ -86,11 +86,16 @@ const typeOf = obj => {
     return map[toString.call(obj)];
 };
 
+const dealWrap = text => {
+    return text && text.replace(/\n/g, '<br>');
+};
+
 export {
     assign,
     isEmptyObject,
     getUrlParams,
     toUrlParams,
     isMobileNumber,
-    typeOf
+    typeOf,
+    dealWrap
 };

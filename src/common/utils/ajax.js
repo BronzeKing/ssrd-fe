@@ -115,30 +115,6 @@ Axios.interceptors.response.use(
         //         }
         //     });
         // }
-        // if (error.response.status === 500) {
-        //     router.push({
-        //         path: '/error',
-        //         query: {
-        //             errorCode: 500
-        //         }
-        //     });
-        // }
-        // if (error.response.status === 502) {
-        //     router.push({
-        //         path: '/error',
-        //         query: {
-        //             errorCode: 502
-        //         }
-        //     });
-        // }
-        // if (error.response.status === 404) {
-        //     router.push({
-        //         path: '/error',
-        //         query: {
-        //             errorCode: 404
-        //         }
-        //     });
-        // }
         // 返回 response 里的错误信息
         return Promise.reject(error);
     }

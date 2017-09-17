@@ -1,5 +1,14 @@
 <template lang="pug">
-    
+    .company-partner-page
+        .breadcrumb
+            el-breadcrumb
+                el-breadcrumb-item 首页
+                el-breadcrumb-item 关于我们
+                el-breadcrumb-item 合作伙伴
+        .about-wrap.mt10
+            ul.company-partner-list.p15
+                li.company-partner-item(v-for="item in patnerList")
+                    img.company-partner-image(:src="item.file")
 </template>
 <script>
 import  { getDocuments } from 'apis';
@@ -7,7 +16,7 @@ export default{
     name: '',
     data () {
         return {
-            data: 'Hello,World.'
+            patnerList: []
         };
     },
     created () {
@@ -23,11 +32,13 @@ export default{
                     source: 1
                 }
             }).then(res => {
-                /* eslint-disable */
-                console.log('homeres', res);
-                /* eslint-enable */
+                res && (this.patnerList = res.Records);
             });
         }
     }
 };
 </script>
+<style lang="scss">
+    @import '~scss/pages/views/about/company-partner'
+</style>
+

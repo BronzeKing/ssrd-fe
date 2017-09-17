@@ -5,6 +5,7 @@ import Vue                      from 'vue';
 import * as filters             from 'filters';
 import {LineThrough, Hello}     from 'components';
 import * as enums               from 'enums';
+import { dealWrap }             from 'utils/extends';
 
 // import Core from './core';
 import Core from './core';
@@ -33,3 +34,4 @@ Vue.component('Hello', Hello);
 
 // 原型挂在常用变量
 Vue.prototype.$enums = enums;
+Vue.prototype.dealWrap = dealWrap;
