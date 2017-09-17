@@ -66,11 +66,11 @@
                 i.iconfont.icon-arrow-left.font-grey
                 // .industry-list-wrapper
                 nav.industry-list
-                    a.industry-list-item(href="javascript: void(0);" v-for="item in 8" :style="{backgroundImage: `url(${require('assets/logo.png')})`}")
+                    a.industry-list-item(:href="item.link" v-for="(item,index) in linkList" :style="{backgroundImage: `url(${item.picture})`}")
                 i.iconfont.icon-arrow-right.font-grey
 </template>
 <script>
-import  { getNews } from 'apis';
+import  { getNews, industryLink } from 'apis';
 export default {
     name: 'home',
     data () {
@@ -80,12 +80,14 @@ export default {
                 require('assets/home_banner.png'),
                 require('assets/home_banner1.png'),
                 require('assets/home_banner2.png')
-            ]
+            ],
+            linkList: []
         };
     },
     created () {
         // 获取新闻内容咯
         this.getNews();
+        this.getIndustryLink();
     },
     methods: {
         // 获取新闻接口
@@ -98,6 +100,18 @@ export default {
             }).then(res => {
                 /* eslint-disable */
                 console.log('homeres', res);
+                /* eslint-enable */
+            });
+        },
+        getIndustryLink () {
+            industryLink({
+                params:{
+                    PageIndex: 1,
+                    PageSize: 8
+                }
+            }).then(res => {
+                /* eslint-disable */
+                this.linkList = res.Records;
                 /* eslint-enable */
             });
         }
