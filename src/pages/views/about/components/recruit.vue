@@ -24,7 +24,7 @@
                 p.mt10(v-html="dealWrap(detailData.jobResponsibilities)")
                 p.f14.mt20 任职要求：
                 .line.mt10 
-                p.mt10 {{detailData.jobDetail}}
+                p.mt10(v-html="dealWrap(detailData.jobDetail)")
                 el-button.mt10(type="primary" @click="dialogShow") 申请职位
         el-dialog(title="职位申请" :visible.sync="dialogFormVisible")
             el-form(:model="formData" label-position="right" label-width="80px")

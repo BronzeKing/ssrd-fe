@@ -2,7 +2,7 @@
     .page-home.container
         .home-information.mb20
             .home-banner
-                el-carousel(:interval="5000" arrow="always" height="370px")
+                el-carousel(:interval="3000" arrow="always" height="370px")
                     el-carousel-item(v-for="item in homeBanners" :key="item")
                         img(:src="item")
                 //- img(src="~assets/home_banner.png")
