@@ -29,32 +29,56 @@ export default [
             {
                 path: 'companyProfile',
                 name: 'companyProfile',
-                component: companyProfile
+                component: companyProfile,
+                meta: {
+                    title: '公司简介',
+                    activeTab: 1
+                }
             },
             {
                 path: 'corporateCulture',
                 name: 'corporateCulture',
-                component: corporateCulture
+                component: corporateCulture,
+                meta: {
+                    title: '公司文化',
+                    activeTab: 2
+                }
             },
             {
                 path: 'honor',
                 name: 'honor',
-                component: honor
+                component: honor,
+                meta: {
+                    title: '荣誉资质',
+                    activeTab: 3
+                }
             },
             {
                 path: 'cooperativePartner',
                 name: 'cooperativePartner',
-                component: cooperativePartner
+                component: cooperativePartner,
+                meta: {
+                    title: '合作伙伴',
+                    activeTab: 4
+                }
             },
             {
                 path: 'recruit',
                 name: 'recruit',
-                component: recruit
+                component: recruit,
+                meta: {
+                    title: '招贤纳财',
+                    activeTab: 5
+                }
             },
             {
                 path: 'contactUs',
                 name: 'contactUs',
-                component: contactUs
+                component: contactUs,
+                meta: {
+                    title: '联系我们',
+                    activeTab: 6
+                }
             }
         ]
     }
