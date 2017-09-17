@@ -42,7 +42,7 @@ module.exports = {
     // 强制在对象字面量的属性中键和值之间使用一致的间距
     "key-spacing": 0,
     // 禁用 console
-    'no-console': process.env.NODE_ENV === 'production' ? 2 : 1,
+    'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
     // 强制在圆括号内使用一致的空格
     'space-in-parens': [ 2, 'never' ]
   }

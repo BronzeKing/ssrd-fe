@@ -51,12 +51,13 @@
 </template>
 <script>
 import { BaiduMap, BmGeolocation, BmMarker, BmLabel } from 'vue-baidu-map';
+import { baiduMapAk } from 'settings';
 
 export default {
     name: 'contact-us',
     data () {
         return {
-            BAIDU_MAP: '6bqNZBAWAebz9dIpf07ts8TF2c17ThZc',
+            BAIDU_MAP: baiduMapAk,
             center: {
                 lng: 114.148380,
                 lat: 22.627980
