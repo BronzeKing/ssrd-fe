@@ -66,7 +66,7 @@
                 i.iconfont.icon-arrow-left.font-grey
                 // .industry-list-wrapper
                 nav.industry-list
-                    a.industry-list-item(href="javascript: void(0);" v-for="item in 8" :style="{backgroundImage: `url(${require('assets/logo.png')})`}")
+                    a.industry-list-item(:href="item.link" v-for="(item,index) in linkList" :style="{backgroundImage: `url(${item.picture})`}")
                 i.iconfont.icon-arrow-right.font-grey
 </template>
 <script>
@@ -80,7 +80,8 @@ export default {
                 require('assets/home_banner.png'),
                 require('assets/home_banner1.png'),
                 require('assets/home_banner2.png')
-            ]
+            ],
+            linkList: []
         };
     },
     created () {
@@ -110,7 +111,7 @@ export default {
                 }
             }).then(res => {
                 /* eslint-disable */
-                console.log('industryLink', res);
+                this.linkList = res.Records;
                 /* eslint-enable */
             });
         }
