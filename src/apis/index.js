@@ -30,4 +30,10 @@ export const getNews        = (options, config) => send(options, config, API.new
 
 /* 关于我们 */
 export const recruitments   = (options, config) => send(options, config, API.recruitments, 'get');            // 招聘
-export const jobs           = (options, config) => send(options, config, API.jobs, 'post');                    // 提交简历
+export const jobs           = (options, config) => send(options, config, API.jobs, 'post');                   // 提交简历
+
+/* 行业链接 */
+export const industryLink   = (options, config) => send(options, config, API.industryLink, 'get');            // 获取行业链接
+
+/* 文档列表(荣誉资质和合作伙伴) */
+export const getDocuments   = (options, config) => send(options, config, API.documents, 'get');            // 获取文档列表

@@ -70,7 +70,7 @@
                 i.iconfont.icon-arrow-right.font-grey
 </template>
 <script>
-import  { getNews } from 'apis';
+import  { getNews, industryLink } from 'apis';
 export default {
     name: 'home',
     data () {
@@ -86,6 +86,7 @@ export default {
     created () {
         // 获取新闻内容咯
         this.getNews();
+        this.getIndustryLink();
     },
     methods: {
         // 获取新闻接口
@@ -98,6 +99,18 @@ export default {
             }).then(res => {
                 /* eslint-disable */
                 console.log('homeres', res);
+                /* eslint-enable */
+            });
+        },
+        getIndustryLink () {
+            industryLink({
+                params:{
+                    PageIndex: 1,
+                    PageSize: 8
+                }
+            }).then(res => {
+                /* eslint-disable */
+                console.log('industryLink', res);
                 /* eslint-enable */
             });
         }
