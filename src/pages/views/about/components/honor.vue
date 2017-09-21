@@ -1,4 +1,14 @@
 <template lang="pug">
+    .honor-page
+        .breadcrumb
+            el-breadcrumb
+                el-breadcrumb-item 首页
+                el-breadcrumb-item 关于我们
+                el-breadcrumb-item 荣誉资质
+        .about-wrap.mt10
+            ul.honor-list.p15
+                li.honor-item(v-for="item in honors")
+                    img.honor-image(:src="item.file")
     
 </template>
 <script>
@@ -7,7 +17,7 @@ export default{
     name: '',
     data () {
         return {
-            data: 'Hello,World.'
+            honors: []
         };
     },
     created () {
@@ -24,10 +34,13 @@ export default{
                 }
             }).then(res => {
                 /* eslint-disable */
-                console.log('homeres', res);
+                res && (this.honors = res.Records);
                 /* eslint-enable */
             });
         }
     }
 };
 </script>
+<style lang="scss">
+    @import '~scss/pages/views/about/honor'
+</style>

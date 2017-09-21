@@ -6,6 +6,13 @@ import * as filters             from 'filters';
 import {LineThrough, Hello}     from 'components';
 import * as enums               from 'enums';
 import { dealWrap }             from 'utils/extends';
+import Raven from 'raven-js';
+import RavenVue from 'raven-js/plugins/vue';
+
+Raven
+    .config('https://75710b6ea670418fbfb735b9f94b1aac@sentry.io/219602')
+    .addPlugin(RavenVue, Vue)
+    .install();
 
 // import Core from './core';
 import Core from './core';
