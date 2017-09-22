@@ -2,8 +2,8 @@
     div
         .breadcrumb
             el-breadcrumb
-                el-breadcrumb-item 首页
-                el-breadcrumb-item 关于我们
+                el-breadcrumb-item(:to="{ path: '/' }") 首页
+                el-breadcrumb-item(:to="{ path: '/about' }") 关于我们
                 el-breadcrumb-item 招贤纳士
         .about-wrap.mt10
             div(v-show="activeType==='index'")
@@ -26,10 +26,10 @@
                 .line.mt10 
                 p.mt10(v-html="dealWrap(detailData.jobDetail)")
                 el-button.mt10(type="primary" @click="dialogShow") 申请职位
-        el-dialog(title="职位申请" :visible.sync="dialogFormVisible")
-            el-form(:model="formData" label-position="right" label-width="80px")
+        el-dialog(title="职位申请" :visible.sync="dialogFormVisible" )
+            el-form(:model="formData" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
                 el-form-item(label="职位" )
-                    el-input(v-model="formData.job" auto-complete="off")
+                    el-input(v-model="formData.job" auto-complete="off" disabled)
                 el-form-item(label="姓名")
                     el-input(v-model="formData.name" auto-complete="off")
                 el-form-item(label="电话")
@@ -64,7 +64,8 @@ export default {
                 mobile:'',
                 email:'',
                 files:null
-            }
+            },
+            loading:false
         };
     },
     created () {
@@ -110,6 +111,8 @@ export default {
             }
         },
         submit () {
+            this.loading = true;
+            let _self = this;
             let formData = new FormData();
             formData.append('attatchment', this.formData.files);
             formData.append('name', this.formData.name);
@@ -120,9 +123,17 @@ export default {
             jobs(formData).then(res => {
                 /* eslint-disable */
                 console.log('homeressssss', res);
-                this.total = res.RecordCount
-                this.tableData = res.Records
                 /* eslint-enable */
+                this.$message({
+                    message: '提交成功！',
+                    type: 'success'
+                });
+                this.loading = false;
+                this.dialogFormVisible = false;
+            }).catch(function (err) {
+                _self.$message.error('提交失败！');
+                _self.loading = false;
+                throw new Error(err);
             });
         }
     }
