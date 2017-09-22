@@ -40,7 +40,7 @@
                     input(type="file" name="file" @change="uploadFile") 
                 el-form-item
                     el-button(type="primary" @click="submit") 提交
-                    el-button(@click="submit") 取消
+                    el-button(@click="dialogClose") 取消
 </template>
 <script>
 import  { recruitments, jobs } from 'apis';
@@ -75,12 +75,10 @@ export default {
     methods: {
         // 获取招聘
         getInfo () {
-            recruitments({
-                params:{
-                    PageIndex: this.pageIndex,
-                    PageSize: this.pageSize,
-                    search: this.inputValue
-                }
+            recruitments.list({
+                PageIndex: this.pageIndex,
+                PageSize: this.pageSize,
+                search: this.inputValue
             }).then(res => {
                 /* eslint-disable */
                 console.log('homeres', res);
@@ -103,6 +101,9 @@ export default {
                 email:'',
                 formData:null
             };
+        },
+        dialogClose () {
+            this.dialogFormVisible = false;
         },
         uploadFile (e) {
             var files = e.target.files || e.dataTransfer.files;
@@ -129,7 +130,7 @@ export default {
                     type: 'success'
                 });
                 this.loading = false;
-                this.dialogFormVisible = false;
+                this.dialogClose();
             }).catch(function (err) {
                 _self.$message.error('提交失败！');
                 _self.loading = false;

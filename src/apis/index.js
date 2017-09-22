@@ -19,6 +19,44 @@ let send = (options, config, url, method) => {
     // 返回promise实例由用户处理
     return ajax.Axios[method](url, options, config);
 };
+class Resource {
+    constructor (url) {
+        this.url = url;
+    };
+    list (params, config) {
+        var options = {params: params};
+        return send(options, config, this.url, 'get');
+    };
+
+    create (formData, config) {
+        var options = {params: formData};
+        return send(options, config, this.url, 'post');
+    };
+
+    update (formData, config) {
+        const id = formData['id'];
+        delete formData['id'];
+        const url = this.url + '/' + id;
+        var options = {params: formData};
+        return send(options, config, url, 'put');
+    };
+
+    retrieve (params, config) {
+        const id = params['id'];
+        delete params['id'];
+        const url = this.url + '/' + id;
+        var options = {params: params};
+        return send(options, config, url, 'get');
+    };
+
+    delete (formData, config) {
+        const id = formData['id'];
+        delete formData['id'];
+        const url = this.url + '/' + id;
+        var options = {params: formData};
+        return send(options, config, url, 'delete');
+    };
+};
 
 /* 登录注册相关接口 */
 export const login          = (options, config) => send(options, config, API.login);                          // 登录接口
@@ -29,7 +67,7 @@ export const logout         = (options, config) => send(options, config, API.log
 export const getNews        = (options, config) => send(options, config, API.news, 'post');                   // 获取新闻
 
 /* 关于我们 */
-export const recruitments   = (options, config) => send(options, config, API.recruitments, 'get');            // 招聘
+export const recruitments   = new Resource(API.recruitments);
 export const jobs           = (options, config) => send(options, config, API.jobs, 'post');                   // 提交简历
 
 /* 行业链接 */
