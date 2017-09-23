@@ -1,5 +1,5 @@
 /**
- * 改文件主要用来导出接口相关方法
+ * 该文件主要用来导出接口相关方法
  */
 // import Vue from 'vue';
 import API from './api-urls';
@@ -20,41 +20,53 @@ let send = (options, config, url, method) => {
     return ajax.Axios[method](url, options, config);
 };
 class Resource {
-    constructor (url) {
+    constructor (url, prompt) {
         this.url = url;
+        this.prompt = prompt;
     };
+
+    setPrompt (response) {
+        response.catch(error => {
+            if (this.prompt && error.response && error.response.status === 400) {
+                error.response.data['errors'].forEach(item => {
+                    this.prompt[item.name] = item.value;
+                });
+            }
+        });
+        return response;
+    };
+
+    setOptions (options, hasId) {
+        if (hasId) {
+            const id = options['id'];
+            delete options['id'];
+            this.url = this.url + '/' + id;
+        };
+        return {params: options};
+    }
     list (params, config) {
-        var options = {params: params};
+        const options = this.setOptions(params);
+        return send(options, config, this.url, 'get');
+    };
+
+    retrieve (params, config) {
+        const options = this.setOptions(params, true);
         return send(options, config, this.url, 'get');
     };
 
     create (formData, config) {
-        var options = {params: formData};
-        return send(options, config, this.url, 'post');
+        const options = this.setOptions(formData);
+        return this.setPrompt(send(options, config, this.url, 'post'));
     };
 
     update (formData, config) {
-        const id = formData['id'];
-        delete formData['id'];
-        const url = this.url + '/' + id;
-        var options = {params: formData};
-        return send(options, config, url, 'put');
-    };
-
-    retrieve (params, config) {
-        const id = params['id'];
-        delete params['id'];
-        const url = this.url + '/' + id;
-        var options = {params: params};
-        return send(options, config, url, 'get');
+        const options = this.setOptions(formData, true);
+        return this.setPrompt(send(options, config, this.url, 'put'));
     };
 
     delete (formData, config) {
-        const id = formData['id'];
-        delete formData['id'];
-        const url = this.url + '/' + id;
-        var options = {params: formData};
-        return send(options, config, url, 'delete');
+        const options = this.setOptions(formData, true);
+        return send(options, config, this.url, 'delete');
     };
 };
 
@@ -67,7 +79,22 @@ export const logout         = (options, config) => send(options, config, API.log
 export const getNews        = (options, config) => send(options, config, API.news, 'post');                   // 获取新闻
 
 /* 关于我们 */
-export const recruitments   = new Resource(API.recruitments);
+export const recruitments   = new Resource(API.recruitments, {
+    name: [
+        { required: true, message: '请输入姓名', trigger: 'blur' },
+        { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
+    ],
+    mobile: [
+        { required: true, message: '请输入电话', trigger: 'blur' }
+    ],
+    email: [
+        { required: true, message: '请选择邮箱', trigger: 'blur' }
+    ],
+    file: [
+        { required: true, message: '请上传简历附件', trigger: 'change' }
+    ]
+}
+);
 export const jobs           = (options, config) => send(options, config, API.jobs, 'post');                   // 提交简历
 
 /* 行业链接 */

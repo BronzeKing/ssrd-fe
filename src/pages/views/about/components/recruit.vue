@@ -27,11 +27,11 @@
                 p.mt10(v-html="dealWrap(detailData.jobDetail)")
                 el-button.mt10(type="primary" @click="dialogShow") 申请职位
         el-dialog(title="职位申请" :visible.sync="dialogFormVisible" )
-            el-form(:model="formData" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
+            el-form(:model="formData" :rules="recruitments.prompt" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
                 el-form-item(label="职位" )
                     el-input(v-model="formData.job" auto-complete="off" disabled)
                 el-form-item(label="姓名")
-                    el-input(v-model="formData.name" auto-complete="off")
+                    el-input(v-model="formData.name" auto-complete="off" message="asd")
                 el-form-item(label="电话")
                     el-input(v-model="formData.mobile" auto-complete="off")
                 el-form-item(label="邮箱")
@@ -65,7 +65,8 @@ export default {
                 email:'',
                 files:null
             },
-            loading:false
+            loading:false,
+            recruitments: recruitments
         };
     },
     created () {
@@ -134,7 +135,7 @@ export default {
             }).catch(function (err) {
                 _self.$message.error('提交失败！');
                 _self.loading = false;
-                throw new Error(err);
+                console.log(err);
             });
         }
     }
