@@ -2,8 +2,8 @@
     .company-partner-page
         .breadcrumb
             el-breadcrumb
-                el-breadcrumb-item 首页
-                el-breadcrumb-item 关于我们
+                el-breadcrumb-item(:to="{ path: '/' }") 首页
+                el-breadcrumb-item(:to="{ path: '/about' }") 关于我们
                 el-breadcrumb-item 合作伙伴
         .about-wrap.mt10
             ul.company-partner-list.p15

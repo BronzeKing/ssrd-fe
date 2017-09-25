@@ -2,8 +2,8 @@
     div.about-contact-us
         .breadcrumb
             el-breadcrumb
-                el-breadcrumb-item 首页
-                el-breadcrumb-item 关于我们
+                el-breadcrumb-item(:to="{ path: '/' }") 首页
+                el-breadcrumb-item(:to="{ path: '/about' }") 关于我们
                 el-breadcrumb-item 联系我们
         .about-wrap.mt10
             //- h3.about-title.p15 联系我们

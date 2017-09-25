@@ -2,8 +2,8 @@
     .honor-page
         .breadcrumb
             el-breadcrumb
-                el-breadcrumb-item 首页
-                el-breadcrumb-item 关于我们
+                el-breadcrumb-item(:to="{ path: '/' }") 首页
+                el-breadcrumb-item(:to="{ path: '/abount' }") 关于我们
                 el-breadcrumb-item 荣誉资质
         .about-wrap.mt10
             ul.honor-list.p15
