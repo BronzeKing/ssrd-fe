@@ -23,7 +23,7 @@
                 .home-article
                     h4.home-article-title 最新公告
                     nav.home-article-list
-                        a.home-article-item(href="javascript: void(0);" v-for="item in 4") [新闻公告] 深睿观察：智能家居如何走向平民化？
+                        a.home-article-item(href="javascript: void(0);" v-for="item in 2") 盛世润达中标中建股份南方片区570套门禁系统设备集中采购招标！
         ul.home-flow.mb20
             li.home-flow-item.head
                 i.iconfont.icon-flow.font-blue.f24.fb
