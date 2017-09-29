@@ -2,12 +2,11 @@
     .page-home.container
         .home-information.mb20
             .home-banner
-                img(src="~assets/banner.png")
+                el-carousel(:interval="3000" arrow="always" height="370px")
+                    el-carousel-item(v-for="item in homeBanners" :key="item")
+                        img(:src="item")
+                //- img(src="~assets/home_banner.png")
             article.home-info
-                .home-article
-                    h4.home-article-title 最新公告
-                    nav.home-article-list
-                        a.home-article-item(href="javascript: void(0);" v-for="item in 4") [新闻公告] 深睿观察：智能家居如何走向平民化？
                 nav.home-user-nav
                     a.home-user-item(href="javascript: void(0);")
                         i.iconfont.icon-team
@@ -21,6 +20,10 @@
                     a.home-user-item(href="javascript: void(0);")
                         i.iconfont.icon-manage
                         p 内部管理中心
+                .home-article
+                    h4.home-article-title 最新公告
+                    nav.home-article-list
+                        a.home-article-item(href="javascript: void(0);" v-for="item in 2") 盛世润达中标中建股份南方片区570套门禁系统设备集中采购招标！
         ul.home-flow.mb20
             li.home-flow-item.head
                 i.iconfont.icon-flow.font-blue.f24.fb
@@ -63,18 +66,57 @@
                 i.iconfont.icon-arrow-left.font-grey
                 // .industry-list-wrapper
                 nav.industry-list
-                    a.industry-list-item(href="javascript: void(0);" v-for="item in 8" :style="{backgroundImage: `url(${require('assets/logo.png')})`}")
+                    a.industry-list-item(:href="item.link" v-for="(item,index) in linkList" :style="{backgroundImage: `url(${item.picture})`}")
                 i.iconfont.icon-arrow-right.font-grey
 </template>
 <script>
-    export default {
-        name: 'home',
-        data () {
-            return  {
-                data: 'Hello,World.'
-            };
+import  { getNews, industryLink } from 'apis';
+export default {
+    name: 'home',
+    data () {
+        return  {
+            data: 'Hello,World.',
+            homeBanners: [
+                require('assets/home_banner.png'),
+                require('assets/home_banner1.png'),
+                require('assets/home_banner2.png')
+            ],
+            linkList: []
+        };
+    },
+    created () {
+        // 获取新闻内容咯
+        this.getNews();
+        this.getIndustryLink();
+    },
+    methods: {
+        // 获取新闻接口
+        getNews () {
+            getNews({
+                params:{
+                    email: 'admin@test.com',
+                    password: 123456
+                }
+            }).then(res => {
+                /* eslint-disable */
+                console.log('homeres', res);
+                /* eslint-enable */
+            });
+        },
+        getIndustryLink () {
+            industryLink({
+                params:{
+                    PageIndex: 1,
+                    PageSize: 8
+                }
+            }).then(res => {
+                /* eslint-disable */
+                this.linkList = res.Records;
+                /* eslint-enable */
+            });
         }
-    };
+    }
+};
 </script>
 <style lang="scss">
     @import "~scss/pages/home";

@@ -29,8 +29,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
        '/api': {
-            target: 'http://www.baidu.com',
+            target: 'https://api.mum5.cn',
+            secure: true,
             changeOrigin: true,
+            logLevel: 'debug',
             pathRewrite: {
                 '^/api': '/'
             }

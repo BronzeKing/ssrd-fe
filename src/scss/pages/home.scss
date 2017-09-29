@@ -30,6 +30,7 @@
         .home-article{
             padding: 18px;
             padding-top: 5px;
+            border-bottom: 1px solid $border-deep;
         }
         /*最新公告 标题*/
         .home-article-title{
@@ -59,7 +60,6 @@
         .home-user-nav{
             display: flex;
             flex-wrap: wrap;
-            border-top: 1px solid $border-deep;
             .home-user-item{
                 width: 50%;
                 text-align: center;
@@ -249,6 +249,7 @@
             background: {
                 repeat: no-repeat;
                 position: center center;
+                size: contain;
             }
             &:first-child{
                 margin-left: 0;

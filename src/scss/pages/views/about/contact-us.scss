@@ -1,0 +1,29 @@
+@charset 'UTF-8';
+@import "~scss/base/mixins";
+
+// 联系我们
+.about-contact-us{
+
+    // 地图部分
+    #bd-map{
+        width: 100%;
+        height: 400px;
+    }
+
+    .company-info-wrapper{
+        margin-bottom: 15px;
+        @include clearfix()
+    }
+    .company-info-aside{
+        float: left;
+        width: 50%;
+    }
+    .company-info-item{
+        display: inline-block;
+        width: 50%;
+        font-size: 12px;
+    }
+    .iconfont {
+        margin-right: 5px;
+    }
+}

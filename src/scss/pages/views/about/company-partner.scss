@@ -1,0 +1,24 @@
+@charset 'UTF-8';
+@import "~scss/base/mixins";
+
+.company-partner-page{
+    .company-partner-list{
+        @include clearfix();
+    }
+    .company-partner-item{
+        width: 33.333%;
+        height: 100px;
+        float: left;
+        // text-align: center;
+        position: relative;
+    }
+    .company-partner-image{
+        max-width: 80%;
+        max-height: 80%;
+        // vertical-align: middle;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+    }
+}

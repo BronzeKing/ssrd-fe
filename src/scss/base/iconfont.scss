@@ -15,9 +15,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-postcode:before { content: "\e601"; }
+
 .icon-arrow-right:before { content: "\e619"; }
 
 .icon-manage:before { content: "\e7a1"; }
+
+.icon-telephone:before { content: "\e64e"; }
 
 .icon-weibo:before { content: "\e637"; }
 
@@ -37,10 +41,16 @@
 
 .icon-flow:before { content: "\e675"; }
 
+.icon-mail:before { content: "\e604"; }
+
 .icon-wechat:before { content: "\e659"; }
+
+.icon-fax:before { content: "\e874"; }
 
 .icon-project:before { content: "\e6ad"; }
 
 .icon-tel:before { content: "\e611"; }
+
+.icon-map:before { content: "\e61a"; }
 
 .icon-order:before { content: "\e650"; }

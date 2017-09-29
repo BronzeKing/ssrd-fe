@@ -1,9 +1,9 @@
-<template>
+<template lang="pug">
     
 </template>
 <script>
-    // 系统展示页面
+    // 产品展示页面
     export default{
-        name: 'system-show',
-    }
+        name: 'system-show'
+    };
 </script>
