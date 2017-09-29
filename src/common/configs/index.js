@@ -3,7 +3,7 @@
  */
 import Vue                      from 'vue';
 import * as filters             from 'filters';
-import {LineThrough, Hello}     from 'components';
+import {LineThrough}     from 'components';
 import * as enums               from 'enums';
 import { dealWrap }             from 'utils/extends';
 import Raven from 'raven-js';
@@ -34,7 +34,6 @@ Object.keys(filters).forEach(name => {
 
 // 注册全局组件
 Vue.component('LineThrough', LineThrough);
-Vue.component('Hello', Hello);
 
 // 注册全局函数
 // Vue.use(Core);
