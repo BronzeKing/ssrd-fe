@@ -19,6 +19,7 @@
                 y: 1
             };
         },
+
         mounted () {
             this.$nextTick(() => {
                 this.beginPlay();
@@ -26,6 +27,12 @@
                 window.addEventListener('resize', this.initPlay);
             });
         },
+
+        beforeDestroy () {
+            // 组件销毁之前清空回收定时器
+            this.clearTimer();
+        },
+
         methods: {
             // 递归调用 因为很可能初始化的时候#app的高度为0  // 直接延时2s执行了。
             beginPlay () {
@@ -61,9 +68,9 @@
                 // console.log('initVaries');
                 let crashBall = this.crashBall = this.$refs.crashBall;
                 // 全网页跑
-                const appEl = document.querySelector('#app');
+                // const appEl = document.querySelector('#app');
                 // 当前屏幕范围跑
-                // const appEl = document.querySelector('body');
+                const appEl = document.querySelector('body');
                 this.maxX = appEl.clientWidth - crashBall.offsetWidth;
                 this.maxY = appEl.clientHeight - crashBall.offsetHeight;
             },
