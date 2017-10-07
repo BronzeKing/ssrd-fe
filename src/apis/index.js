@@ -75,11 +75,9 @@ export const login          = (options, config) => send(options, config, API.log
 export const register       = (options, config) => send(options, config, API.register);                       // 注册接口
 export const logout         = (options, config) => send(options, config, API.logout);                         // 注销接口
 
-/* 新闻 */
-export const getNews        = (options, config) => send(options, config, API.news, 'post');                   // 获取新闻
-
 /* 关于我们 */
 export const news           = new Resource(API.news);
+/* 新闻 */
 export const recruitments   = new Resource(API.recruitments, {
     name: [
         { required: true, message: '请输入姓名', trigger: 'blur' },
@@ -96,10 +94,8 @@ export const recruitments   = new Resource(API.recruitments, {
     ]
 }
 );
-export const jobs           = (options, config) => send(options, config, API.jobs, 'post');                   // 提交简历
-
 /* 行业链接 */
-export const industryLink   = (options, config) => send(options, config, API.industryLink, 'get');            // 获取行业链接
-
+export const industryLink   = new Resource(API.industryLink);  // 获取行业链接
+export const jobs           = (options, config) => send(options, config, API.jobs, 'post');                   // 提交简历
 /* 文档列表(荣誉资质和合作伙伴) */
-export const getDocuments   = (options, config) => send(options, config, API.documents, 'get');            // 获取文档列表
+export const documents   = new Resource(API.documents);

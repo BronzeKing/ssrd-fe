@@ -71,22 +71,19 @@ export default {
     },
     created () {
         // 获取新闻内容咯
-        this.getInfo();
+        recruitments.list({
+            PageIndex: this.pageIndex,
+            PageSize: this.pageSize,
+            search: this.inputValue
+        }).then(res => {
+            /* eslint-disable */
+            this.total = res.RecordCount
+            this.tableData = res.Records
+            /* eslint-enable */
+        });
     },
     methods: {
         // 获取招聘
-        getInfo () {
-            recruitments.list({
-                PageIndex: this.pageIndex,
-                PageSize: this.pageSize,
-                search: this.inputValue
-            }).then(res => {
-                /* eslint-disable */
-                this.total = res.RecordCount
-                this.tableData = res.Records
-                /* eslint-enable */
-            });
-        },
         handleCurrentChange (data) {
             this.activeType = 'detail';
             this.detailData = data;

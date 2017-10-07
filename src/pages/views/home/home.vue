@@ -70,12 +70,11 @@
                 i.iconfont.icon-arrow-right.font-grey
 </template>
 <script>
-import  { getNews, industryLink, news } from 'apis';
+import  { industryLink, news } from 'apis';
 export default {
     name: 'home',
     data () {
         return  {
-            data: 'Hello,World.',
             homeBanners: [
                 require('assets/home_banner.png'),
                 require('assets/home_banner1.png'),
@@ -90,25 +89,12 @@ export default {
         news.list({PageSize: 3}).then(res => {
             this.news = res.Records;
         });
-        this.getIndustryLink();
-    },
-    methods: {
-        getIndustryLink () {
-            industryLink({
-                params:{
-                    PageIndex: 1,
-                    PageSize: 8
-                }
-            }).then(res => {
-                /* eslint-disable */
-                this.linkList = res.Records;
-                /* eslint-enable */
-            });
-        }
+        industryLink.list().then(res => {
+            this.linkList = res.Records;
+        });
     }
 };
 </script>
 <style lang="scss">
     @import "~scss/pages/home";
 </style>
-
