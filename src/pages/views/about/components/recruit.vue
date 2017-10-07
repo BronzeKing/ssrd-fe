@@ -7,13 +7,13 @@
                 el-breadcrumb-item 招贤纳士
         .about-wrap.mt10
             div(v-show="activeType==='index'")
-                el-input(placeholder="职位搜索" icon="search" v-model="inputValue" :on-icon-click="getInfo")
+                el-input(placeholder="职位搜索" icon="search" v-model="inputValue" :on-icon-click="recruitmentsList")
                 el-table.mt10(:data="tableData" highlight-current-row @current-change="handleCurrentChange" style="width: 100%")
                     el-table-column(property="name" label="职位名称")
                     el-table-column(property="address" label="工作地点")
                     el-table-column(property="created" label="发布时间")
                         template(scope="scope") {{scope.row.updated | dateFilter(1)}}
-                el-pagination.mt5(@current-change="getInfo" :page-size="pageSize" layout="prev, pager, next, jumper" :total="pageSize" :current-page.sync="pageIndex")
+                el-pagination.mt5(@current-change="recruitmentsList" :page-size="pageSize" layout="prev, pager, next, jumper" :total="pageSize" :current-page.sync="pageIndex")
             div.detail-container(v-show="activeType==='detail'")
                 span.f16 {{detailData.name}}
                 span.f14.ml30 工作地点：{{detailData.address}}
@@ -42,6 +42,7 @@
                     el-button(type="primary" @click="submit") 提交
                     el-button(@click="dialogClose") 取消
 </template>
+
 <script>
 import  { recruitments, jobs } from 'apis';
 import  { post } from 'axios';
@@ -70,12 +71,11 @@ export default {
         };
     },
     created () {
-        // 获取新闻内容咯
-        this.getInfo();
+        this.recruitmentsList();
     },
     methods: {
         // 获取招聘
-        getInfo () {
+        recruitmentsList () {
             recruitments.list({
                 PageIndex: this.pageIndex,
                 PageSize: this.pageSize,
