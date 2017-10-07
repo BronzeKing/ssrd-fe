@@ -82,7 +82,6 @@ export default {
                 search: this.inputValue
             }).then(res => {
                 /* eslint-disable */
-                console.log('homeres', res);
                 this.total = res.RecordCount
                 this.tableData = res.Records
                 /* eslint-enable */
@@ -91,7 +90,6 @@ export default {
         handleCurrentChange (data) {
             this.activeType = 'detail';
             this.detailData = data;
-            // console.log('1111', data);
         },
         dialogShow () {
             this.dialogFormVisible = true;
@@ -121,11 +119,7 @@ export default {
             formData.append('job', this.formData.job);
             formData.append('mobile', this.formData.mobile);
             formData.append('email', this.formData.email);
-            // console.log('formData', formData.entries());
             jobs(formData).then(res => {
-                /* eslint-disable */
-                console.log('homeressssss', res);
-                /* eslint-enable */
                 this.$message({
                     message: '提交成功！',
                     type: 'success'
@@ -135,7 +129,9 @@ export default {
             }).catch(function (err) {
                 _self.$message.error('提交失败！');
                 _self.loading = false;
+                /* eslint-disable */
                 console.log(err);
+                /* eslint-enable */
             });
         }
     }

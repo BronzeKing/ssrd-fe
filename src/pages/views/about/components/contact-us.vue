@@ -73,7 +73,9 @@ export default {
     },
     methods: {
         onMapReady (e) {
+            /* eslint-disable */
             console.log(e);
+            /* eslint-enable */
         }
     }
 };

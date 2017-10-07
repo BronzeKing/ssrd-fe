@@ -23,7 +23,7 @@
                 .home-article
                     h4.home-article-title 最新公告
                     nav.home-article-list
-                        a.home-article-item(href="javascript: void(0);" v-for="item in 2") 盛世润达中标中建股份南方片区570套门禁系统设备集中采购招标！
+                        a.home-article-item(href="javascript: void(0);" v-for="item in news") {{ item.title }}
         ul.home-flow.mb20
             li.home-flow-item.head
                 i.iconfont.icon-flow.font-blue.f24.fb
@@ -70,7 +70,7 @@
                 i.iconfont.icon-arrow-right.font-grey
 </template>
 <script>
-import  { getNews, industryLink } from 'apis';
+import  { getNews, industryLink, news } from 'apis';
 export default {
     name: 'home',
     data () {
@@ -81,28 +81,18 @@ export default {
                 require('assets/home_banner1.png'),
                 require('assets/home_banner2.png')
             ],
-            linkList: []
+            linkList: [],
+            news: []
         };
     },
     created () {
         // 获取新闻内容咯
-        this.getNews();
+        news.list({PageSize: 3}).then(res => {
+            this.news = res.Records;
+        });
         this.getIndustryLink();
     },
     methods: {
-        // 获取新闻接口
-        getNews () {
-            getNews({
-                params:{
-                    email: 'admin@test.com',
-                    password: 123456
-                }
-            }).then(res => {
-                /* eslint-disable */
-                console.log('homeres', res);
-                /* eslint-enable */
-            });
-        },
         getIndustryLink () {
             industryLink({
                 params:{

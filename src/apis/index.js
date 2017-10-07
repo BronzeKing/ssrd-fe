@@ -79,6 +79,7 @@ export const logout         = (options, config) => send(options, config, API.log
 export const getNews        = (options, config) => send(options, config, API.news, 'post');                   // 获取新闻
 
 /* 关于我们 */
+export const news           = new Resource(API.news);
 export const recruitments   = new Resource(API.recruitments, {
     name: [
         { required: true, message: '请输入姓名', trigger: 'blur' },
