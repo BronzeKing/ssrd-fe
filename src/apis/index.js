@@ -44,26 +44,31 @@ class Resource {
         };
         return {params: options};
     }
+    // 获取资源列表
     list (params, config) {
         const options = this.setOptions(params);
         return send(options, config, this.url, 'get');
     };
 
+    // 获取单个资源
     retrieve (params, config) {
         const options = this.setOptions(params, true);
         return send(options, config, this.url, 'get');
     };
 
+    // 创建单个资源
     create (formData, config) {
         const options = this.setOptions(formData);
         return this.setPrompt(send(options, config, this.url, 'post'));
     };
 
+    // 更新单个资源
     update (formData, config) {
         const options = this.setOptions(formData, true);
         return this.setPrompt(send(options, config, this.url, 'put'));
     };
 
+    // 删除单个资源
     delete (formData, config) {
         const options = this.setOptions(formData, true);
         return send(options, config, this.url, 'delete');
