@@ -2,16 +2,12 @@
     #app
         transition(name="router-fade" mode="out-in")
             router-view
-        crash-ball
+        
 </template>
 
 <script>
-    import { crashBall } from 'components';
     export default {
-        name: 'app',
-        components: {
-            crashBall
-        }
+        name: 'app'
     };
 </script>
 
