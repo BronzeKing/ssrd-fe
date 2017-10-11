@@ -27,16 +27,16 @@
                 p.mt10(v-html="dealWrap(detailData.jobDetail)")
                 el-button.mt10(type="primary" @click="dialogShow") 申请职位
         el-dialog(title="职位申请" :visible.sync="dialogFormVisible" )
-            el-form(:model="formData" :rules="recruitments.prompt" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
-                el-form-item(label="职位" )
+            el-form(:model="formData" ref="jobForm" :rules="jobs.prompt" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
+                el-form-item(label="职位" prop="job")
                     el-input(v-model="formData.job" auto-complete="off" disabled)
-                el-form-item(label="姓名")
-                    el-input(v-model="formData.name" auto-complete="off" message="asd")
-                el-form-item(label="电话")
+                el-form-item(label="姓名" prop="name" :error="jobs.backErrors.name")
+                    el-input(v-model="formData.name" auto-complete="off")
+                el-form-item(label="电话" prop="mobile" :error="jobs.backErrors.mobile")
                     el-input(v-model="formData.mobile" auto-complete="off")
-                el-form-item(label="邮箱")
+                el-form-item(label="邮箱" prop="email" :error="jobs.backErrors.email")
                     el-input(v-model="formData.email" auto-complete="off")
-                el-form-item(label="附件")
+                el-form-item(label="附件" prop="attatchment" :error="jobs.backErrors.attatchment")
                     input(type="file" name="file" @change="uploadFile") 
                 el-form-item
                     el-button(type="primary" @click="submit") 提交
@@ -67,7 +67,7 @@ export default {
                 files:null
             },
             loading:false,
-            recruitments: recruitments
+            jobs: jobs
         };
     },
     created () {
@@ -111,27 +111,32 @@ export default {
             }
         },
         submit () {
-            this.loading = true;
-            let _self = this;
-            let formData = new FormData();
-            formData.append('attatchment', this.formData.files);
-            formData.append('name', this.formData.name);
-            formData.append('job', this.formData.job);
-            formData.append('mobile', this.formData.mobile);
-            formData.append('email', this.formData.email);
-            jobs(formData).then(res => {
-                this.$message({
-                    message: '提交成功！',
-                    type: 'success'
-                });
-                this.loading = false;
-                this.dialogClose();
-            }).catch(function (err) {
-                _self.$message.error('提交失败！');
-                _self.loading = false;
-                /* eslint-disable */
-                console.log(err);
-                /* eslint-enable */
+            let _this = this;
+            this.$refs.jobForm.validate((valid) => {
+                if (valid) {
+                    let formData = new FormData();
+                    formData.append('attatchment', this.formData.files);
+                    formData.append('name', this.formData.name);
+                    formData.append('job', this.formData.job);
+                    formData.append('mobile', this.formData.mobile);
+                    formData.append('email', this.formData.email);
+                    jobs.create(formData).then(res => {
+                        this.$message({
+                            message: '提交成功！',
+                            type: 'success'
+                        });
+                        this.loading = false;
+                        this.dialogClose();
+                    }).catch(err => {
+                        _this.$message.error('提交失败！');
+                        _this.loading = false;
+                        /* eslint-disable */
+                        console.log(err);
+                        /* eslint-enable */
+                    });
+                } else {
+                    return false;
+                }
             });
         }
     }

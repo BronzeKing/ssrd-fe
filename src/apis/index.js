@@ -20,18 +20,22 @@ let send = (options, config, url, method) => {
     return ajax.Axios[method](url, options, config);
 };
 class Resource {
-    constructor (url, prompt) {
+    constructor (url, prompt, backErrors) {
         this.url = url;
         this.prompt = prompt;
+        this.backErrors = backErrors;
     };
-
     setPrompt (response) {
+        var _this = this;
         response.catch(error => {
             if (this.prompt && error.response && error.response.status === 400) {
                 error.response.data['errors'].forEach(item => {
                     this.prompt[item.name] = item.value;
                 });
             }
+            error.errors.forEach(function (element) {
+                _this.backErrors[element.name] = element.value;
+            });
         });
         return response;
     };
@@ -42,7 +46,12 @@ class Resource {
             delete options['id'];
             this.url = this.url + '/' + id;
         };
-        return {params: options};
+        let isForm = options instanceof FormData;
+        if (isForm) {
+            return options;
+        } else {
+            return {params: options};
+        }
     }
     // 获取资源列表
     list (params, config) {
@@ -76,14 +85,17 @@ class Resource {
 };
 
 /* 登录注册相关接口 */
-export const login          = (options, config) => send(options, config, API.login);                          // 登录接口
-export const register       = (options, config) => send(options, config, API.register);                       // 注册接口
-export const logout         = (options, config) => send(options, config, API.logout);                         // 注销接口
+export const login          = new Resource(API.login);                                                        // 登录接口
+export const register       = new Resource(API.register);                                                     // 注册接口
+export const logout         = new Resource(API.logout);                                                       // 注销接口
 
 /* 关于我们 */
 export const news           = new Resource(API.news);
 /* 新闻 */
-export const recruitments   = new Resource(API.recruitments, {
+export const recruitments   = new Resource(API.recruitments);
+/* 行业链接 */
+export const industryLink   = new Resource(API.industryLink);                                                 // 获取行业链接
+export const jobs           = new Resource(API.jobs, {
     name: [
         { required: true, message: '请输入姓名', trigger: 'blur' },
         { min: 2, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur' }
@@ -93,14 +105,12 @@ export const recruitments   = new Resource(API.recruitments, {
     ],
     email: [
         { required: true, message: '请选择邮箱', trigger: 'blur' }
-    ],
-    file: [
-        { required: true, message: '请上传简历附件', trigger: 'change' }
     ]
-}
-);
-/* 行业链接 */
-export const industryLink   = new Resource(API.industryLink);  // 获取行业链接
-export const jobs           = (options, config) => send(options, config, API.jobs, 'post');                   // 提交简历
+}, {
+    name:'',
+    mobile:'',
+    email:'',
+    attatchment:''
+});                                                         // 提交简历
 /* 文档列表(荣誉资质和合作伙伴) */
 export const documents   = new Resource(API.documents);
