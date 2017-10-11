@@ -1,9 +1,8 @@
-<template>
-    <div id="app">
-        <transition name="router-fade" mode="out-in">
-            <router-view></router-view>
-        </transition>
-    </div>
+<template lang="pug">
+    #app
+        transition(name="router-fade" mode="out-in")
+            router-view
+        
 </template>
 
 <script>

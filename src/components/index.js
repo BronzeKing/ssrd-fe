@@ -1,7 +1,7 @@
 import LineThrough  from './line-through';
-import Hello        from './Hello';
+import crashBall        from './crash-ball';
 
 export {
     LineThrough,
-    Hello
+    crashBall
 };

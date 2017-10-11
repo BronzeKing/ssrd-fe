@@ -1,0 +1,13 @@
+@charset "utf-8";
+@import "~scss/base/var";
+
+.components.crash-ball{
+    position: absolute;
+    // right: 50px;
+    // bottom: 50px;
+    width: 286px;
+    height: 197px;
+    // border-radius: 50%;
+    // background-color: #09f;
+    z-index: 10;
+}
