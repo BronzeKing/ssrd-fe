@@ -4,13 +4,13 @@
             <el-tab-pane label="注册" name="1">
                 <el-form :model="signupForm" :rules="rules" ref="signupForm" label-position="left" label-width="0px" class="demo-loginForm login-container">
                     <h3 class="title">系统登录</h3>
-                    <el-form-item prop="username">
+                    <el-form-item prop="username" :error=backRules.username>
                         <el-input type="text" v-model="signupForm.username" auto-complete="off" placeholder="姓名"></el-input>
                     </el-form-item>
-                    <el-form-item prop="checkPass">
+                    <el-form-item prop="email" :error=backRules.email>
                         <el-input type="text" v-model="signupForm.email" auto-complete="off" placeholder="邮箱"></el-input>
                     </el-form-item>
-                    <el-form-item prop="checkPass">
+                    <el-form-item prop="role">
                         <el-select v-model="signupForm.role" placeholder="请选择客户类型" style="width:100%;">
                             <el-option label="ADMIN" value="0"></el-option>
                             <el-option label="BOSS" value="1"></el-option>
@@ -27,7 +27,7 @@
                             <el-option label="常规用户" value="42"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item prop="password">
+                    <el-form-item prop="password" :error=backRules.password>
                         <el-input type="password" v-model="signupForm.password" auto-complete="off" placeholder="密码"></el-input>
                     </el-form-item>
                     <el-form-item style="width:100%;">
@@ -39,11 +39,11 @@
             <el-tab-pane label="登陆" name="2">
                 <el-form :model="loginForm" :rules="rules" ref="loginForm" label-position="left" label-width="0px" class="demo-loginForm login-container">
                     <h3 class="title">系统登录</h3>
-                    <el-form-item prop="account">
-                    <el-input type="text" v-model="loginForm.account" auto-complete="off" placeholder="账号"></el-input>
+                    <el-form-item prop="email">
+                    <el-input type="text" v-model="loginForm.email" auto-complete="off" placeholder="账号"></el-input>
                     </el-form-item>
-                    <el-form-item prop="checkPass">
-                    <el-input type="password" v-model="loginForm.checkPass" auto-complete="off" placeholder="密码"></el-input>
+                    <el-form-item prop="password">
+                    <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码"></el-input>
                     </el-form-item>
                     <el-form-item style="width:100%;">
                     <el-button type="primary" style="width:100%;" @click.native.prevent="loginSubmit" :loading="logining">登 录</el-button>
@@ -64,8 +64,8 @@ export default {
             activeName: '1',
             logining: false,
             loginForm: {
-                account: '',
-                checkPass: ''
+                email: '',
+                password: ''
             },
             signupForm: {
                 role: '',
@@ -73,12 +73,21 @@ export default {
                 password: '',
                 username: ''
             },
+            backRules: {
+                username: '',
+                password: '',
+                email: ''
+            },
             rules: {
-                account: [
-                    { required: true, message: '请输入账号', trigger: 'blur' }
+                username: [
+                    { required: true, message: '请输入姓名', trigger: 'blur' }
                 ],
-                checkPass: [
+                password: [
                     { required: true, message: '请输入密码', trigger: 'blur' }
+                ],
+                email:[
+                    { required: true, message: '请输入邮箱地址', trigger: 'blur' }
+                    // { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
                 ]
             }
         };
@@ -88,29 +97,72 @@ export default {
             this.$refs.loginForm.resetFields();
         },
         loginSubmit () {
-            login({
-                email: this.loginForm.account,
-                password: this.loginForm.checkPass
-            }).then(res => {
-                /* eslint-disable */
-                console.log('homeres', res);
-                /* eslint-enable */
+            var _this = this;
+            this.handleClick();
+            this.$refs.loginForm.validate((valid) => {
+                if (valid) {
+                    login.create({
+                        email: this.loginForm.email,
+                        password: this.loginForm.password
+                    }).then(res => {
+                        /* eslint-disable */
+                        console.log('homeres', res);
+                        /* eslint-enable */
+                    }).catch(err => {
+                        /* eslint-disable */
+                        console.log(err);
+                        /* eslint-enable */
+                        this.$message.error(err.msg);
+                        err.errors.forEach(function (element) {
+                            _this.backRules[element.name] = element.value;
+                        }); // 后端校验结果
+                    });
+                } else {
+                    return false;
+                }
             });
         },
         signupSubmit () {
-            register({
-                email: this.signupForm.email,
-                password: this.signupForm.password,
-                username: this.signupForm.username,
-                role: this.signupForm.role
-            }).then(res => {
-                /* eslint-disable */
-                console.log('homeres', res);
-                /* eslint-enable */
+            var _this = this;
+            this.handleClick();
+            this.$refs.signupForm.validate((valid) => {
+                if (valid) {
+                    register.create({
+                        email: this.signupForm.email,
+                        password: this.signupForm.password,
+                        username: this.signupForm.username,
+                        role: this.signupForm.role
+                    }).then(res => {
+                        /* eslint-disable */
+                        console.log('homeres', res);
+                        /* eslint-enable */
+                        this.$confirm('恭喜您注册成功！', '成功', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'success'
+                        }).then(() => {
+                            this.activeName = '2';
+                        });
+                    }).catch(err => {
+                        /* eslint-disable */
+                        console.log(err);
+                        /* eslint-enable */
+                        this.$message.error(err.msg);
+                        err.errors.forEach(function (element) {
+                            _this.backRules[element.name] = element.value;
+                        }); // 后端校验结果
+                    });
+                } else {
+                    return false;
+                }
             });
         },
         handleClick () {
-
+            this.backRules = {
+                username: '',
+                password: '',
+                email: ''
+            };
         }
     }
 };

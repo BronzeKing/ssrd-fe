@@ -116,7 +116,7 @@ Axios.interceptors.response.use(
         //     });
         // }
         // 返回 response 里的错误信息
-        return Promise.reject(error);
+        return Promise.reject(error.response && error.response.data);
     }
 );
 

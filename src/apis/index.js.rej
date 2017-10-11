@@ -1,0 +1,8 @@
+diff a/src/apis/index.js b/src/apis/index.js	(rejected hunks)
+@@ -101,5 +101,6 @@
+ );
+ /* 行业链接 */
+ export const industryLink   = new Resource(API.industryLink);  // 获取行业链接
++export const jobs           = (options, config) => send(options, config, API.jobs, 'post');                   // 提交简历
+ /* 文档列表(荣誉资质和合作伙伴) */
+ export const documents   = new Resource(API.documents);
