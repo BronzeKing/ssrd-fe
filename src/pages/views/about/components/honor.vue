@@ -12,7 +12,7 @@
     
 </template>
 <script>
-import  { getDocuments } from 'apis';
+import  { documents } from 'apis';
 export default{
     name: '',
     data () {
@@ -21,23 +21,9 @@ export default{
         };
     },
     created () {
-        this.getDocuments();
-    },
-    methods: {
-        // 获取荣誉资质
-        getDocuments () {
-            getDocuments({
-                params:{
-                    PageIndex: 1,
-                    PageSize: 12,
-                    source: 0
-                }
-            }).then(res => {
-                /* eslint-disable */
-                res && (this.honors = res.Records);
-                /* eslint-enable */
-            });
-        }
+        documents.list({source: 0, PageSize: 6}).then(res => {
+            res && (this.honors = res.Records);
+        });
     }
 };
 </script>

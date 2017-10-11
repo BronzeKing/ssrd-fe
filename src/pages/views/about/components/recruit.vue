@@ -7,13 +7,13 @@
                 el-breadcrumb-item 招贤纳士
         .about-wrap.mt10
             div(v-show="activeType==='index'")
-                el-input(placeholder="职位搜索" icon="search" v-model="inputValue" :on-icon-click="getInfo")
+                el-input(placeholder="职位搜索" icon="search" v-model="inputValue" :on-icon-click="recruitmentsList")
                 el-table.mt10(:data="tableData" highlight-current-row @current-change="handleCurrentChange" style="width: 100%")
                     el-table-column(property="name" label="职位名称")
                     el-table-column(property="address" label="工作地点")
                     el-table-column(property="created" label="发布时间")
                         template(scope="scope") {{scope.row.updated | dateFilter(1)}}
-                el-pagination.mt5(@current-change="getInfo" :page-size="pageSize" layout="prev, pager, next, jumper" :total="pageSize" :current-page.sync="pageIndex")
+                el-pagination.mt5(@current-change="recruitmentsList" :page-size="pageSize" layout="prev, pager, next, jumper" :total="pageSize" :current-page.sync="pageIndex")
             div.detail-container(v-show="activeType==='detail'")
                 span.f16 {{detailData.name}}
                 span.f14.ml30 工作地点：{{detailData.address}}
@@ -42,6 +42,7 @@
                     el-button(type="primary" @click="submit") 提交
                     el-button(@click="dialogClose") 取消
 </template>
+
 <script>
 import  { recruitments, jobs } from 'apis';
 import  { post } from 'axios';
@@ -70,19 +71,17 @@ export default {
         };
     },
     created () {
-        // 获取新闻内容咯
-        this.getInfo();
+        this.recruitmentsList();
     },
     methods: {
         // 获取招聘
-        getInfo () {
+        recruitmentsList () {
             recruitments.list({
                 PageIndex: this.pageIndex,
                 PageSize: this.pageSize,
                 search: this.inputValue
             }).then(res => {
                 /* eslint-disable */
-                console.log('homeres', res);
                 this.total = res.RecordCount
                 this.tableData = res.Records
                 /* eslint-enable */
@@ -91,7 +90,6 @@ export default {
         handleCurrentChange (data) {
             this.activeType = 'detail';
             this.detailData = data;
-            // console.log('1111', data);
         },
         dialogShow () {
             this.dialogFormVisible = true;
@@ -121,11 +119,7 @@ export default {
             formData.append('job', this.formData.job);
             formData.append('mobile', this.formData.mobile);
             formData.append('email', this.formData.email);
-            // console.log('formData', formData.entries());
             jobs(formData).then(res => {
-                /* eslint-disable */
-                console.log('homeressssss', res);
-                /* eslint-enable */
                 this.$message({
                     message: '提交成功！',
                     type: 'success'
@@ -135,7 +129,9 @@ export default {
             }).catch(function (err) {
                 _self.$message.error('提交失败！');
                 _self.loading = false;
+                /* eslint-disable */
                 console.log(err);
+                /* eslint-enable */
             });
         }
     }

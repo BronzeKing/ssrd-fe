@@ -11,7 +11,7 @@
                     img.company-partner-image(:src="item.file")
 </template>
 <script>
-import  { getDocuments } from 'apis';
+import  { documents } from 'apis';
 export default{
     name: '',
     data () {
@@ -20,21 +20,9 @@ export default{
         };
     },
     created () {
-        this.getDocuments();
-    },
-    methods: {
-        // 获取合作伙伴
-        getDocuments () {
-            getDocuments({
-                params:{
-                    PageIndex: 1,
-                    PageSize: 12,
-                    source: 1
-                }
-            }).then(res => {
-                res && (this.patnerList = res.Records);
-            });
-        }
+        documents.list({source: 1, PageSize: 6}).then(res => {
+            res && (this.patnerList = res.Records);
+        });
     }
 };
 </script>
