@@ -1,59 +1,41 @@
-<template>
-    <div class="login-content">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="注册" name="1">
-                <el-form :model="signupForm" :rules="rules" ref="signupForm" label-position="left" label-width="0px" class="demo-loginForm login-container">
-                    <h3 class="title">系统登录</h3>
-                    <el-form-item prop="username" :error=backRules.username>
-                        <el-input type="text" v-model="signupForm.username" auto-complete="off" placeholder="姓名"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="email" :error=backRules.email>
-                        <el-input type="text" v-model="signupForm.email" auto-complete="off" placeholder="邮箱"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="role">
-                        <el-select v-model="signupForm.role" placeholder="请选择客户类型" style="width:100%;">
-                            <el-option label="ADMIN" value="0"></el-option>
-                            <el-option label="BOSS" value="1"></el-option>
-                            <el-option label="市场部" value="10"></el-option>
-                            <el-option label="市场部组长" value="11"></el-option>
-                            <el-option label="市场部组员" value="12"></el-option>
-                            <el-option label="工程部" value="20"></el-option>
-                            <el-option label="工程部经理" value="21"></el-option>
-                            <el-option label="工程部组长" value="22"></el-option>
-                            <el-option label="工程部组员" value="23"></el-option>
-                            <el-option label="行业用户" value="31"></el-option>
-                            <el-option label="分销商" value="32"></el-option>
-                            <el-option label="个人用户" value="41"></el-option>
-                            <el-option label="常规用户" value="42"></el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item prop="password" :error=backRules.password>
-                        <el-input type="password" v-model="signupForm.password" auto-complete="off" placeholder="密码"></el-input>
-                    </el-form-item>
-                    <el-form-item style="width:100%;">
-                    <el-button type="primary" style="width:100%;" @click.native.prevent="signupSubmit  " :loading="logining">注 册</el-button>
-                    <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
-                    </el-form-item>
-                </el-form>
-            </el-tab-pane>
-            <el-tab-pane label="登陆" name="2">
-                <el-form :model="loginForm" :rules="rules" ref="loginForm" label-position="left" label-width="0px" class="demo-loginForm login-container">
-                    <h3 class="title">系统登录</h3>
-                    <el-form-item prop="email">
-                    <el-input type="text" v-model="loginForm.email" auto-complete="off" placeholder="账号"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="password">
-                    <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码"></el-input>
-                    </el-form-item>
-                    <el-form-item style="width:100%;">
-                    <el-button type="primary" style="width:100%;" @click.native.prevent="loginSubmit" :loading="logining">登 录</el-button>
-                    <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
-                    </el-form-item>
-                </el-form>
-            </el-tab-pane>
-        </el-tabs>
-        
-    </div>
+<template lang="pug">
+    .login-content
+        el-tabs(v-model='activeName' @tab-click='handleClick')
+            el-tab-pane(label='注册' name='1')
+                el-form.demo-loginForm.login-container(:model='signupForm' :rules='register.prompt' ref='signupForm' label-position='left' label-width='0px')
+                    h3.title 系统登录
+                    el-form-item(prop='username' :error='register.backErrors.username')
+                        el-input(type='text' v-model='signupForm.username' auto-complete='off' placeholder='姓名')
+                    el-form-item(prop='email' :error='register.backErrors.email')
+                        el-input(type='text' v-model='signupForm.email' auto-complete='off' placeholder='邮箱')
+                    el-form-item(prop='role')
+                        el-select(v-model='signupForm.role' placeholder='请选择客户类型' style='width:100%;')
+                            el-option(label='ADMIN' value='0')
+                            el-option(label='BOSS' value='1')
+                            el-option(label='市场部' value='10')
+                            el-option(label='市场部组长' value='11')
+                            el-option(label='市场部组员' value='12')
+                            el-option(label='工程部' value='20')
+                            el-option(label='工程部经理' value='21')
+                            el-option(label='工程部组长' value='22')
+                            el-option(label='工程部组员' value='23')
+                            el-option(label='行业用户' value='31')
+                            el-option(label='分销商' value='32')
+                            el-option(label='个人用户' value='41')
+                            el-option(label='常规用户' value='42')
+                    el-form-item(prop='password' :error='register.backErrors.password')
+                        el-input(type='password' v-model='signupForm.password' auto-complete='off' placeholder='密码')
+                    el-form-item(style='width:100%;')
+                    el-button(type='primary' style='width:100%;' @click.native.prevent='signupSubmit  ' :loading='logining') 注 册
+            el-tab-pane(label='登陆' name='2')
+                el-form.demo-loginForm.login-container(:model='loginForm' :rules='login.prompt' ref='loginForm' label-position='left' label-width='0px')
+                    h3.title 系统登录
+                    el-form-item(prop='email' :error='login.backErrors.email')
+                        el-input(type='text' v-model='loginForm.email' auto-complete='off' placeholder='账号')
+                    el-form-item(prop='password' :error='login.backErrors.password')
+                        el-input(type='password' v-model='loginForm.password' auto-complete='off' placeholder='密码')
+                    el-form-item(style='width:100%;')
+                        el-button(type='primary' style='width:100%;' @click.native.prevent='loginSubmit' :loading='logining') 登 陆
 </template>
 
 <script>
@@ -73,23 +55,8 @@ export default {
                 password: '',
                 username: ''
             },
-            backRules: {
-                username: '',
-                password: '',
-                email: ''
-            },
-            rules: {
-                username: [
-                    { required: true, message: '请输入姓名', trigger: 'blur' }
-                ],
-                password: [
-                    { required: true, message: '请输入密码', trigger: 'blur' }
-                ],
-                email:[
-                    { required: true, message: '请输入邮箱地址', trigger: 'blur' }
-                    // { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
-                ]
-            }
+            login: login,
+            register: register
         };
     },
     methods: {
@@ -113,9 +80,9 @@ export default {
                         console.log(err);
                         /* eslint-enable */
                         this.$message.error(err.msg);
-                        err.errors.forEach(function (element) {
-                            _this.backRules[element.name] = element.value;
-                        }); // 后端校验结果
+                        // err.errors.forEach(function (element) {
+                        //     _this.backRules[element.name] = element.value;
+                        // }); // 后端校验结果
                     });
                 } else {
                     return false;
@@ -148,9 +115,6 @@ export default {
                         console.log(err);
                         /* eslint-enable */
                         this.$message.error(err.msg);
-                        err.errors.forEach(function (element) {
-                            _this.backRules[element.name] = element.value;
-                        }); // 后端校验结果
                     });
                 } else {
                     return false;
@@ -158,11 +122,7 @@ export default {
             });
         },
         handleClick () {
-            this.backRules = {
-                username: '',
-                password: '',
-                email: ''
-            };
+
         }
     }
 };

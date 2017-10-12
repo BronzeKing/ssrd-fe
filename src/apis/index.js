@@ -19,12 +19,23 @@ let send = (options, config, url, method) => {
     // 返回promise实例由用户处理
     return ajax.Axios[method](url, options, config);
 };
+
 class Resource {
-    constructor (url, prompt, backErrors) {
+    constructor (url, prompt) {
         this.url = url;
         this.prompt = prompt;
-        this.backErrors = backErrors;
+        this.backErrors = {};
+        this.initBackErrors();
     };
+
+    initBackErrors () {
+        if (this.prompt) {
+            Object.keys(this.prompt).forEach(key => {
+                this.backErrors[key] = '';
+            });
+        };
+    };
+
     setPrompt (response) {
         var _this = this;
         response.catch(error => {
@@ -67,6 +78,7 @@ class Resource {
 
     // 创建单个资源
     create (formData, config) {
+        this.initBackErrors();
         const options = this.setOptions(formData);
         return this.setPrompt(send(options, config, this.url, 'post'));
     };
@@ -85,8 +97,28 @@ class Resource {
 };
 
 /* 登录注册相关接口 */
-export const login          = new Resource(API.login);                                                        // 登录接口
-export const register       = new Resource(API.register);                                                     // 注册接口
+export const login          = new Resource(API.login, {
+    username: [
+        { required: true, message: '请输入姓名', trigger: 'blur' }
+    ],
+    password: [
+        { required: true, message: '请输入密码', trigger: 'blur' }
+    ]
+}, {
+    username: '',
+    password: ''
+});                                                        // 登录接口
+export const register       = new Resource(API.register, {
+    username: [
+        { required: true, message: '请输入姓名', trigger: 'blur' }
+    ],
+    password: [
+        { required: true, message: '请输入密码', trigger: 'blur' }
+    ],
+    email:[
+        { required: true, message: '请输入邮箱地址', trigger: 'blur' }
+    ]
+});                                                     // 注册接口
 export const logout         = new Resource(API.logout);                                                       // 注销接口
 
 /* 关于我们 */
@@ -106,11 +138,6 @@ export const jobs           = new Resource(API.jobs, {
     email: [
         { required: true, message: '请选择邮箱', trigger: 'blur' }
     ]
-}, {
-    name:'',
-    mobile:'',
-    email:'',
-    attatchment:''
 });                                                         // 提交简历
 /* 文档列表(荣誉资质和合作伙伴) */
 export const documents   = new Resource(API.documents);
