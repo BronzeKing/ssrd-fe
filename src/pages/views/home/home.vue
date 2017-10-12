@@ -68,9 +68,11 @@
                 nav.industry-list
                     a.industry-list-item(:href="item.link" v-for="(item,index) in linkList" :style="{backgroundImage: `url(${item.picture})`}")
                 i.iconfont.icon-arrow-right.font-grey
+        crash-ball
 </template>
 <script>
 import  { industryLink, news } from 'apis';
+import { crashBall } from 'components';
 export default {
     name: 'home',
     data () {
@@ -83,6 +85,9 @@ export default {
             linkList: [],
             news: []
         };
+    },
+    components: {
+        crashBall
     },
     created () {
         // 获取新闻内容咯

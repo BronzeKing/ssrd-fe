@@ -1,11 +1,22 @@
 <template lang="pug">
     .components.crash-ball(ref="crashBall" :style="{left: `${startX}px`, top: `${startY}px`}")
+        img(src="~assets/tips.png")
 </template>
 <script>
     let timer = null;
 
     export default {
         name: 'crash-ball',
+        props: {
+            step: {
+                type: Number,
+                default: 2
+            },
+            area: {
+                type: String,   // page 是整个页面范围 'window'是第一屏范围
+                default: 'page'
+            }
+        },
         data () {
             return {
                 crashBall: null,
@@ -68,9 +79,11 @@
                 // console.log('initVaries');
                 let crashBall = this.crashBall = this.$refs.crashBall;
                 // 全网页跑
-                // const appEl = document.querySelector('#app');
+                const appEl = this.area === 'page'
+                    ? document.querySelector('#app')
+                    : document.querySelector('body');
                 // 当前屏幕范围跑
-                const appEl = document.querySelector('body');
+                // const appEl = document.querySelector('body');
                 this.maxX = appEl.clientWidth - crashBall.offsetWidth;
                 this.maxY = appEl.clientHeight - crashBall.offsetHeight;
             },
@@ -93,8 +106,8 @@
                 if (marginTop < 0 || marginTop > this.maxY) {
                     this.y *= -1;
                 }
-                this.startX += this.x * 5;
-                this.startY += this.y * 5;
+                this.startX += this.x * this.step;
+                this.startY += this.y * this.step;
                 this.crashBall.style.left = this.startX;
                 this.crashBall.style.top = this.startY;
             }
