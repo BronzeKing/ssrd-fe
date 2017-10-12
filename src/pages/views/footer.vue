@@ -64,8 +64,9 @@
                             a.font-white(href="javascript: void(0);")
                                 i.iconfont.icon-weibo
                     .right-sub
-                        p.f14.mb10 官方微信公众号
-                        img.right-sub-img(src="~assets/qrcode.png")
+                        p.f14.mb10 
+                        a(href="https://szcert.ebs.org.cn/1c48b07e-59b5-465f-822e-5516a71d59b4")
+                            img.right-sub-img(src="~assets/gswj.png")
         .container-next-part
             p.f14 版权所有 Copyright &copy; 2006 2010 深圳市盛世润达智能科技有限公司 粤ICP备06083171号   
 </template>
