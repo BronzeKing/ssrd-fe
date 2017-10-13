@@ -10,12 +10,15 @@
     "build": "node build/build.js",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/e2e/specs",
+    "build:dll": "webpack --config build/webpack.dll.conf.js",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "dependencies": {
     "axios": "^0.16.2",
     "babel-runtime": "^6.26.0",
     "element-ui": "^1.4.1",
+    "imagemin-webpack-plugin": "^1.5.2",
     "mint-ui": "^2.2.7",
     "pug": "^2.0.0-rc.3",
     "qs": "^6.5.0",
@@ -24,7 +27,8 @@
     "vue": "^2.3.3",
     "vue-baidu-map": "^0.15.1",
     "vue-router": "^2.6.0",
-    "vuex": "^2.3.1"
+    "vuex": "^2.3.1",
+    "webpack-parallel-uglify-plugin": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

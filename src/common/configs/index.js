@@ -3,11 +3,11 @@
  */
 import Vue                      from 'vue';
 import * as filters             from 'filters';
-import {LineThrough}     from 'components';
+import { LineThrough }          from 'components';
 import * as enums               from 'enums';
 import { dealWrap }             from 'utils/extends';
-import Raven from 'raven-js';
-import RavenVue from 'raven-js/plugins/vue';
+import Raven                    from 'raven-js';
+import RavenVue                 from 'raven-js/plugins/vue';
 
 Raven
     .config('https://75710b6ea670418fbfb735b9f94b1aac@sentry.io/219602')
@@ -23,7 +23,7 @@ Vue.use(axiosPlugin);
 
 // 引入elemtn-ui
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-default/index.css';
+// import 'element-ui/lib/theme-default/index.css';
 
 Vue.use(ElementUI);
 

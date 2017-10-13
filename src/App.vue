@@ -12,7 +12,8 @@
 </script>
 
 <style lang="scss">
-    @import 'scss/common.scss';                         // 全局通用样式
+    @import 'scss/common.scss';                             // 全局通用样式
+    @import '~element-ui/lib/theme-default/index.css';      // element样式
     
     .router-fade-enter-active,
     .router-fade-leave-active {
