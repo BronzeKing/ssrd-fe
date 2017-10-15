@@ -17,8 +17,11 @@ export default {
     jobs                :`${apiUrl}/jobs`,                                  // 提交简历
 
     // 行业链接
-    industryLink        :`${apiUrl}/industryLinks`,                          // 获取行业链接
+    industryLink        :`${apiUrl}/industryLinks`,                         // 获取行业链接
 
     // 文档列表(荣誉资质和合作伙伴)
-    documents           :`${apiUrl}/documents`                              // 获取行业链接
+    documents           :`${apiUrl}/documents`,                             // 获取行业链接
+    // 系统展示
+    systemDemonstrations:`${apiUrl}/systemDemonstrations`,                  // 获取案例展示
+    systems             :`${apiUrl}/systems`                                // 获取系统展示
 };
