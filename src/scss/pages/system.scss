@@ -1,0 +1,82 @@
+.page-system{
+    background: #F0F0F0;
+    .about-banner{
+        img{
+            width: 100%;
+        }
+    }
+    .container{
+        position: relative;
+        .header{
+            text-align: center;
+            font-weight: normal;
+            margin: 28px;
+            h1{
+                margin-bottom: 8px;
+            }
+        }
+        .systems-list{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            .systems-item{
+                text-align: center;
+                width: 400px;
+                padding: 0 70px;
+                i{
+                    font-size: 80px;
+                }
+                &:hover{
+                    background-color: #e5e5e5;
+                    cursor: pointer;
+                }
+            }
+            .line{
+                border: 2px solid #eee;
+                border-top: none;
+                border-bottom: none;
+            }
+        }
+        .system-content{
+            width: 965px;
+            margin-left: 350px;
+            min-height: 400px;
+            padding: 10px;
+            .system-wrap{
+                background: #fff;
+                margin-bottom: 40px;
+                line-height: 1.8;
+                padding: 20px 10px;
+                .system-top-info{
+                    display: flex;
+                    .left-info{
+                        width: 70%;
+                    }
+                    .img-wrap{
+                        width: 30%;
+                        float: right;
+                        padding: 60px 10px 0px;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+                .system-body-info{
+
+                }
+                .system-title{
+                    width: 100%;
+                    text-align: center;
+                    font-size: 18px;
+                    h2{
+                        font-weight: normal;
+                    }
+                }
+                .system-content-text{
+                    text-indent: 28px;
+                }
+                
+            }
+        }
+    }
+}

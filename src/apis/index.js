@@ -104,10 +104,7 @@ export const login          = new Resource(API.login, {
     password: [
         { required: true, message: '请输入密码', trigger: 'blur' }
     ]
-}, {
-    username: '',
-    password: ''
-});                                                        // 登录接口
+});                                                                                                          // 登录接口
 export const register       = new Resource(API.register, {
     username: [
         { required: true, message: '请输入姓名', trigger: 'blur' }
@@ -118,7 +115,7 @@ export const register       = new Resource(API.register, {
     email:[
         { required: true, message: '请输入邮箱地址', trigger: 'blur' }
     ]
-});                                                     // 注册接口
+});                                                                                                           // 注册接口
 export const logout         = new Resource(API.logout);                                                       // 注销接口
 
 /* 关于我们 */
@@ -138,6 +135,9 @@ export const jobs           = new Resource(API.jobs, {
     email: [
         { required: true, message: '请选择邮箱', trigger: 'blur' }
     ]
-});                                                         // 提交简历
+});                                                                                                           // 提交简历
 /* 文档列表(荣誉资质和合作伙伴) */
 export const documents   = new Resource(API.documents);
+/* 系统展示 */
+export const systemDemonstrations = new Resource(API.systemDemonstrations);                                   // 获取案例展示
+export const systems = new Resource(API.systems);                                                             // 获取系统展示
