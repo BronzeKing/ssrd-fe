@@ -1,0 +1,29 @@
+@charset "utf-8";
+@import "~scss/base/var";
+
+.components-lookpic{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 150;
+    // background-color: rgba(0, 0, 0, .6);
+    .lookpic-picture-wapper{
+        width: 60%;
+        height: 80%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        transform: translate3d(-50%, -50%, 0)
+    }
+
+    .lookpic-picture{
+        width: 100%;
+    }
+
+    #image{
+        display: none;
+    }
+}

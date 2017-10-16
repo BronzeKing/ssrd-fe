@@ -1,0 +1,10 @@
+@charset "utf-8";
+@import "~scss/base/var";
+
+.components.info-banner{
+    font-size: 0;
+    position: relative;
+    left: 50%;
+    top: 0;
+    margin-left: -960px;
+}

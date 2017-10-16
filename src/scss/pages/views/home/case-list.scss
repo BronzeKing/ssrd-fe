@@ -1,0 +1,25 @@
+@charset 'UTF-8';
+@import "~scss/base/mixins";
+
+.page-case-list{
+    position: relative;
+
+    .case-list-title{
+        font-size: 28px;
+        font-weight: 400;
+        padding-top: 40px;
+        padding-bottom: 30px;
+        p{
+            font-size: 12px;
+        }
+    }
+
+    // 案例列表
+    .case-list-box{
+
+    }
+    .case-list-item{
+        display: inline-block;
+        widows: 50%;
+    }
+}
