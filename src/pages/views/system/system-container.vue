@@ -16,10 +16,53 @@
                         .img-wrap
                             img(src="https://static.mum5.cn/banner2.png") 
                     .system-body-info.p10
-                        h4 系统介绍：
+                        .cutoff-line
+                            h4 系统介绍：
+                            .line
                         .system-content-text
-                            p 可视化劳务管理系统是由我司自主研发，它具有对人员进出、授权、查询、统计等多种功能，还可作为人事管理、勤管理、施工作业面管理以及项目成本管理，既方便内部人员或用户的自由出入，又杜绝外来人员随意进出，提高安全防范能力。该系统以劳动力资源共享为基础，采取业务统一规划、数据集中管理和分级应用的原则，覆盖劳务管理全过程，最终达成提高劳务管理效率，实现企业劳动力资源共享和统一调配，不断提高企业经济效益和企业竞争力的标
+                            p 可视化劳务管理系，覆盖劳务管理全过程，最终达成提高劳务管理效率，实现企业劳动力资源共享和统一调配，不断提高企业经济效益和企业竞争力的标
+                        .cutoff-line
+                            h4 系统结构
+                            .line
+                        .system-content-text
+                            p 可视化一调配，不断提高企业经济效益和企业竞争力的标
+                        .cutoff-line
+                            h4 功能特性
+                            .line
+                        .system-content-text
+                            p 可视化一调配，不断提高企业经济效益和企业竞争力的标
+                        .cutoff-line
+                            h4 现场图片
+                            .line
+                        .system-content-text
+                            .scene-img
+                                img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
+                            .scene-img
+                                img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
+                            .scene-img
+                                img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
+                        .cutoff-line
+                            h4 相关案例
+                            .line
+                        .system-content-text
+                            .scene-list
+                                ul
+                                    li
+                                        a
+                                            .scene-info
+                                                span [ 相关案例 ]
+                                                span 支付宝被限额：马云的移动支付梦想。。。。
+                                            span 2017-09-24
+
+
             menu-box(:menuData="menuData" @linkTo="linkTo")
+            .dot-menu
+                ul
+                    li( v-for="(item,index) in dotMenu" :class="{active: activeDotTab===index}" @click="handDot(index)")
+                        .dot
+                        span {{item}}
+
+
 </template>
 <script>
 // 系统展示页面
@@ -43,7 +86,9 @@ export default{
                     englishName: 'SYSTEM SHOW'
                 },
                 activeTab: 0
-            }
+            },
+            dotMenu: ['系统介绍', '系统结构', '功能特性', '现场图片', '相关案例'],
+            activeDotTab: 0
         };
     },
     components: {
@@ -74,6 +119,9 @@ export default{
         },
         handleSelect (key, keyPath) {
             console.log(key, keyPath);
+        },
+        handDot (index) {
+            this.activeDotTab = index;
         }
     }
 };

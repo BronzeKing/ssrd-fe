@@ -38,7 +38,6 @@
             }
         }
         .system-content{
-            width: 965px;
             margin-left: 350px;
             min-height: 400px;
             padding: 10px;
@@ -62,7 +61,43 @@
                     }
                 }
                 .system-body-info{
-
+                    .cutoff-line{
+                        display: flex;
+                        align-items: center;
+                        h4{
+                            color: #017FCE;
+                            font-size: 18px;
+                            width: 12%;
+                            font-weight: normal;
+                        }
+                        .line{
+                            border-top: 3px solid #E5E5E5; 
+                            width: 88%;
+                        }
+                    }
+                    .system-content-text{
+                        display: flex;
+                        justify-content: space-between;
+                        .scene-img{
+                            width: 30%;
+                            img{
+                                width: 100%;
+                            }
+                        }
+                        .scene-list{
+                            width: 100%;
+                            ul{
+                                width: 100%;
+                                li{
+                                    a{
+                                        display: flex;
+                                        justify-content: space-between;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
                 }
                 .system-title{
                     width: 100%;
@@ -76,6 +111,40 @@
                     text-indent: 28px;
                 }
                 
+            }
+        }
+    }
+}
+.dot-menu{
+    border-left: 2px solid #666666;
+    width: 200px;
+    position: absolute;
+    right: -200px;
+    top: 0;
+    ul{
+        li{
+            display: flex;
+            align-items: center;
+            height: 25px;
+            margin-bottom: 15px;
+            .dot{
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #666666;
+                margin: 0 20px 0 -5px;
+            }
+            &:hover{
+                background-color: #e5e5e5;
+                cursor: pointer;
+            }
+            &.active{
+                .dot{
+                    background: #017FCE;
+                }
+                span{
+                    color: #017FCE;
+                }
             }
         }
     }
