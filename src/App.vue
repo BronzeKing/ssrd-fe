@@ -13,6 +13,7 @@
 
 <style lang="scss">
     @import 'scss/common.scss';                         // 全局通用样式
+    @import '~viewerjs/dist/viewer.min.css';            // 全局通用样式
     
     .router-fade-enter-active,
     .router-fade-leave-active {
