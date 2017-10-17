@@ -3,6 +3,17 @@
         .about-banner
             img(src="~assets/about-banner.png")
         .container
+            .menu-left
+                .menu-left-header
+                    span.ml20 爱心社区 / 
+                    span.f16 &nbsp Caring community 
+                .menu-left-body
+                    .menu-list(v-for="n in 5")
+                        .menu-list-img
+                            img(src="https://static.mum5.cn/data/default_Xl5YxUf.png")
+                        .menu-list-info
+                            a
+                                span 深锐观察：智能家居如何走向平民化？
             .system-content
                 .system-wrap
                     .system-title
@@ -10,16 +21,58 @@
                     .system-top-info
                         .left-info.p10
                             .system-content-text
-                                p 云计算和大数据的建立，是实现项目数字化管理的基础。
-                            .system-content-text
-                                p 建筑工地项目管理因其特殊性，数据的形成是零散不集中的，我们应用现在的管理模式，将每天产生的质量、安全、技术、物流、人流、管理信息流等数据上传到我们的云端，建立项目云数据，经过云端数字化处理，即可实现按需的、可计量的对基础架构物流、人流、信息流进行分配，实现对资源使用情况以及对事件的捕获和处理，达到劳务管理、器械管理、材料管理、方案与施工方法管理、生产与环境管理的目的，让施工现场更透明化呈现、更全面的互通互知、更深入的智能化，真正实现云端数字化项目管理。
+                                p {{activeTextInfo.summary}}
                         .img-wrap
-                            img(src="https://static.mum5.cn/banner2.png") 
+                            img(:src="activeTextInfo.summaryPicture") 
                     .system-body-info.p10
-                        h4 系统介绍：
-                        .system-content-text
-                            p 可视化劳务管理系统是由我司自主研发，它具有对人员进出、授权、查询、统计等多种功能，还可作为人事管理、勤管理、施工作业面管理以及项目成本管理，既方便内部人员或用户的自由出入，又杜绝外来人员随意进出，提高安全防范能力。该系统以劳动力资源共享为基础，采取业务统一规划、数据集中管理和分级应用的原则，覆盖劳务管理全过程，最终达成提高劳务管理效率，实现企业劳动力资源共享和统一调配，不断提高企业经济效益和企业竞争力的标
+                        .cutoff-line
+                            h4 系统介绍：
+                            .line
+                        .system-content-text(id="text0")
+                            p {{activeTextInfo.introduction}}
+                        .cutoff-line
+                            h4 系统结构
+                            .line
+                        .system-content-text(id="text1")
+                            p {{activeTextInfo.structure}}
+                        .cutoff-line
+                            h4 功能特性
+                            .line
+                        .system-content-text(id="text2")
+                            p {{activeTextInfo.funtionalFeature}}
+                        .cutoff-line
+                            h4 现场图片
+                            .line
+                        .system-content-text(id="text3")
+                            .sceneImgList
+                                .scene-img
+                                    img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
+                                .scene-img
+                                    img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
+                                .scene-img
+                                    img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
+                        .cutoff-line
+                            h4 相关案例
+                            .line
+                        .system-content-text(id="text4")
+                            .scene-list
+                                ul
+                                    li(v-for="n in 5")
+                                        a
+                                            .scene-info
+                                                span [ 相关案例 ]
+                                                span 支付宝被限额：马云的移动支付梦想。。。。
+                                            span 2017-09-24
+
+
             menu-box(:menuData="menuData" @linkTo="linkTo")
+            .dot-menu
+                ul
+                    li( v-for="(item,index) in dotMenu" :class="{active: activeDotTab===index}" @click="handDot(index)")
+                        .dot
+                        span {{item}}
+
+
 </template>
 <script>
 // 系统展示页面
@@ -43,6 +96,16 @@ export default{
                     englishName: 'SYSTEM SHOW'
                 },
                 activeTab: 0
+            },
+            dotMenu: ['系统介绍', '系统结构', '功能特性', '现场图片', '相关案例'],
+            activeDotTab: 0,
+            textInfo: {},
+            activeTextInfo: {
+                introduction: '',
+                structure: '',
+                funtionalFeature: '',
+                summary: '',
+                summaryPicture: ''
             }
         };
     },
@@ -66,18 +129,29 @@ export default{
                 /* eslint-disable */
                 console.log(res);
                 /* eslint-enable */
+                this.textInfo = res.Records;
+                this.activeTextInfo = res.Records[this.menuData.activeTab];
             });
         },
         linkTo (data) {
             this.menuData.activeTab = data;
             this.$router.replace({ name:'systemContainer', query: {id: data} });
+            this.activeTextInfo = this.textInfo[this.menuData.activeTab];
         },
         handleSelect (key, keyPath) {
             console.log(key, keyPath);
+        },
+        handDot (index) {
+            this.activeDotTab = index;
+            var anchor = this.$el.querySelector('#text' + index);
+            window.scrollTo(0, anchor.offsetTop);
         }
     }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     @import "~scss/pages/system";
+    .container{
+        display: flex;
+    }
 </style>

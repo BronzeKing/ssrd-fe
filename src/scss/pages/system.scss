@@ -7,6 +7,7 @@
     }
     .container{
         position: relative;
+        
         .header{
             text-align: center;
             font-weight: normal;
@@ -38,10 +39,9 @@
             }
         }
         .system-content{
-            width: 965px;
-            margin-left: 350px;
             min-height: 400px;
             padding: 10px;
+            width: 75%;
             .system-wrap{
                 background: #fff;
                 margin-bottom: 40px;
@@ -55,14 +55,53 @@
                     .img-wrap{
                         width: 30%;
                         float: right;
-                        padding: 60px 10px 0px;
+                        padding: 20px 10px 0px;
                         img{
                             width: 100%;
                         }
                     }
                 }
                 .system-body-info{
-
+                    .cutoff-line{
+                        margin: 15px 0 10px;
+                        display: flex;
+                        align-items: center;
+                        h4{
+                            color: #017FCE;
+                            font-size: 18px;
+                            width: 12%;
+                            font-weight: normal;
+                        }
+                        .line{
+                            border-top: 3px solid #E5E5E5; 
+                            width: 88%;
+                        }
+                    }
+                    .system-content-text{
+                        .sceneImgList{
+                            display: flex;
+                            justify-content: space-around;
+                            .scene-img{
+                                width: 25%;
+                                img{
+                                    width: 100%;
+                                }
+                            }
+                        }
+                        .scene-list{
+                            width: 100%;
+                            ul{
+                                width: 100%;
+                                li{
+                                    a{
+                                        display: flex;
+                                        justify-content: space-between;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
                 }
                 .system-title{
                     width: 100%;
@@ -76,6 +115,72 @@
                     text-indent: 28px;
                 }
                 
+            }
+        }
+        .menu-left{
+            width: 300px;
+            margin-top: 260px;
+            .menu-left-header{
+                height: 50px;
+                background: #017FCE;
+                color: #fff;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+            }
+            .menu-left-body{
+                background: #fff;
+                padding: 11px;
+                .menu-list{
+                    display: flex;
+                    .menu-list-img{
+                        width: 40%;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .menu-list-info{
+                        width: 60%;
+                        line-height: 24px;
+                        display: flex;
+                        align-items: center;
+                        margin-left: 9px;
+                    }
+                }
+            }
+        }
+    }
+}
+.dot-menu{
+    border-left: 2px solid #666666;
+    width: 200px;
+    position: absolute;
+    right: -250px;
+    top: 50px;
+    ul{
+        li{
+            display: flex;
+            align-items: center;
+            height: 25px;
+            margin-bottom: 15px;
+            .dot{
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #666666;
+                margin: 0 20px 0 -5px;
+            }
+            &:hover{
+                background-color: #e5e5e5;
+                cursor: pointer;
+            }
+            &.active{
+                .dot{
+                    background: #017FCE;
+                }
+                span{
+                    color: #017FCE;
+                }
             }
         }
     }

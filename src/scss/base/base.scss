@@ -20,6 +20,7 @@ body {
     outline: none;
     display: block;
     // overflow: hidden;
+    overflow-x: hidden;
     // overflow-y: scroll;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;       // 点击反馈延时
