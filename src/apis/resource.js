@@ -13,7 +13,7 @@ const _methodMap = {
 
 class Resource {
     constructor (url, Model) {
-        this.url = url; // 请求练级
+        this.url = url;
         this.model = {};
         this.rules = {};
         this.errors = {};
