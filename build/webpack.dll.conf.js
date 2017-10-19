@@ -8,7 +8,7 @@ module.exports = {
             //   'q',
             //   'axios',
             'element-ui',
-            'raven-js',
+            // 'raven-js',
             'axios',
             // 'vue-baidu-map',
             //   'vue/dist/vue.common.js',

@@ -6640,6 +6640,10 @@ verror@1.3.6:
   dependencies:
     extsprintf "1.0.2"
 
+viewerjs@^0.8.0:
+  version "0.8.0"
+  resolved "http://registry.npm.taobao.org/viewerjs/download/viewerjs-0.8.0.tgz#4dbb5aa705a36435ff1caa2c602a69e712c307a5"
+
 vinyl-assign@^1.0.1:
   version "1.2.1"
   resolved "http://registry.npm.taobao.org/vinyl-assign/download/vinyl-assign-1.2.1.tgz#4d198891b5515911d771a8cd9c5480a46a074a45"
