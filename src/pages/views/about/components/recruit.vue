@@ -102,7 +102,6 @@ export default {
         submit () {
             let _this = this;
             this.$refs.jobForm.validate((valid) => {
-                jobs.resetErrors();
                 if (valid) {
                     jobs.create().then(res => {
                         this.$message({
