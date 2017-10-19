@@ -80,10 +80,10 @@ class Resource {
         };
         let response = ajax.Axios[method](this.url, body, config);
         let that = this;
+        this.resetErrors();
         response.catch(error => {
-            that.resetErrors();
+            // 把上一次请求产生的错误清除
             error.errors.forEach(ele => {
-                // 把上一次请求产生的错误清除
                 that.errors[ele.name] = ele.value;
             });
         });
