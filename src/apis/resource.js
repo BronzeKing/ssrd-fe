@@ -3,97 +3,116 @@
  */
 import ajax from 'utils/ajax';
 
-let send = (options, config, url, method) => {
-    // 如果未传入url以及参数抛出异常
-    // if (!url || !options) {
-    if (!url) {
-        throw new Error('url is null.');
-        // throw new Error('url or options is null.');
-    }
-
-    // 如果没有设置请求方式默认请求方式为POST
-    method = method || 'post';
-
-    // 返回promise实例由用户处理
-    return ajax.Axios[method](url, options, config);
+const _methodMap = {
+    'list': 'get',
+    'retrieve': 'get',
+    'create': 'post',
+    'update': 'put',
+    'destroy': 'delete'
 };
 
 class Resource {
-    constructor (url, prompt) {
-        this.url = url;             // 请求练级
-        this.prompt = prompt;       // 错误model
-        this.backErrors = {};       // 返回的error信息
-        this.initBackErrors();      // 初始化返回的error信息体
-    };
-
-    initBackErrors () {
-        if (this.prompt) {
-            Object.keys(this.prompt).forEach(key => {
-                this.backErrors[key] = '';
-            });
+    constructor (url, Model) {
+        this.url = url; // 请求练级
+        this.model = {};
+        this.rules = {};
+        this.errors = {};
+        if (Model) {
+            this.model = Model.data;
+            this.rules = Model.rules;
+            this.resetErrors();
         };
     };
 
-    // 设置错误信息内容
-    setPrompt (response) {
-        var _this = this;
-        response.catch(error => {
-            if (this.prompt && error.response && error.response.status === 400) {
-                error.response.data['errors'].forEach(item => {
-                    this.prompt[item.name] = item.value;
-                });
+    resetErrors () {
+        Object.keys(this.model).forEach(key => {
+            this.errors[key] = '';
+        });
+    };
+
+    resetModel (obj) {
+        // obj 传入的是 {job: 'test'}  这样的，如果不传obj, 默认把model都置为''
+        let model = this.model;
+        Object.keys(model).forEach(key => {
+            if (key in obj) {
+                model[key] = obj[key];
+            } else {
+                model[key] = '';
             }
-            error.errors.forEach(function (element) {
-                _this.backErrors[element.name] = element.value;
+        });
+    };
+
+    reset (obj) {
+        this.resetModel(obj);
+        this.resetErrors();
+    }
+
+    formData (obj) {
+        // obj 传入的是 {job: 'test'}  这样的，如果不传obj, 默认把model作为formData
+        const data = this.model;
+        const form = new FormData();
+        Object.keys(obj).forEach(key => {
+            data[key] = obj[key];
+        });
+        Object.keys(data).forEach(key => {
+            form.append(key, data[key]);
+        });
+        return form;
+    };
+
+    request (body, config, action) {
+        const method = _methodMap[action];
+        body = body || {};
+        let url = this.url;
+        // retrieve, update,  delete 方法path中都带有id
+        if (!(action === 'list' || action === 'create')) {
+            const id = body['id'];
+            delete body['id'];
+            url = url + '/' + id;
+        };
+        // retrieve, list方法 为get方法
+        if (action === 'retrieve' || action === 'list') {
+            body = {
+                params: body
+            };
+        } else {
+            body = this.formData(body);
+        };
+        let response = ajax.Axios[method](this.url, body, config);
+        let that = this;
+        this.resetErrors();
+        response.catch(error => {
+            // 把上一次请求产生的错误清除
+            error.errors.forEach(ele => {
+                that.errors[ele.name] = ele.value;
             });
         });
         return response;
     };
 
-    // 请求参数处理
-    setOptions (options, hasId) {
-        if (hasId) {
-            const id = options['id'];
-            delete options['id'];
-            this.url = this.url + '/' + id;
-        };
-        let isForm = options instanceof FormData;
-        if (isForm) {
-            return options;
-        } else {
-            return {params: options};
-        }
-    }
-
     // 获取资源列表
     list (params, config) {
-        const options = this.setOptions(params);
-        return send(options, config, this.url, 'get');
+        return this.request(params, config, 'list');
     };
 
     // 获取单个资源
     retrieve (params, config) {
-        const options = this.setOptions(params, true);
-        return send(options, config, this.url, 'get');
+        return this.request(params, config, 'retrieve');
     };
 
     // 创建单个资源
-    create (formData, config) {
-        this.initBackErrors();
-        const options = this.setOptions(formData);
-        return this.setPrompt(send(options, config, this.url, 'post'));
+    create (body, config) {
+        return this.request(body, config, 'create');
     };
 
     // 更新单个资源
-    update (formData, config) {
-        const options = this.setOptions(formData, true);
-        return this.setPrompt(send(options, config, this.url, 'put'));
+    update (body, config) {
+        return this.request(body, config, 'update');
     };
 
     // 删除单个资源
-    delete (formData, config) {
-        const options = this.setOptions(formData, true);
-        return send(options, config, this.url, 'delete');
+    destroy (body, config) {
+        return this.request(body, config, 'delete');
     };
 };
 

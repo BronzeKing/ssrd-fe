@@ -7,6 +7,7 @@
     }
     .container{
         position: relative;
+        
         .header{
             text-align: center;
             font-weight: normal;
@@ -38,9 +39,9 @@
             }
         }
         .system-content{
-            margin-left: 350px;
             min-height: 400px;
             padding: 10px;
+            width: 75%;
             .system-wrap{
                 background: #fff;
                 margin-bottom: 40px;
@@ -54,7 +55,7 @@
                     .img-wrap{
                         width: 30%;
                         float: right;
-                        padding: 60px 10px 0px;
+                        padding: 20px 10px 0px;
                         img{
                             width: 100%;
                         }
@@ -62,6 +63,7 @@
                 }
                 .system-body-info{
                     .cutoff-line{
+                        margin: 15px 0 10px;
                         display: flex;
                         align-items: center;
                         h4{
@@ -76,12 +78,14 @@
                         }
                     }
                     .system-content-text{
-                        display: flex;
-                        justify-content: space-between;
-                        .scene-img{
-                            width: 30%;
-                            img{
-                                width: 100%;
+                        .sceneImgList{
+                            display: flex;
+                            justify-content: space-around;
+                            .scene-img{
+                                width: 25%;
+                                img{
+                                    width: 100%;
+                                }
                             }
                         }
                         .scene-list{
@@ -113,14 +117,46 @@
                 
             }
         }
+        .menu-left{
+            width: 300px;
+            margin-top: 260px;
+            .menu-left-header{
+                height: 50px;
+                background: #017FCE;
+                color: #fff;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+            }
+            .menu-left-body{
+                background: #fff;
+                padding: 11px;
+                .menu-list{
+                    display: flex;
+                    .menu-list-img{
+                        width: 40%;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .menu-list-info{
+                        width: 60%;
+                        line-height: 24px;
+                        display: flex;
+                        align-items: center;
+                        margin-left: 9px;
+                    }
+                }
+            }
+        }
     }
 }
 .dot-menu{
     border-left: 2px solid #666666;
     width: 200px;
     position: absolute;
-    right: -200px;
-    top: 0;
+    right: -250px;
+    top: 50px;
     ul{
         li{
             display: flex;

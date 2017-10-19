@@ -1,18 +1,24 @@
 /**
  * 该文件主要用来处理vue运行中所需js以及组件注册，全局样式等
  */
-import Vue                      from 'vue';
-import * as filters             from 'filters';
-import {LineThrough}     from 'components';
-import * as enums               from 'enums';
-import { dealWrap }             from 'utils/extends';
+import Vue from 'vue';
+import * as filters from 'filters';
+import {
+    LineThrough
+} from 'components';
+import * as enums from 'enums';
+import {
+    dealWrap
+} from 'utils/extends';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
 
-Raven
-    .config('https://75710b6ea670418fbfb735b9f94b1aac@sentry.io/219602')
-    .addPlugin(RavenVue, Vue)
-    .install();
+if (process.env.NODE_ENV === 'production') {
+    Raven
+        .config('https://75710b6ea670418fbfb735b9f94b1aac@sentry.io/219602')
+        .addPlugin(RavenVue, Vue)
+        .install();
+}
 
 // import Core from './core';
 import Core from './core';

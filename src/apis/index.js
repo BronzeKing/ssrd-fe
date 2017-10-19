@@ -4,11 +4,11 @@
 
 import API      from './api-urls';          // 接口URL
 import Resource from './resource';          // 接口封装
-import prompt   from './prompt';            // error model
+import model from './model';            // error model
 
 /* 登录注册相关接口 */
-export const login          = new Resource(API.login, prompt.login);                    // 登录接口
-export const register       = new Resource(API.register, prompt.register);              // 注册接口
+export const login          = new Resource(API.login, model.Login);                    // 登录接口
+export const register       = new Resource(API.register, model.Register);              // 注册接口
 export const logout         = new Resource(API.logout);                                 // 注销接口
 
 /* 关于我们 */
@@ -19,7 +19,7 @@ export const recruitments   = new Resource(API.recruitments);
 
 /* 行业链接 */
 export const industryLink   = new Resource(API.industryLink);                           // 获取行业链接
-export const jobs           = new Resource(API.jobs, prompt.jobs);                      // 提交简历
+export const jobs           = new Resource(API.jobs, model.Job);                      // 提交简历
 
 /* 文档列表(荣誉资质和合作伙伴) */
 export const documents      = new Resource(API.documents);
