@@ -27,16 +27,16 @@
                 p.mt10(v-html="dealWrap(detailData.jobDetail)")
                 el-button.mt10(type="primary" @click="dialogShow") 申请职位
         el-dialog(title="职位申请" :visible.sync="dialogFormVisible" )
-            el-form(:model="formData" ref="jobForm" :rules="jobs.prompt" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
-                el-form-item(label="职位" prop="job")
-                    el-input(v-model="formData.job" auto-complete="off" disabled)
-                el-form-item(label="姓名" prop="name" :error="jobs.backErrors.name")
-                    el-input(v-model="formData.name" auto-complete="off")
-                el-form-item(label="电话" prop="mobile" :error="jobs.backErrors.mobile")
-                    el-input(v-model="formData.mobile" auto-complete="off")
-                el-form-item(label="邮箱" prop="email" :error="jobs.backErrors.email")
-                    el-input(v-model="formData.email" auto-complete="off")
-                el-form-item(label="附件" prop="attatchment" :error="jobs.backErrors.attatchment")
+            el-form(:model="jobs.model" ref="jobForm" :rules="jobs.rules" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
+                el-form-item(label="职位" prop="job" :error="jobs.errors.job")
+                    el-input(v-model="jobs.model.job" auto-complete="off" disabled)
+                el-form-item(label="姓名" prop="name" :error="jobs.errors.name")
+                    el-input(v-model="jobs.model.name" auto-complete="off")
+                el-form-item(label="电话" prop="mobile" :error="jobs.errors.mobile")
+                    el-input(v-model="jobs.model.mobile" auto-complete="off")
+                el-form-item(label="邮箱" prop="email" :error="jobs.errors.email")
+                    el-input(v-model="jobs.model.email" auto-complete="off")
+                el-form-item(label="附件" prop="attatchment" :error="jobs.errors.attatchment")
                     input(type="file" name="file" @change="uploadFile") 
                 el-form-item
                     el-button(type="primary" @click="submit") 提交
@@ -59,13 +59,6 @@ export default {
             activeType:'index',
             detailData:{},
             dialogFormVisible: false,
-            formData:{
-                name:'',
-                job:'',
-                mobile:'',
-                email:'',
-                files:null
-            },
             loading:false,
             jobs: jobs
         };
@@ -93,13 +86,9 @@ export default {
         },
         dialogShow () {
             this.dialogFormVisible = true;
-            this.formData = {
-                name:'',
-                job: this.detailData.name,
-                mobile:'',
-                email:'',
-                formData:null
-            };
+            this.jobs.reset({
+                job: this.detailData.name
+            });
         },
         dialogClose () {
             this.dialogFormVisible = false;
@@ -107,20 +96,14 @@ export default {
         uploadFile (e) {
             var files = e.target.files || e.dataTransfer.files;
             if (files.length) {
-                this.formData.files = files[0];
+                this.jobs.model.attatchment = files[0];
             }
         },
         submit () {
             let _this = this;
             this.$refs.jobForm.validate((valid) => {
                 if (valid) {
-                    let formData = new FormData();
-                    formData.append('attatchment', this.formData.files);
-                    formData.append('name', this.formData.name);
-                    formData.append('job', this.formData.job);
-                    formData.append('mobile', this.formData.mobile);
-                    formData.append('email', this.formData.email);
-                    jobs.create(formData).then(res => {
+                    jobs.create().then(res => {
                         this.$message({
                             message: '提交成功！',
                             type: 'success'
