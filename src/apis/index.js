@@ -23,11 +23,11 @@ export const IndustryLink   = new Resource(API.industryLink);                   
 export const Job           = new Resource(API.jobs, model.Job);                      // 提交简历
 
 /* 文档列表(荣誉资质和合作伙伴) */
-export const documents      = new Resource(API.documents);
+export const Documents      = new Resource(API.documents);
 
 /* 系统展示 */
 export const systemDemonstrations = new Resource(API.systemDemonstrations);             // 获取案例展示
-export const systems        = new Resource(API.systems);                                // 获取系统展示
+export const Systems        = new Resource(API.systems);                                // 获取系统展示
 
 /* 案例展示 */
-export const caseDemon      = new Resource(API.caseDemontration);                       // 案例展示列表
+export const CaseDemon      = new Resource(API.caseDemontration);                       // 案例展示列表

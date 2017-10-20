@@ -7,23 +7,21 @@
                 el-breadcrumb-item 荣誉资质
         .about-wrap.mt10
             ul.honor-list.p15
-                li.honor-item(v-for="item in honors")
+                li.honor-item(v-for="item in Documents.table.Records")
                     img.honor-image(:src="item.file")
     
 </template>
 <script>
-import  { documents } from 'apis';
+import  { Documents } from 'apis';
 export default{
     name: '',
     data () {
         return {
-            honors: []
+            Documents: Documents
         };
     },
     created () {
-        documents.list({source: 0, PageSize: 6}).then(res => {
-            res && (this.honors = res.Records);
-        });
+        Documents.list({source: 0});
     }
 };
 </script>

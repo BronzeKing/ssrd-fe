@@ -8,7 +8,7 @@
                 li.case-list-item(v-for="item in caseList")
                     .image-list-box
                         //- el-row(:gutter="20")
-                        //-     el-col(:span="12" v-for="item in caseList")
+                        //-     el-col(:span="12" v-for="item in CaseDemon.table.Records")
                         //-         .grid-content.bg-purple
                         img.case-item-image(:src="item.picture" @click="imageShow(item.picture)")
                         //- el-col(:span="12")
@@ -21,7 +21,7 @@
 </style>
 <script>
     import { infoBanner, piclook }   from 'components';
-    import { caseDemon }    from 'apis';
+    import { CaseDemon }    from 'apis';
 
     // 资讯生活-公司新闻页面
     export default{
@@ -30,21 +30,10 @@
             infoBanner,
             piclook
         },
-        data () {
-            return {
-                caseList: []
-            };
-        },
         created () {
-            this.initData();
+            this.CaseDemon.list();
         },
         methods: {
-            // 初始化数据
-            initData () {
-                caseDemon.list().then(response => {
-                    response && (this.caseList = response.Records);
-                });
-            },
 
             // 放大图片
             imageShow (pic) {
