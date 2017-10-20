@@ -45,24 +45,20 @@
                             .line
                         .system-content-text(id="text3")
                             .sceneImgList
-                                .scene-img
-                                    img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
-                                .scene-img
-                                    img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
-                                .scene-img
-                                    img(src="https://static.mum5.cn/data/default_Xl5YxUf.png") 
+                                .scene-img(v-for="item in activeTextInfo.pictures")
+                                    img(:src="item.image")
                         .cutoff-line
                             h4 相关案例
                             .line
                         .system-content-text(id="text4")
                             .scene-list
                                 ul
-                                    li(v-for="n in 5")
+                                    li(v-for="x in activeTextInfo.systemDemonstration")
                                         a
                                             .scene-info
                                                 span [ 相关案例 ]
-                                                span 支付宝被限额：马云的移动支付梦想。。。。
-                                            span 2017-09-24
+                                                span {{ x.title }}
+                                            span {{ x.created }}
 
 
             menu-box(:menuData="menuData" @linkTo="linkTo")
@@ -100,7 +96,9 @@ export default{
                 structure: '',
                 funtionalFeature: '',
                 summary: '',
-                summaryPicture: ''
+                summaryPicture: '',
+                pictures: [],
+                systemDemonstration: []
             }
         };
     },
@@ -125,9 +123,6 @@ export default{
             this.menuData.activeTab = data;
             this.$router.replace({ name:'systemContainer', query: {id: data} });
             this.activeTextInfo = Systems.table.Records[this.menuData.activeTab];
-        },
-        handleSelect (key, keyPath) {
-            console.log(key, keyPath);
         },
         handDot (index) {
             this.activeDotTab = index;

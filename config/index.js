@@ -1,6 +1,17 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
+_configMap = {
+    'dev': {
+        target: 'https://api.mum5.cn',
+        secure: true
+    },
+    'local': {
+        target: 'http://127.0.0.1:8000',
+        secure: false
+    }
+}
+_config = _configMap[process.env.NODE_ENV]
 module.exports = {
   build: {
     env: require('./prod.env'),
@@ -29,8 +40,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
        '/api': {
-            target: 'https://api.mum5.cn',
-            secure: true,
+            target: _config.target,
+            secure: _config.secure,
             changeOrigin: true,
             logLevel: 'debug',
             pathRewrite: {
