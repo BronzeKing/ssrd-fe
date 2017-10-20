@@ -11,12 +11,24 @@ const _methodMap = {
     'destroy': 'delete'
 };
 
+Object.keys(_methodMap).forEach(k => {
+    _methodMap[k] = ajax.Axios[_methodMap[k]];
+});
+
 class Resource {
     constructor (url, Model) {
         this.url = url;
         this.model = {};
         this.rules = {};
         this.errors = {};
+        // list方法的 table的查询参数以及分页控件、搜索条件
+        this.table = {
+            search: '',
+            pageIndex: 1,
+            pageSize: 10,
+            RecordCount: 0,
+            Records: []
+        };
         if (Model) {
             this.model = Model.data;
             this.rules = Model.rules;
@@ -65,24 +77,18 @@ class Resource {
         body = body || {};
         let url = this.url;
         // retrieve, update,  delete 方法path中都带有id
-        if (!(action === 'list' || action === 'create')) {
+        if (!['list', 'create'].includes(action)) {
             const id = body['id'];
             delete body['id'];
             url = url + '/' + id;
         };
         // retrieve, list方法 为get方法
-        if (action === 'retrieve' || action === 'list') {
-            body = {
-                params: body
-            };
-        } else {
-            body = this.formData(body);
-        };
-        let response = ajax.Axios[method](this.url, body, config);
+        body = ['retrieve', 'list'].includes(action) ? {params: body} : this.formData(body);
+        let response = method(this.url, body, config);
         let that = this;
+        // 把上一次请求产生的错误清除
         this.resetErrors();
         response.catch(error => {
-            // 把上一次请求产生的错误清除
             error.errors.forEach(ele => {
                 that.errors[ele.name] = ele.value;
             });
@@ -92,7 +98,18 @@ class Resource {
 
     // 获取资源列表
     list (params, config) {
-        return this.request(params, config, 'list');
+        let that = this;
+        params = params || {};
+        // 默认把this.table里的search, pageIndex, pageSize参数传到list方法里
+        ['search', 'pageIndex', 'pageSize'].forEach(k => {
+            params[k] = this.table[k];
+        });
+        return this.request(params, config, 'list').then(r => {
+            that.table['RecordCount'] = r['RecordCount'];
+            that.table['Records'] = r['Records'];
+            that.table['PageCount'] = r['PageCount'];
+            return r;
+        });
     };
 
     // 获取单个资源

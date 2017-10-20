@@ -7,19 +7,20 @@ import Resource from './resource';          // 接口封装
 import model from './model';            // error model
 
 /* 登录注册相关接口 */
+// 接口用大写
 export const login          = new Resource(API.login, model.Login);                    // 登录接口
 export const register       = new Resource(API.register, model.Register);              // 注册接口
 export const logout         = new Resource(API.logout);                                 // 注销接口
 
 /* 关于我们 */
-export const news           = new Resource(API.news);
+export const News           = new Resource(API.news);
 
 /* 新闻 */
-export const recruitments   = new Resource(API.recruitments);
+export const Recruitment   = new Resource(API.recruitments, model.Recruitment);
 
 /* 行业链接 */
-export const industryLink   = new Resource(API.industryLink);                           // 获取行业链接
-export const jobs           = new Resource(API.jobs, model.Job);                      // 提交简历
+export const IndustryLink   = new Resource(API.industryLink);                           // 获取行业链接
+export const Job           = new Resource(API.jobs, model.Job);                      // 提交简历
 
 /* 文档列表(荣誉资质和合作伙伴) */
 export const documents      = new Resource(API.documents);

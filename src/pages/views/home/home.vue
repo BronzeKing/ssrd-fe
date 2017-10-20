@@ -23,7 +23,7 @@
                 .home-article
                     h4.home-article-title 最新公告
                     nav.home-article-list
-                        a.home-article-item(href="javascript: void(0);" v-for="item in news") {{ item.title }}
+                        a.home-article-item(href="javascript: void(0);" v-for="item in News.table.Records") {{ item.title }}
         ul.home-flow.mb20
             li.home-flow-item.head
                 i.iconfont.icon-flow.font-blue.f24.fb
@@ -66,12 +66,12 @@
                 i.iconfont.icon-arrow-left.font-grey
                 // .industry-list-wrapper
                 nav.industry-list
-                    a.industry-list-item(:href="item.link" v-for="(item,index) in linkList" :style="{backgroundImage: `url(${item.picture})`}")
+                    a.industry-list-item(:href="item.link" v-for="(item,index) in IndustryLink.table.Records" :style="{backgroundImage: `url(${item.picture})`}")
                 i.iconfont.icon-arrow-right.font-grey
         crash-ball
 </template>
 <script>
-import  { industryLink, news } from 'apis';
+import  { IndustryLink, News } from 'apis';
 import { crashBall } from 'components';
 export default {
     name: 'home',
@@ -82,8 +82,8 @@ export default {
                 require('assets/home_banner1.png'),
                 require('assets/home_banner2.png')
             ],
-            linkList: [],
-            news: []
+            IndustryLink: IndustryLink,
+            News: News
         };
     },
     components: {
@@ -91,12 +91,8 @@ export default {
     },
     created () {
         // 获取新闻内容咯
-        news.list({PageSize: 3}).then(res => {
-            this.news = res.Records;
-        });
-        industryLink.list().then(res => {
-            this.linkList = res.Records;
-        });
+        News.list({PageSize: 3});
+        IndustryLink.list();
     }
 };
 </script>

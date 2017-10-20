@@ -136,5 +136,15 @@ export default {
                 trigger: 'blur'
             }]
         }
+    },
+    Recruitment: {
+        data: {
+            name: '',
+            address: '',
+            salary: '',
+            number: '',
+            jobResponsibilities: '',
+            jobDetail: ''
+        }
     }
 };
