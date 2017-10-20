@@ -23,7 +23,7 @@
                             .system-content-text
                                 p {{activeTextInfo.summary}}
                         .img-wrap
-                            img(:src="activeTextInfo.summaryPicture") 
+                            img(:src="activeTextInfo.picture") 
                     .system-body-info.p10
                         .cutoff-line
                             h4 系统介绍：
@@ -122,7 +122,7 @@ export default{
         linkTo (data) {
             this.menuData.activeTab = data;
             this.$router.replace({ name:'systemContainer', query: {id: data} });
-            this.activeTextInfo = Systems.table.Records[this.menuData.activeTab];
+            this.activeTextInfo = Systems.t.Records[this.menuData.activeTab];
         },
         handDot (index) {
             this.activeDotTab = index;

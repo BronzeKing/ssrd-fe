@@ -8,7 +8,7 @@
                 li.case-list-item(v-for="item in caseList")
                     .image-list-box
                         //- el-row(:gutter="20")
-                        //-     el-col(:span="12" v-for="item in CaseDemon.table.Records")
+                        //-     el-col(:span="12" v-for="item in CaseDemon.t.Records")
                         //-         .grid-content.bg-purple
                         img.case-item-image(:src="item.picture" @click="imageShow(item.picture)")
                         //- el-col(:span="12")

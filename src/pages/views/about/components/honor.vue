@@ -7,7 +7,7 @@
                 el-breadcrumb-item 荣誉资质
         .about-wrap.mt10
             ul.honor-list.p15
-                li.honor-item(v-for="item in Documents.table.Records")
+                li.honor-item(v-for="item in Documents.t.Records")
                     img.honor-image(:src="item.file")
     
 </template>

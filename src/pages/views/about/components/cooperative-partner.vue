@@ -7,7 +7,7 @@
                 el-breadcrumb-item 合作伙伴
         .about-wrap.mt10
             ul.company-partner-list.p15
-                li.company-partner-item(v-for="item in Documents.table.Records")
+                li.company-partner-item(v-for="item in Documents.t.Records")
                     img.company-partner-image(:src="item.file")
 </template>
 <script>

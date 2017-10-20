@@ -18,11 +18,11 @@ Object.keys(_methodMap).forEach(k => {
 class Resource {
     constructor (url, Model) {
         this.url = url;
-        this.model = {};
+        this.m = {};
         this.rules = {};
         this.errors = {};
-        // list方法的 table的查询参数以及分页控件、搜索条件
-        this.table = {
+        // list方法的 table的查询参数以及分页控件、搜索条件 table=t, model=m
+        this.t = {
             search: '',
             pageIndex: 1,
             pageSize: 10,
@@ -30,26 +30,25 @@ class Resource {
             Records: []
         };
         if (Model) {
-            this.model = Model.data;
+            this.m = Model.data;
             this.rules = Model.rules;
             this.resetErrors();
         };
     };
 
     resetErrors () {
-        Object.keys(this.model).forEach(key => {
+        Object.keys(this.m).forEach(key => {
             this.errors[key] = '';
         });
     };
 
     resetModel (obj) {
         // obj 传入的是 {job: 'test'}  这样的，如果不传obj, 默认把model都置为''
-        let model = this.model;
-        Object.keys(model).forEach(key => {
+        Object.keys(this.m).forEach(key => {
             if (key in obj) {
-                model[key] = obj[key];
+                this.m[key] = obj[key];
             } else {
-                model[key] = '';
+                this.m[key] = '';
             }
         });
     };
@@ -61,7 +60,7 @@ class Resource {
 
     formData (obj) {
         // obj 传入的是 {job: 'test'}  这样的，如果不传obj, 默认把model作为formData
-        const data = this.model;
+        const data = this.m;
         const form = new FormData();
         Object.keys(obj).forEach(key => {
             data[key] = obj[key];
@@ -102,12 +101,12 @@ class Resource {
         params = params || {};
         // 默认把this.table里的search, pageIndex, pageSize参数传到list方法里
         ['search', 'pageIndex', 'pageSize'].forEach(k => {
-            params[k] = this.table[k];
+            params[k] = this.t[k];
         });
         return this.request(params, config, 'list').then(r => {
-            that.table['RecordCount'] = r['RecordCount'];
-            that.table['Records'] = r['Records'];
-            that.table['PageCount'] = r['PageCount'];
+            that.t['RecordCount'] = r['RecordCount'];
+            that.t['Records'] = r['Records'];
+            that.t['PageCount'] = r['PageCount'];
             return r;
         });
     };

@@ -23,7 +23,7 @@
                 .home-article
                     h4.home-article-title 最新公告
                     nav.home-article-list
-                        a.home-article-item(href="javascript: void(0);" v-for="item in News.table.Records") {{ item.title }}
+                        a.home-article-item(href="javascript: void(0);" v-for="item in News.t.Records") {{ item.title }}
         ul.home-flow.mb20
             li.home-flow-item.head
                 i.iconfont.icon-flow.font-blue.f24.fb
@@ -66,7 +66,7 @@
                 i.iconfont.icon-arrow-left.font-grey
                 // .industry-list-wrapper
                 nav.industry-list
-                    a.industry-list-item(:href="item.link" v-for="(item,index) in IndustryLink.table.Records" :style="{backgroundImage: `url(${item.picture})`}")
+                    a.industry-list-item(:href="item.link" v-for="(item,index) in IndustryLink.t.Records" :style="{backgroundImage: `url(${item.picture})`}")
                 i.iconfont.icon-arrow-right.font-grey
         crash-ball
 </template>
