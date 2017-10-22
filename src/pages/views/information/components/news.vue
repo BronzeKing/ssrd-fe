@@ -3,20 +3,20 @@
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
-                el-breadcrumb-item(:to="{ path: '/information' }") 资讯生活
+                el-breadcrumb-item(:to="{ name: 'information' }") 资讯生活
                 el-breadcrumb-item 公司新闻
         .about-wrap.mt10.p15
-            el-input(placeholder="请输入要搜索的新闻" icon="search" v-model="News.t.search" @change="News.list()")
-            div(v-show="action==='list'" v-for="x in News.t.Records")
-                router-link(:to="{ name: 'newsDetail', params: {id: x.id} }")
-                    span.f16 {{x.title}}
-                    span.f14.ml30 {{x.content}}
-                    span.f14.ml30 {{x.created}}
-                    .line.mt10 
+            div(v-show="action==='list'")
+                el-input(placeholder="请输入要搜索的新闻" icon="search" v-model="News.t.search" @change="News.list()")
+                el-table.mt10(:data="News.t.Records" show-header=false stripe highlight-current-row @row-click="rowClick" style="width: 100%")
+                    el-table-column(property="title")
+                    el-table-column(property="created")
+                el-pagination.mt5(@current-change="News.list" :page-size="News.t.pageSize" layout="prev, pager, next, jumper" :total="News.t.PageCount" :current-page.sync="News.t.pageIndex")
             div(v-show="action==='detail'")
                     span.f16 {{News.m.title}}
-                    span.f14.ml30 {{News.m.content}}
-                    span.f14.ml30 {{News.m.created}}
+                    .line.mt10 
+                    p.mb10 {{News.m.content}}
+                    p.mb10 {{News.m.created}}
         
 </template>
 <script>
@@ -45,7 +45,12 @@ export default {
                 News.list();
                 this.action = 'list';
             }
+        },
+        rowClick (m) {
+            // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
+            this.$router.replace({name: 'newsDetail', params: { id: m.id }});
         }
+
     }
 };
 </script>

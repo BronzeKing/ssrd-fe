@@ -1,8 +1,10 @@
+const information = r => require.ensure([], () => r(require('pages/views/information/index')), 'information');
 const news = r => require.ensure([], () => r(require('pages/views/information/components/news')), 'news');
 export default [{
     path: 'information',
+    name: 'information',
     redirect: '/information/news',
-    component: news,
+    component: information,
     children: [{
         path: 'news',
         component: news,
