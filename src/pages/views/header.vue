@@ -25,7 +25,7 @@
                     router-link.header-nav-item(to="/system") 系统展示
                     a.header-nav-item(href="javascript: void(0);") 系统产品
                     a.header-nav-item(href="javascript: void(0);") 设备辅件
-                    a.header-nav-item(href="javascript: void(0);") 服务与支持
+                    router-link.header-nav-item(to="/support") 服务与支持
                     router-link.header-nav-item(to="/about") 关于我们
                     router-link.header-nav-item(to="/information") 资讯生活
                 .header-serch

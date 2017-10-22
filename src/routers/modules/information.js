@@ -6,17 +6,11 @@ export default [{
     children: [{
         path: 'news',
         component: news,
-        name: 'news',
-        meta: {
-            action: 'list'
-        }
+        name: 'news'
     },
     {
         path: 'news/:id',
         component: news,
-        name: 'newsDetail',
-        meta: {
-            action: 'detail'
-        }
+        name: 'newsDetail'
     }]
 }];

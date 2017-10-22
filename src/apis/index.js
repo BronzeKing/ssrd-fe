@@ -31,3 +31,6 @@ export const Systems        = new Resource(API.systems);                        
 
 /* 案例展示 */
 export const CaseDemon      = new Resource(API.caseDemontration);                       // 案例展示列表
+export const Faqs           = new Resource(API.faqs, model.Faqs);                       // 常见问题解答
+export const OpVideo        = new Resource(API.opVideo, model.OpVideo);                       // 常见问题解答
+export const Download        = new Resource(API.opVideo, model.Download);                       // 常见问题解答

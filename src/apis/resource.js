@@ -104,9 +104,9 @@ class Resource {
             params[k] = that.t[k];
         });
         return this.request(params, config, 'list').then(r => {
-            that.t['RecordCount'] = r['RecordCount'];
-            that.t['Records'] = r['Records'];
-            that.t['PageCount'] = r['PageCount'];
+            this.t['RecordCount'] = r['RecordCount'];
+            this.t['Records'] = r['Records'];
+            this.t['PageCount'] = r['PageCount'];
             return r;
         });
     }

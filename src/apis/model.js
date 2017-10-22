@@ -153,5 +153,18 @@ export default {
             content: '',
             created: ''
         }
+    },
+    Faqs: {
+        data: {
+            questioin: '',
+            answer: '',
+            created: ''
+        }
+    },
+    Download: {
+        data: {
+            name: '',
+            updated: ''
+        }
     }
 };

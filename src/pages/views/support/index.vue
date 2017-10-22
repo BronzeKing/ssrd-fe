@@ -1,0 +1,44 @@
+<template lang="pug">
+    div.page-about
+        .about-banner
+                img(src="~assets/support-banner.png")
+        .container
+            .about-content
+                .about-menu
+                    .menu-title
+                        .line-title
+                        .title-info
+                            p.f18  关于我们
+                            p.f12 ABOUT US
+                    .menu-wrap
+                        ul
+                            li(v-for="(item, i) in menu" :class="{active: index===i}" @click="index=i")
+                                router-link(:to="{name: item.name}")
+                                    span {{item.title}}
+                                    i.iconfont.icon-arrow-right
+                .about-case
+                    .case-title
+
+                .about-info.mt5
+                    transition(name="router-fade" mode="out-in")
+                        router-view
+</template>
+<script>
+    // 关于我们页面
+    export default{
+        name: 'support',
+        data () {
+            return  {
+                index: 1,
+                menu: [
+                    {title: '常见问题解答', name: 'faqs'},
+                    {title: '下载', name: 'download'},
+                    {title: '操作视频', name: 'opVideo'}
+                ]
+            };
+        }
+    };
+</script>
+<style lang="scss">
+    @import "~scss/pages/about";
+</style>
