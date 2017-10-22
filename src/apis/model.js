@@ -151,6 +151,7 @@ export default {
         data: {
             title: '',
             content: '',
+            id: '',
             created: ''
         }
     },
@@ -158,12 +159,26 @@ export default {
         data: {
             questioin: '',
             answer: '',
+            id: '',
             created: ''
+        }
+    },
+    System: {
+        data: {
+            introduction: '',
+            structure: '',
+            funtionalFeature: '',
+            summary: '',
+            summaryPicture: '',
+            pictures: [],
+            systemDemonstration: [],
+            id: ''
         }
     },
     Download: {
         data: {
             name: '',
+            id: '',
             updated: ''
         }
     }

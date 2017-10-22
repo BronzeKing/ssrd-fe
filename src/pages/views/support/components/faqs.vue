@@ -9,8 +9,8 @@
             div(v-show="action==='list'")
                 el-input(placeholder="请输入要搜索的FAQ" icon="search" v-model="Faqs.t.search" @change="Faqs.list()")
                 el-table.mt10(:data="Faqs.t.Records" show-header=false stripe highlight-current-row @row-click="rowClick" style="width: 100%")
-                    el-table-column(property="questioin")
-                    el-table-column(property="created")
+                    el-table-column(property="questioin" label="问题")
+                    el-table-column(property="created" label="更新时间")
                 el-pagination.mt5(@current-change="Faqs.list" :page-size="Faqs.t.pageSize" layout="prev, pager, next, jumper" :total="Faqs.t.PageCount" :current-page.sync="Faqs.t.pageIndex")
             div(v-show="action==='detail'")
                     span.f16 {{Faqs.m.questioin}}

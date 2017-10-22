@@ -1,10 +1,8 @@
 /**
- * 关于我们相关路由
+ * 系统展示相关路由
  */
-
- // 关于我们
-const system = r => require.ensure([], () => r(require('pages/views/system/system-show')), 'system');
-const systemContainer = r => require.ensure([], () => r(require('pages/views/system/system-container')), 'systemContainer');
+const system = r => require.ensure([], () => r(require('pages/views/system/index')), 'system');
+const systemDetail = r => require.ensure([], () => r(require('pages/views/system/systemDetail')), 'systemDetail');
 export default [
     {
         path: 'system',
@@ -12,8 +10,8 @@ export default [
         component: system
     },
     {
-        path: 'systemContainer',
-        name: 'systemContainer',
-        component: systemContainer
+        path: 'system/:id',
+        name: 'systemDetail',
+        component: systemDetail
     }
 ];

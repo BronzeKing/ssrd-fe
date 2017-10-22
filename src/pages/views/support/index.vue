@@ -29,7 +29,7 @@
         name: 'support',
         data () {
             return  {
-                index: 1,
+                index: 0,
                 menu: [
                     {title: '常见问题解答', name: 'faqs'},
                     {title: '服务承诺', name: 'servicePromise'},
