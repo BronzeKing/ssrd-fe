@@ -23,7 +23,8 @@
                 .home-article
                     h4.home-article-title 最新公告
                     nav.home-article-list
-                        a.home-article-item(href="javascript: void(0);" v-for="item in News.t.Records") {{ item.title }}
+                        router-link.home-article-item(v-for="item in News.t.Records" :to="{name: 'newsDetail', params: { id: item.id } }")
+                            p {{item.title}}
         ul.home-flow.mb20
             li.home-flow-item.head
                 i.iconfont.icon-flow.font-blue.f24.fb
