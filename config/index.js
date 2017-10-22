@@ -6,12 +6,16 @@ _configMap = {
         target: 'https://api.mum5.cn',
         secure: true
     },
+    'production': {
+        target: 'https://api.mum5.cn',
+        secure: true
+    },
     'local': {
         target: 'http://127.0.0.1:8000',
         secure: false
     }
 }
-_config = _configMap[process.env.NODE_ENV]
+let _config = _configMap[process.env.NODE_ENV]
 module.exports = {
   build: {
     env: require('./prod.env'),
