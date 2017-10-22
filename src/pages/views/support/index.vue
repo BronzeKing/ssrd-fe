@@ -8,8 +8,8 @@
                     .menu-title
                         .line-title
                         .title-info
-                            p.f18  关于我们
-                            p.f12 ABOUT US
+                            p.f18  服务与支持
+                            p.f12 SERVICE && SUPPORT
                     .menu-wrap
                         ul
                             li(v-for="(item, i) in menu" :class="{active: index===i}" @click="index=i")
@@ -32,7 +32,11 @@
                 index: 1,
                 menu: [
                     {title: '常见问题解答', name: 'faqs'},
-                    {title: '下载', name: 'download'},
+                    {title: '服务承诺', name: 'servicePromise'},
+                    {title: '意见反馈', name: 'feedback'},
+                    {title: '客户满意度调查', name: 'survey'},
+                    {title: '服务网点', name: 'serviceNet'},
+                    {title: '文档下载', name: 'download'},
                     {title: '操作视频', name: 'opVideo'}
                 ]
             };

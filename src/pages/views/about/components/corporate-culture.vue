@@ -32,14 +32,6 @@
 </template>
 <script>
 export default {
-    name: 'corporate-culture',
-    data () {
-        return {
-
-        };
-    },
-    methods: {
-
-    }
+    name: 'corporate-culture'
 };
 </script>

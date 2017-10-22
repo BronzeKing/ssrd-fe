@@ -97,11 +97,10 @@ class Resource {
 
     // 获取资源列表
     list (params, config) {
-        let that = this;
         params = params || {};
-        // 默认把this.table里的search, pageIndex, pageSize参数传到list方法里
+        // 默认把this.t里的search, pageIndex, pageSize参数传到list方法里
         ['search', 'pageIndex', 'pageSize'].forEach(k => {
-            params[k] = that.t[k];
+            params[k] = this.t[k];
         });
         return this.request(params, config, 'list').then(r => {
             this.t['RecordCount'] = r['RecordCount'];
