@@ -12,6 +12,7 @@ import community    from './community';
 import product      from './product';
 import system      from './system';
 import login      from './login';
+import information from './information';
 
 export default {
     // path: '/',
@@ -28,6 +29,7 @@ export default {
         ...community,
         ...product,
         ...system,
-        ...login
+        ...login,
+        ...information
     ]
 };

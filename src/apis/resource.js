@@ -4,11 +4,11 @@
 import ajax from 'utils/ajax';
 
 const _methodMap = {
-    'list': 'get',
-    'retrieve': 'get',
-    'create': 'post',
-    'update': 'put',
-    'destroy': 'delete'
+    list: 'get',
+    retrieve: 'get',
+    create: 'post',
+    update: 'put',
+    destroy: 'delete'
 };
 
 Object.keys(_methodMap).forEach(k => {
@@ -33,14 +33,14 @@ class Resource {
             this.m = Model.data;
             this.rules = Model.rules;
             this.resetErrors();
-        };
-    };
+        }
+    }
 
     resetErrors () {
         Object.keys(this.m).forEach(key => {
             this.errors[key] = '';
         });
-    };
+    }
 
     resetModel (obj) {
         // obj 传入的是 {job: 'test'}  这样的，如果不传obj, 默认把model都置为''
@@ -51,7 +51,7 @@ class Resource {
                 this.m[key] = '';
             }
         });
-    };
+    }
 
     reset (obj) {
         this.resetModel(obj);
@@ -69,7 +69,7 @@ class Resource {
             form.append(key, data[key]);
         });
         return form;
-    };
+    }
 
     request (body, config, action) {
         const method = _methodMap[action];
@@ -82,8 +82,8 @@ class Resource {
             url = url + '/' + id;
         };
         // retrieve, list方法 为get方法
-        body = ['retrieve', 'list'].includes(action) ? {params: body} : this.formData(body);
-        let response = method(this.url, body, config);
+        body = ['retrieve', 'list'].includes(action) ? { params: body } : this.formData(body);
+        let response = method(url, body, config);
         let that = this;
         // 把上一次请求产生的错误清除
         this.resetErrors();
@@ -93,7 +93,7 @@ class Resource {
             });
         });
         return response;
-    };
+    }
 
     // 获取资源列表
     list (params, config) {
@@ -101,7 +101,7 @@ class Resource {
         params = params || {};
         // 默认把this.table里的search, pageIndex, pageSize参数传到list方法里
         ['search', 'pageIndex', 'pageSize'].forEach(k => {
-            params[k] = this.t[k];
+            params[k] = that.t[k];
         });
         return this.request(params, config, 'list').then(r => {
             that.t['RecordCount'] = r['RecordCount'];
@@ -109,27 +109,29 @@ class Resource {
             that.t['PageCount'] = r['PageCount'];
             return r;
         });
-    };
+    }
 
     // 获取单个资源
     retrieve (params, config) {
-        return this.request(params, config, 'retrieve');
-    };
+        return this.request(params, config, 'retrieve').then(r => {
+            this.resetModel(r);
+        });
+    }
 
     // 创建单个资源
     create (body, config) {
         return this.request(body, config, 'create');
-    };
+    }
 
     // 更新单个资源
     update (body, config) {
         return this.request(body, config, 'update');
-    };
+    }
 
     // 删除单个资源
     destroy (body, config) {
         return this.request(body, config, 'delete');
-    };
-};
+    }
+}
 
 export default Resource;

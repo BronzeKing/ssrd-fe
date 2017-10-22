@@ -146,5 +146,12 @@ export default {
             jobResponsibilities: '',
             jobDetail: ''
         }
+    },
+    News: {
+        data: {
+            title: '',
+            content: '',
+            created: ''
+        }
     }
 };

@@ -13,7 +13,7 @@ export const register       = new Resource(API.register, model.Register);       
 export const logout         = new Resource(API.logout);                                 // 注销接口
 
 /* 关于我们 */
-export const News           = new Resource(API.news);
+export const News           = new Resource(API.news, model.News);
 
 /* 新闻 */
 export const Recruitment   = new Resource(API.recruitments, model.Recruitment);

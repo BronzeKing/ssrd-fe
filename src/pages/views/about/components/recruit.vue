@@ -7,7 +7,7 @@
                 el-breadcrumb-item 招贤纳士
         .about-wrap.mt10
             div(v-show="activeType==='index'")
-                el-input(placeholder="职位搜索" icon="search" v-model="Recruitment.t.search" :on-icon-click="Recruitment.list" @keyup.enter.native="Recruitment.list")
+                el-input(placeholder="职位搜索" icon="search" v-model="Recruitment.t.search" @change="Recruitment.list()")
                 el-table.mt10(:data="Recruitment.t.Records" highlight-current-row @current-change="handleCurrentChange" style="width: 100%")
                     el-table-column(property="name" label="职位名称")
                     el-table-column(property="address" label="工作地点")
