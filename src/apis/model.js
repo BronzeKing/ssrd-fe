@@ -212,5 +212,63 @@ export default {
             updated: '',
             pictures: []
         }
+    },
+    User: {
+        data: {
+            id: '',
+            username: '',
+            password: '',
+            role: '',
+            invitation: ''
+        },
+        rules: {
+            username: [{
+                required: true,
+                message: '请输入姓名',
+                trigger: 'blur'
+            }],
+            password: [{
+                required: true,
+                message: '请输入密码',
+                trigger: 'blur'
+            }]
+        }
+    },
+    Registry: {
+        data: {
+            username: '',
+            password: '',
+            mobile: '',
+            role: '',
+            invitation: '',
+            captcha: ''
+        },
+        rules: {
+            username: [{
+                required: true,
+                message: '请输入姓名',
+                trigger: 'blur'
+            }],
+            password: [{
+                required: true,
+                message: '请输入密码',
+                trigger: 'blur'
+            }],
+            mobile: [{
+                required: true,
+                message: '请输入手机号码',
+                trigger: 'blur'
+            }],
+            role: [{
+                required: true,
+                message: '请输入客户类型',
+                trigger: 'blur'
+            }],
+            captcha: [{
+                required: true,
+                message: '请输入验证码',
+                trigger: 'blur'
+            }]
+        }
     }
 };
