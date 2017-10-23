@@ -54,7 +54,7 @@
                             .scene-list
                                 ul
                                     li(v-for="x in System.m.systemDemonstration")
-                                        a
+                                        router-link(:to="{name: 'systemCaseDetail', params: {id: x.id}}")
                                             .scene-info
                                                 span [ 相关案例 ]
                                                 span {{ x.title }}

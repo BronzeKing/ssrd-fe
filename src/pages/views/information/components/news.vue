@@ -8,9 +8,9 @@
         .about-wrap.mt10.p15
             div(v-show="action==='list'")
                 el-input(placeholder="请输入要搜索的新闻" icon="search" v-model="News.t.search" @change="News.list()")
-                el-table.mt10(:data="News.t.Records" show-header=false stripe highlight-current-row @row-click="rowClick" style="width: 100%")
-                    el-table-column(property="title")
-                    el-table-column(property="created")
+                el-table.mt10(:data="News.t.Records" stripe highlight-current-row @row-click="rowClick" style="width: 100%")
+                    el-table-column(property="title" label="标题")
+                    el-table-column(property="created" label="更新时间")
                 el-pagination.mt5(@current-change="News.list" :page-size="News.t.pageSize" layout="prev, pager, next, jumper" :total="News.t.PageCount" :current-page.sync="News.t.pageIndex")
             div(v-show="action==='detail'")
                     span.f16 {{News.m.title}}

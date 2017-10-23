@@ -60,9 +60,6 @@
                 this.$refs.picklool.show({
                     images: [pic]
                 });
-            },
-            go2Detail (item) {
-                console.log(item);
             }
         }
     };
