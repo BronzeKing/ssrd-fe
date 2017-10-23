@@ -21,10 +21,10 @@
                 span.f14.ml30 招聘人数：{{Recruitment.m.number}}
                 p.f14.mt20 岗位职责:
                 .line.mt10 
-                p.mt10(v-html="dealWrap(Recruitment.m.jobResponsibilities)")
+                p.mt10(v-html="n2br(Recruitment.m.jobResponsibilities)")
                 p.f14.mt20 任职要求：
                 .line.mt10 
-                p.mt10(v-html="dealWrap(Recruitment.m.jobDetail)")
+                p.mt10(v-html="n2br(Recruitment.m.jobDetail)")
                 el-button.mt10(type="primary" @click="dialogShow") 申请职位
         el-dialog(title="职位申请" :visible.sync="dialogFormVisible" )
             el-form(:model="Job.m" ref="jobForm" :rules="Job.rules" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")

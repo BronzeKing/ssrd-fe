@@ -1,5 +1,6 @@
 /**
  * 该文件主要用来导出接口相关方法
+ model 定义该接口的返回字段以及该接口的form参数校验的rules
  */
 
 import API      from './api-urls';          // 接口URL
@@ -29,6 +30,7 @@ export const Documents      = new Resource(API.documents);
 export const systemDemonstrations = new Resource(API.systemDemonstrations);             // 获取案例展示
 export const Systems        = new Resource(API.systems);                                // 获取系统展示
 export const System         = new Resource(API.systems, model.System);                                // 获取系统展示
+export const SystemCase     = new Resource(API.caseDemontration, model.SystemCase);                       // 案例展示列表
 
 /* 案例展示 */
 export const CaseDemon      = new Resource(API.caseDemontration);                       // 案例展示列表

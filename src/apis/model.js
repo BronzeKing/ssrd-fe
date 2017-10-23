@@ -181,5 +181,20 @@ export default {
             id: '',
             updated: ''
         }
+    },
+    SystemCase: {
+        data: {
+            pictures: [],
+            id : '',
+            title: '',
+            summary: '',
+            description: '',
+            address: '',
+            content: '',
+            picture: '',
+            created: '',
+            updated: '',
+            products: []
+        }
     }
 };
