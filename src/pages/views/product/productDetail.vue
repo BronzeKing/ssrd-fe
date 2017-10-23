@@ -6,6 +6,7 @@
                 el-breadcrumb-item(:to="{ name: 'product' }") 系统产品
                 el-breadcrumb-item {{Product.m.category.name}}
         div
+            img(class="lookpic-picture" :src="Product.m.background")
             p {{Product.m.name}}
             p 产品描述
             p {{Product.m.description}}

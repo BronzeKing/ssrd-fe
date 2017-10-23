@@ -2,7 +2,7 @@
 var path = require('path')
 
 _configMap = {
-    'dev': {
+    'development': {
         target: 'https://api.mum5.cn',
         secure: true
     },
@@ -15,7 +15,7 @@ _configMap = {
         secure: false
     }
 }
-let _config = _configMap[process.env.NODE_ENV]
+let _config = _configMap[process.env.NODE_ENV || 'production']
 module.exports = {
   build: {
     env: require('./prod.env'),
