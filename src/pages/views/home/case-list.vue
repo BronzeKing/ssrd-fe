@@ -37,7 +37,6 @@
 
             // 放大图片
             imageShow (pic) {
-                console.log('pic', pic);
                 this.$refs.picklool.show({
                     images: [pic]
                 });

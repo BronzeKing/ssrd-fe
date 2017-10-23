@@ -23,7 +23,7 @@
                 .home-article
                     h4.home-article-title 最新公告
                     nav.home-article-list
-                        router-link.home-article-item(v-for="item in News.t.Records" :to="{name: 'newsDetail', params: { id: item.id } }")
+                        router-link.home-article-item(v-for="item in News.t.Records" :key="item.id" :to="{name: 'newsDetail', params: { id: item.id } }")
                             p {{item.title}}
         ul.home-flow.mb20
             li.home-flow-item.head
@@ -72,7 +72,7 @@
         crash-ball
 </template>
 <script>
-import  { IndustryLink, News } from 'apis';
+import  { IndustryLink, News, CaseDemon } from 'apis';
 import { crashBall } from 'components';
 export default {
     name: 'home',
@@ -84,7 +84,8 @@ export default {
                 require('assets/home_banner2.png')
             ],
             IndustryLink: IndustryLink,
-            News: News
+            News: News,
+            CaseDemon: CaseDemon
         };
     },
     components: {
@@ -94,6 +95,7 @@ export default {
         // 获取新闻内容咯
         News.list({PageSize: 3});
         IndustryLink.list();
+        CaseDemon.list({PageSize: 3});
     }
 };
 </script>
