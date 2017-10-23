@@ -37,3 +37,6 @@ export const CaseDemon      = new Resource(API.caseDemontration);               
 export const Faqs           = new Resource(API.faqs, model.Faqs);                       // 常见问题解答
 export const OpVideo        = new Resource(API.opVideo, model.OpVideo);                       // 操作视频
 export const Download        = new Resource(API.download, model.Download);                       // 文档下载
+
+export const Product         = new Resource(API.product, model.Product);                       // 产品
+export const Collect         = new Resource(API.collect);                                // 产品

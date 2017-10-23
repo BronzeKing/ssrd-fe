@@ -2,8 +2,8 @@
     
 </template>
 <script>
-    // 产品展示页面
+    // 基辅设备页面
     export default{
-        name: 'product-show'
+        name: 'equipment'
     };
 </script>

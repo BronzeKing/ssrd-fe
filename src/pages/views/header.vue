@@ -23,7 +23,7 @@
                 nav.herder-nav-wrapper
                     router-link.header-nav-item.active(to="/home") 首页
                     router-link.header-nav-item(to="/system") 系统展示
-                    a.header-nav-item(href="javascript: void(0);") 系统产品
+                    router-link.header-nav-item(:to="{name: 'product' }") 系统产品
                     a.header-nav-item(href="javascript: void(0);") 设备辅件
                     router-link.header-nav-item(to="/support") 服务与支持
                     router-link.header-nav-item(to="/about") 关于我们

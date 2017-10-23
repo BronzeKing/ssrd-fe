@@ -196,5 +196,21 @@ export default {
             updated: '',
             products: []
         }
+    },
+    Product: {
+        data: {
+            id: '',
+            name: '',
+            background: '',
+            category: '',
+            description: '',
+            summary: '',
+            techParameter: '',
+            domain: '',
+            other: '',
+            created: '',
+            updated: '',
+            pictures: []
+        }
     }
 };

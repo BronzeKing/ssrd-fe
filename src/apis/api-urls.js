@@ -30,5 +30,7 @@ export default {
     caseDemontration    :`${apiUrl}/systemDemonstrations`,                    // 获取案例展示
     faqs                :`${apiUrl}/faqs`,                                     // 获取常见问题解答
     opVideo             :`${apiUrl}/documents?source=2`,                                // 获取操作视频
-    download             :`${apiUrl}/documents?source=3`                                // 获取文档下载
+    download            :`${apiUrl}/documents?source=3`,                                // 获取文档下载
+    product             :`${apiUrl}/products`,                                // 获取产品
+    collect             :`${apiUrl}/collects`                                // 收藏
 };
