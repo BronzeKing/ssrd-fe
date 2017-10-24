@@ -12,6 +12,7 @@ import model    from './model';            // error model
 export const Login          = new Resource(API.login, model.Login);                    // 登录接口
 export const Register       = new Resource(API.register, model.Register);              // 注册接口
 export const Logout         = new Resource(API.logout);                                 // 注销接口
+export const Env            = new Resource(API.env);                                   // 获取系统配置
 
 /* 关于我们 */
 export const News           = new Resource(API.news, model.News);
