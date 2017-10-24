@@ -1,94 +1,44 @@
 <template lang="pug">
     .login-content
-        el-tabs(v-model='activeName' @tab-click='handleClick')
-            el-tab-pane(label='注册' name='1')
-                el-form.demo-loginForm.login-container(:model='Register.m' :rules='Register.rules' ref='RegisterForm' label-position='left' label-width='0px')
-                    h3.title 系统登录
-                    el-form-item(prop='username' :error='Register.errors.username')
-                        el-input(type='text' v-model='Register.m.username' auto-complete='off' placeholder='姓名')
-                    el-form-item(prop='email' :error='Register.errors.email')
-                        el-input(type='text' v-model='Register.m.email' auto-complete='off' placeholder='邮箱')
-                    el-form-item(prop='role')
-                        el-select(v-model='Register.m.role' placeholder='请选择客户类型' style='width:100%;')
-                            el-option(v-for="role in roles" :key="role.value" label="role.name" value="role.value")
-                    el-form-item(prop='password' :error='Register.errors.password')
-                        el-input(type='password' v-model='Register.m.password' auto-complete='off' placeholder='密码')
-                    el-form-item(style='width:100%;')
-                    el-button(type='primary' style='width:100%;' @click.native.prevent='signupSubmit' :loading='logining') 注 册
-            el-tab-pane(label='登陆' name='2')
-                el-form.demo-loginForm.login-container(:model='Login.m' :rules='Login.rules' ref='LoginForm' label-position='left' label-width='0px')
-                    h3.title 系统登录
-                    el-form-item(prop='email' :error='Login.errors.email')
-                        el-input(type='text' v-model='Login.m.email' auto-complete='off' placeholder='账号')
-                    el-form-item(prop='password' :error='Login.errors.password')
-                        el-input(type='password' v-model='Login.m.password' auto-complete='off' placeholder='密码')
-                    el-form-item(style='width:100%;')
-                        el-button(type='primary' style='width:100%;' @click.native.prevent='loginSubmit' :loading='logining') 登 陆
+        el-form.demo-loginForm.login-container(:model='Login.m' :rules='Login.rules' ref='LoginForm' label-position='left' label-width='0px')
+            h3.title 系统登录
+            el-form-item(prop='account' :error='Login.errors.account')
+                el-input(type='text' v-model='Login.m.account' auto-complete='off' placeholder='手机、邮箱或授权码')
+            el-form-item(prop='password' :error='Login.errors.password')
+                el-input(type='password' v-model='Login.m.password' auto-complete='off' placeholder='密码')
+            el-form-item(style='width:100%;')
+                el-button(type='primary' style='width:100%;' @click.native.prevent='loginSubmit' :loading='logining') 登 陆
+            a.font-black(v-for="x in oauth" :key="x.name" :href="x.url")
+                i.iconfont(:class="icons[x.name]")
 </template>
 
 <script>
-import  { Login, Register } from 'apis';
+import  { Login, Env } from 'apis';
 export default {
     data () {
         return {
-            activeName: '1',
-            roles: [
-                { name: '个人用户', value: 41 },
-                { name: '常规用户', value: 42 },
-                { name: '行业用户', value: 31 },
-                { name: '分销商', value: 32 }
-            ],
             logining: false,
-            loginForm: {
-                email: '',
-                password: ''
-            },
-            signupForm: {
-                role: '',
-                email: '',
-                password: '',
-                username: ''
-            },
+            LoginForm: '',
             Login: Login,
-            Register: Register
+            oauth: [],
+            icons: {qq: 'icon-qq', weixin: 'icon-wechat', weibo: 'icon-weibo'}
         };
     },
+    created () {
+        Env.retrieve().then(r => {
+            this.oauth = r.oauth;
+        });
+    },
     methods: {
-        handleReset () {
-            this.$refs.LoginForm.resetFields();
-        },
         loginSubmit () {
-            let _this = this;
-            this.handleClick();
+            let that = this;
             this.$refs.LoginForm.validate((valid) => {
                 if (valid) {
-                    Login.create().catch(err => {
-                        this.$message.error(err.msg);
+                    Login.create().then(r => {
+                        that.$router.push({ path: '/' });
                     });
                 };
             });
-        },
-        signupSubmit () {
-            var _this = this;
-            this.handleClick();
-            this.$refs.signupForm.validate((valid) => {
-                if (valid) {
-                    Register.create().then(r => {
-                        this.$confirm('恭喜您注册成功！', '成功', {
-                            confirmButtonText: '确定',
-                            cancelButtonText: '取消',
-                            type: 'success'
-                        });
-                    }).catch(err => {
-                        this.$message.error(err.msg);
-                    });
-                } else {
-                    return false;
-                }
-            });
-        },
-        handleClick () {
-
         }
     }
 };

@@ -18,8 +18,8 @@ const recruit  = r => require.ensure([], () => r(require('pages/views/about/comp
 const contactUs  = r => require.ensure([], () => r(require('pages/views/about/components/contact-us')), 'contactUs');
 export default [
     {
-        path: 'about',
-        name: 'about',
+        path: '/about',
+        // name: 'about',
         component: about,
         children: [
             {

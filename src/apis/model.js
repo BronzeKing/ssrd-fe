@@ -3,18 +3,6 @@
  */
 
 export default {
-    login: {
-        username: [{
-            required: true,
-            message: '请输入姓名',
-            trigger: 'blur'
-        }],
-        password: [{
-            required: true,
-            message: '请输入密码',
-            trigger: 'blur'
-        }]
-    },
     registry: {
         username: [{
             required: true,
@@ -119,24 +107,6 @@ export default {
             }]
         }
     },
-    Login: {
-        data: {
-            username: '',
-            password: ''
-        },
-        rules: {
-            username: [{
-                required: true,
-                message: '请输入姓名',
-                trigger: 'blur'
-            }],
-            password: [{
-                required: true,
-                message: '请输入密码',
-                trigger: 'blur'
-            }]
-        }
-    },
     Recruitment: {
         data: {
             name: '',
@@ -225,6 +195,28 @@ export default {
             username: [{
                 required: true,
                 message: '请输入姓名',
+                trigger: 'blur'
+            }],
+            password: [{
+                required: true,
+                message: '请输入密码',
+                trigger: 'blur'
+            }]
+        }
+    },
+    Login: {
+        data: {
+            id: '',
+            username: '',
+            password: '',
+            role: '',
+            account: '',
+            invitation: ''
+        },
+        rules: {
+            account: [{
+                required: true,
+                message: '请输入手机、邮箱或授权码',
                 trigger: 'blur'
             }],
             password: [{

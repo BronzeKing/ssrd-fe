@@ -1,0 +1,41 @@
+.page-system{
+    background: #F0F0F0;
+    
+    .container{
+        position: relative;
+    }
+
+    // 案例标题
+    .header{
+        text-align: center;
+        font-weight: normal;
+        margin: 28px;
+        h1{
+            margin-bottom: 8px;
+        }
+    }
+
+    // 案例列表
+    .systems-list{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        .systems-item{
+            text-align: center;
+            width: 400px;
+            padding: 0 70px;
+            i{
+                font-size: 80px;
+            }
+            &:hover{
+                background-color: #e5e5e5;
+                cursor: pointer;
+            }
+        }
+        .line{
+            border: 2px solid #eee;
+            border-top: none;
+            border-bottom: none;
+        }
+    }
+}

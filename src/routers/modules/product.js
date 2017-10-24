@@ -10,15 +10,17 @@ const productDetail = r => require.ensure([], () => r(require('pages/views/produ
 
 export default [
     {
-        path: 'equipment',
+        path: '/equipment',
         name: 'equipment',
         component: equipment
-    }, {
-        path: 'product',
+    },
+    {
+        path: '/product',
         name: 'product',
         component: product
-    }, {
-        path: 'product/:id',
+    },
+    {
+        path: '/product/:id',
         name: 'productDetail',
         component: productDetail
     }

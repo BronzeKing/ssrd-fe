@@ -9,12 +9,12 @@ const companyNews   = r => require.ensure([], () => r(require('pages/views/home/
 
 export default [
     {
-        path: 'home',
+        path: '/home',
         name: 'home',
         component: home
     },
     {
-        path: 'companyNews',
+        path: '/companyNews',
         name: 'companyNews',
         component: companyNews
     }

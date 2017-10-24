@@ -1,7 +1,6 @@
 <template lang="pug">
-    .page-system
-        .about-banner
-            img(src="~assets/about-banner.png")
+    .page-system-detail
+        infoBanner
         .container
             .menu-left
                 .menu-left-header
@@ -72,7 +71,7 @@
 </template>
 <script>
 // 系统展示页面
-import { menuBox } from 'components';
+import { menuBox, infoBanner } from 'components';
 import  { System } from 'apis';
 export default{
     name: 'systemDetail',
@@ -93,7 +92,8 @@ export default{
         };
     },
     components: {
-        menuBox
+        menuBox,
+        infoBanner
     },
     beforeRouteEnter (to, from, next) {
         next(vm => {
@@ -123,9 +123,6 @@ export default{
     }
 };
 </script>
-<style lang="scss" scoped>
-    @import "~scss/pages/system";
-    .container{
-        display: flex;
-    }
+<style lang="scss">
+    @import "~scss/pages/views/system/system-detail";
 </style>
