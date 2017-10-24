@@ -1,13 +1,13 @@
 <template lang="pug">
     div
-        info-banner
-        .breadcrumb
-            el-breadcrumb
-                el-breadcrumb-item(:to="{ path: '/' }") 首页
-                el-breadcrumb-item(:to="{ name: 'systemCase' }") 案例展示
         .page-case-list.container
+            info-banner
+            .breadcrumb.mt10
+                el-breadcrumb
+                    el-breadcrumb-item(:to="{ path: '/' }") 首页
+                    el-breadcrumb-item(:to="{ name: 'systemCase' }") 案例展示
             .case-list-content.tc
-                h2.case-list-title 案例展示
+                h2.case-list-title.f28 案例展示
                     p CASE DEMONSTRATION
                 ul.case-list-box
                     li.case-list-item(v-for="item in SystemCase.t.Records")
@@ -16,15 +16,18 @@
                                 //- el-row(:gutter="20")
                                 //-     el-col(:span="12" v-for="item in CaseDemon.t.Records")
                                 //-         .grid-content.bg-purple
-                                img.case-item-image(:src="item.picture" @click="imageShow(item.picture)")
-                                h5 {{item.title}}
+                                img.case-item-image.mb5(:src="item.picture" @click="imageShow(item.picture)")
+                                .case-item-image-show
+                                    .image-show(v-for="x in item.pictures" @click="imageShow(x.image)")
+                                        img(:src="x.image")
+                                h2.mt10.mb10 {{item.title}}
                                 p.fb.f16.mb5 项目描述
-                                p.fb.f16.mb5 {{item.description}}
+                                p.omit1.f16.mb10 {{item.description}}
                                 p.fb.f16.mb5 工程地点
-                                p.fb.f16.mb5 {{item.address}}
+                                p.f16.mb10 {{item.address}}
                                 p.fb.f16.mb5 工程内容
-                                p.fb.f16.mb5(v-html="n2br(item.content)")
-                                img.case-item-image(v-for="x in item.pictures" :src="x.image" @click="imageShow(x.image)")
+                                p.omit2.f16.mb10(v-html="n2br(item.content)")
+                                
 
                                 //- el-col(:span="12")
                                 //-     .grid-content.bg-purple
