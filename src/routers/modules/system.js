@@ -4,7 +4,7 @@
 
  // 关于我们
 const system = r => require.ensure([], () => r(require('pages/views/system/system-show')), 'system');
-const systemContainer = r => require.ensure([], () => r(require('pages/views/system/system-container')), 'systemContainer');
+const systemContainer = r => require.ensure([], () => r(require('pages/views/system/system-container')), 'system');
 export default [
     {
         path: 'system',
