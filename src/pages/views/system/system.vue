@@ -1,5 +1,6 @@
 <template lang="pug">
     .page-system
+        info-banner
         .container
             .header 
                 h1 方案展示
@@ -22,6 +23,8 @@
 <script>
     // 系统展示页面
     import  { System } from 'apis';
+    import { infoBanner }   from 'components';
+
     export default{
         name: 'system',
         data () {
@@ -29,6 +32,9 @@
                 System: System,
                 icons: ['icon-shuzihua', 'icon-tubiao01', 'icon-shipinjiankong', 'icon-shujutubiao08', 'icon-cheliangchuruchaxun', 'icon-anquan']
             };
+        },
+        components: {
+            infoBanner
         },
         created () {
             System.list();

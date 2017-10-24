@@ -23,7 +23,7 @@
         .header-nav
             .container.flex
                 nav.herder-nav-wrapper
-                    router-link.header-nav-item(v-for="(item, index) in menu" @click="selectActive(index)" :class="{active: active===index}" :key="item.title" :to="{ name: item.name }") {{item.title}}
+                    router-link.header-nav-item(v-for="(item, index) in menu" @click="selectActive(index)" :class="{active: active===index}" :key="item.title" :to="{ path: `/${item.name}` }") {{item.title}}
                 .header-serch
                     i.iconfont.icon-search
                     input.header-search-input(type="text" placeholder="请输入您要搜索的内容...") 

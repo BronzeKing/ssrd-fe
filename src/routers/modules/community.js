@@ -8,7 +8,7 @@ const caringCommunity = r => require.ensure([], () => r(require('pages/views/com
 
 export default [
     {
-        path: 'caringCommunity',
+        path: '/caringCommunity',
         name: 'caringCommunity',
         component: caringCommunity
     }

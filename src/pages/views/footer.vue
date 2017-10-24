@@ -6,7 +6,7 @@
                     li.left-sub
                         ul.left-sub-flex
                             li.left-progeny(v-for="(item, index) in about")
-                                router-link.left-content(:to="{ name: item.name}") {{item.title}}
+                                router-link.left-content(:to="{ path: `/about/${item.name}` }") {{item.title}}
                     li.left-sub
                         ul.left-sub-flex
                             li.left-progeny
@@ -69,8 +69,8 @@
         data () {
             return  {
                 about: [
-                    {name: 'about', title: '关于我们'},
-                    {name: 'about', title: '公司简介'},
+                    {name: 'companyProfile', title: '关于我们'},
+                    {name: 'companyProfile', title: '公司简介'},
                     {name: 'contactUs', title: '联系我们'},
                     {name: 'honor', title: '荣誉资质'},
                     {name: 'cooperativePartner', title: '合作伙伴'}
