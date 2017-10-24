@@ -9,9 +9,9 @@ import model from './model';            // error model
 
 /* 登录注册相关接口 */
 // 接口用大写
-export const Login          = new Resource(API.login, model.User);                    // 登录接口
+export const Login          = new Resource(API.login, model.Login);                    // 登录接口
 export const Register       = new Resource(API.register, model.Register);              // 注册接口
-export const logout         = new Resource(API.logout);                                 // 注销接口
+export const Logout         = new Resource(API.logout);                                 // 注销接口
 
 /* 关于我们 */
 export const News           = new Resource(API.news, model.News);

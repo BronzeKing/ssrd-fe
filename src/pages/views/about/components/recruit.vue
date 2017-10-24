@@ -12,7 +12,6 @@
                     el-table-column(property="name" label="职位名称")
                     el-table-column(property="address" label="工作地点")
                     el-table-column(property="created" label="发布时间")
-                        template(scope="scope") {{scope.row.updated | dateFilter(1)}}
                 el-pagination.mt5(@current-change="Recruitment.list" :page-size="Recruitment.t.pageSize" layout="prev, pager, next, jumper" :total="Recruitment.t.PageCount" :current-page.sync="Recruitment.t.pageIndex")
             div.detail-container(v-show="activeType==='detail'")
                 span.f16 {{Recruitment.m.name}}

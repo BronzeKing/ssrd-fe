@@ -7,6 +7,7 @@ import { apiUrl } from 'settings';
 export default {
     // 登录注册相关接口
     login               :`${apiUrl}/login`,                                 // 登录接口
+    logout               :`${apiUrl}/logout`,                               // 登出
     register            :`${apiUrl}/signup`,                                // 注册接口
 
     // 新闻
