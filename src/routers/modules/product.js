@@ -3,19 +3,23 @@
  */
 
  // 基辅设备
-const kievEquipment = r => require.ensure([], () => r(require('pages/views/product/kiev-equipment')), 'product');
+const equipment = r => require.ensure([], () => r(require('pages/views/product/equipment')), 'product');
 // 商品展示
-const productShow = r => require.ensure([], () => r(require('pages/views/product/product-show')), 'product');
+const product = r => require.ensure([], () => r(require('pages/views/product/product')), 'product');
+const productDetail = r => require.ensure([], () => r(require('pages/views/product/productDetail')), 'product');
 
 export default [
     {
-        path: 'kievEquipment',
-        name: 'kievEquipment',
-        component: kievEquipment
-    },
-    {
-        path: 'productShow',
-        name: 'productShow',
-        component: productShow
+        path: 'equipment',
+        name: 'equipment',
+        component: equipment
+    }, {
+        path: 'product',
+        name: 'product',
+        component: product
+    }, {
+        path: 'product/:id',
+        name: 'productDetail',
+        component: productDetail
     }
 ];

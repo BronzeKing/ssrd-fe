@@ -55,7 +55,6 @@
         beforeRouteEnter (to, from, next) {
             next(vm => {
                 let index = to.meta.activeTab;
-                console.log(typeof index);
                 if (typeof index === 'number') {
                     vm.activeTab = index;
                 }

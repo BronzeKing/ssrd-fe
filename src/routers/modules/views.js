@@ -10,8 +10,10 @@ import homes        from './home';
 import about        from './about';
 import community    from './community';
 import product      from './product';
-import system      from './system';
-import login      from './login';
+import system       from './system';
+import login        from './login';
+import information  from './information';
+import support      from './support';
 
 export default {
     // path: '/',
@@ -28,6 +30,8 @@ export default {
         ...community,
         ...product,
         ...system,
-        ...login
+        ...login,
+        ...information,
+        ...support
     ]
 };

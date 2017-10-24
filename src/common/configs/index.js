@@ -8,7 +8,7 @@ import {
 } from 'components';
 import * as enums from 'enums';
 import {
-    dealWrap
+    n2br
 } from 'utils/extends';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
@@ -46,4 +46,4 @@ Vue.component('LineThrough', LineThrough);
 
 // 原型挂在常用变量
 Vue.prototype.$enums = enums;
-Vue.prototype.dealWrap = dealWrap;
+Vue.prototype.n2br = n2br;

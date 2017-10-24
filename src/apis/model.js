@@ -3,18 +3,6 @@
  */
 
 export default {
-    login: {
-        username: [{
-            required: true,
-            message: '请输入姓名',
-            trigger: 'blur'
-        }],
-        password: [{
-            required: true,
-            message: '请输入密码',
-            trigger: 'blur'
-        }]
-    },
     registry: {
         username: [{
             required: true,
@@ -119,10 +107,89 @@ export default {
             }]
         }
     },
-    Login: {
+    Recruitment: {
         data: {
+            name: '',
+            address: '',
+            salary: '',
+            number: '',
+            jobResponsibilities: '',
+            jobDetail: ''
+        }
+    },
+    News: {
+        data: {
+            title: '',
+            content: '',
+            id: '',
+            created: ''
+        }
+    },
+    Faqs: {
+        data: {
+            questioin: '',
+            answer: '',
+            id: '',
+            created: ''
+        }
+    },
+    System: {
+        data: {
+            introduction: '',
+            structure: '',
+            funtionalFeature: '',
+            summary: '',
+            summaryPicture: '',
+            pictures: [],
+            systemDemonstration: [],
+            id: ''
+        }
+    },
+    Download: {
+        data: {
+            name: '',
+            id: '',
+            updated: ''
+        }
+    },
+    SystemCase: {
+        data: {
+            pictures: [],
+            id : '',
+            title: '',
+            summary: '',
+            description: '',
+            address: '',
+            content: '',
+            picture: '',
+            created: '',
+            updated: '',
+            products: []
+        }
+    },
+    Product: {
+        data: {
+            id: '',
+            name: '',
+            background: '',
+            category: '',
+            description: '',
+            summary: '',
+            techParameter: '',
+            domain: '',
+            other: '',
+            created: '',
+            updated: '',
+            pictures: []
+        }
+    },
+    User: {
+        data: {
+            id: '',
             username: '',
-            password: ''
+            password: '',
+            role: '',
+            invitation: ''
         },
         rules: {
             username: [{
@@ -133,6 +200,65 @@ export default {
             password: [{
                 required: true,
                 message: '请输入密码',
+                trigger: 'blur'
+            }]
+        }
+    },
+    Login: {
+        data: {
+            id: '',
+            username: '',
+            password: '',
+            role: '',
+            account: '',
+            invitation: ''
+        },
+        rules: {
+            account: [{
+                required: true,
+                message: '请输入手机、邮箱或授权码',
+                trigger: 'blur'
+            }],
+            password: [{
+                required: true,
+                message: '请输入密码',
+                trigger: 'blur'
+            }]
+        }
+    },
+    Registry: {
+        data: {
+            username: '',
+            password: '',
+            mobile: '',
+            role: '',
+            invitation: '',
+            captcha: ''
+        },
+        rules: {
+            username: [{
+                required: true,
+                message: '请输入姓名',
+                trigger: 'blur'
+            }],
+            password: [{
+                required: true,
+                message: '请输入密码',
+                trigger: 'blur'
+            }],
+            mobile: [{
+                required: true,
+                message: '请输入手机号码',
+                trigger: 'blur'
+            }],
+            role: [{
+                required: true,
+                message: '请输入客户类型',
+                trigger: 'blur'
+            }],
+            captcha: [{
+                required: true,
+                message: '请输入验证码',
                 trigger: 'blur'
             }]
         }

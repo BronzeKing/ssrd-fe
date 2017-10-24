@@ -6,7 +6,8 @@ import { apiUrl } from 'settings';
 
 export default {
     // 登录注册相关接口
-    login               :`${apiUrl}/token`,                                 // 登录接口
+    login               :`${apiUrl}/login`,                                 // 登录接口
+    logout               :`${apiUrl}/logout`,                               // 登出
     register            :`${apiUrl}/signup`,                                // 注册接口
 
     // 新闻
@@ -27,5 +28,10 @@ export default {
     systems             :`${apiUrl}/systems`,                               // 获取系统展示
 
     // 案例展示
-    caseDemontration    :`${apiUrl}/systemDemonstrations`                   // 获取案例展示
+    caseDemontration    :`${apiUrl}/systemDemonstrations`,                    // 获取案例展示
+    faqs                :`${apiUrl}/faqs`,                                     // 获取常见问题解答
+    opVideo             :`${apiUrl}/documents?source=2`,                                // 获取操作视频
+    download            :`${apiUrl}/documents?source=3`,                                // 获取文档下载
+    product             :`${apiUrl}/products`,                                // 获取产品
+    collect             :`${apiUrl}/collects`                                // 收藏
 };

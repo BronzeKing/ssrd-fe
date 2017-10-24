@@ -59,8 +59,8 @@ export default {
         return {
             BAIDU_MAP: baiduMapAk,
             center: {
-                lng: 114.148380,
-                lat: 22.627980
+                lng: 114.154858,
+                lat: 22.634009
             },
             mapZoom: 15
         };
