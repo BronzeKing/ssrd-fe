@@ -15,7 +15,7 @@ _configMap = {
         secure: false
     }
 }
-let _config = _configMap[process.env.NODE_ENV || 'production']
+var _config = _configMap[process.env.NODE_ENV || 'production']
 module.exports = {
   build: {
     env: require('./prod.env'),

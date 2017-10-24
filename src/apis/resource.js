@@ -19,7 +19,7 @@ class Resource {
     constructor (url, Model) {
         this.url = url;
         this.m = {};
-        this.rules = {};
+        this.rules = null;
         this.errors = {};
 
         // list方法的 table的查询参数以及分页控件、搜索条件 table=t, model=m
@@ -52,6 +52,7 @@ class Resource {
         Object.keys(this.m).forEach(key => {
             this.m[key] = key in obj ? obj[key] : '';
         });
+        return this.m;
     }
 
     // 重置model和错误
@@ -83,11 +84,14 @@ class Resource {
         let url = this.url;
         let response;
 
-        // retrieve, update,  delete 方法path中都带有id
+        // 标准rest接口中retrieve, update,  delete 方法path中都带有id
+        // 若是非标准rest接口则不带id
         if (!['list', 'create'].includes(action)) {
             const id = body['id'];
             delete body['id'];
-            url = url + '/' + id;
+            if (id) {
+                url = url + '/' + id;
+            };
         };
 
         // retrieve, list方法 为get方法
@@ -128,7 +132,12 @@ class Resource {
     // 获取单个资源
     retrieve (params, config) {
         return this.request(params, config, 'retrieve').then(r => {
-            this.resetModel(r);
+            // 貌似判断直接判断this.m的布尔值 总是返回为true 所以这里改为this.rules
+            if (this.rules) {
+                return this.resetModel(r);
+            } else {
+                return r;
+            }
         });
     }
 

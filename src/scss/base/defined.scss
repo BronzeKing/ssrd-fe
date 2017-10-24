@@ -199,3 +199,17 @@
 .npr                                {padding-right: 0;}
 .npt                                {padding-top: 0}
 .npb                                {padding-bottom: 0;}
+
+//超过几行显示省略号
+.omit1{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.omit2{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
