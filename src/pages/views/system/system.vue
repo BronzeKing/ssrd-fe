@@ -28,8 +28,9 @@
                 p.font-lightgrey CASE DEMONSTRATION
             ul.system-case-demon
                 li.case-demon-item(v-for="item in caseDemonData")
-                    div.case-demon-item-img(:style="{backgroundImage: `url(${item.picture})`}")
-                    p.case-demon-item-title {{item.title}}
+                    router-link(:to="{name: 'systemCaseDetail', params: {id: item.id}}")
+                        div.case-demon-item-img(:style="{backgroundImage: `url(${item.picture})`}")
+                        p.case-demon-item-title {{item.title}}
 </template>
 <script>
     // 系统展示页面

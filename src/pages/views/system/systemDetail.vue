@@ -97,7 +97,6 @@ export default{
     },
     beforeRouteEnter (to, from, next) {
         next(vm => {
-            console.log('id', vm.$route.params.id);
             vm.menuData.activeTab = Number(vm.$route.params.id) || 0;
         });
     },

@@ -132,12 +132,8 @@ class Resource {
     // 获取单个资源
     retrieve (params, config) {
         return this.request(params, config, 'retrieve').then(r => {
-            // 貌似判断直接判断this.m的布尔值 总是返回为true 所以这里改为this.rules
-            if (this.rules) {
-                return this.resetModel(r);
-            } else {
-                return r;
-            }
+            this.resetModel(r);
+            return r;
         });
     }
 
