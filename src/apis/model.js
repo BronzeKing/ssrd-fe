@@ -258,5 +258,42 @@ export default {
                 trigger: 'blur'
             }]
         }
+    },
+    Password: {
+        data: {
+            password: '',
+            password2: '',
+            captcha: ''
+        },
+        rules: {
+            password: [{
+                required: true,
+                message: '请输入登录密码',
+                trigger: 'blur'
+            }],
+            password2: [{
+                required: true,
+                message: '请确认密码',
+                trigger: 'blur'
+            }]
+        }
+    },
+    Email: {
+        data: {
+            email: '',
+            captcha: ''
+        },
+        rules: {
+            email: [{
+                required: true,
+                message: '请输入您的常用邮箱',
+                trigger: 'blur'
+            }],
+            captcha: [{
+                required: true,
+                message: '验证码',
+                trigger: 'blur'
+            }]
+        }
     }
 };

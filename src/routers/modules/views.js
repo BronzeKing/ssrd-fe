@@ -14,17 +14,15 @@ import system       from './system';
 import login        from './login';
 import information  from './information';
 import support      from './support';
+import manager      from './manager';
 
 export default {
     // path: '/',
     path: '/',
     // name: 'views',
     component: views,
+    redirect: 'home',
     children: [
-        {
-            path: '',
-            redirect: 'home'
-        },
         ...homes,
         ...about,
         ...community,
@@ -32,6 +30,7 @@ export default {
         ...system,
         ...login,
         ...information,
-        ...support
+        ...support,
+        ...manager
     ]
 };

@@ -8,7 +8,7 @@
                 //- img(src="~assets/home_banner.png")
             article.home-info
                 nav.home-user-nav
-                    a.home-user-item(href="javascript: void(0);")
+                    router-link.home-user-item(:to={name: 'account'})
                         i.iconfont.icon-team
                         p 客户中心
                     a.home-user-item(href="javascript: void(0);")

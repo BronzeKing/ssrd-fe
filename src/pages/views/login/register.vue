@@ -31,7 +31,8 @@ export default {
             ],
             logining: false,
             Register: Register,
-            RegisterForm: ''
+            RegisterForm: '',
+            icons: {qq: 'icon-qq', weixin: 'icon-wechat', weibo: 'icon-weibo'}
         };
     },
     methods: {

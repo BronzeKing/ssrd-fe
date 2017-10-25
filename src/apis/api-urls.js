@@ -30,8 +30,13 @@ export default {
     // 案例展示
     systemCase          :`${apiUrl}/systemCases`,                    // 获取案例展示
     faqs                :`${apiUrl}/faqs`,                                     // 获取常见问题解答
-    opVideo             :`${apiUrl}/documents?source=2`,                                // 获取操作视频
-    download            :`${apiUrl}/documents?source=3`,                                // 获取文档下载
+    opVideo             :`${apiUrl}/documents`,                                // 获取操作视频
+    download            :`${apiUrl}/documents`,                                // 获取文档下载
     product             :`${apiUrl}/products`,                                // 获取产品
-    collect             :`${apiUrl}/collects`                                // 收藏
+    collect             :`${apiUrl}/collects`,                                // 收藏
+
+    password            :`${apiUrl}/password/change`,                                // 更改密码
+    email               :`${apiUrl}/email/change`,                                // 更改邮箱
+    captcha             :`${apiUrl}/captcha`,                                // 验证码
+    user                :`${apiUrl}/users`                                // 用户
 };

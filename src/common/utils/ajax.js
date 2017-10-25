@@ -107,10 +107,19 @@ Axios.interceptors.response.use(
         //     });
         // }
         // 下面是接口回调的satus ,因为我做了一些错误页面,所以都会指向对应的报错页面
-        if (error.response.status === 403) {
-            router.push({
-                path: '/error/403'
-            });
+        switch (error.response.status) {
+            case 403:
+                router.push({
+                    path: '/error/403'
+                });
+                break;
+            case 401:
+                router.push({
+                    name: 'login'
+                });
+                break;
+            default:
+                break;
         }
         // 返回 response 里的错误信息
         return Promise.reject(error.response && error.response.data);

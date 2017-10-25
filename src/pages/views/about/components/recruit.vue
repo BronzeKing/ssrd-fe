@@ -44,7 +44,6 @@
 
 <script>
 import  { Recruitment, Job } from 'apis';
-import  { dateFilter } from 'filters';
 export default {
     name: 'recruit',
     data () {

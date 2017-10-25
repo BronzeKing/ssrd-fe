@@ -40,3 +40,8 @@ export const Download        = new Resource(API.download, model.Download);      
 
 export const Product         = new Resource(API.product, model.Product);                       // 产品
 export const Collect         = new Resource(API.collect);                                // 产品
+
+export const Password        = new Resource(API.password, model.Password);                                // 产品
+export const Email           = new Resource(API.email, model.Email);                                // 产品
+export const Captcha         = new Resource(API.captcha, model.Email);                                // 产品
+export const User            = new Resource(API.user, model.User);                                // 产品
