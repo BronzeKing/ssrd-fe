@@ -31,11 +31,15 @@ export default {
     },
     methods: {
         loginSubmit () {
-            let that = this;
             this.$refs.LoginForm.validate((valid) => {
                 if (valid) {
                     Login.create().then(r => {
-                        that.$router.push({ path: '/' });
+                        this.$router.push({ path: '/' });
+                        this.$store.commit('login', r);
+                        this.$message({
+                            message: '登录成功',
+                            type: 'success'
+                        });
                     });
                 };
             });

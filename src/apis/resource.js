@@ -104,9 +104,11 @@ class Resource {
         this.resetErrors();
 
         response.catch(error => {
-            error.errors.forEach(ele => {
-                this.errors[ele.name] = ele.value;
-            });
+            if (error.errors) {
+                error.errors.forEach(ele => {
+                    this.errors[ele.name] = ele.value;
+                });
+            };
         });
 
         return response;

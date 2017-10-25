@@ -206,12 +206,8 @@ export default {
     },
     Login: {
         data: {
-            id: '',
-            username: '',
             password: '',
-            role: '',
-            account: '',
-            invitation: ''
+            account: ''
         },
         rules: {
             account: [{

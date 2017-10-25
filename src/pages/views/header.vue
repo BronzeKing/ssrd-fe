@@ -4,10 +4,10 @@
             .container.flex
                 span 欢迎来到深圳市盛世润达智能科技有限公司官方网站
                 span
-                    router-link.user-option-item.active(v-show="!is_authenticated" :to="{name: 'login'}") [ 登陆 ]
-                    router-link.user-option-item(v-show="!is_authenticated" :to="{name: 'register'}") [ 注册 ]
-                    a.user-option-item(v-show="is_authenticated" href="javascript: void(0);") 个人中心
-                    a.user-option-item(v-show="is_authenticated" href="javascript: void(0);") 注销
+                    router-link.user-option-item.active(v-show="!$store.state.user.isAuthenticated" :to="{name: 'login'}") [ 登陆 ]
+                    router-link.user-option-item(v-show="!$store.state.user.isAuthenticated" :to="{name: 'register'}") [ 注册 ]
+                    a.user-option-item(v-show="$store.state.user.isAuthenticated" href="javascript: void(0);") 个人中心
+                    a.user-option-item(v-show="$store.state.user.isAuthenticated" href="javascript: void(0);" @click='logout') 注销
                     a.user-option-item(href="javascript: void(0);") 会员中心
                     a.user-option-item(href="javascript: void(0);") 购物车
                     a.user-option-item(href="javascript: void(0);") 快捷下单
@@ -29,29 +29,44 @@
                     input.header-search-input(type="text" placeholder="请输入您要搜索的内容...") 
 </template>
 <script>
-    export default {
-        name: 'login',
-        data () {
-            return  {
-                menu: [{ name: 'home', title: '首页' },
-                    { name: 'system', title: '系统展示' },
-                    { name: 'product', title: '系统产品' },
-                    { name: 'product', title: '设备辅件' },
-                    { name: 'support', title: '服务与支持' },
-                    { name: 'support', title: '展会协助' },
-                    { name: 'about', title: '关于我们' },
-                    { name: 'information', title: '资讯生活' }
-                ],
-                active: 0,
-                is_authenticated: false
-            };
+import  { Logout, Login } from 'apis';
+
+export default {
+    name: 'login',
+    data () {
+        return  {
+            menu: [{ name: 'home', title: '首页' },
+                { name: 'system', title: '系统展示' },
+                { name: 'product', title: '系统产品' },
+                { name: 'product', title: '设备辅件' },
+                { name: 'support', title: '服务与支持' },
+                { name: 'support', title: '展会协助' },
+                { name: 'about', title: '关于我们' },
+                { name: 'information', title: '资讯生活' }
+            ],
+            active: 0
+        };
+    },
+    mounted () {
+        Login.retrieve().then(r => {
+            this.$store.commit('login', r);
+        });
+    },
+    methods: {
+        selectActive (index) {
+            this.active = index;
         },
-        methods: {
-            selectActive (index) {
-                this.active = index;
-            }
+        logout () {
+            this.$store.commit('logout');
+            Logout.retrieve().then(r => {
+                this.$message({
+                    message: '注销成功',
+                    type: 'success'
+                });
+            });
         }
-    };
+    }
+};
 </script>
 <style lang="scss">
     @import "~scss/pages/views/header";

@@ -107,11 +107,6 @@ Axios.interceptors.response.use(
         //     });
         // }
         // 下面是接口回调的satus ,因为我做了一些错误页面,所以都会指向对应的报错页面
-        if (error.response.status === 302) {
-            router.push({
-                path: error.response.data.url
-            });
-        }
         if (error.response.status === 403) {
             router.push({
                 path: '/error/403'
