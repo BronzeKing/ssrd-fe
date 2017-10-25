@@ -24,7 +24,11 @@
             p.mt20.f18 主要应用产品
             .line
             .case-item-image
-                img(v-for="x in SystemCase.m.products" :name="x.name" :src="x.background" @click="imageShow(x.background)")  
+                div(v-for="x in SystemCase.m.products")
+                    router-link(:to="{name: 'productDetail', params: {id: x.id}}")
+                        img(:name="x.name" :src="x.background" @click="imageShow(x.background)")
+                        p {{x.name}}
+
             p.f18.mt20 现场图片   
             .line
             .case-item-image.mb15
