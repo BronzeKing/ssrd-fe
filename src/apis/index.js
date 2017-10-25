@@ -28,10 +28,9 @@ export const Job           = new Resource(API.jobs, model.Job);                 
 export const Documents      = new Resource(API.documents);
 
 /* 系统展示 */
-export const systemDemonstrations = new Resource(API.systemDemonstrations);             // 获取案例展示
 export const Systems        = new Resource(API.systems);                                // 获取系统展示
 export const System         = new Resource(API.systems, model.System);                                // 获取系统展示
-export const SystemCase     = new Resource(API.caseDemontration, model.SystemCase);                       // 案例展示列表
+export const SystemCase     = new Resource(API.systemCase, model.SystemCase);                       // 案例展示列表
 
 /* 案例展示 */
 export const CaseDemon      = new Resource(API.caseDemontration);                       // 案例展示列表

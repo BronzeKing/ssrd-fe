@@ -25,11 +25,10 @@ export default {
     documents           :`${apiUrl}/documents`,                             // 获取行业链接
 
     // 系统展示
-    systemDemonstrations:`${apiUrl}/systemDemonstrations`,                  // 获取案例展示
     systems             :`${apiUrl}/systems`,                               // 获取系统展示
 
     // 案例展示
-    caseDemontration    :`${apiUrl}/systemDemonstrations`,                    // 获取案例展示
+    systemCase          :`${apiUrl}/systemCases`,                    // 获取案例展示
     faqs                :`${apiUrl}/faqs`,                                     // 获取常见问题解答
     opVideo             :`${apiUrl}/documents?source=2`,                                // 获取操作视频
     download            :`${apiUrl}/documents?source=3`,                                // 获取文档下载

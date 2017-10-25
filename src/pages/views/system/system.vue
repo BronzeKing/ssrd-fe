@@ -27,14 +27,14 @@
                 h1 案例展示
                 p.font-lightgrey CASE DEMONSTRATION
             ul.system-case-demon
-                li.case-demon-item(v-for="item in caseDemonData")
+                li.case-demon-item(v-for="item in SystemCase.t.Records")
                     router-link(:to="{name: 'systemCaseDetail', params: {id: item.id}}")
                         div.case-demon-item-img(:style="{backgroundImage: `url(${item.picture})`}")
                         p.case-demon-item-title {{item.title}}
 </template>
 <script>
     // 系统展示页面
-    import  { System, systemDemonstrations } from 'apis';
+    import  { System, SystemCase } from 'apis';
     import { infoBanner }   from 'components';
 
     export default{
@@ -42,7 +42,7 @@
         data () {
             return {
                 System: System,
-                caseDemonData: [],
+                SystemCase: SystemCase,
                 icons: ['icon-shuzihua', 'icon-tubiao01', 'icon-shipinjiankong', 'icon-shujutubiao08', 'icon-cheliangchuruchaxun', 'icon-anquan']
             };
         },
@@ -51,15 +51,7 @@
         },
         created () {
             System.list();
-            this.getCaseDemon();
-        },
-
-        methods:{
-            getCaseDemon () {
-                systemDemonstrations.list().then(response => {
-                    response.RecordCount > 0 && (this.caseDemonData = response.Records);
-                });
-            }
+            SystemCase.list();
         }
     };
 </script>

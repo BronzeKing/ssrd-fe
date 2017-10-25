@@ -164,7 +164,7 @@ export default {
             picture: '',
             created: '',
             updated: '',
-            products: []
+            systems: []
         }
     },
     Product: {
