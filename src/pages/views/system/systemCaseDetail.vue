@@ -9,7 +9,7 @@
                     el-breadcrumb-item {{SystemCase.m.title}}
             .line
             .case-list-content
-                .case-item-image
+                .case-main-image
                     img(:src="SystemCase.m.picture" @click="imageShow(SystemCase.m.picture)")
                 .case-info
                     h2 {{SystemCase.m.title}}
@@ -23,12 +23,16 @@
             
             p.mt20.f18 主要应用系统
             .line
-            .case-item-image
-                div(v-for="x in SystemCase.m.systems")
-                    router-link(:to="{name: 'systemDetail', params: {id: x.id}}")
-                        img(:name="x.name" :src="x.summaryPicture" @click="imageShow(x.summaryPicture)")
-                        p {{x.name}}
-
+            .scroll-item
+                i.iconfont.icon-arrow-left.font-grey(@click="scrollLeft")
+                .case-item-image(ref="scrollBox")
+                   div(v-for="x in SystemCase.m.systems")
+                        router-link(:to="{name: 'systemDetail', params: {id: x.id}}")
+                            div.image-container
+                                img(:name="x.name" :src="x.summaryPicture" @click="imageShow(x.summaryPicture)")
+                                .img-info
+                                    p {{x.name}}
+                i.iconfont.icon-arrow-right.font-grey(@click="scrollRight")
             p.f18.mt20 现场图片   
             .line
             .case-item-image.mb15
@@ -42,8 +46,9 @@
             justify-content: space-between;
             p{
                 color: #48576a;
+                line-height: 1.4;
             }
-            .case-item-image{
+            .case-main-image{
                 width: 500px;
                 img{
                     width: 100%;
@@ -53,14 +58,46 @@
                 width: 650px;
             }
         }
-        .case-item-image{
+        .scroll-item{
             display: flex;
-            img{
-                margin-right: 10px;
+            align-items: center;
+            .case-item-image{
+                display: flex;
+                overflow: hidden;
+                align-items: center;
+                position: relative;
+                img{
+                    width: 100%;
+                }
+                .image-container{
+                    position: relative;
+                    margin-right: 10px;
+                    width: 235px;
+                    height: 155px;
+                    .img-info{
+                        height: 30px;
+                        width: 100%;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        background: rgba(0,0,0,0.5);
+                        color: #fff;
+                        text-align: center;
+                        line-height: 30px;
+                    }
+                }
+            }
+            .iconfont{
+                font-size: 32px;
+                cursor: pointer;
+                margin: 0 10px;
             }
         }
+        .case-item-image{
+            display: flex;
+        }
         .line{
-            border-top: 2px solid #E5E5E5; 
+            border-top: 1px solid #E5E5E5; 
             margin: 10px 0 20px;
             width: 100%;
         }
@@ -91,6 +128,26 @@
                 this.$refs.picklool.show({
                     images: [pic]
                 });
+            },
+            scrollLeft () {
+                let time = 0;
+                let timer = setInterval(() => {
+                    time++;
+                    this.$refs.scrollBox.scrollLeft -= 5;
+                    if (time > 50) {
+                        clearInterval(timer);
+                    }
+                }, 5);
+            },
+            scrollRight () {
+                let time = 0;
+                let timer = setInterval(() => {
+                    time++;
+                    this.$refs.scrollBox.scrollLeft += 5;
+                    if (time > 50) {
+                        clearInterval(timer);
+                    }
+                }, 5);
             }
         }
     };

@@ -39,13 +39,13 @@
                 }
                 .case-item-image-show{
                     display: flex;
-                    justify-content: space-between;
                     color: #48576a;
                     .image-show{
-                        width: 33%;
-                        height: 120px;
+                        width: 140px;
+                        height: 95px;
                         overflow: hidden;
                         border: 1px solid #999;
+                        margin-left: 5px;
                         img{
                             width: 100%;
                         }
