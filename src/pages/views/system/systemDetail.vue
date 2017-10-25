@@ -52,7 +52,7 @@
                         .system-content-text(id="text4")
                             .scene-list
                                 ul
-                                    li(v-for="x in System.m.systemDemonstration")
+                                    li(v-for="x in System.m.systemCases")
                                         router-link(:to="{name: 'systemCaseDetail', params: {id: x.id}}")
                                             .scene-info
                                                 span [ 相关案例 ]

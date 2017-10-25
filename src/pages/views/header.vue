@@ -29,7 +29,7 @@
                     input.header-search-input(type="text" placeholder="请输入您要搜索的内容...") 
 </template>
 <script>
-import  { Logout, Login } from 'apis';
+import  { Logout } from 'apis';
 
 export default {
     name: 'login',
@@ -46,11 +46,6 @@ export default {
             ],
             active: 0
         };
-    },
-    mounted () {
-        Login.retrieve().then(r => {
-            this.$store.commit('login', r);
-        });
     },
     methods: {
         selectActive (index) {

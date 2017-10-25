@@ -6,9 +6,19 @@
 </template>
 
 <script>
-    export default {
-        name: 'app'
-    };
+import  { Env, Login } from 'apis';
+
+export default {
+    name: 'app',
+    created () {
+        Login.retrieve().then(r => {
+            this.$store.commit('login', r);
+        });
+        Env.retrieve().then(r => {
+            this.$store.commit('env', r);
+        });
+    }
+};
 </script>
 
 <style lang="scss">

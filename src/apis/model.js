@@ -141,7 +141,7 @@ export default {
             summary: '',
             summaryPicture: '',
             pictures: [],
-            systemDemonstration: [],
+            systemCases: [],
             id: ''
         }
     },

@@ -14,12 +14,8 @@
             el-form-item(style='width:100%;')
             el-button(type='primary' style='width:100%;' @click.native.prevent='RegisterSubmit' :loading='logining') 注 册
         .last-item
-            a.font-white(href="javascript: void(0);")
-                i.iconfont.icon-qq
-            a.font-white(href="javascript: void(0);")
-                i.iconfont.icon-wechat.ml5.mr5
-            a.font-white(href="javascript: void(0);")
-                i.iconfont.icon-weibo
+            a.font-black(v-for="x in $store.state.home.env" :key="x.name" :href="x.url")
+                i.iconfont(:class="icons[x.name]")
 </template>
 
 <script>
