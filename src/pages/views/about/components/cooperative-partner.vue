@@ -8,12 +8,17 @@
         .about-wrap.mt10
             ul.company-partner-list.p15
                 li.company-partner-item(v-for="item in Documents.t.Records")
-                    img.company-partner-image(:src="item.file")
+                    img.company-partner-image(:src="item.file" @click="imageShow(item.file)")
+        piclook(ref="picklool")
 </template>
 <script>
 import  { Documents } from 'apis';
+import { piclook }   from 'components';
 export default{
     name: '',
+    components: {
+        piclook
+    },
     data () {
         return {
             Documents: Documents
@@ -21,6 +26,13 @@ export default{
     },
     created () {
         Documents.list({source: 1});
+    },
+    methods: {
+        imageShow (pic) {
+            this.$refs.picklool.show({
+                images: [pic]
+            });
+        }
     }
 };
 </script>

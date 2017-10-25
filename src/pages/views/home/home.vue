@@ -67,7 +67,7 @@
                 i.iconfont.icon-arrow-left.font-grey
                 // .industry-list-wrapper
                 nav.industry-list
-                    a.industry-list-item(:href="item.link" v-for="(item,index) in IndustryLink.t.Records" :style="{backgroundImage: `url(${item.picture})`}")
+                    a.industry-list-item(:href="item.link" v-for="(item,index) in IndustryLink.t.Records" target="_blank" :style="{backgroundImage: `url(${item.picture})`}")
                 i.iconfont.icon-arrow-right.font-grey
         crash-ball
 </template>

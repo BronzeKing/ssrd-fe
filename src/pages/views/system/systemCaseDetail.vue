@@ -21,12 +21,12 @@
                     p.fb.f16.mb5 工程内容
                     p.f16.mb10(v-html="n2br(SystemCase.m.content)")
             
-            p.mt20.f18 主要应用产品
+            p.mt20.f18 主要应用系统
             .line
             .case-item-image
-                div(v-for="x in SystemCase.m.products")
-                    router-link(:to="{name: 'productDetail', params: {id: x.id}}")
-                        img(:name="x.name" :src="x.background" @click="imageShow(x.background)")
+                div(v-for="x in SystemCase.m.systems")
+                    router-link(:to="{name: 'systemDetail', params: {id: x.id}}")
+                        img(:name="x.name" :src="x.summaryPicture" @click="imageShow(x.summaryPicture)")
                         p {{x.name}}
 
             p.f18.mt20 现场图片   

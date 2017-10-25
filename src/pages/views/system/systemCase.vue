@@ -57,7 +57,6 @@
             SystemCase.list();
         },
         methods: {
-
             // 放大图片
             imageShow (pic) {
                 this.$refs.picklool.show({
