@@ -47,8 +47,7 @@ Axios.interceptors.request.use(
         // 在发送请求之前做某件事
         if (
             config.method === 'post' ||
-            config.method === 'put' ||
-            config.method === 'delete'
+            config.method === 'put'
         ) {
             let isForm = config.data instanceof FormData;
             // 数据是否为表单类型
@@ -107,7 +106,7 @@ Axios.interceptors.response.use(
         //     });
         // }
         // 下面是接口回调的satus ,因为我做了一些错误页面,所以都会指向对应的报错页面
-        switch (error.response.status) {
+        switch (error.response && error.response.status) {
             case 403:
                 router.push({
                     path: '/error/403'

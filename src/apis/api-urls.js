@@ -38,5 +38,6 @@ export default {
     password            :`${apiUrl}/password/change`,                                // 更改密码
     email               :`${apiUrl}/email/change`,                                // 更改邮箱
     captcha             :`${apiUrl}/captcha`,                                // 验证码
-    user                :`${apiUrl}/users`                                // 用户
+    user                :`${apiUrl}/users`,                                // 用户
+    message             :`${apiUrl}/messages`                                // 消息
 };

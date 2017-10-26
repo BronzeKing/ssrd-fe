@@ -18,6 +18,7 @@ const mutations = {
     },
     [ types.LOGOUT ] (state) {
         state.isAuthenticated = false;
+        state.user = {};
     }
 };
 

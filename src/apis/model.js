@@ -189,7 +189,8 @@ export default {
             username: '',
             password: '',
             role: '',
-            invitation: ''
+            invitation: '',
+            status: ''
         },
         rules: {
             username: [{
@@ -294,6 +295,15 @@ export default {
                 message: '验证码',
                 trigger: 'blur'
             }]
+        }
+    },
+    Message: {
+        data: {
+            title: '',
+            content: '',
+            created: '',
+            category: '',
+            read: ''
         }
     }
 };

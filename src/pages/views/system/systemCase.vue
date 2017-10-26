@@ -14,7 +14,7 @@
                         router-link(:to="{ name: 'systemCaseDetail', params: {id: item.id}}")
                             .image-list-box
                                 //- el-row(:gutter="20")
-                                //-     el-col(:span="12" v-for="item in CaseDemon.t.Records")
+                                //-     el-col(:span="12" v-for="item in SystemCase.t.Records")
                                 //-         .grid-content.bg-purple
                                 img.case-item-image.mb5(:src="item.picture" @click="imageShow(item.picture)")
                                 .case-item-image-show

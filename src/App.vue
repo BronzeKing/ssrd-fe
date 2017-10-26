@@ -11,12 +11,19 @@ import  { Env, Login } from 'apis';
 export default {
     name: 'app',
     created () {
-        Login.retrieve().then(r => {
-            this.$store.commit('login', r);
-        });
-        Env.retrieve().then(r => {
-            this.$store.commit('env', r);
-        });
+        this.init();
+    },
+    methods: {
+        init () {
+            if (localStorage.token) {
+                Login.retrieve().then(r => {
+                    this.$store.commit('login', r);
+                });
+            };
+            Env.retrieve().then(r => {
+                this.$store.commit('env', r);
+            });
+        }
     }
 };
 </script>

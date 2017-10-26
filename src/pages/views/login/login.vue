@@ -14,6 +14,7 @@
 
 <script>
 import  { Login } from 'apis';
+import { member } from 'common/utils';
 export default {
     data () {
         return {
@@ -28,12 +29,13 @@ export default {
             this.$refs.LoginForm.validate((valid) => {
                 if (valid) {
                     Login.create().then(r => {
-                        this.$router.push({ path: '/' });
                         this.$store.commit('login', r);
+                        localStorage.token = 'Bearer ' + r.token;
                         this.$message({
                             message: '登录成功',
                             type: 'success'
                         });
+                        this.$router.push({name: 'home'});
                     });
                 };
             });

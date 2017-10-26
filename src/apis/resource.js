@@ -17,6 +17,9 @@ Object.keys(_methodMap).forEach(k => {
 
 class Resource {
     constructor (url, Model) {
+        if (!url) {
+            throw new Error('No url');
+        }
         this.url = url;
         this.m = {};
         this.rules = null;
@@ -36,14 +39,20 @@ class Resource {
             this.m = Model.data;
             this.rules = Model.rules;
             this.resetErrors();
+            // 把model的值赋给table 当用list查询的时候 默认拿this.t中的参数
+            this.resetObject(this.t);
         }
     }
 
     // 重置错误
-    resetErrors () {
+    resetObject (obj) {
         Object.keys(this.m).forEach(key => {
-            this.errors[key] = '';
+            obj[key] = '';
         });
+    }
+
+    resetErrors () {
+        return this.resetObject(this.errors);
     }
 
     // 重置model
@@ -66,13 +75,16 @@ class Resource {
         // obj 传入的是 {job: 'test'}  这样的，如果不传obj, 默认把model作为formData
         const data = this.m;
         const form = new FormData();
+        let id, rest;
 
         Object.keys(obj).forEach(key => {
             data[key] = obj[key];
         });
 
-        Object.keys(data).forEach(key => {
-            form.append(key, data[key]);
+        // 删掉body中的id， 因为path中已经有了
+        ({ id, ...rest } = data);
+        Object.keys(rest).forEach(key => {
+            form.append(key, rest[key]);
         });
 
         return form;
@@ -83,12 +95,12 @@ class Resource {
         const method = _methodMap[action];
         let url = this.url;
         let response;
+        let id;
 
         // 标准rest接口中retrieve, update,  delete 方法path中都带有id
         // 若是非标准rest接口则不带id
         if (!['list', 'create'].includes(action)) {
-            const id = body['id'];
-            delete body['id'];
+            ({ id, ...body } = body);
             if (id) {
                 url = url + '/' + id;
             };
@@ -96,7 +108,6 @@ class Resource {
 
         // retrieve, list方法 为get方法
         body = ['retrieve', 'list'].includes(action) ? { params: body } : this.formData(body);
-
         // 发起请求
         response = method(url, body, config);
 
@@ -104,7 +115,7 @@ class Resource {
         this.resetErrors();
 
         response.catch(error => {
-            if (error.errors) {
+            if (error && error.errors) {
                 error.errors.forEach(ele => {
                     this.errors[ele.name] = ele.value;
                 });
@@ -117,8 +128,8 @@ class Resource {
     // 获取资源列表
     list (params = {}, config) {
         // 默认把this.t里的search, pageIndex, pageSize参数传到list方法里
-        ['search', 'pageIndex', 'pageSize'].forEach(k => {
-            if (this.t[k]) {
+        Object.keys(this.t).forEach(k => {
+            if (this.t[k] && !(['Records', 'RecordCount'].includes(k))) {
                 params[k] = this.t[k];
             };
         });
@@ -151,7 +162,7 @@ class Resource {
 
     // 删除单个资源
     destroy (body, config) {
-        return this.request(body, config, 'delete');
+        return this.request(body, config, 'destroy');
     }
 }
 

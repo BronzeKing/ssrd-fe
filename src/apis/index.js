@@ -33,15 +33,15 @@ export const System         = new Resource(API.systems, model.System);          
 export const SystemCase     = new Resource(API.systemCase, model.SystemCase);                       // 案例展示列表
 
 /* 案例展示 */
-export const CaseDemon      = new Resource(API.caseDemontration);                       // 案例展示列表
 export const Faqs           = new Resource(API.faqs, model.Faqs);                       // 常见问题解答
 export const OpVideo        = new Resource(API.opVideo, model.OpVideo);                       // 操作视频
 export const Download        = new Resource(API.download, model.Download);                       // 文档下载
 
 export const Product         = new Resource(API.product, model.Product);                       // 产品
-export const Collect         = new Resource(API.collect);                                // 产品
+export const Collect         = new Resource(API.collect);                                // 收藏
 
-export const Password        = new Resource(API.password, model.Password);                                // 产品
-export const Email           = new Resource(API.email, model.Email);                                // 产品
-export const Captcha         = new Resource(API.captcha, model.Email);                                // 产品
-export const User            = new Resource(API.user, model.User);                                // 产品
+export const Password        = new Resource(API.password, model.Password);                                // 修改密码
+export const Email           = new Resource(API.email, model.Email);                                // 修改或验证邮箱
+export const Captcha         = new Resource(API.captcha, model.Email);                                // 验证码
+export const User            = new Resource(API.user, model.User);                                // 用户
+export const Message         = new Resource(API.message, model.Message);                                // 消息

@@ -53,6 +53,7 @@ export default {
         },
         logout () {
             this.$store.commit('logout');
+            delete localStorage.token;
             Logout.retrieve().then(r => {
                 this.$message({
                     message: '注销成功',

@@ -72,7 +72,7 @@
         crash-ball
 </template>
 <script>
-import  { IndustryLink, News, CaseDemon } from 'apis';
+import  { IndustryLink, News, SystemCase } from 'apis';
 import { crashBall } from 'components';
 export default {
     name: 'home',
@@ -85,7 +85,7 @@ export default {
             ],
             IndustryLink: IndustryLink,
             News: News,
-            CaseDemon: CaseDemon
+            SystemCase: SystemCase
         };
     },
     components: {
@@ -95,7 +95,7 @@ export default {
         // 获取新闻内容咯
         News.list({PageSize: 3});
         IndustryLink.list();
-        CaseDemon.list({PageSize: 3});
+        SystemCase.list({PageSize: 3});
     }
 };
 </script>
