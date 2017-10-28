@@ -1,10 +1,10 @@
 <template lang="pug">
-    div.page-about
-        .about-banner
+    div.page-information
+        .information-banner
                 img(src="~assets/support-banner.png")
         .container
-            .about-content
-                .about-menu
+            .information-content
+                .information-menu
                     .menu-title
                         .line-title
                         .title-info
@@ -16,10 +16,10 @@
                                 router-link(:to="{name: item.name}")
                                     span {{item.title}}
                                     i.iconfont.icon-arrow-right
-                .about-case
+                .information-case
                     .case-title
 
-                .about-info.mt5
+                .information-info.mt5
                     transition(name="router-fade" mode="out-in")
                         router-view
 </template>
@@ -38,5 +38,5 @@
     };
 </script>
 <style lang="scss">
-    @import "~scss/pages/about";
+    @import "~scss/pages/views/information/new";
 </style>
