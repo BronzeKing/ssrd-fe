@@ -37,48 +37,18 @@
             li.home-flow-item 需求沟通
             li.home-flow-item 方案报价
         .home-introduce.mb20
-            .home-introduce-item
+            .home-introduce-item(v-for="item in SystemCase.t.Records" :key="item.id")
                 .home-introduce-case
-                    img(src="~assets/case_0.png")
+                    img(:src="item.picture")
                     div
-                        h4.fn.f16.mt5.mb5 深圳湾生态科技公园
-                        p 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成，位于XXXXX
-                .home-introduce-text 
-                    h4.introduce-text-title.fn.mb5 深圳湾生态科技公园
-                    p.introduce-text-content 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例.....
+                        h4.fn.f16.mt5.mb5 {{item.title}}
+                        p {{item.summary.slice(0, 30)}}
+                router-link.home-introduce-text(:to="{ name: 'systemCaseDetail', params: {id: item.id}}")
+                    h4.introduce-text-title.fn.mb5 {{item.title}}
+                    p.introduce-text-content {{item.description.slice(0, 100)}}
                     span.introduce-date
-                        span.mr20 01-08
-                        span.f14 2017
-                    span.introduce-icon 
-                        a.font-white(href="javascript: void(0);")
-                            i.iconfont.icon-right.f24
-            .home-introduce-item
-                .home-introduce-case
-                    img(src="~assets/case_0.png")
-                    div
-                        h4.fn.f16.mt5.mb5 深圳湾生态科技公园
-                        p 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成，位于XXXXX
-                .home-introduce-text 
-                    h4.introduce-text-title.fn.mb5 深圳湾生态科技公园
-                    p.introduce-text-content 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例.....
-                    span.introduce-date
-                        span.mr20 01-08
-                        span.f14 2017
-                    span.introduce-icon 
-                        a.font-white(href="javascript: void(0);")
-                            i.iconfont.icon-right.f24
-            .home-introduce-item
-                .home-introduce-case
-                    img(src="~assets/case_1.png")
-                    div
-                        h4.fn.f16.mt5.mb5 深圳湾生态科技公园
-                        p 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成，位于XXXXX
-                .home-introduce-text 
-                    h4.introduce-text-title.fn.mb5 深圳湾生态科技公园
-                    p.introduce-text-content 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例.....
-                    span.introduce-date
-                        span.mr20 01-08
-                        span.f14 2017
+                        span.mr20 {{item.created.slice(6, 10)}}
+                        span.f14 {{item.created.slice(0, 4)}}
                     span.introduce-icon 
                         a.font-white(href="javascript: void(0);")
                             i.iconfont.icon-right.f24
