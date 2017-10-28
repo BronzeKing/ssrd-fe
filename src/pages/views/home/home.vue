@@ -37,25 +37,51 @@
             li.home-flow-item 需求沟通
             li.home-flow-item 方案报价
         .home-introduce.mb20
-            .home-introduce-text 
-                h4.introduce-text-title.fn.mb5 深圳湾生态科技公园
-                p.introduce-text-content 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例.....
-                span.introduce-date
-                    span.mr20 01-08
-                    span.f14 2017
-                span.introduce-icon 
-                    a.font-white(href="javascript: void(0);")
-                        i.iconfont.icon-right.f24
-            a.home-introduce-case
-                img(src="~assets/case_0.png")
-                div
-                    h4.fn.f16.mt5.mb5 深圳湾生态科技公园
-                    p 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成，位于XXXXX
-            a.home-introduce-case
-                img(src="~assets/case_1.png")
-                div
-                    h4.fn.f16.mt5.mb5 深圳湾生态科技公园
-                    p 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成，位于XXXXX
+            .home-introduce-item
+                .home-introduce-case
+                    img(src="~assets/case_0.png")
+                    div
+                        h4.fn.f16.mt5.mb5 深圳湾生态科技公园
+                        p 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成，位于XXXXX
+                .home-introduce-text 
+                    h4.introduce-text-title.fn.mb5 深圳湾生态科技公园
+                    p.introduce-text-content 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例.....
+                    span.introduce-date
+                        span.mr20 01-08
+                        span.f14 2017
+                    span.introduce-icon 
+                        a.font-white(href="javascript: void(0);")
+                            i.iconfont.icon-right.f24
+            .home-introduce-item
+                .home-introduce-case
+                    img(src="~assets/case_0.png")
+                    div
+                        h4.fn.f16.mt5.mb5 深圳湾生态科技公园
+                        p 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成，位于XXXXX
+                .home-introduce-text 
+                    h4.introduce-text-title.fn.mb5 深圳湾生态科技公园
+                    p.introduce-text-content 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例.....
+                    span.introduce-date
+                        span.mr20 01-08
+                        span.f14 2017
+                    span.introduce-icon 
+                        a.font-white(href="javascript: void(0);")
+                            i.iconfont.icon-right.f24
+            .home-introduce-item
+                .home-introduce-case
+                    img(src="~assets/case_1.png")
+                    div
+                        h4.fn.f16.mt5.mb5 深圳湾生态科技公园
+                        p 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成，位于XXXXX
+                .home-introduce-text 
+                    h4.introduce-text-title.fn.mb5 深圳湾生态科技公园
+                    p.introduce-text-content 小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例，某某小区2016年高清安防案例，该小区2010年建成小区高清安防案例.....
+                    span.introduce-date
+                        span.mr20 01-08
+                        span.f14 2017
+                    span.introduce-icon 
+                        a.font-white(href="javascript: void(0);")
+                            i.iconfont.icon-right.f24
         .home-links
             .home-links-header.mb15
                 span

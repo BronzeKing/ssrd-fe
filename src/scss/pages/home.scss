@@ -161,41 +161,52 @@
     /*工程案例*/
     .home-introduce{
         display: flex;
-        
-        .home-introduce-text{
-            background-color: $base-color;
-            color: $font-white;
-            padding: 31px 32px 20px 26px;
-            margin-right: 20px;
-            position: relative;
-        }
-        .introduce-text-title{
-            font-size: $f16;
-            line-height: 1.6;
-        }
-        .introduce-text-content{
-            line-height: 1.5;
-        }
-        .introduce-date{
-            position: absolute;
-            left: 31px;
-            bottom: 20px;
-            font-size: 24px;
-        }
-        .introduce-icon{
-            position: absolute;
-            right: 32px;
-            bottom: 20px;
-        }
-
-        .home-introduce-case{
-            padding: 11px 18px 27px 18px;
-            border: 1px solid $border-ad;
-            margin-right: 20px;
-            &:last-child{
-                margin-right: 0;
+        justify-content:space-between;
+        .home-introduce-item{
+            width: 32.5%;
+            cursor: pointer;
+            &:hover{
+                .home-introduce-case{
+                    display: none;
+                }
+                .home-introduce-text{
+                    display: block;
+                }
+            }
+            .home-introduce-text{
+                background-color: $base-color;
+                color: $font-white;
+                padding: 31px 32px 20px 26px;
+                position: relative;
+                height: 100%;
+                display: none;
+            }
+            .introduce-text-title{
+                font-size: $f16;
+                line-height: 1.6;
+            }
+            .introduce-text-content{
+                line-height: 1.5;
+            }
+            .introduce-date{
+                position: absolute;
+                left: 31px;
+                bottom: 20px;
+                font-size: 24px;
+            }
+            .introduce-icon{
+                position: absolute;
+                right: 32px;
+                bottom: 20px;
+            }
+    
+            .home-introduce-case{
+                padding: 11px 18px 27px 18px;
+                border: 1px solid $border-ad;
+                
             }
         }
+        
     }
 
     /*行业链接标题*/
