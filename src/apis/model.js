@@ -305,5 +305,32 @@ export default {
             category: '',
             read: ''
         }
+    },
+    AuthorizeCode: {
+        data: {
+            user: '',
+            creator: '',
+            code: '',
+            status: '',
+            created: ''
+        }
+    },
+    Invitation: {
+        data: {
+            code: '',
+            creator: '',
+            users: '',
+            created: ''
+        }
+    },
+    Profile: {
+        data: {
+            name: '',
+            gender: 'male',
+            birthday: '',
+            company: '',
+            addres: '',
+            position: ''
+        }
     }
 };

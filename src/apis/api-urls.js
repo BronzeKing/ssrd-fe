@@ -39,5 +39,8 @@ export default {
     email               :`${apiUrl}/email/change`,                                // 更改邮箱
     captcha             :`${apiUrl}/captcha`,                                // 验证码
     user                :`${apiUrl}/users`,                                // 用户
-    message             :`${apiUrl}/messages`                                // 消息
+    message             :`${apiUrl}/messages`,                                // 消息
+    profile             :`${apiUrl}/users/{id}/profile`,                    // 个人资料
+    invitation          :`${apiUrl}/invitations`,                    // 个人资料
+    authorizeCode       :`${apiUrl}/authorizeCodes`                // 授权码
 };

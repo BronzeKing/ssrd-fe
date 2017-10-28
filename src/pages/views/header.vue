@@ -4,11 +4,10 @@
             .container.flex
                 span 欢迎来到深圳市盛世润达智能科技有限公司官方网站
                 span
-                    router-link.user-option-item.active(v-show="!$store.state.user.isAuthenticated" :to="{name: 'login'}") [ 登陆 ]
-                    router-link.user-option-item(v-show="!$store.state.user.isAuthenticated" :to="{name: 'register'}") [ 注册 ]
-                    a.user-option-item(v-show="$store.state.user.isAuthenticated" href="javascript: void(0);") 个人中心
-                    a.user-option-item(v-show="$store.state.user.isAuthenticated" href="javascript: void(0);" @click='logout') 注销
-                    a.user-option-item(href="javascript: void(0);") 会员中心
+                    router-link.user-option-item.active(v-show="!user.isAuthenticated" :to="{name: 'login'}") [ 登陆 ]
+                    router-link.user-option-item(v-show="!user.isAuthenticated" :to="{name: 'register'}") [ 注册 ]
+                    router-link.user-option-item(:to="{name: 'account' }") 个人中心
+                    a.user-option-item(v-show="user.isAuthenticated" href="javascript: void(0);" @click='logout') 注销
                     a.user-option-item(href="javascript: void(0);") 购物车
                     a.user-option-item(href="javascript: void(0);") 快捷下单
         .container.flex.pt10.pb10
@@ -32,7 +31,7 @@
 import  { Logout } from 'apis';
 
 export default {
-    name: 'login',
+    name: 'header',
     data () {
         return  {
             menu: [{ name: 'home', title: '首页' },
@@ -44,7 +43,8 @@ export default {
                 { name: 'about', title: '关于我们' },
                 { name: 'information', title: '资讯生活' }
             ],
-            active: 0
+            active: 0,
+            user: this.$store.state.user
         };
     },
     methods: {

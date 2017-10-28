@@ -47,7 +47,6 @@ export default {
         },
         userUpdate (data) {
             User.update(data);
-            console.log(data);
         }
     }
 };
