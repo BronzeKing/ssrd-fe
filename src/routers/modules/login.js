@@ -3,7 +3,7 @@
  */
 
 const login = r => require.ensure([], () => r(require('pages/views/login/login')), 'login');
-const register = r => require.ensure([], () => r(require('pages/views/login/register')), 'register');
+const register = r => require.ensure([], () => r(require('pages/views/login/register')), 'login');
 
 export default [
     {

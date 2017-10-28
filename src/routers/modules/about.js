@@ -5,17 +5,17 @@
  // 关于我们
 const about = r => require.ensure([], () => r(require('pages/views/about/about')), 'about');
 // 公司简介
-const companyProfile = r => require.ensure([], () => r(require('pages/views/about/components/company-profile')), 'companyProfile');
+const companyProfile = r => require.ensure([], () => r(require('pages/views/about/components/company-profile')), 'about');
 // 企业文化
-const corporateCulture = r => require.ensure([], () => r(require('pages/views/about/components/corporate-culture')), 'corporateCulture');
+const corporateCulture = r => require.ensure([], () => r(require('pages/views/about/components/corporate-culture')), 'about');
 // 荣耀资质
-const honor = r => require.ensure([], () => r(require('pages/views/about/components/honor')), 'honor');
+const honor = r => require.ensure([], () => r(require('pages/views/about/components/honor')), 'about');
 // 合作伙伴
-const cooperativePartner = r => require.ensure([], () => r(require('pages/views/about/components/cooperative-partner')), 'cooperativePartner');
+const cooperativePartner = r => require.ensure([], () => r(require('pages/views/about/components/cooperative-partner')), 'about');
 // 招贤纳士
-const recruit  = r => require.ensure([], () => r(require('pages/views/about/components/recruit')), 'recruit');
+const recruit  = r => require.ensure([], () => r(require('pages/views/about/components/recruit')), 'about');
 // 联系我们
-const contactUs  = r => require.ensure([], () => r(require('pages/views/about/components/contact-us')), 'contactUs');
+const contactUs  = r => require.ensure([], () => r(require('pages/views/about/components/contact-us')), 'about');
 export default [
     {
         path: '/about',
