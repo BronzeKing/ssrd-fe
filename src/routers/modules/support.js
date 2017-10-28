@@ -1,11 +1,11 @@
 const support = r => require.ensure([], () => r(require('pages/views/support/index')), 'support');
-const faqs = r => require.ensure([], () => r(require('pages/views/support/components/faqs')), 'faqs');
-const servicePromise = r => require.ensure([], () => r(require('pages/views/support/components/servicePromise')), 'servicePromise');
-const feedback = r => require.ensure([], () => r(require('pages/views/support/components/feedback')), 'feedback');
-const survey = r => require.ensure([], () => r(require('pages/views/support/components/survey')), 'survey');
-const serviceNet = r => require.ensure([], () => r(require('pages/views/support/components/serviceNet')), 'serviceNet');
-const opVideo = r => require.ensure([], () => r(require('pages/views/support/components/opVideo')), 'opVideo');
-const download = r => require.ensure([], () => r(require('pages/views/support/components/download')), 'download');
+const faqs = r => require.ensure([], () => r(require('pages/views/support/components/faqs')), 'support');
+const servicePromise = r => require.ensure([], () => r(require('pages/views/support/components/servicePromise')), 'support');
+const feedback = r => require.ensure([], () => r(require('pages/views/support/components/feedback')), 'support');
+const survey = r => require.ensure([], () => r(require('pages/views/support/components/survey')), 'support');
+const serviceNet = r => require.ensure([], () => r(require('pages/views/support/components/serviceNet')), 'support');
+const opVideo = r => require.ensure([], () => r(require('pages/views/support/components/opVideo')), 'support');
+const download = r => require.ensure([], () => r(require('pages/views/support/components/download')), 'support');
 export default [{
     path: '/support',
     // name: 'support',
