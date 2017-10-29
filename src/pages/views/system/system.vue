@@ -34,7 +34,7 @@
 </template>
 <script>
     // 系统展示页面
-    import  { System, SystemCase } from 'apis';
+    import { System, SystemCase } from 'apis';
     import { infoBanner }   from 'components';
 
     export default{

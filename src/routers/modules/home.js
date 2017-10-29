@@ -11,11 +11,17 @@ export default [
     {
         path: '/home',
         name: 'home',
-        component: home
+        component: home,
+        meta: {
+            headerMenuIndex: 0
+        }
     },
     {
         path: '/companyNews',
         name: 'companyNews',
-        component: companyNews
+        component: companyNews,
+        meta: {
+            headerMenuIndex: 0
+        }
     }
 ];

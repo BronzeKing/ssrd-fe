@@ -9,20 +9,32 @@ export default [
     {
         path: 'system',
         name: 'system',
-        component: system
+        component: system,
+        meta: {
+            headerMenuIndex: 1
+        }
     },
     {
         path: 'system/:id',
         name: 'systemDetail',
-        component: systemDetail
+        component: systemDetail,
+        meta: {
+            headerMenuIndex: 1
+        }
     },
     {
         path: 'systemCase',
         name: 'systemCase',
-        component: systemCase
+        component: systemCase,
+        meta: {
+            headerMenuIndex: 1
+        }
     }, {
         path: 'systemCase/:id',
         name: 'systemCaseDetail',
-        component: systemCaseDetail
+        component: systemCaseDetail,
+        meta: {
+            headerMenuIndex: 1
+        }
     }
 ];

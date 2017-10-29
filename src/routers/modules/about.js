@@ -21,10 +21,17 @@ export default [
         path: '/about',
         // name: 'about',
         component: about,
+        beforeEnter (to, from, next) {
+            to.meta.headerMenuIndex = 6;
+            next();
+        },
         children: [
             {
                 path: '',
                 redirect: 'companyProfile'
+                // meta: {
+                //     headerMenuIndex: 6
+                // }
             },
             {
                 path: 'companyProfile',

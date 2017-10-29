@@ -12,16 +12,25 @@ export default [
     {
         path: '/equipment',
         name: 'equipment',
-        component: equipment
+        component: equipment,
+        meta: {
+            headerMenuIndex: 2
+        }
     },
     {
         path: '/product',
         name: 'product',
-        component: product
+        component: product,
+        meta: {
+            headerMenuIndex: 2
+        }
     },
     {
         path: '/product/:id',
         name: 'productDetail',
-        component: productDetail
+        component: productDetail,
+        meta: {
+            headerMenuIndex: 2
+        }
     }
 ];

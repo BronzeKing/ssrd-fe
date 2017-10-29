@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import  { Env, Login } from 'apis';
+import { Env, Login } from 'apis';
 
 export default {
     name: 'app',

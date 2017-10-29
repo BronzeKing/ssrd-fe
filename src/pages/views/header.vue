@@ -23,13 +23,14 @@
         .header-nav
             .container.flex
                 nav.herder-nav-wrapper
-                    router-link.header-nav-item(v-for="(item, index) in menu" @click="selectActive(index)" :class="{active: active===index}" :key="item.title" :to="{ path: `/${item.name}` }") {{item.title}}
+                    router-link.header-nav-item(v-for="(item, index) in menu" :class="{active: getNavActive === index}" :key="item.title" :to="{ path: `/${item.name}` }") {{item.title}}
                 .header-serch
                     i.iconfont.icon-search
                     input.header-search-input(type="text" placeholder="请输入您要搜索的内容...") 
 </template>
 <script>
-import  { Logout } from 'apis';
+import { Logout } from 'apis';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'login',
@@ -43,14 +44,13 @@ export default {
                 { name: 'support', title: '展会协助' },
                 { name: 'about', title: '关于我们' },
                 { name: 'information', title: '资讯生活' }
-            ],
-            active: 0
+            ]
         };
     },
+    computed: {
+        ...mapGetters(['getNavActive'])
+    },
     methods: {
-        selectActive (index) {
-            this.active = index;
-        },
         logout () {
             this.$store.commit('logout');
             delete localStorage.token;

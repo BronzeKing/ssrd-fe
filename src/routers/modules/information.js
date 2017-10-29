@@ -9,12 +9,18 @@ export default [{
         {
             path: 'news',
             component: news,
-            name: 'news'
+            name: 'news',
+            meta: {
+                headerMenuIndex: 7
+            }
         },
         {
             path: 'news/:id',
             component: news,
-            name: 'newsDetail'
+            name: 'newsDetail',
+            meta: {
+                headerMenuIndex: 7
+            }
         }
     ]
 }];
