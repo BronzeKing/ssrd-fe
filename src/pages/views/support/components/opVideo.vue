@@ -9,7 +9,7 @@
             div
                 el-tabs(tpye="card" v-model="activeTab"  @tab-click="clickTab")
                     el-tab-pane(v-for="x in tabs" :key="x" :label="x")
-                el-input(placeholder="请输入要搜索的视屏名称" icon="search" v-model="OpVideo.t.search" @change="OpVideo.list()")
+                el-input(placeholder="请输入要搜索的视屏名称" icon="el-icon-search" v-model="OpVideo.t.search" @change="OpVideo.list()")
                 el-table.mt10(:data="OpVideo.t.Records" stripe highlight-current-row style="width: 100%")
                     el-table-column(property="name", label="文件名称")
                     el-table-column(label="操作")

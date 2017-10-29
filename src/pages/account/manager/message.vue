@@ -6,7 +6,7 @@
                 el-breadcrumb-item(:to="{ name: 'manager' }") 管理中心
                 el-breadcrumb-item 我的消息
         .about-wrap.mt10.p15
-            el-input(placeholder="请输入要搜索的消息" icon="search" v-model="Message.t.search" @change="Message.list()")
+            el-input(placeholder="请输入要搜索的消息" icon="el-icon-search" v-model="Message.t.search" @change="Message.list()")
             el-table.mt10(ref="multipleTable" :data="Message.t.Records" @selection-change="handleSelectionChange" tooltip-effect="dark" stripe highlight-current-row style="width: 100%")
                 el-table-column(property="title" label="标题内容")
                 el-table-column(property="created" label="提交时间")
