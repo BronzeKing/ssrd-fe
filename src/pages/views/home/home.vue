@@ -39,7 +39,7 @@
         .home-introduce.mb20
             .home-introduce-item(v-for="item in SystemCase.t.Records" :key="item.id")
                 .home-introduce-case
-                    img(:src="item.picture")
+                    img(:src="item.picture" width='360px' height='155px')
                     div
                         h4.fn.f16.mt5.mb5 {{item.title}}
                         p {{item.summary.slice(0, 30)}}
