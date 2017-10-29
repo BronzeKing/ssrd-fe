@@ -45,3 +45,6 @@ export const Email           = new Resource(API.email, model.Email);            
 export const Captcha         = new Resource(API.captcha, model.Email);                                // 验证码
 export const User            = new Resource(API.user, model.User);                                // 用户
 export const Message         = new Resource(API.message, model.Message);                                // 消息
+export const Invitation      = new Resource(API.invitation, model.Invitation);                                // 消息
+export const AuthorizeCode   = new Resource(API.authorizeCode, model.AuthorizeCode);                                // 消息
+export const Profile         = new Resource(API.profile, model.Profile);                                // 个人资料

@@ -24,8 +24,9 @@
             //-     p.font-lightgrey CLASSIC CASE
 
             .header 
-                h1 案例展示
-                p.font-lightgrey CASE DEMONSTRATION
+                router-link(:to="{name: 'systemCase'}")
+                    h1 案例展示
+                    p.font-lightgrey CASE DEMONSTRATION
             ul.system-case-demon
                 li.case-demon-item(v-for="item in SystemCase.t.Records")
                     router-link(:to="{name: 'systemCaseDetail', params: {id: item.id}}")

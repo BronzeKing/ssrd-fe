@@ -1,10 +1,17 @@
 <template lang="pug">
-    div
+    .views
+        page-header
         router-view
 </template>
+
 <script>
-    export default {
-        name: 'account'
-    };
+import pageHeader from './header';
+export default {
+    name: 'account',
+    components: {
+        pageHeader
+    }
+};
 </script>
+
 

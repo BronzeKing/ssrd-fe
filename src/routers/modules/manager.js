@@ -3,6 +3,9 @@ const secure = r => require.ensure([], () => r(require('pages/account/manager/se
 const user = r => require.ensure([], () => r(require('pages/account/manager/user')), 'manager');
 const message = r => require.ensure([], () => r(require('pages/account/manager/message')), 'manager');
 const messageDetail = r => require.ensure([], () => r(require('pages/account/manager/messageDetail')), 'manager');
+const authorizeCode = r => require.ensure([], () => r(require('pages/account/manager/authorizeCode')), 'authorizeCode');
+const invitation = r => require.ensure([], () => r(require('pages/account/manager/invitation')), 'invitation');
+const profile = r => require.ensure([], () => r(require('pages/account/manager/profile')), 'profile');
 export default [{
     path: '/account',
     name: 'account',
@@ -28,6 +31,21 @@ export default [{
             path: 'message/:id',
             name: 'messageDetail',
             component: messageDetail
+        },
+        {
+            path: 'authorizeCode',
+            name: 'authorizeCode',
+            component: authorizeCode
+        },
+        {
+            path: 'invitation',
+            name: 'invitation',
+            component: invitation
+        },
+        {
+            path: 'profile',
+            name: 'profile',
+            component: profile
         }
     ]
 }];

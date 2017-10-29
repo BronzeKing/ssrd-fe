@@ -27,17 +27,20 @@ export default {
     methods: {
         loginSubmit () {
             this.$refs.LoginForm.validate((valid) => {
-                if (valid) {
-                    Login.create().then(r => {
-                        this.$store.commit('login', r);
-                        localStorage.token = 'Bearer ' + r.token;
-                        this.$message({
-                            message: '登录成功',
-                            type: 'success'
-                        });
-                        this.$router.push({name: 'home'});
-                    });
+                if (!valid) {
+                    return;
                 };
+                Login.create().then(r => {
+                    localStorage.token = 'Bearer ' + r.token;
+                    this.$message({
+                        message: '登录成功',
+                        type: 'success'
+                    });
+                    this.$router.push({name: 'home'});
+                });
+                Login.retrieve().then(r => {
+                    this.$store.commit('login', r);
+                });
             });
         }
     }

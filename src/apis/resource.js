@@ -15,6 +15,15 @@ Object.keys(_methodMap).forEach(k => {
     _methodMap[k] = ajax.Axios[_methodMap[k]];
 });
 
+// /asd/{efg}/{hjk} 去除 url中的  efg和hjk
+// const RE_URL = new RegExp('/{(.+?)}/', 'g');
+// if (url.match(RE_URL)) {
+    // this.paths = url.match(RE_URL).map(x => {
+        // // 匹配出来的是 /{var}    所以在这把var给取出来
+        // return x.slice(2, -1);
+    // });
+// }
+
 class Resource {
     constructor (url, Model) {
         if (!url) {
