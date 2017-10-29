@@ -42,7 +42,7 @@
                         p.f18.ml10.font-base  商品搜索
                     .product-menu-body
                         el-input.mt10(placeholder="请输入商品" v-model="searchValue" class="input-with-select")
-                            el-button(slot="append" icon="el-icon-search")
+                            el-button(slot="append" suffix-icon="el-icon-search")
             .right-product
                 transition(name="router-fade" mode="out-in")
                         router-view
