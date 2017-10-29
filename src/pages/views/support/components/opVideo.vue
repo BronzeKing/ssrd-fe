@@ -13,7 +13,7 @@
                 el-table.mt10(:data="OpVideo.t.Records" stripe highlight-current-row style="width: 100%")
                     el-table-column(property="name", label="文件名称")
                     el-table-column(label="操作")
-                        template(scope="scope")
+                        template(slot-scope="scope")
                             el-button(size="small" @click="player(scope.row)")
                                 p.mb10 播放
                     el-table-column(property="updated" label="更新时间")

@@ -8,7 +8,7 @@ const opVideo = r => require.ensure([], () => r(require('pages/views/support/com
 const download = r => require.ensure([], () => r(require('pages/views/support/components/download')), 'support');
 export default [{
     path: '/support',
-    // name: 'support',
+    name: 'support',
     redirect: '/support/faqs',
     component: support,
     beforeEnter (to, from, next) {

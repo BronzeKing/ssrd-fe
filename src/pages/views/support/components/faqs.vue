@@ -7,7 +7,7 @@
                 el-breadcrumb-item 常见问题解答
         .about-wrap.mt10.p15
             div(v-show="action==='list'")
-                el-input(placeholder="请输入要搜索的FAQ" icon="search" v-model="Faqs.t.search" @change="Faqs.list()")
+                el-input(placeholder="请输入要搜索的FAQ" suffix-icon="search" v-model="Faqs.t.search" @change="Faqs.list()")
                 el-table.mt10(:data="Faqs.t.Records" show-header=false stripe highlight-current-row @row-click="rowClick" style="width: 100%")
                     el-table-column(property="questioin" label="问题")
                     el-table-column(property="created" label="更新时间")

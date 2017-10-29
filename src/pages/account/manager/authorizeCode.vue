@@ -15,7 +15,7 @@
                 el-table-column(property="project" label="所属项目")
                 el-table-column(property="created" label="创建时间")
                 el-table-column(label="操作")
-                    template(scope="scope")
+                    template(slot-scope="scope")
                         el-select(v-model="scope.row.status" :placeholder="env.status[String(scope.row.status)]" @change="authorizeCodeUpdate(scope.row)")
                             el-option(label="启用" value="1")
                             el-option(label="停用" value="0")
