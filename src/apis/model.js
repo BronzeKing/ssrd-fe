@@ -332,5 +332,15 @@ export default {
             addres: '',
             position: ''
         }
+    },
+    Project: {
+        data: {
+            name: '',
+            gender: 'male',
+            birthday: '',
+            company: '',
+            addres: '',
+            position: ''
+        }
     }
 };

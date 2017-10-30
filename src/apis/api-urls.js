@@ -42,5 +42,6 @@ export default {
     message             :`${apiUrl}/messages`,                                // 消息
     profile             :`${apiUrl}/users/{id}/profile`,                    // 个人资料
     invitation          :`${apiUrl}/invitations`,                    // 个人资料
+    project             :`${apiUrl}/projects`,                    // 个人资料
     authorizeCode       :`${apiUrl}/authorizeCodes`                // 授权码
 };
