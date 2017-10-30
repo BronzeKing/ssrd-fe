@@ -3,9 +3,9 @@ const secure = r => require.ensure([], () => r(require('pages/account/manager/se
 const user = r => require.ensure([], () => r(require('pages/account/manager/user')), 'manager');
 const message = r => require.ensure([], () => r(require('pages/account/manager/message')), 'manager');
 const messageDetail = r => require.ensure([], () => r(require('pages/account/manager/messageDetail')), 'manager');
-const authorizeCode = r => require.ensure([], () => r(require('pages/account/manager/authorizeCode')), 'authorizeCode');
-const invitation = r => require.ensure([], () => r(require('pages/account/manager/invitation')), 'invitation');
-const profile = r => require.ensure([], () => r(require('pages/account/manager/profile')), 'profile');
+const authorizeCode = r => require.ensure([], () => r(require('pages/account/manager/authorizeCode')), 'manager');
+const invitation = r => require.ensure([], () => r(require('pages/account/manager/invitation')), 'manager');
+const profile = r => require.ensure([], () => r(require('pages/account/manager/profile')), 'manager');
 export default [{
     path: '/account',
     name: 'account',

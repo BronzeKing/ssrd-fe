@@ -3,8 +3,8 @@
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
-                el-breadcrumb-item(:to="{ name: 'project' }") 项目中心
-                el-breadcrumb-item 项目动态
+                el-breadcrumb-item(:to="{ name: 'information' }") 资讯生活
+                el-breadcrumb-item 公司新闻
         .information-wrap.mt10.p15
             el-tabs(tpye="card" v-model="activeTab"  @tab-click="clickTab")
                 el-tab-pane(v-for="x in tabs" :key="x" :label="x")
@@ -24,7 +24,7 @@
 <script>
 import  { Project } from 'apis';
 export default {
-    name: 'project',
+    name: 'projectDetail',
     data () {
         return {
             Project: Project,

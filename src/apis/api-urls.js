@@ -41,7 +41,8 @@ export default {
     user                :`${apiUrl}/users`,                                // 用户
     message             :`${apiUrl}/messages`,                                // 消息
     profile             :`${apiUrl}/users/{id}/profile`,                    // 个人资料
-    invitation          :`${apiUrl}/invitations`,                    // 个人资料
-    project             :`${apiUrl}/projects`,                    // 个人资料
+    invitation          :`${apiUrl}/invitations`,                    // 获取邀请码
+    project             :`${apiUrl}/projects`,                    // 获取项目列表
+    projectSign         :`${apiUrl}/projectSign`,                    // 项目签字
     authorizeCode       :`${apiUrl}/authorizeCodes`                // 授权码
 };

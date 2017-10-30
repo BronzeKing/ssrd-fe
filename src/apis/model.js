@@ -312,7 +312,21 @@ export default {
             creator: '',
             code: '',
             status: '',
-            created: ''
+            created: '',
+            name: '',
+            projectId: ''
+        },
+        rules: {
+            name: [{
+                required: true,
+                message: '请输入授权码名称',
+                trigger: 'blur'
+            }],
+            projectId: [{
+                required: true,
+                message: '请选择项目',
+                trigger: 'blur'
+            }]
         }
     },
     Invitation: {
@@ -341,6 +355,19 @@ export default {
             company: '',
             addres: '',
             position: ''
+        }
+    },
+    ProjectSign: {
+        data: {
+            id: '',
+            attatchment: []
+        },
+        rules: {
+            attatchment: [{
+                required: true,
+                message: '请上传附件',
+                trigger: 'change'
+            }]
         }
     }
 };

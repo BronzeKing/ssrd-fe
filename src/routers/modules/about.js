@@ -74,7 +74,7 @@ export default [
                 name: 'recruit',
                 component: recruit,
                 meta: {
-                    title: '招贤纳财',
+                    title: '招贤纳士',
                     activeTab: 5
                 }
             },

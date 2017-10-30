@@ -15,6 +15,7 @@ import login        from './login';
 import information  from './information';
 import support      from './support';
 import manager      from './manager';
+import project      from './project';
 
 export default {
     // path: '/',
@@ -31,6 +32,7 @@ export default {
         ...login,
         ...information,
         ...support,
-        ...manager
+        ...manager,
+        ...project
     ]
 };
