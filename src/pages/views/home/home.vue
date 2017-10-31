@@ -67,27 +67,36 @@
                 i.iconfont.icon-arrow-right.font-grey
         crash-ball
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+
 import  { IndustryLink, News, SystemCase } from 'apis';
+
 import { crashBall } from 'components';
-export default {
-    name: 'home',
-    data () {
-        return  {
-            homeBanners: [
-                require('assets/home_banner.png'),
-                require('assets/home_banner1.png'),
-                require('assets/home_banner2.png')
-            ],
-            IndustryLink: IndustryLink,
-            News: News,
-            SystemCase: SystemCase
-        };
-    },
-    components: {
+
+@Component
+({
+    components:{
         crashBall
-    },
-    created () {
+    }
+})
+export default class Home extends Vue
+{
+    @Provide() homeBanners: Array<any> = [
+        require('assets/home_banner.png'),
+        require('assets/home_banner1.png'),
+        require('assets/home_banner2.png')
+    ];
+    @Provide() IndustryLink: any = IndustryLink;
+    @Provide() News: any = News;
+    @Provide() SystemCase: any = SystemCase;
+    
+    /**
+     * 创建钩子
+     * @returns void
+     */
+    protected created(): void
+    {
         // 获取新闻内容咯
         News.list({PageSize: 3});
         IndustryLink.list();
