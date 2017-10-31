@@ -8,8 +8,7 @@
         .information-wrap.mt10.p15
             el-tabs(tpye="card" v-model="activeTab"  @tab-click="clickTab")
                 el-tab-pane(v-for="x in tabs" :key="x" :label="x")
-            el-input(placeholder="请输入要搜索的项目名称" suffix-icon="el-icon-search" v-model="Project.t.search" @change="Project.list()")
-            project-table
+            project-table(:show="{search: true, pagination: true}")
             
 </template>
 

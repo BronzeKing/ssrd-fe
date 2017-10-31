@@ -1,5 +1,6 @@
 <template lang="pug">
     div
+        el-input(v-show="show.search" placeholder="请输入要搜索的项目名称" suffix-icon="el-icon-search" v-model="Project.t.search" @change="Project.list()")
         el-table.mt10(:data="Project.t.Records" stripe highlight-current-row @row-click="rowClick" style="width: 100%")
             el-table-column(property="name" label="名称")
             el-table-column(property="type" label="项目类型")
@@ -15,10 +16,10 @@
                     el-button(size="mini" @click="handleDialog(scope.row, 'jobJournal')") 工作日志
                     el-button(size="mini" @click="handleDialog(scope.row, 'design')") 设计/报价
                     el-button(size="mini" @click="handleDialog(scope.row, 'delivery')") 发货
-        el-pagination.mt5(@current-change="Project.list" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
+        el-pagination.mt5(v-show="show.pagination" @current-change="Project.list" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
 
         el-dialog(title="项目授权" :visible.sync="dialog.auth")
-            el-form(ref="AuthForm" :model="AuthorizeCode.m" :rules="AuthorizeCode.rules" label-width="80px" label-position="right")
+            el-form(ref="AuthForm" :model="AuthorizeCode.m" :rules="AuthorizeCode.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
                 el-form-item(label="授权码名称" prop="name" :error="AuthorizeCode.errors.name")
@@ -27,7 +28,7 @@
             el-button(type="primary" @click="handleAuth") 确定
 
         el-dialog(title="项目签字" :visible.sync="dialog.sign")
-            el-form(ref="SignForm" :model="ProjectSign.m" :rules="ProjectSign.rules" label-width="80px" label-position="right")
+            el-form(ref="SignForm" :model="ProjectSign.m" :rules="ProjectSign.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
                 el-form-item(label="签字文件" prop="attatchment" :error="ProjectSign.errors.attatchment")
@@ -38,7 +39,7 @@
             el-button(type="primary" @click="handleSign") 确定
             
         el-dialog(title="项目审核" :visible.sync="dialog.audit")
-            el-form(ref="AuditForm" :model="audit.data" :rules="audit.rules" label-width="80px" label-position="right")
+            el-form(ref="AuditForm" :model="audit.data" :rules="audit.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
                 el-form-item(label="审核内容" prop="content" :error="audit.errors.content")
@@ -48,7 +49,7 @@
             el-button(type="primary" @click="handleSign") 通过
 
         el-dialog(title="协助申请" :visible.sync="dialog.assist")
-            el-form(ref="AssistForm" :model="assist.data" :rules="assist.rules" label-width="80px" label-position="right")
+            el-form(ref="AssistForm" :model="assist.data" :rules="assist.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
                 el-form-item(label="协助内容" prop="content" :error="assist.errors.content")
@@ -57,7 +58,7 @@
             el-button(type="primary" @click="handleAssist") 确认
 
         el-dialog(title="工作日志" :visible.sync="dialog.jobJournal")
-            el-form(ref="JobJournalForm" :model="jobJournal.data" :rules="jobJournal.rules" label-width="80px" label-position="right")
+            el-form(ref="JobJournalForm" :model="jobJournal.data" :rules="jobJournal.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
                 el-form-item(label="工作日期")
@@ -75,7 +76,7 @@
             el-button(type="primary" @click="handleJobJournal") 确认
 
         el-dialog(title="上传设计文件及报价" :visible.sync="dialog.design")
-            el-form(ref="DesignForm" :model="design.data" :rules="design.rules" label-width="80px" label-position="right")
+            el-form(ref="DesignForm" :model="design.data" :rules="design.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
                 el-form-item(label="报价" prop="price" :error="design.errors.price")
@@ -88,7 +89,7 @@
             el-button(type="primary" @click="handleJobJournal") 确认
 
         el-dialog(title="项目发货记录" :visible.sync="dialog.delivery")
-            el-form(ref="DeliveryForm" :model="delivery.data" :rules="delivery.rules" label-width="80px" label-position="right")
+            el-form(ref="DeliveryForm" :model="delivery.data" :rules="delivery.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
                 el-form-item(label="缺货清单" prop="number" :error="delivery.errors.number")
@@ -118,6 +119,12 @@ export default {
             AuthorizeCode: AuthorizeCode,
             dialog: {auth: false, sign: false, afterSale: false, audit: false, assist: false, jobJournal: false, design: false, delivery: false}
         };
+    },
+    props: {
+        show: {
+            search: false,
+            pagination: false
+        }
     },
     created () {
         Project.list();

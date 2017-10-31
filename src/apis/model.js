@@ -349,12 +349,19 @@ export default {
     },
     Project: {
         data: {
+            id: '',
             name: '',
-            gender: 'male',
-            birthday: '',
-            company: '',
+            type: '',
+            created: '',
             addres: '',
-            position: ''
+            implementDate: '',
+            implementExpectedDate: '',
+            creator: {
+                username: ''
+            },
+            linkman: '',
+            content: '',
+            status: 0
         }
     },
     ProjectSign: {
@@ -368,6 +375,16 @@ export default {
                 message: '请上传附件',
                 trigger: 'change'
             }]
+        }
+    },
+    ProjectLog: {
+        data: {
+            created: '',
+            creator: {
+                username: ''
+            },
+            content: '',
+            attatchment: ''
         }
     }
 };

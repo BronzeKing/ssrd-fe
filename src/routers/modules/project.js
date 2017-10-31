@@ -12,7 +12,7 @@ export default [{
             component: project
         },
         {
-            path: '/:id',
+            path: ':id',
             name: 'projectDetail',
             component: projectDetail
         }

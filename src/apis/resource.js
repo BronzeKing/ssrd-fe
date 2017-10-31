@@ -15,14 +15,7 @@ Object.keys(_methodMap).forEach(k => {
     _methodMap[k] = ajax.Axios[_methodMap[k]];
 });
 
-// /asd/{efg}/{hjk} 去除 url中的  efg和hjk
-// const RE_URL = new RegExp('/{(.+?)}/', 'g');
-// if (url.match(RE_URL)) {
-    // this.paths = url.match(RE_URL).map(x => {
-        // // 匹配出来的是 /{var}    所以在这把var给取出来
-        // return x.slice(2, -1);
-    // });
-// }
+// /asd/:efg/:hjk 去除 url中的  efg和hjk
 
 class Resource {
     constructor (url, Model) {
@@ -33,6 +26,7 @@ class Resource {
         this.m = {};
         this.rules = null;
         this.errors = {};
+        this.pathArgv = [];
 
         // list方法的 table的查询参数以及分页控件、搜索条件 table=t, model=m
         this.t = {
@@ -43,6 +37,12 @@ class Resource {
             Records: []
         };
 
+        if (url.match(/:(\w+)/g)) {
+            this.pathArgv = url.match(/:(\w+)/g).map(x => {
+                // 匹配出来的是 :var
+                return x;
+            });
+        };
         // 如果model不为空，存储model及rule，并清空
         if (Model) {
             this.m = Model.data;
@@ -105,6 +105,13 @@ class Resource {
         let url = this.url;
         let response;
         let id;
+        let value;
+
+        this.pathArgv.forEach(x => {
+            // eg: x = :projectId
+            ({[x.slice(1)]: value, ...body} = body);
+            url = url.replace(x, value);
+        });
 
         // 标准rest接口中retrieve, update,  delete 方法path中都带有id
         // 若是非标准rest接口则不带id

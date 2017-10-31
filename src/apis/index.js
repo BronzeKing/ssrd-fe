@@ -49,4 +49,5 @@ export const Invitation      = new Resource(API.invitation, model.Invitation);  
 export const AuthorizeCode   = new Resource(API.authorizeCode, model.AuthorizeCode);                                // 消息
 export const Profile         = new Resource(API.profile, model.Profile);                                // 个人资料
 export const ProjectSign     = new Resource(API.projectSign, model.ProjectSign);                                // 个人资料
+export const ProjectLog      = new Resource(API.projectLog, model.ProjectLog);                                // 个人资料
 export const Project         = new Resource(API.project, model.Project);                                // 个人资料

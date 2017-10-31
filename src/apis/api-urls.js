@@ -44,5 +44,6 @@ export default {
     invitation          :`${apiUrl}/invitations`,                    // 获取邀请码
     project             :`${apiUrl}/projects`,                    // 获取项目列表
     projectSign         :`${apiUrl}/projectSign`,                    // 项目签字
+    projectLog          :`${apiUrl}/project/:projectId/logs`,                    // 项目日志
     authorizeCode       :`${apiUrl}/authorizeCodes`                // 授权码
 };
