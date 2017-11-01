@@ -10,6 +10,11 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var QiniuPlugin = require('qiniu-webpack-plugin');
 
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+
+// 图片体积压缩插件
+// var ImageminPlugin = require('imagemin-webpack-plugin').default
+
 
 var qiniuPlugin = new QiniuPlugin({
   ACCESS_KEY: 'NtO1B6ILEpI33oQq1NpiCSAzpgaASsrmmJzNQsNG',
@@ -42,13 +47,27 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_debugger: true,    // 去掉代码中所有debugger代码
-        drop_console: true      // 去掉代码中所有console代码
-      },
-      sourceMap: true
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false,
+    //     drop_debugger: true,    // 去掉代码中所有debugger代码
+    //     drop_console: true      // 去掉代码中所有console代码
+    //   },
+    //   sourceMap: true
+    // }),
+    new ParallelUglifyPlugin({
+      cacheDir: '.cache/',
+      uglifyJS: {
+          output: {
+              comments: false,
+              beautify: false
+          },
+          compress: {
+              warnings: false,
+              drop_debugger: true,    // 去掉代码中所有debugger代码
+              drop_console: true
+          }
+      }
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -100,6 +119,19 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
+
+    // Make sure that the plugin is after any plugins that add images
+    // 图片体积压缩插件
+    new ImageminPlugin({
+      disable: process.env.NODE_ENV !== 'production', // Disable during development
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      minFileSize: 70000,      // 大于70k的会被压缩
+      jpegtran: { progressive: true },
+      pngquant: {
+        quality: '80-90'       // 压缩质量
+      }
+    }),
+
     // copy custom static assets
     new CopyWebpackPlugin([
       {

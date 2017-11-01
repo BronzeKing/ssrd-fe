@@ -1,5 +1,6 @@
 var path = require('path')
 var utils = require('./utils')
+var webpack = require('webpack')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
@@ -65,7 +66,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: 'babel-loader?cacheDirectory=true',
         include: [resolve('src'), resolve('test')]
       },
       {
@@ -94,5 +95,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DllReferencePlugin({
+        context: path.resolve(__dirname, '..'),
+        manifest: require('./vendor-manifest.json')
+    })
+  ]
 }

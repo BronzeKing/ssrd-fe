@@ -15,10 +15,12 @@ const mutations = {
     [ types.LOGIN ] (state, payload) {
         state.user = assign({}, state.user, payload);
         state.isAuthenticated = true;
+        localStorage.token = 'Bearer ' + payload.token;
     },
     [ types.LOGOUT ] (state) {
         state.isAuthenticated = false;
         state.user = {};
+        delete localStorage.token;
     }
 };
 

@@ -4,6 +4,7 @@ tags
 .vscode
 node_modules/
 dist/
+.cache/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
