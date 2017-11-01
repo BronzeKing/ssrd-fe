@@ -17,7 +17,12 @@ export default {
         init () {
             if (localStorage.token) {
                 Login.retrieve().then(r => {
-                    this.$store.commit('login', r);
+                    // 如果返回url的话 说明需要重定向 登录不成功
+                    if (r.url) {
+                        this.$store.commit('logout');
+                    } else {
+                        this.$store.commit('login', r);
+                    }
                 });
             };
             Env.retrieve().then(r => {

@@ -3,15 +3,14 @@
         el-form.demo-loginForm.login-container(:model='Register.m' :rules='Register.rules' ref='RegisterForm' label-position='left' label-width='0px')
             h3.title 系统注册
             el-form-item(prop='username' :error='Register.errors.username')
-                el-input(type='text' v-model='Register.m.username' auto-complete='off' placeholder='姓名')
+                el-input(type='text' v-model='Register.m.username' auto-complete='off' placeholder='用户名')
             el-form-item(prop='email' :error='Register.errors.email')
                 el-input(type='text' v-model='Register.m.email' auto-complete='off' placeholder='邮箱')
             el-form-item(prop='role')
                 el-select(v-model='Register.m.role' placeholder='请选择客户类型' style='width:100%;')
-                    el-option(v-for="role in roles" :key="role.value" label="role.name" value="role.value")
+                    el-option(v-for="role in roles" :key="role.value" :label="role.name" :value="role.value")
             el-form-item(prop='password' :error='Register.errors.password')
                 el-input(type='password' v-model='Register.m.password' auto-complete='off' placeholder='密码')
-            el-form-item(style='width:100%;')
             el-button(type='primary' style='width:100%;' @click.native.prevent='RegisterSubmit' :loading='logining') 注 册
         .last-item
             a.font-black(v-for="x in $store.state.home.env" :key="x.name" :href="x.url")
