@@ -3,7 +3,7 @@
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
-                el-breadcrumb-item(:to="{ name: 'information' }") 项目中心
+                el-breadcrumb-item(:to="{ name: 'project' }") 项目中心
                 el-breadcrumb-item {{Project.m.name}}
         div
             p 项目名称：{{Project.m.name}}
@@ -59,17 +59,8 @@ export default {
         };
     },
     created () {
-        this.init();
+        Project.retrieve({id: this.$route.params.id});
         ProjectLog.list({projectId: this.$route.params.id});
-    },
-    watch: {
-    // 如果路由有变化，会再次执行该方法
-        '$route': 'init'
-    },
-    methods: {
-        init () {
-            Project.retrieve({id: this.$route.params.id});
-        }
     }
 };
 </script>

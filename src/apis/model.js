@@ -208,10 +208,10 @@ export default {
     Login: {
         data: {
             password: '',
-            account: ''
+            username: ''
         },
         rules: {
-            account: [{
+            username: [{
                 required: true,
                 message: '请输入手机、邮箱或授权码',
                 trigger: 'blur'
@@ -339,6 +339,10 @@ export default {
     },
     Profile: {
         data: {
+            username: '',
+            role: '',
+            mobile: '',
+            email: '',
             name: '',
             gender: 'male',
             birthday: '',

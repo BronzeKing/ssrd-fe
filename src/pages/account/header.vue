@@ -9,7 +9,7 @@
                     i.el-icon-message
                     span(slot="title") {{menu.title}}
                 el-menu-item-group(v-for="(item, itemIndex) in menu.sub" :key="itemIndex")
-                    el-menu-item(:index="[index, itemIndex].join('-')" :router="{name: item.name}") {{item.title}}
+                    el-menu-item(:index="[index, itemIndex].join('-')" :route="{name: item.name}") {{item.title}}
 </template>
 
 <script>
@@ -19,7 +19,7 @@ export default {
     data () {
         return {
             sidebar: SIDEBAR,
-            isCollapse: true
+            isCollapse: false
         };
     },
     methods: {

@@ -1,4 +1,5 @@
 export const SIDEBAR = [{
+    'title': '订单中心',
     'sub': [{
         'name': 'project',
         'title': '新建项目'
@@ -23,10 +24,9 @@ export const SIDEBAR = [{
     }, {
         'name': 'history',
         'title': '我的浏览记录'
-    }],
-    'title':
-    '订单中心'
+    }]
 }, {
+    'title': '项目中心',
     'sub': [{
         'name': 'download',
         'title': '文档下载'
@@ -36,10 +36,9 @@ export const SIDEBAR = [{
     }, {
         'name': 'project',
         'title': '项目动态'
-    }],
-    'title':
-    '查询中心'
+    }]
 }, {
+    'title': '服务中心',
     'sub': [{
         'name': 'servicePromise',
         'title': '服务承诺'
@@ -49,10 +48,9 @@ export const SIDEBAR = [{
     }, {
         'name': 'survey',
         'title': '满意度调查'
-    }],
-    'title':
-    '服务中心'
+    }]
 }, {
+    'title': '管理中心',
     'sub': [{
         'name': 'secure',
         'title': '安全设置'
@@ -71,13 +69,11 @@ export const SIDEBAR = [{
     }, {
         'name': 'companyProfile',
         'title': '企业信息'
-    }],
-    'title':
-    '管理中心'
+    }]
 }, {
+    'title': '合作伙伴',
     'sub': [{
         'name': 'cooperationGuide',
         'title': '合作指南'
-    }],
-    'title': '合作伙伴'
+    }]
 }];
