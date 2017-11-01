@@ -1,3 +1,3 @@
-import crashBall from './crash-ball';
+import crashBall from './crash-ball.vue';
 
 export default crashBall;

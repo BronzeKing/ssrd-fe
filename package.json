@@ -26,6 +26,7 @@
     "tslint-config-standard": "^7.0.0",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.5.3",
+    "typescript-loader": "^1.1.3",
     "viewerjs": "^0.8.0",
     "vue": "^2.5.2",
     "vue-baidu-map": "^0.15.1",

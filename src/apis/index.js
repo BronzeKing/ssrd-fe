@@ -4,7 +4,7 @@
  */
 
 import API      from './api-urls';          // 接口URL
-import Resource from './resource';          // 接口封装
+import Resource from './resource.ts';          // 接口封装
 import model    from './model';            // error model
 
 /* 登录注册相关接口 */

@@ -49,14 +49,18 @@ module.exports = {
       //   options: {
       //     formatter: require('eslint-friendly-formatter')
       //   }
-      // },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'tslint-loader'
+      },
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        include: [resolve('src')],
         exclude: /node_modules/,
         options: {
-          appendTsSuffixTo: [/\.vue$/],
+            appendTsSuffixTo: [/\.vue$/],
         }
       },
       {
