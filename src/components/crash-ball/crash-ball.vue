@@ -84,8 +84,10 @@
                     : document.querySelector('body');
                 // 当前屏幕范围跑
                 // const appEl = document.querySelector('body');
-                this.maxX = appEl.clientWidth - crashBall.offsetWidth;
-                this.maxY = appEl.clientHeight - crashBall.offsetHeight;
+                if (crashBall) {
+                    this.maxX = appEl.clientWidth - crashBall.offsetWidth;
+                    this.maxY = appEl.clientHeight - crashBall.offsetHeight;
+                }
             },
 
             // 定时器任务

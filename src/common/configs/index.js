@@ -1,18 +1,24 @@
 /**
  * 该文件主要用来处理vue运行中所需js以及组件注册，全局样式等
  */
-import Vue                      from 'vue';
-import * as filters             from 'filters';
-import { LineThrough }          from 'components';
-import * as enums               from 'enums';
-import { dealWrap }             from 'utils/extends';
-import Raven                    from 'raven-js';
-import RavenVue                 from 'raven-js/plugins/vue';
+import Vue from 'vue';
+import * as filters from 'filters';
+import {
+    LineThrough
+} from 'components';
+import * as enums from 'enums';
+import {
+    n2br
+} from 'utils/extends';
+import Raven from 'raven-js';
+import RavenVue from 'raven-js/plugins/vue';
 
-Raven
-    .config('https://75710b6ea670418fbfb735b9f94b1aac@sentry.io/219602')
-    .addPlugin(RavenVue, Vue)
-    .install();
+if (process.env.NODE_ENV === 'production') {
+    Raven
+        .config('https://75710b6ea670418fbfb735b9f94b1aac@sentry.io/219602')
+        .addPlugin(RavenVue, Vue)
+        .install();
+}
 
 // import Core from './core';
 import Core from './core';
@@ -23,7 +29,7 @@ Vue.use(axiosPlugin);
 
 // 引入elemtn-ui
 import ElementUI from 'element-ui';
-// import 'element-ui/lib/theme-default/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
 
@@ -40,4 +46,4 @@ Vue.component('LineThrough', LineThrough);
 
 // 原型挂在常用变量
 Vue.prototype.$enums = enums;
-Vue.prototype.dealWrap = dealWrap;
+Vue.prototype.n2br = n2br;

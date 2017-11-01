@@ -57,6 +57,7 @@ export default {
             this.isShow = true;
             this.index = index || 0;
             this.imageUrls = images;
+
             this.initViewer();
         },
         hide () {

@@ -3,13 +3,13 @@
         .menu-title
             .line-title
             .title-info
-                p.f18 {{menuData.menuInfo.name}}
-                p.f12 {{menuData.menuInfo.englishName}}
+                p.f18 {{menuData.title.name}}
+                p.f12 {{menuData.title.englishName}}
         .menu-wrap
             ul
-                li(v-for="(item,index) in menuData.menuList" :class="{active: menuData.activeTab===index}" @click="linkTo(index)")
+                li(v-for="item in menuData.menuList" :class="{active: menuData.activeTab===item.id}" @click="linkTo(item)")
                     a
-                        span {{item}}
+                        span {{item.name}}
                         i.iconfont.icon-arrow-right
 </template>
 <script>

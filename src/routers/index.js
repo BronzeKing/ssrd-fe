@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from 'vuexs';
 
 import views from './modules/views';
 const error = r => require.ensure([], () => r(require('pages/views/error')), 'views');
@@ -7,7 +8,7 @@ const error = r => require.ensure([], () => r(require('pages/views/error')), 'vi
 
 Vue.use(Router);
 
-export default new Router({
+const route = new Router({
     routes: [
         {
             path: '/error',
@@ -17,3 +18,19 @@ export default new Router({
         views
     ]
 });
+
+route.afterEach((to, from) => {
+    // 设置页面标题
+    if (to.meta.title) {
+        let title = to.meta.title || '深圳市盛世润达智能科技有限公司';
+        document.title = title;
+    }
+
+    // 设置当前激活的菜单
+    if (typeof to.meta.headerMenuIndex === 'number') {
+        let index = to.meta.headerMenuIndex;
+        store.dispatch('updateNavActive', index);
+    }
+});
+
+export default route;

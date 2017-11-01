@@ -1,4 +1,6 @@
 .DS_Store
+tags
+.cache
 .vscode
 node_modules/
 dist/
@@ -16,4 +18,4 @@ package-lock.json
 *.ntvs*
 *.njsproj
 *.sln
-package-lock.json
+*package-lock.json

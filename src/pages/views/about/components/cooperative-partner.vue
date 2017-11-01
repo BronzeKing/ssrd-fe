@@ -7,22 +7,32 @@
                 el-breadcrumb-item 合作伙伴
         .about-wrap.mt10
             ul.company-partner-list.p15
-                li.company-partner-item(v-for="item in patnerList")
-                    img.company-partner-image(:src="item.file")
+                li.company-partner-item(v-for="item in Documents.t.Records")
+                    img.company-partner-image(:src="item.file" @click="imageShow(item.file)")
+        piclook(ref="picklool")
 </template>
 <script>
-import  { documents } from 'apis';
+import  { Documents } from 'apis';
+import { piclook }   from 'components';
 export default{
     name: '',
+    components: {
+        piclook
+    },
     data () {
         return {
-            patnerList: []
+            Documents: Documents
         };
     },
     created () {
-        documents.list({source: 1, PageSize: 6}).then(res => {
-            res && (this.patnerList = res.Records);
-        });
+        Documents.list({source: 1});
+    },
+    methods: {
+        imageShow (pic) {
+            this.$refs.picklool.show({
+                images: [pic]
+            });
+        }
     }
 };
 </script>

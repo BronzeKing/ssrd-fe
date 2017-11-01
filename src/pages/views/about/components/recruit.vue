@@ -7,36 +7,35 @@
                 el-breadcrumb-item 招贤纳士
         .about-wrap.mt10
             div(v-show="activeType==='index'")
-                el-input(placeholder="职位搜索" icon="search" v-model="inputValue" :on-icon-click="recruitmentsList")
-                el-table.mt10(:data="tableData" highlight-current-row @current-change="handleCurrentChange" style="width: 100%")
+                el-input(placeholder="职位搜索" suffix-icon="el-icon-search" v-model="Recruitment.t.search" @change="Recruitment.list()")
+                el-table.mt10(:data="Recruitment.t.Records" highlight-current-row @current-change="handleCurrentChange" style="width: 100%")
                     el-table-column(property="name" label="职位名称")
                     el-table-column(property="address" label="工作地点")
                     el-table-column(property="created" label="发布时间")
-                        template(scope="scope") {{scope.row.updated | dateFilter(1)}}
-                el-pagination.mt5(@current-change="recruitmentsList" :page-size="pageSize" layout="prev, pager, next, jumper" :total="pageSize" :current-page.sync="pageIndex")
+                el-pagination.mt5(@current-change="Recruitment.list" :page-size="Recruitment.t.pageSize" layout="prev, pager, next, jumper" :total="Recruitment.t.PageCount" :current-page.sync="Recruitment.t.pageIndex")
             div.detail-container(v-show="activeType==='detail'")
-                span.f16 {{detailData.name}}
-                span.f14.ml30 工作地点：{{detailData.address}}
-                span.f14.ml30 薪资待遇：{{detailData.salary}}
-                span.f14.ml30 招聘人数：{{detailData.number}}
+                span.f16 {{Recruitment.m.name}}
+                span.f14.ml30 工作地点：{{Recruitment.m.address}}
+                span.f14.ml30 薪资待遇：{{Recruitment.m.salary}}
+                span.f14.ml30 招聘人数：{{Recruitment.m.number}}
                 p.f14.mt20 岗位职责:
                 .line.mt10 
-                p.mt10(v-html="dealWrap(detailData.jobResponsibilities)")
+                p.mt10(v-html="n2br(Recruitment.m.jobResponsibilities)")
                 p.f14.mt20 任职要求：
                 .line.mt10 
-                p.mt10(v-html="dealWrap(detailData.jobDetail)")
+                p.mt10(v-html="n2br(Recruitment.m.jobDetail)")
                 el-button.mt10(type="primary" @click="dialogShow") 申请职位
         el-dialog(title="职位申请" :visible.sync="dialogFormVisible" )
-            el-form(:model="formData" ref="jobForm" :rules="jobs.prompt" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
-                el-form-item(label="职位" prop="job")
-                    el-input(v-model="formData.job" auto-complete="off" disabled)
-                el-form-item(label="姓名" prop="name" :error="jobs.backErrors.name")
-                    el-input(v-model="formData.name" auto-complete="off")
-                el-form-item(label="电话" prop="mobile" :error="jobs.backErrors.mobile")
-                    el-input(v-model="formData.mobile" auto-complete="off")
-                el-form-item(label="邮箱" prop="email" :error="jobs.backErrors.email")
-                    el-input(v-model="formData.email" auto-complete="off")
-                el-form-item(label="附件" prop="attatchment" :error="jobs.backErrors.attatchment")
+            el-form(:model="Job.m" ref="jobForm" :rules="Job.rules" label-position="right" label-width="80px" v-loading="loading" element-loading-text="正在上传中...")
+                el-form-item(label="职位" prop="job" :error="Job.errors.job")
+                    el-input(v-model="Job.m.job" auto-complete="off" disabled)
+                el-form-item(label="姓名" prop="name" :error="Job.errors.name")
+                    el-input(v-model="Job.m.name" auto-complete="off")
+                el-form-item(label="电话" prop="mobile" :error="Job.errors.mobile")
+                    el-input(v-model="Job.m.mobile" auto-complete="off")
+                el-form-item(label="邮箱" prop="email" :error="Job.errors.email")
+                    el-input(v-model="Job.m.email" auto-complete="off")
+                el-form-item(label="附件" prop="attatchment" :error="Job.errors.attatchment")
                     input(type="file" name="file" @change="uploadFile") 
                 el-form-item
                     el-button(type="primary" @click="submit") 提交
@@ -44,62 +43,31 @@
 </template>
 
 <script>
-import  { recruitments, jobs } from 'apis';
-import  { post } from 'axios';
-import  { dateFilter } from 'filters';
+import  { Recruitment, Job } from 'apis';
 export default {
     name: 'recruit',
     data () {
         return  {
-            inputValue: '',
-            pageIndex:1,
-            pageSize:10,
-            total:0,
-            tableData:[],
             activeType:'index',
-            detailData:{},
             dialogFormVisible: false,
-            formData:{
-                name:'',
-                job:'',
-                mobile:'',
-                email:'',
-                files:null
-            },
             loading:false,
-            jobs: jobs
+            Job: Job,
+            Recruitment: Recruitment
         };
     },
     created () {
-        this.recruitmentsList();
+        Recruitment.list();
     },
     methods: {
-        // 获取招聘
-        recruitmentsList () {
-            recruitments.list({
-                PageIndex: this.pageIndex,
-                PageSize: this.pageSize,
-                search: this.inputValue
-            }).then(res => {
-                /* eslint-disable */
-                this.total = res.RecordCount
-                this.tableData = res.Records
-                /* eslint-enable */
-            });
-        },
         handleCurrentChange (data) {
             this.activeType = 'detail';
-            this.detailData = data;
+            this.Recruitment.m = data;
         },
         dialogShow () {
             this.dialogFormVisible = true;
-            this.formData = {
-                name:'',
-                job: this.detailData.name,
-                mobile:'',
-                email:'',
-                formData:null
-            };
+            this.Job.reset({
+                job: this.Recruitment.m.name
+            });
         },
         dialogClose () {
             this.dialogFormVisible = false;
@@ -107,20 +75,14 @@ export default {
         uploadFile (e) {
             var files = e.target.files || e.dataTransfer.files;
             if (files.length) {
-                this.formData.files = files[0];
+                this.Job.m.attatchment = files[0];
             }
         },
         submit () {
             let _this = this;
             this.$refs.jobForm.validate((valid) => {
                 if (valid) {
-                    let formData = new FormData();
-                    formData.append('attatchment', this.formData.files);
-                    formData.append('name', this.formData.name);
-                    formData.append('job', this.formData.job);
-                    formData.append('mobile', this.formData.mobile);
-                    formData.append('email', this.formData.email);
-                    jobs.create(formData).then(res => {
+                    Job.create().then(res => {
                         this.$message({
                             message: '提交成功！',
                             type: 'success'

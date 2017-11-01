@@ -5,24 +5,14 @@
                 ul.container-left
                     li.left-sub
                         ul.left-sub-flex
-                            li.left-progeny
-                                a.left-content(href="javascript: void(0);") 关于我们
-                            li.left-progeny
-                                a.left-content(href="javascript: void(0);") 公司简介
-                            li.left-progeny
-                                a.left-content(href="javascript: void(0);") 联系我们
-                            li.left-progeny
-                                a.left-content(href="javascript: void(0);") 荣誉资质
-                            li.left-progeny
-                                a.left-content(href="javascript: void(0);") 合作伙伴
+                            li.left-progeny(v-for="(item, index) in about")
+                                router-link.left-content(:to="{ path: `/about/${item.name}` }") {{item.title}}
                     li.left-sub
                         ul.left-sub-flex
                             li.left-progeny
-                                a.left-content(href="javascript: void(0);") 系统介绍/方案
-                            li.left-progeny
-                                a.left-content(href="javascript: void(0);") 可视化劳务管理
-                            li.left-progeny
-                                a.left-content(href="javascript: void(0);") 智能化监控系统
+                                router-link.left-content(:to="{ name: 'system'}") 系统介绍/方案
+                            li.left-progeny(v-for="(item, index) in System.t.Records")
+                                router-link.left-content(:to="{ name: 'systemDetail', params: {id: item.id}}") {{item.name}}
                     li.left-sub
                         ul.left-sub-flex
                             li.left-progeny
@@ -73,12 +63,23 @@
                     img(src="https://szcert.ebs.org.cn/Images/newGovIcon.gif")
 </template>
 <script>
+    import  { System } from 'apis';
     export default {
         name: 'login',
         data () {
             return  {
-                menuList:[]
+                about: [
+                    {name: 'companyProfile', title: '关于我们'},
+                    {name: 'companyProfile', title: '公司简介'},
+                    {name: 'contactUs', title: '联系我们'},
+                    {name: 'honor', title: '荣誉资质'},
+                    {name: 'cooperativePartner', title: '合作伙伴'}
+                ],
+                System: System
             };
+        },
+        created () {
+            System.list();
         }
     };
 </script>

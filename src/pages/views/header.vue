@@ -4,9 +4,10 @@
             .container.flex
                 span 欢迎来到深圳市盛世润达智能科技有限公司官方网站
                 span
-                    router-link.user-option-item.active(to="/login") [ 登陆 ]
-                    a.user-option-item(href="javascript: void(0);") [ 注册 ]
-                    a.user-option-item(href="javascript: void(0);") 会员中心
+                    router-link.user-option-item.active(v-show="!user.isAuthenticated" :to="{name: 'login'}") [ 登陆 ]
+                    router-link.user-option-item(v-show="!user.isAuthenticated" :to="{name: 'register'}") [ 注册 ]
+                    router-link.user-option-item(:to="{name: 'account' }") 个人中心
+                    a.user-option-item(v-show="user.isAuthenticated" href="javascript: void(0);" @click='logout') 注销
                     a.user-option-item(href="javascript: void(0);") 购物车
                     a.user-option-item(href="javascript: void(0);") 快捷下单
         .container.flex.pt10.pb10
@@ -21,27 +22,48 @@
         .header-nav
             .container.flex
                 nav.herder-nav-wrapper
-                    router-link.header-nav-item.active(to="/home") 首页
-                    router-link.header-nav-item(to="/system") 系统展示
-                    a.header-nav-item(href="javascript: void(0);") 系统产品
-                    a.header-nav-item(href="javascript: void(0);") 设备辅件
-                    a.header-nav-item(href="javascript: void(0);") 服务与支持
-                    a.header-nav-item(href="javascript: void(0);") 展会协助
-                    router-link.header-nav-item(to="/about") 关于我们
-                    a.header-nav-item(href="javascript: void(0);") 资讯生活
+                    router-link.header-nav-item(v-for="(item, index) in menu" :class="{active: getNavActive === index}" :key="item.title" :to="{ path: `/${item.name}` }") {{item.title}}
                 .header-serch
                     i.iconfont.icon-search
                     input.header-search-input(type="text" placeholder="请输入您要搜索的内容...") 
 </template>
 <script>
-    export default {
-        name: 'login',
-        data () {
-            return  {
-                data: 'Hello, login.'
-            };
+import { Logout } from 'apis';
+import { mapGetters } from 'vuex';
+
+export default {
+    name: 'header',
+    data () {
+        return  {
+            menu: [{ name: 'home', title: '首页' },
+                { name: 'system', title: '系统展示' },
+                { name: 'product', title: '系统产品' },
+                { name: 'product', title: '设备辅件' },
+                { name: 'support', title: '服务与支持' },
+                { name: 'support', title: '展会协助' },
+                { name: 'about', title: '关于我们' },
+                { name: 'information', title: '资讯生活' }
+            ],
+            active: 0,
+            user: this.$store.state.user
+        };
+    },
+    computed: {
+        ...mapGetters(['getNavActive'])
+    },
+    methods: {
+        logout () {
+            this.$store.commit('logout');
+            delete localStorage.token;
+            Logout.retrieve().then(r => {
+                this.$message({
+                    message: '注销成功',
+                    type: 'success'
+                });
+            });
         }
-    };
+    }
+};
 </script>
 <style lang="scss">
     @import "~scss/pages/views/header";

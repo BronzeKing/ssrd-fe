@@ -47,8 +47,7 @@ Axios.interceptors.request.use(
         // 在发送请求之前做某件事
         if (
             config.method === 'post' ||
-            config.method === 'put' ||
-            config.method === 'delete'
+            config.method === 'put'
         ) {
             let isForm = config.data instanceof FormData;
             // 数据是否为表单类型
@@ -107,14 +106,20 @@ Axios.interceptors.response.use(
         //     });
         // }
         // 下面是接口回调的satus ,因为我做了一些错误页面,所以都会指向对应的报错页面
-        // if (error.response.status === 403) {
-        //     router.push({
-        //         path: '/error',
-        //         query: {
-        //             errorCode: 403
-        //         }
-        //     });
-        // }
+        switch (error.response && error.response.status) {
+            case 403:
+                router.push({
+                    path: '/error/403'
+                });
+                break;
+            case 401:
+                router.push({
+                    name: 'login'
+                });
+                break;
+            default:
+                break;
+        }
         // 返回 response 里的错误信息
         return Promise.reject(error.response && error.response.data);
     }

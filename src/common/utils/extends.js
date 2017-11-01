@@ -86,7 +86,7 @@ const typeOf = obj => {
     return map[toString.call(obj)];
 };
 
-const dealWrap = text => {
+const n2br = text => {
     return text && text.replace(/\n/g, '<br>');
 };
 
@@ -97,5 +97,5 @@ export {
     toUrlParams,
     isMobileNumber,
     typeOf,
-    dealWrap
+    n2br
 };

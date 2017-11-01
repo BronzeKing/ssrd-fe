@@ -1,0 +1,76 @@
+@charset 'UTF-8';
+@import "~scss/base/mixins";
+
+.page-product{
+    .container{
+        display: flex;
+        justify-content: space-between;
+        .left-product{
+            .product-menu{
+                width: 300px;
+                .product-menu-header{
+                    height: 50px;
+                    background: #eeeeee;
+                    color: #017fce;
+                    display: flex;
+                    align-items: center;
+                    padding-left: 20px;
+                }
+                .product-menu-body{
+                    .el-collapse-item__header{
+                        height: 50px;
+                        line-height: 50px;
+                        font-size: 16px;
+                        i{
+                            font-size: 12px;
+                        }
+                    }
+                    .el-collapse-item__wrap{
+                        ul{
+                            li{
+                                padding-left: 20px;
+                                margin: 5px 0;
+                                cursor: pointer;
+                                &:hover{
+                                    color: #017fce;
+                                }
+                            }
+                        }
+                    }
+                    .product-menu-item{
+                        padding: 15px;
+                        font-size: 14px;
+                        border-bottom: 1px solid #dfe6ec;
+                    }
+                    .iconfont{
+                        color: $font-grey;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+        .right-product{
+            width: 850px;
+            .product-detail{
+                .detail-text{
+                    margin-top: 5px;
+                    color: #666666;
+                    line-height: 1.6;
+                }
+                .detail-header{
+                    display: flex;
+                    justify-content: space-between;
+                    .detail-content-img{
+                        width: 335px;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .product-detail-info{
+                        width: 480px;
+                    }
+                }
+            }
+        }
+    }
+}

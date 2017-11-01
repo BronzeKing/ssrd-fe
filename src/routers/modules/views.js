@@ -10,24 +10,27 @@ import homes        from './home';
 import about        from './about';
 import community    from './community';
 import product      from './product';
-import system      from './system';
-import login      from './login';
+import system       from './system';
+import login        from './login';
+import information  from './information';
+import support      from './support';
+import account      from '../account';
 
 export default {
     // path: '/',
     path: '/',
     // name: 'views',
     component: views,
+    redirect: 'home',
     children: [
-        {
-            path: '',
-            redirect: 'home'
-        },
         ...homes,
         ...about,
         ...community,
         ...product,
         ...system,
-        ...login
+        ...login,
+        ...information,
+        ...support,
+        ...account
     ]
 };

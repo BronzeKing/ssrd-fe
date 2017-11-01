@@ -7,23 +7,32 @@
                 el-breadcrumb-item 荣誉资质
         .about-wrap.mt10
             ul.honor-list.p15
-                li.honor-item(v-for="item in honors")
-                    img.honor-image(:src="item.file")
-    
+                li.honor-item(v-for="item in Documents.t.Records")
+                    img.honor-image(:src="item.file" @click="imageShow(item.file)")
+        piclook(ref="picklool")
 </template>
 <script>
-import  { documents } from 'apis';
+import  { Documents } from 'apis';
+import { piclook }   from 'components';
 export default{
     name: '',
+    components: {
+        piclook
+    },
     data () {
         return {
-            honors: []
+            Documents: Documents
         };
     },
     created () {
-        documents.list({source: 0, PageSize: 6}).then(res => {
-            res && (this.honors = res.Records);
-        });
+        Documents.list({source: 0});
+    },
+    methods: {
+        imageShow (pic) {
+            this.$refs.picklool.show({
+                images: [pic]
+            });
+        }
     }
 };
 </script>
