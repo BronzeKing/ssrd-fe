@@ -8,7 +8,8 @@ export default {
     // 登录注册相关接口
     login               :`${apiUrl}/login`,                                 // 登录接口
     logout               :`${apiUrl}/logout`,                               // 登出
-    register            :`${apiUrl}/signup`,                                // 注册接口
+    register            :`${apiUrl}/register`,                                // 注册接口
+    env                 :`${apiUrl}/env`,                                // 注册接口
 
     // 新闻
     news                :`${apiUrl}/news`,                                  // 获取新闻

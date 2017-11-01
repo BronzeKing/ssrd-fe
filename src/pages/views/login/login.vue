@@ -31,7 +31,6 @@ export default {
                     return;
                 };
                 Login.create().then(r => {
-                    localStorage.token = 'Bearer ' + r.token;
                     this.$message({
                         message: '登录成功',
                         type: 'success'
