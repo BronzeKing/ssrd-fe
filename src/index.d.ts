@@ -1,8 +1,3 @@
-interface Rule {
-  required?: Boolean;
-  message: string;
-  trigger?: string;
-}
 export interface Rules {
   [key: string]: Array<Rule>;
 }

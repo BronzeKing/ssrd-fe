@@ -1,5 +1,6 @@
 const information = r => require.ensure([], () => r(require('pages/views/information/index')), 'information');
 const news = r => require.ensure([], () => r(require('pages/views/information/components/news')), 'information');
+const newsDetail = r => require.ensure([], () => r(require('pages/views/information/components/newsDetail')), 'information');
 export default [{
     path: '/information',
     name: 'information',
@@ -16,7 +17,7 @@ export default [{
         },
         {
             path: 'news/:id',
-            component: news,
+            component: newsDetail,
             name: 'newsDetail',
             meta: {
                 headerMenuIndex: 7

@@ -4,7 +4,7 @@
 import ajax from "utils/ajax.ts";
 import { AxiosPromise, AxiosInstance } from "axios";
 
-let _methodMap: {[x: string]: any} = {
+let _methodMap: { [x: string]: any } = {
   list: ajax.Axios.get,
   retrieve: ajax.Axios.get,
   create: ajax.Axios.post,
@@ -131,7 +131,7 @@ class Resource {
     let method = _methodMap[action];
     let url = this.url;
     let response: any;
-    let id: Number;
+    let id: string;
     let value: string;
 
     this.pathArgv.forEach(x => {
@@ -144,9 +144,7 @@ class Resource {
     // 若是非标准rest接口则不带id
     if (!isInArray(["list", "create"], action)) {
       ({ id, ...body } = body);
-      if (body.hasOwnProperty("id")) {
-        id = body["id"];
-        delete body["id"];
+      if (id) {
         url = url + "/" + id;
       }
     }
