@@ -14,7 +14,7 @@
                 
         
 </template>
-<script src="./newsDetail.ts"></script>
+<script src="./newsDetail.ts" lang="ts"></script>
 </script>
 <style lang="scss">
     @import "~scss/pages/views/information/new";
