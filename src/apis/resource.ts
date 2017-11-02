@@ -1,22 +1,21 @@
 /*
  * 基于RESTFUL封装ajax
  */
-import ajax from "utils/ajax";
+import ajax from "utils/ajax.ts";
+import { AxiosPromise, AxiosInstance } from "axios";
 
-let Axios = ajax.Axios;
-let _methodMap: { [x: string]: any } = {
-  list: Axios.get,
-  retrieve: Axios.get,
-  create: Axios.post,
-  update: Axios.post,
-  destroy: Axios.delete
+let _methodMap: {[x: string]: any} = {
+  list: ajax.Axios.get,
+  retrieve: ajax.Axios.get,
+  create: ajax.Axios.post,
+  update: ajax.Axios.post,
+  destroy: ajax.Axios.delete
 };
 
 function isInArray(array: Array<any>, key: any): Boolean {
   return array.indexOf(key) > -1;
 }
 
-interface Response {}
 interface Table {
   search: string;
   pageIndex: number;
@@ -26,9 +25,6 @@ interface Table {
   [key: string]: any;
 }
 interface Payload {
-  [key: string]: any;
-}
-interface Query {
   [key: string]: any;
 }
 
@@ -44,7 +40,7 @@ interface Model {
   rules: Rules;
 }
 
-class Err {
+interface Err {
   name: string;
   value: string;
 }
@@ -66,9 +62,6 @@ class Resource {
   rules: Rules = {};
   // 获取资源列表
   constructor(url: string, Model: Model | null = null) {
-    if (!url) {
-      throw new Error("No url");
-    }
     this.url = url;
 
     // list方法的 table的查询参数以及分页控件、搜索条件 table=t, model=m
@@ -76,6 +69,7 @@ class Resource {
     let matched: Array<string> | null = url.match(/:(\w+)/g);
     if (<Array<string>>matched) {
       // 匹配出来的是 :var   这样的字符串
+      // #TODO 目前有个报错
       // this.pathArgv = url.match(/:(\w+)/g).map(x => {
       // return x;
       // });
@@ -108,7 +102,7 @@ class Resource {
   }
 
   // 重置model和错误
-  reset(obj: Object): void {
+  reset(obj: Payload): void {
     this.resetModel(obj);
     this.resetErrors();
   }
@@ -133,8 +127,8 @@ class Resource {
   }
 
   // 请求参数处理
-  request(body: Payload, config: Payload, action: string): any {
-    const method = _methodMap[action];
+  request(body: Payload, config: Payload, action: string): AxiosPromise {
+    let method = _methodMap[action];
     let url = this.url;
     let response: any;
     let id: Number;
@@ -175,7 +169,7 @@ class Resource {
     return response;
   }
 
-  list (params: Payload = {}, config: Payload = {}): Payload {
+  list(params: Payload = {}, config: Payload = {}): Payload {
     // 默认把this.t里的search, pageIndex, pageSize参数传到list方法里
     Object.keys(this.t).forEach(k => {
       if (this.t[k] && ["Records", "RecordCount"].indexOf(k) === -1) {
@@ -193,7 +187,7 @@ class Resource {
     });
   }
   // 获取单个资源
-  retrieve(params: Payload={}, config: Payload): Object {
+  retrieve(params: Payload = {}, config: Payload): Payload {
     return this.request(params, config, "retrieve").then((r: Data) => {
       this.resetModel(r);
       return r;
@@ -201,17 +195,17 @@ class Resource {
   }
 
   // 创建单个资源
-  create(body: Payload, config: Payload): Object {
+  create(body: Payload, config: Payload): AxiosPromise {
     return this.request(body, config, "create");
   }
 
   // 更新单个资源
-  update(body: Payload, config: Payload): Object {
+  update(body: Payload, config: Payload): AxiosPromise {
     return this.request(body, config, "update");
   }
 
   // 删除单个资源
-  destroy(body: Payload, config: Payload): Object {
+  destroy(body: Payload, config: Payload): AxiosPromise {
     return this.request(body, config, "destroy");
   }
 }

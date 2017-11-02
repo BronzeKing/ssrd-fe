@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // import Core from './core';
 import Core from './core';
-import axiosPlugin from 'utils/ajax';
+import axiosPlugin from 'utils/ajax.ts';
 
 // ajax封装
 Vue.use(axiosPlugin);
