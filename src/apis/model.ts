@@ -1,462 +1,464 @@
-export interface AboutUs {
+import { Model, Provide } from "./baseModel";
+
+export class AboutUs extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 简介
-    introduction: string;
+    @Provide public introduction: string;
     // 企业文化
-    culture: string;
+    @Provide public culture: string;
     // 荣耀
-    honour: string;
+    @Provide public honour: string;
     // 合作伙伴
-    cooperativePartner: string;
-};
-export interface Credential {
+    @Provide public cooperativePartner: string;
+}
+export class Credential extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // user
-    user: User;
+    @Provide public user: User;
     // 类型
-    Type: string;
+    @Provide public Type: string;
     // verified
-    verified: string;
-};
-export interface User {
+    @Provide public verified: string;
+}
+export class User extends Model {
     // user
-    logentry: User;
+    @Provide public logentry: LogEntry;
     // 用户
-    auth_token: User;
+    @Provide public auth_token: User;
     // user
-    social_auth: User;
+    @Provide public social_auth: UserSocialAuth;
     // 所属用户
-    profile: User;
+    @Provide public profile: User;
     // 所属用户
-    projects: User;
+    @Provide public projects: Project;
     // 授权码对应用户
-    authorizecode: User;
+    @Provide public authorizecode: User;
     // 所属用户
-    authorizecodes: User;
+    @Provide public authorizecodes: AuthorizeCode;
     // 邀请码所属用户
-    invitations: User;
+    @Provide public invitations: Invitation;
     // 受邀用户
-    invited: User;
+    @Provide public invited: User;
     // 所属用户
-    collects: User;
+    @Provide public collects: Collect;
     // user
-    credential: User;
+    @Provide public credential: Credential;
     // ID
-    id: number;
+    @Provide public id?: number;
     // password
-    password: string;
+    @Provide public password: string;
     // last login
-    last_login: string;
+    @Provide public last_login: string;
     // email address
-    email: string;
+    @Provide public email: string;
     // username
-    username: string;
+    @Provide public username: string;
     // Mobile Phone
-    mobile: string;
+    @Provide public mobile: string;
     // 用户权限
-    role: number;
+    @Provide public role: number;
     // date joined
-    created: string;
+    @Provide public created: string;
     // 状态
-    status: number;
-};
-export interface LogEntry {
+    @Provide public status: number;
+}
+export class LogEntry extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // action time
-    action_time: string;
+    @Provide public action_time: string;
     // user
-    user: User;
+    @Provide public user: User;
     // content type
-    content_type: ContentType;
+    @Provide public content_type: ContentType;
     // object id
-    object_id: string;
+    @Provide public object_id: string;
     // object repr
-    object_repr: string;
+    @Provide public object_repr: string;
     // action flag
-    action_flag: string;
+    @Provide public action_flag: string;
     // change message
-    change_message: string;
-};
-export interface ContentType {
+    @Provide public change_message: string;
+}
+export class ContentType extends Model {
     // content type
-    permission: ContentType;
+    @Provide public permission: Permission;
     // content type
-    logentry: ContentType;
+    @Provide public logentry: LogEntry;
     // ID
-    id: number;
+    @Provide public id?: number;
     // app label
-    app_label: string;
+    @Provide public app_label: string;
     // python model class name
-    model: string;
-};
-export interface Permission {
+    @Provide public model: string;
+}
+export class Permission extends Model {
     // permissions
-    group: Group;
+    @Provide public group: Group;
     // ID
-    id: number;
+    @Provide public id?: number;
     // name
-    name: string;
+    @Provide public name: string;
     // content type
-    content_type: ContentType;
+    @Provide public content_type: ContentType;
     // codename
-    codename: string;
-};
-export interface Group {
+    @Provide public codename: string;
+}
+export class Group extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // name
-    name: string;
+    @Provide public name: string;
     // permissions
-    permissions: Permission;
-};
-export interface Token {
+    @Provide public permissions: Permission;
+}
+export class Token extends Model {
     // 键
-    key: string;
+    @Provide public key: string;
     // 用户
-    user: User;
+    @Provide public user: User;
     // 已创建
-    created: string;
-};
-export interface UserSocialAuth {
+    @Provide public created: string;
+}
+export class UserSocialAuth extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // user
-    user: User;
+    @Provide public user: User;
     // provider
-    provider: string;
+    @Provide public provider: string;
     // uid
-    uid: string;
+    @Provide public uid: string;
     // extra data
-    extra_data: string;
-};
-export interface Profile {
+    @Provide public extra_data: string;
+}
+export class Profile extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 所属用户
-    user: User;
+    @Provide public user: User;
     // 真实姓名
-    name: string;
+    @Provide public name: string;
     // 性别
-    gender: string;
+    @Provide public gender: string;
     // 生日
-    birthday: string;
+    @Provide public birthday: string;
     // 所属公司
-    company: string;
+    @Provide public company: string;
     // 职位
-    position: string;
+    @Provide public position: string;
     // QQ号码
-    qq: string;
+    @Provide public qq: string;
     // 地址
-    address: string;
+    @Provide public address: string;
     // 邀请码
-    code: string;
-};
-export interface Project {
+    @Provide public code: string;
+}
+export class Project extends Model {
     // 所属项目
-    logs: Project;
+    @Provide public logs: ProjectLog;
     // ID
-    id: number;
+    @Provide public id?: number;
     // 所属用户
-    user: User;
+    @Provide public user: User;
     // 项目名称
-    name: string;
+    @Provide public name: string;
     // 项目状态
-    status: number;
+    @Provide public status: number;
     // 背景图片
-    picture: any;
+    @Provide public picture: any;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
-};
-export interface ProjectLog {
+    @Provide public updated: string;
+}
+export class ProjectLog extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 所属项目
-    project: Project;
+    @Provide public project: Project;
     // 行为
-    action: number;
+    @Provide public action: number;
     // 内容
-    content: string;
+    @Provide public content: string;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
+    @Provide public updated: string;
     // 附件
-    attatchment: Document;
-};
-export interface Document {
+    @Provide public attatchment: Document;
+}
+export class Document extends Model {
     // 附件
-    projectlog: ProjectLog;
+    @Provide public projectlog: ProjectLog;
     // ID
-    id: number;
+    @Provide public id?: number;
     // 文件名
-    name: string;
+    @Provide public name: string;
     // 文件
-    file: any;
+    @Provide public file: any;
     // 项目时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
-};
-export interface AuthorizeCode {
+    @Provide public updated: string;
+}
+export class AuthorizeCode extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 授权码名称
-    name: string;
+    @Provide public name: string;
     // 授权码对应用户
-    user: User;
+    @Provide public user: User;
     // 所属用户
-    creator: User;
+    @Provide public creator: User;
     // 授权码
-    code: string;
+    @Provide public code: string;
     // 授权码状态
-    status: number;
+    @Provide public status: number;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
-};
-export interface Invitation {
+    @Provide public updated: string;
+}
+export class Invitation extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 邀请码所属用户
-    creator: User;
+    @Provide public creator: User;
     // 受邀用户
-    user: User;
+    @Provide public user: User;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
-};
-export interface Collect {
+    @Provide public updated: string;
+}
+export class Collect extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 收藏的产品
-    product: Product;
+    @Provide public product: Product;
     // 所属用户
-    user: User;
+    @Provide public user: User;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
-};
-export interface Product {
+    @Provide public updated: string;
+}
+export class Product extends Model {
     // 收藏的产品
-    collect: Product;
     // ID
-    id: number;
+    @Provide public id?: number;
     // 产品名称
-    name: string;
+    @Provide public name: string;
     // 产品描述
-    description: string;
+    @Provide public description: string;
     // 产品概述
-    summary: string;
+    @Provide public summary: string;
     // 技术参数
-    techParameter: string;
+    @Provide public techParameter: string;
     // 应用领域
-    domain: string;
+    @Provide public domain: string;
     // 其他
-    other: string;
+    @Provide public other: string;
     // 背景图片
-    background: any;
+    @Provide public background: any;
     // 产品分类
-    category: ProductCategory;
+    @Provide public category: ProductCategory;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
+    @Provide public updated: string;
     // 产品插图
-    pictures: Images;
-};
-export interface ProductCategory {
+    @Provide public pictures: Images;
+}
+export class ProductCategory extends Model {
     // 产品分类
-    product: ProductCategory;
+    @Provide public product: Product;
     // ID
-    id: number;
+    @Provide public id?: number;
     // 产品类别
-    name: string;
+    @Provide public name: string;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
-};
-export interface Images {
+    @Provide public updated: string;
+}
+export class Images extends Model {
     // 产品插图
-    product: Product;
+    @Provide public product: Product;
     // 系统插图
-    system: System;
+    @Provide public system: System;
     // 系统案例插图
-    systemcase: SystemCase;
+    @Provide public systemcase: SystemCase;
     // ID
-    id: number;
+    @Provide public id?: number;
     // 图片
-    image: any;
-};
-export interface System {
+    @Provide public image: any;
+}
+export class System extends Model {
     // 系统
-    systemCases: SystemCase;
+    @Provide public systemCases: SystemCase;
     // ID
-    id: number;
+    @Provide public id?: number;
     // 名称
-    name: string;
+    @Provide public name: string;
     // 简介摘要
-    summary: string;
+    @Provide public summary: string;
     // 简介摘要插图
-    picture: any;
+    @Provide public picture: any;
     // 系统介绍
-    introduction: string;
+    @Provide public introduction: string;
     // 系统特性
-    systemFeature: string;
+    @Provide public systemFeature: string;
     // 系统结构
-    structure: any;
+    @Provide public structure: any;
     // 功能特性
-    funtionalFeature: string;
+    @Provide public funtionalFeature: string;
     // 排序
-    rank: number;
+    @Provide public rank: number;
     // 系统插图
-    pictures: Images;
-};
-export interface SystemCase {
+    @Provide public pictures: Images;
+}
+export class SystemCase extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 标题
-    title: string;
+    @Provide public title: string;
     // 摘要
-    summary: string;
+    @Provide public summary: string;
     // 描述
-    description: string;
+    @Provide public description: string;
     // 工程地址
-    address: string;
+    @Provide public address: string;
     // 工程内容
-    content: string;
+    @Provide public content: string;
     // 背景图片
-    picture: any;
+    @Provide public picture: any;
     // 项目时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
+    @Provide public updated: string;
     // 系统案例插图
-    pictures: Images;
+    @Provide public pictures: Images;
     // 系统
-    systems: System;
-};
-export interface FAQs {
+    @Provide public systems: System;
+}
+export class FAQs extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 问题
-    questioin: string;
+    @Provide public questioin: string;
     // 回答
-    answer: string;
+    @Provide public answer: string;
     // 排序
-    rank: number;
+    @Provide public rank: number;
     // 创建时间
-    created: string;
-};
-export interface FeedBack {
+    @Provide public created: string;
+}
+export class FeedBack extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 姓名
-    name: string;
+    @Provide public name: string;
     // 手机号码
-    mobile: string;
+    @Provide public mobile: string;
     // 邮箱
-    email: string;
+    @Provide public email: string;
     // 反馈内容
-    content: string;
+    @Provide public content: string;
     // 创建时间
-    created: string;
-};
-export interface IndustryLink {
+    @Provide public created: string;
+}
+export class IndustryLink extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 名称
-    name: string;
+    @Provide public name: string;
     // 背景图片
-    picture: any;
+    @Provide public picture: any;
     // 行业链接
-    link: string;
+    @Provide public link: string;
     // 排序
-    rank: number;
-};
-export interface Job {
+    @Provide public rank: number;
+}
+export class Job extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 姓名
-    name: string;
+    @Provide public name: string;
     // 职位
-    job: string;
+    @Provide public job: string;
     // 手机号码
-    mobile: string;
+    @Provide public mobile: string;
     // 邮箱
-    email: string;
+    @Provide public email: string;
     // 附件
-    attatchment: any;
+    @Provide public attatchment: any;
     // 更新时间
-    updated: string;
-};
-export interface JSONWebToken {
-    email: string;
-    password: string;
-};
-export interface News {
+    @Provide public updated: string;
+}
+export class JSONWebToken extends Model {
+    @Provide public email: string;
+    @Provide public password: string;
+}
+export class News extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 标题
-    title: string;
+    @Provide public title: string;
     // 内容
-    content: string;
+    @Provide public content: string;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 排序
-    rank: number;
-};
-export interface Recruitment {
+    @Provide public rank: number;
+}
+export class Recruitment extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 职位名称
-    name: string;
+    @Provide public name: string;
     // 薪资待遇
-    salary: string;
+    @Provide public salary: string;
     // 职位简介
-    jobDetail: string;
+    @Provide public jobDetail: string;
     // 岗位职责
-    jobResponsibilities: string;
+    @Provide public jobResponsibilities: string;
     // 地点
-    address: string;
+    @Provide public address: string;
     // 招聘数量
-    number: string;
+    @Provide public number: string;
     // 创建时间
-    created: string;
+    @Provide public created: string;
     // 更新时间
-    updated: string;
-};
-export interface ServiceNet {
+    @Provide public updated: string;
+}
+export class ServiceNet extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // 网点名称
-    name: string;
+    @Provide public name: string;
     // 联系人
-    linkman: string;
+    @Provide public linkman: string;
     // 联系手机
-    mobile: string;
+    @Provide public mobile: string;
     // email address
-    email: string;
+    @Provide public email: string;
     // 联系地址
-    address: string;
+    @Provide public address: string;
     // 排序
-    rank: number;
-};
-export interface ServicePromise {
+    @Provide public rank: number;
+}
+export class ServicePromise extends Model {
     // ID
-    id: number;
+    @Provide public id?: number;
     // title
-    title: string;
+    @Provide public title: string;
     // content
-    content: string;
+    @Provide public content: string;
     // 排序
-    rank: number;
-};
+    @Provide public rank: number;
+}
+

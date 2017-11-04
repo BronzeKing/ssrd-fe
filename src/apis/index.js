@@ -4,25 +4,28 @@
  */
 
 import API      from './api-urls';          // 接口URL
-import Resource from './resource.ts';          // 接口封装
+import  Resource  from './resource.ts';          // 接口封装
 import model    from './model';            // error model
+import * as m from './model.ts';           //改为ts后的model
+import * as r from './r.ts';               // 改为ts后的Resoure
 
 /* 登录注册相关接口 */
 // 接口用大写
+
 export const Login          = new Resource(API.login, model.Login);                    // 登录接口
 export const Register       = new Resource(API.register, model.Register);              // 注册接口
 export const Logout         = new Resource(API.logout);                                 // 注销接口
 export const Env            = new Resource(API.env);                                   // 获取系统配置
 
 /* 关于我们 */
-export const News           = new Resource(API.news, model.News);
+export const News           = new r.Resource(API.news, new m.News({}));
 
 /* 新闻 */
-export const Recruitment   = new Resource(API.recruitments, model.Recruitment);
+export const Recruitment   = new r.Resource(API.recruitments, new m.Recruitment({}));
 
 /* 行业链接 */
-export const IndustryLink   = new Resource(API.industryLink);                           // 获取行业链接
-export const Job           = new Resource(API.jobs, model.Job);                      // 提交简历
+export const IndustryLink   = new r.Resource(API.industryLink, new m.IndustryLink({}));                           // 获取行业链接
+export const Job           = new r.Resource(API.jobs, new m.Job({}));                      // 提交简历
 
 /* 文档列表(荣誉资质和合作伙伴) */
 export const Documents      = new Resource(API.documents);
@@ -51,3 +54,4 @@ export const Profile         = new Resource(API.profile, model.Profile);        
 export const ProjectSign     = new Resource(API.projectSign, model.ProjectSign);                                // 个人资料
 export const ProjectLog      = new Resource(API.projectLog, model.ProjectLog);                                // 个人资料
 export const Project         = new Resource(API.project, model.Project);                                // 个人资料
+
