@@ -1,22 +1,17 @@
-import Vue from "vue";
-import * as api from "apis";
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import { News } from "apis";
 
-export default Vue.extend({
-    name: "news",
-    data() {
-        return {
-            News: api.News
-        };
-    },
-    created() {
-        api.News.list();
-    },
-    methods: {
-        rowClick(data: any) {
-            this.$router.replace({
-                name: "newsDetail",
-                params: { id: data.id }
-            });
-        }
+@Component
+export default class NewsView extends Vue
+{
+    @Provide() News = News;
+    protected created(): void {
+        News.list();
     }
-});
+    rowClick(data: any) {
+        this.$router.replace({
+            name: "newsDetail",
+            params: { id: data.id }
+        });
+    }
+};

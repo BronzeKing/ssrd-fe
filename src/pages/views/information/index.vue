@@ -23,19 +23,15 @@
                     transition(name="router-fade" mode="out-in")
                         router-view
 </template>
-<script>
-    // 关于我们页面
-    export default{
-        name: 'support',
-        data () {
-            return  {
-                index: 1,
-                menu: [
-                    {title: '公司新闻', name: 'news'}
-                ]
-            };
-        }
-    };
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component
+export default class Information extends Vue
+{
+    @Provide() name = 'support';
+    @Provide() index = 1;
+    @Provide() menu = [{title: '公司新闻', name: 'news'}];
+};
 </script>
 <style lang="scss">
     @import "~scss/pages/views/information/new";
