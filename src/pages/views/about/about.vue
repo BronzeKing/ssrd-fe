@@ -43,25 +43,23 @@
                     transition(name="router-fade" mode="out-in")
                         router-view
 </template>
-<script>
-    // 关于我们页面
-    export default{
-        name: 'about',
-        data () {
-            return  {
-                activeTab: 1
-            };
-        },
-        beforeRouteEnter (to, from, next) {
-            next(vm => {
-                let index = to.meta.activeTab;
-                if (typeof index === 'number') {
-                    vm.activeTab = index;
-                }
-            });
-        }
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import { Route } from 'vue-router'
+@Component
+export default class News extends Vue
+{
+    @Provide() activeTab: number = 1;
+    beforeRouteEnter (to: Route, from: Route, next: any) {
+        next((vm: News) => {
+            let index = to.meta.activeTab;
+            if (typeof index === 'number') {
+                vm.activeTab = index;
+            }
+        });
+    }
 
-    };
+}
 </script>
 <style lang="scss">
     @import "~scss/pages/about";

@@ -41,68 +41,7 @@
                     el-button(type="primary" @click="submit") 提交
                     el-button(@click="dialogClose") 取消
 </template>
-
-<script>
-import  { Recruitment, Job } from 'apis';
-export default {
-    name: 'recruit',
-    data () {
-        return  {
-            activeType:'index',
-            dialogFormVisible: false,
-            loading:false,
-            Job: Job,
-            Recruitment: Recruitment
-        };
-    },
-    created () {
-        Recruitment.list();
-    },
-    methods: {
-        handleCurrentChange (data) {
-            this.activeType = 'detail';
-            this.Recruitment.m = data;
-        },
-        dialogShow () {
-            this.dialogFormVisible = true;
-            this.Job.reset({
-                job: this.Recruitment.m.name
-            });
-        },
-        dialogClose () {
-            this.dialogFormVisible = false;
-        },
-        uploadFile (e) {
-            var files = e.target.files || e.dataTransfer.files;
-            if (files.length) {
-                this.Job.m.attatchment = files[0];
-            }
-        },
-        submit () {
-            let _this = this;
-            this.$refs.jobForm.validate((valid) => {
-                if (valid) {
-                    Job.create().then(res => {
-                        this.$message({
-                            message: '提交成功！',
-                            type: 'success'
-                        });
-                        this.loading = false;
-                        this.dialogClose();
-                    }).catch(err => {
-                        _this.$message.error('提交失败！');
-                        _this.loading = false;
-                        /* eslint-disable */
-                        console.log(err);
-                        /* eslint-enable */
-                    });
-                } else {
-                    return false;
-                }
-            });
-        }
-    }
-};
+<script lang="ts" src="./recruit.ts">
 </script>
 <style lang="scss">
     .detail-container{

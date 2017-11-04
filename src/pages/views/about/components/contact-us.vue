@@ -79,6 +79,28 @@ export default {
         }
     }
 };
+// vue-baidu-map 还不支持ts
+// import { Component, Provide, Vue } from 'vue-property-decorator';
+// import { BaiduMap, BmGeolocation, BmMarker, BmLabel } from 'vue-baidu-map';
+// import { baiduMapAk } from 'settings';
+
+// @Component({
+    // components: {
+        // BaiduMap,
+        // BmGeolocation,
+        // BmMarker,
+        // BmLabel
+    // }
+// })
+// export default class ContactUs extends Vue
+// {
+    // @Provide() BAIDU_MAP: string = baiduMapAk;
+    // @Provide() center: {lng: number, lat: number}=  {
+                // lng: 114.154858,
+                // lat: 22.634009
+            // }
+    // @Provide() mapZoom: number = 15;
+// };
 </script>
 <style lang="scss">
 // F:\Work Object\ssrd-fe\src\scss\pages\views\about\contact-us.scss
