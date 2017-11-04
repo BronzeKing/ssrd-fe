@@ -67,7 +67,8 @@
                 i.iconfont.icon-arrow-right.font-grey
         crash-ball
 </template>
-<script src="./home.ts"></script>
+<script src="./home.ts" lang="ts">
+</script>
 <style lang="scss">
     @import "~scss/pages/home";
 </style>
