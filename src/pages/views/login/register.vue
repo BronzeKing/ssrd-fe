@@ -17,40 +17,40 @@
                 i.iconfont(:class="icons[x.name]")
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from "vue-property-decorator";
 import  { Register } from 'apis';
-export default {
-    data () {
-        return {
-            roles: [
-                { name: '个人用户', value: 41 },
-                { name: '常规用户', value: 42 },
-                { name: '行业用户', value: 31 },
-                { name: '分销商', value: 32 }
-            ],
-            logining: false,
-            Register: Register,
-            RegisterForm: '',
-            icons: {qq: 'icon-qq', weixin: 'icon-wechat', weibo: 'icon-weibo'}
-        };
-    },
-    methods: {
-        RegisterSubmit () {
-            let _this = this;
-            this.$refs.RegisterForm.validate((valid) => {
-                if (valid) {
-                    Register.create().then(r => {
-                        this.$confirm('恭喜您注册成功！', '成功', {
-                            confirmButtonText: '确定',
-                            cancelButtonText: '取消',
-                            type: 'success'
-                        });
-                    }).catch(err => {
-                        this.$message.error(err.msg);
+@Component
+export default class RegisterView extends Vue
+{
+  @Provide() activeType: string = "index";
+    @Provide() roles: Array<{name: string, value: number}> = [
+        { name: '个人用户', value: 41 },
+        { name: '常规用户', value: 42 },
+        { name: '行业用户', value: 31 },
+        { name: '分销商', value: 32 }
+    ];
+    @Provide() logining: Boolean = false;
+    @Provide() Register: any = Register;
+    @Provide() icons: {[x: string]: string} = {qq: 'icon-qq', weixin: 'icon-wechat', weibo: 'icon-weibo'};
+    $refs: {
+        RegisterForm: HTMLFormElement
+    };
+    RegisterSubmit () {
+        this.$refs.RegisterForm.validate((valid: Boolean) => {
+            if (valid) {
+                Register.create().then(r => {
+                    this.$confirm('恭喜您注册成功！', '成功', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'success'
                     });
-                };
-            });
-        }
+                    this.$router.push({name: 'home'});
+                }).catch((err: any) => {
+                    this.$message.error(err.msg);
+                });
+            };
+        });
     }
 };
 </script>

@@ -19,35 +19,25 @@
                     el-table-column(property="updated" label="更新时间")
                 el-pagination.mt5(@current-change="OpVideo.list" :page-size="OpVideo.t.pageSize" layout="prev, pager, next, jumper" :total="OpVideo.t.PageCount" :current-page.sync="OpVideo.t.pageIndex")
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
 import  { OpVideo } from 'apis';
 
-export default {
-    name: 'opVideo',
-    data () {
-        return {
-            activeTab: 0,
-            source: 3,
-            tabs: ['全部文档', '说明文档', '常用软件', '设计方案', '合同', '签证'],
-            OpVideo: OpVideo
-        };
-    },
-    created () {
+@Component
+export default class OpVideoView extends Vue
+{
+    @Provide() activeTab: number = 0;
+    @Provide() source: number = 3;
+    @Provide() tabs: Array<string> = ['全部文档', '说明文档', '常用软件', '设计方案', '合同', '签证'];
+    @Provide() OpVideo: any = OpVideo;
+    protected created (): void {
         OpVideo.list({source: this.source});
-    },
-    watch: {
-        activeTab: function (val, oldVal) {
-            let name = this.tabs[val];
-            this.source = this.$store.state.home.env.document[name];
-        }
-    },
-    methods: {
-        player (row) {
-            window.open(row.file);
-        },
-        clickTab (tab, event) {
-            OpVideo.list({source: this.source});
-        }
+    };
+    player (row: any) {
+        window.open(row.file);
+    };
+    clickTab (tab: any, event: any) {
+        OpVideo.list({source: this.source});
     }
 };
 </script>

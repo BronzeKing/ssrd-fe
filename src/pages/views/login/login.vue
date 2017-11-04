@@ -12,36 +12,36 @@
                 i.iconfont(:class="icons[x.name]")
 </template>
 
-<script>
-import  { Login } from 'apis';
-import { member } from 'common/utils';
-export default {
-    data () {
-        return {
-            logining: false,
-            LoginForm: '',
-            Login: Login,
-            icons: {qq: 'icon-qq', weixin: 'icon-wechat', weibo: 'icon-weibo'}
-        };
-    },
-    methods: {
-        loginSubmit () {
-            this.$refs.LoginForm.validate((valid) => {
-                if (!valid) {
-                    return;
-                };
-                Login.create().then(r => {
-                    this.$message({
-                        message: '登录成功',
-                        type: 'success'
-                    });
-                    this.$router.push({name: 'home'});
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import { Login }from "apis";
+
+@Component
+export default class LoginView extends Vue
+{
+    @Provide() logining: Boolean = false;
+    @Provide() LoginForm: string = '';
+    @Provide() Login: any = Login;
+    @Provide() icons: {[x: string]: string} = {qq: 'icon-qq', weixin: 'icon-wechat', weibo: 'icon-weibo'};
+    $refs: {
+        LoginForm: HTMLFormElement
+    };
+    loginSubmit () {
+        this.$refs.LoginForm.validate((valid: Boolean) => {
+            if (!valid) {
+                return;
+            };
+            Login.create().then((r: any) => {
+                this.$message({
+                    message: '登录成功',
+                    type: 'success'
                 });
-                Login.retrieve().then(r => {
-                    this.$store.commit('login', r);
-                });
+                this.$router.push({name: 'home'});
             });
-        }
+            Login.retrieve().then((r: any) => {
+                this.$store.commit('login', r);
+            });
+        });
     }
 };
 </script>

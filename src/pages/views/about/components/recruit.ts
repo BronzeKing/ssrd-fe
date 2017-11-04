@@ -9,6 +9,9 @@ export default class Recruit extends Vue
   @Provide() loading: Boolean = false;
   @Provide() Job: any = Job;
   @Provide() Recruitment: any = Recruitment;
+  $refs: {
+    jobForm: HTMLFormElement
+  }
 
   protected created(): void
   {
@@ -20,7 +23,7 @@ export default class Recruit extends Vue
   }
   dialogShow() {
     this.dialogFormVisible = true;
-    this.Job.reset({
+    Job.m.populate({
       job: this.Recruitment.m.name
     });
   }
@@ -28,34 +31,31 @@ export default class Recruit extends Vue
     this.dialogFormVisible = false;
   }
   uploadFile(e: any) {
-    var files = e.target.files || e.dataTransfer.files;
+    let files = e.target.files || e.dataTransfer.files;
     if (files.length) {
-      this.Job.m.attatchment = files[0];
+      Job.m.populate({attatchment: files[0]});
     }
   }
   submit() {
-
-    // this.$refs.jobForm.validate((valid: Boolean) => {
-      // if (valid) {
-        // Job.create()
-          // .then((r: any) => {
-            // this.$message({
-              // message: "提交成功！",
-              // type: "success"
-            // });
-            // this.loading = false;
-            // this.dialogClose();
-          // })
-          // .catch((err: any) => {
-            // this.$message.error("提交失败！");
-            // this.loading = false;
-            // [> eslint-disable <]
-            // console.log(err);
-            // [> eslint-enable <]
-          // });
-      // } else {
-        // return false;
-      // }
-    // });
+    this.$refs.jobForm.validate((valid: Boolean) => {
+      if (valid) {
+        Job.create()
+          .then((r: any) => {
+            this.$message({
+              message: "提交成功！",
+              type: "success"
+            });
+            this.loading = false;
+            this.dialogClose();
+          })
+          .catch((err: any) => {
+            this.$message.error("提交失败！");
+            this.loading = false;
+            console.log(err);
+          });
+      } else {
+        return false;
+      }
+    });
   }
 }

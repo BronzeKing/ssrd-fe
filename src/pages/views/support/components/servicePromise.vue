@@ -40,8 +40,10 @@
             h5 六、网络服务平台
             p.mb10 为给客户提供更高效、更便捷的服务，我司倾力打造的集客户需求、方案设计、工程销售、售后服务、在线查询于一体的网络服务平台，实现了公司服务体系一站式、标准化发展。
 </template>
-<script>
-export default {
-    name: 'feedback'
-};
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component
+export default class ServicePromise extends Vue
+{
+}
 </script>
