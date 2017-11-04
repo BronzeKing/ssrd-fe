@@ -12,8 +12,8 @@ import * as r from './r.ts';               // 改为ts后的Resoure
 /* 登录注册相关接口 */
 // 接口用大写
 
-export const Login          = new Resource(API.login, model.Login);                    // 登录接口
-export const Register       = new Resource(API.register, model.Register);              // 注册接口
+export const Login          = new r.Resource(API.login, new m.Login({}));                    // 登录接口
+export const Register       = new r.Resource(API.register, new m.Register({}));              // 注册接口
 export const Logout         = new Resource(API.logout);                                 // 注销接口
 export const Env            = new Resource(API.env);                                   // 获取系统配置
 

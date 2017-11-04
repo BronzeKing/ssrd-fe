@@ -462,3 +462,13 @@ export class ServicePromise extends Model {
     @Provide public rank: number;
 }
 
+export class Login extends Model {
+    @Provide public username: string;
+    @Provide public password: string;
+}
+
+export class Register extends Model {
+    @Provide public username: string;
+    @Provide public password: string;
+    @Provide public email: string;
+}

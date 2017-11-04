@@ -91,9 +91,11 @@ export class Resource<T extends Model> {
     * @参数 body: 请求的body
     */
     formData(body: Payload): FormData {
-        const data = this.m.clone().populate(body);
+        const data = this.m.populate(body).serialize();
         const form = new FormData();
-
+        Object.keys(data).forEach(x => {
+            form.append(x, data[x]);
+        })
         return form;
     }
 
@@ -122,7 +124,10 @@ export class Resource<T extends Model> {
 
         response.catch((error: Payload) => {
             if (error && error.errors) {
-                this.errors = error.errors;
+                Object.keys(error.errors).forEach(x => {
+                    let err = error.errors[x]
+                    this.errors[err.name] = err.value;
+                })
             }
         });
         return response;
