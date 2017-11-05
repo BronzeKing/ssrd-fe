@@ -23,31 +23,26 @@
             el-pagination.mt5(@current-change="User.list" :page-size="User.t.pageSize" layout="prev, pager, next, jumper" :total="User.t.PageCount" :current-page.sync="User.t.pageIndex")
         
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from "vue-property-decorator";
 import  { User } from 'apis';
-export default {
-    name: 'user',
-    data () {
-        return {
-            env: this.$store.state.home.env,
-            statusList: ['-1', '1', '0'].map(x => { return { value: x, label: this.$store.state.home.env.status[x] + '账号' }; }),
-            User: User
-        };
-    },
-    created () {
+@Component
+export default class UserView extends Vue {
+    @Provide() env = this.$store.state.home.env;
+    @Provide() statusList = ['-1', '1', '0'].map(x => { return { value: x, label: this.$store.state.home.env.status[x] + '账号' }; });
+    @Provide() User = User;
+    protected created () {
         User.list();
-    },
-    methods: {
-        userList () {
-            User.list();
-        },
-        userDestroy (data) {
-            User.destroy(data);
-            this.userList();
-        },
-        userUpdate (data) {
-            User.update(data);
-        }
+    }
+    userList () {
+        User.list();
+    };
+    userDestroy (data: Payload) {
+        User.destroy(data);
+        this.userList();
+    };
+    userUpdate (data: Payload) {
+        User.update(data);
     }
 };
 </script>

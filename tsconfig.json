@@ -1,0 +1,45 @@
+{
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "compilerOptions": {
+        // "experimentalAsyncFunctions": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "module": "es2015",
+        "target": "es5",
+        "strict": true,
+        "moduleResolution": "node",
+        // "isolatedModules": true,
+        "lib": [
+            "dom",
+            "es5",
+            "es2015.promise"
+        ],
+        "sourceMap": true,
+        "pretty": true,
+        "baseUrl": ".",
+        // 指定特殊模块的路径
+        "paths": {
+            "src": ["src"],
+            "apis": ["src/apis"],
+            "assets": ["src/assets"],
+            "common": ["src/common"],
+            "settings": ["src/settings"],
+            "components": ["src/components"],
+            "configs": ["src/common/configs"],
+            "enums": ["src/common/enums"],
+            "filters": ["src/common/filters"],
+            "mixins": ["src/common/mixins"],
+            "utils": ["src/common/utils"],
+            "pages": ["src/pages"],
+            "routers": ["src/routers"],
+            "scss": ["src/scss"],
+            "vuexs": ["src/vuexs"]
+        }
+    }
+}

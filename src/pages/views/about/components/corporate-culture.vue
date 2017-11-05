@@ -30,8 +30,10 @@
             h4 企业使命：
             p 推动数字化建筑工地进程
 </template>
-<script>
-export default {
-    name: 'corporate-culture'
-};
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component
+export default class CorporateCulture extends Vue
+{
+}
 </script>

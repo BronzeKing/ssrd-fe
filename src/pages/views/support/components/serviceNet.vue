@@ -15,8 +15,10 @@
             p.mb10 电话： 0755-82182153
             p.mb10 传真： 0755-82226563
 </template>
-<script>
-export default {
-    name: 'serviceNet'
-};
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component
+export default class ServiceNet extends Vue
+{
+}
 </script>

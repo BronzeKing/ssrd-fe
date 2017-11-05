@@ -37,32 +37,32 @@
 <style lang="scss">
     @import '~scss/pages/views/home/case-list';
 </style>
-<script>
-    import { infoBanner, piclook }   from 'components';
-    import { SystemCase }    from 'apis';
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import { infoBanner, piclook }   from 'components';
+import { SystemCase }    from 'apis';
 
     // 资讯生活-公司新闻页面
-    export default{
-        name: 'systemCase',
-        components: {
-            infoBanner,
-            piclook
-        },
-        data () {
-            return {
-                SystemCase: SystemCase
-            };
-        },
-        created () {
-            SystemCase.list();
-        },
-        methods: {
-            // 放大图片
-            imageShow (pic) {
-                this.$refs.picklool.show({
-                    images: [pic]
-                });
-            }
-        }
+@Component({
+    components: {
+        infoBanner,
+        piclook
+    }
+})
+export default class SystemCaseView extends Vue
+{
+    @Provide() SystemCase: any = SystemCase;
+    @Provide() $refs = {
+        picklool: piclook
     };
+    protected created () {
+            SystemCase.list();
+    };
+    // 放大图片
+    imageShow (pic: any) {
+        this.$refs.picklool.show({
+            images: [pic]
+        });
+    };
+};
 </script>

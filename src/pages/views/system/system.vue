@@ -33,28 +33,27 @@
                         div.case-demon-item-img(:style="{backgroundImage: `url(${item.picture})`}")
                         p.case-demon-item-title {{item.title}}
 </template>
-<script>
-    // 系统展示页面
-    import { System, SystemCase } from 'apis';
-    import { infoBanner }   from 'components';
+<script lang="ts">
+// 系统展示页面
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import { System, SystemCase } from 'apis';
+import { infoBanner }   from 'components';
 
-    export default{
-        name: 'system',
-        data () {
-            return {
-                System: System,
-                SystemCase: SystemCase,
-                icons: ['icon-shuzihua', 'icon-tubiao01', 'icon-shipinjiankong', 'icon-shujutubiao08', 'icon-cheliangchuruchaxun', 'icon-anquan']
-            };
-        },
-        components: {
-            infoBanner
-        },
-        created () {
-            System.list();
-            SystemCase.list();
-        }
-    };
+@Component({
+    components: {
+        infoBanner
+    }
+})
+export default class SystemView extends Vue
+{
+    @Provide() System: any = System;
+    @Provide() SystemCase: any = SystemCase;
+    @Provide() icons: Array<string> = ['icon-shuzihua', 'icon-tubiao01', 'icon-shipinjiankong', 'icon-shujutubiao08', 'icon-cheliangchuruchaxun', 'icon-anquan'];
+    protected created () {
+        System.list();
+        SystemCase.list();
+    }
+};
 </script>
 <style lang="scss">
 @import "~scss/pages/views/system/system";

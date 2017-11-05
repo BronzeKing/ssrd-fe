@@ -11,17 +11,15 @@
     
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Product } from 'apis';
-export default {
-    name: 'product',
-    data () {
-        return {
-            Product: Product,
-            activeNames: []
-        };
-    },
-    created () {
+@Component
+export default class ProductView extends Vue
+{
+    @Provide() Product = Product;
+    @Provide() activeNames = [];
+    protected created () {
         Product.list();
     }
 };

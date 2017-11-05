@@ -11,28 +11,30 @@
                     img.company-partner-image(:src="item.file" @click="imageShow(item.file)")
         piclook(ref="picklool")
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+
 import  { Documents } from 'apis';
 import { piclook }   from 'components';
-export default{
-    name: '',
-    components: {
-        piclook
-    },
-    data () {
-        return {
-            Documents: Documents
-        };
-    },
-    created () {
+@Component
+({
+    components:{
+       piclook 
+    }
+})
+export default class CooperativePartner extends Vue
+{
+    @Provide() Documents = Documents;
+    @Provide() $refs = {
+        picklool: piclook
+    };
+    protected created (): void {
         Documents.list({source: 1});
-    },
-    methods: {
-        imageShow (pic) {
-            this.$refs.picklool.show({
-                images: [pic]
-            });
-        }
+    }
+    imageShow (pic: any) {
+        this.$refs.picklool.show({
+            images: [pic]
+        });
     }
 };
 </script>

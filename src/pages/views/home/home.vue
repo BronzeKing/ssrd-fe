@@ -67,33 +67,7 @@
                 i.iconfont.icon-arrow-right.font-grey
         crash-ball
 </template>
-<script>
-import  { IndustryLink, News, SystemCase } from 'apis';
-import { crashBall } from 'components';
-export default {
-    name: 'home',
-    data () {
-        return  {
-            homeBanners: [
-                require('assets/home_banner.png'),
-                require('assets/home_banner1.png'),
-                require('assets/home_banner2.png')
-            ],
-            IndustryLink: IndustryLink,
-            News: News,
-            SystemCase: SystemCase
-        };
-    },
-    components: {
-        crashBall
-    },
-    created () {
-        // 获取新闻内容咯
-        News.list({PageSize: 3});
-        IndustryLink.list();
-        SystemCase.list({PageSize: 3});
-    }
-};
+<script src="./home.ts" lang="ts">
 </script>
 <style lang="scss">
     @import "~scss/pages/home";

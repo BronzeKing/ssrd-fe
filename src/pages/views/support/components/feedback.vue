@@ -42,29 +42,25 @@
                     el-input(v-model="data.feedback" type="textarea")
                 el-button(type="primary" @click="submit") 保存
 </template>
-<script>
-export default {
-    name: 'feedback',
-    data () {
-        return {
-            data: {
-                base: this.$store.state.user.user.role || '41',
-                address: this.$store.state.user.user.address || '',
-                linkman: this.$store.state.user.user.name || '',
-                mobile: this.$store.state.user.user.mobile || '',
-                email: this.$store.state.user.user.email || '',
-                qq: this.$store.state.user.user.qq || '',
-                type: '',
-                object: '',
-                date: '',
-                description: '',
-                feedback: ''
-            }
-        };
-    },
-    methods: {
-        submit () {
-        }
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component
+export default class Feedback extends Vue
+{
+    @Provide() data: {[x: string]: string} = {
+        base: this.$store.state.user.user.role || '41',
+        address: this.$store.state.user.user.address || '',
+        linkman: this.$store.state.user.user.name || '',
+        mobile: this.$store.state.user.user.mobile || '',
+        email: this.$store.state.user.user.email || '',
+        qq: this.$store.state.user.user.qq || '',
+        type: '',
+        object: '',
+        date: '',
+        description: '',
+        feedback: ''
+    };
+    submit () {
     }
 };
 </script>

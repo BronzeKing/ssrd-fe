@@ -14,16 +14,14 @@
             p {{Message.m.content}} 
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Message } from 'apis';
-export default {
-    name: 'messageDetail',
-    data () {
-        return {
-            Message: Message
-        };
-    },
-    created () {
+@Component
+export default class MessageDetail extends Vue
+{
+    @Provide() Message = Message;
+    protected created () {
         Message.retrieve({id: this.$route.params.id});
     }
 };

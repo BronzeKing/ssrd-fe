@@ -23,25 +23,22 @@
                     transition(name="router-fade" mode="out-in")
                         router-view
 </template>
-<script>
-    // 关于我们页面
-    export default{
-        name: 'support',
-        data () {
-            return  {
-                index: 0,
-                menu: [
-                    {title: '常见问题解答', name: 'faqs'},
-                    {title: '服务承诺', name: 'servicePromise'},
-                    {title: '意见反馈', name: 'feedback'},
-                    {title: '客户满意度调查', name: 'survey'},
-                    {title: '服务网点', name: 'serviceNet'},
-                    {title: '文档下载', name: 'download'},
-                    {title: '操作视频', name: 'opVideo'}
-                ]
-            };
-        }
-    };
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component
+export default class Support extends Vue
+{
+    @Provide() index: number = 0;
+    @Provide() menu: Array<{title: string, name: string}> = [
+        {title: '常见问题解答', name: 'faqs'},
+        {title: '服务承诺', name: 'servicePromise'},
+        {title: '意见反馈', name: 'feedback'},
+        {title: '客户满意度调查', name: 'survey'},
+        {title: '服务网点', name: 'serviceNet'},
+        {title: '文档下载', name: 'download'},
+        {title: '操作视频', name: 'opVideo'}
+    ];
+};
 </script>
 <style lang="scss">
     @import "~scss/pages/about";

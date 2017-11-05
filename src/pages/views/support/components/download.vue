@@ -20,33 +20,28 @@
                 el-pagination.mt5(@current-change="Download.list" :page-size="Download.t.pageSize" layout="prev, pager, next, jumper" :total="Download.t.PageCount" :current-page.sync="Download.t.pageIndex")
         
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
 import  { Download } from 'apis';
 // 貌似Document 这个变量是全局的 所以用Download 代替
 
-export default {
-    name: 'download',
-    data () {
-        return {
-            Download: Download,
-            activeTab: 0,
-            source: 3,
-            tabs: ['全部文档', '说明文档', '常用软件', '设计方案', '合同', '签证']
-        };
-    },
-    created () {
+@Component
+export default class DownloadView extends Vue
+{
+    @Provide() Download: any = Download;
+    @Provide() activeTab: number = 0;
+    @Provide() source: number = 3;
+    @Provide() tabs: Array<string> = ['全部文档', '说明文档', '常用软件', '设计方案', '合同', '签证'];
+    protected created () {
         Download.list({source: this.source});
-    },
-    watch: {
-        activeTab: function (val, oldVal) {
-            let name = this.tabs[val];
-            this.source = this.$store.state.home.env.document[name];
-        }
-    },
-    methods: {
-        clickTab (tab, event) {
-            Download.list({source: this.source});
-        }
+    }
+    @Watch('activeTab')
+    onTabChanged(val: number, oldVal: number) {
+        let name: string = this.tabs[val];
+        this.source = this.$store.state.home.env.document[name];
+    }
+    clickTab (tab: any, event: any) {
+        Download.list({source: this.source});
     }
 };
 </script>

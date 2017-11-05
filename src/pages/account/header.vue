@@ -12,27 +12,24 @@
                     el-menu-item(:index="[index, itemIndex].join('-')" :route="{name: item.name}") {{item.title}}
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import { SIDEBAR } from './sidebar';
 
-export default {
-    data () {
-        return {
-            sidebar: SIDEBAR,
-            isCollapse: false
-        };
-    },
-    methods: {
-        handleOpen (key, keyPath) {
-        },
-        handleClose (key, keyPath) {
-        }
+@Component
+export default class Header extends Vue
+{
+    @Provide() sidebar = SIDEBAR;
+    @Provide() isCollapse = false;
+    handleOpen (key: string, keyPath: string) {
+    }
+    handleClose (key: string, keyPath: string) {
     }
 };
 </script>
 
 <style>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
+  .el-menu-vertical-demo:not(.el-menu-collapse) {
     width: 200px;
     min-height: 400px;
   }

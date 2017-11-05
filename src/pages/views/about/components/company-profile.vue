@@ -30,11 +30,12 @@
                  h3.about-title.p10 2、互联网+平台
                  p.about-content-text   此平台集客户需求、系统设计、工程销售、售后服务、在线查询为一体的网络服务平台。同时配套开发手机移动端（如微信、APP等），给客户提供更高效、更便捷的服务：通过大数据，实现工程透明化、精细化管理，实现网上网下互动；我司将工程实施团队和售后服务团队融合进互联网+平台让客户通过PC端或移动端实时掌控项目实时进度及维护进度；每个项目从立项开始到整个项目完结，都能通过平台清晰的直观的看到各事项的完成情况及相关电子文件的存档，可永久性保存。
 </template>
-<script>
-    // 公司简介页面
-    export default{
-        name: 'company-profile'
-    };
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component
+export default class CompanyProfile extends Vue
+{
+}
 </script>
 <style lang="scss">
     

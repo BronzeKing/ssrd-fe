@@ -25,21 +25,15 @@
                 el-button(type="primary" @click="submit") 保存
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Profile } from 'apis';
-export default {
-    name: 'profile',
-    data () {
-        return {
-            Profile: Profile
-        };
-    },
-    created () {
-    },
-    methods: {
-        submit () {
-            Profile.update();
-        }
+@Component
+export default class ProfileView extends Vue
+{
+    @Provide() Profile = Profile;
+    submit () {
+        Profile.update();
     }
 };
 </script>

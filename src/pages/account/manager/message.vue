@@ -18,31 +18,31 @@
             el-pagination.mt5(@current-change="Message.list" :page-size="Message.t.pageSize" layout="prev, pager, next, jumper" :total="Message.t.PageCount" :current-page.sync="Message.t.pageIndex")
         
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Message } from 'apis';
-export default {
-    name: 'message',
-    data () {
-        return {
-            Message: Message,
-            action: 'list'
-        };
-    },
-    created () {
+@Component
+export default class MessageView extends Vue
+{
+    @Provide() Message = Message;
+    @Provide() action = 'list';
+    @Provide() multipleSelection: Payload = {};
+    protected created () {
         Message.list();
-    },
-    methods: {
-        rowClick (m) {
-            // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
-            this.$router.replace({name: 'messageDetail', params: { id: m.id }});
-        },
-        toggleSelection () {
-        },
-        handleSelectionChange (val) {
-            this.multipleSelection = val;
-        },
-        handleRead () {
-        }
+    }
+    rowClick (m: Payload) {
+        // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
+        this.$router.replace({name: 'messageDetail', params: { id: m.id }});
+    }
+
+    toggleSelection () {
+    }
+
+    handleSelectionChange (val: Payload) {
+        this.multipleSelection = val;
+    }
+
+    handleRead () {
     }
 };
 </script>

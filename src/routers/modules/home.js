@@ -4,7 +4,6 @@
 
  // 首页
 const home          = r => require.ensure([], () => r(require('pages/views/home/home')), 'home');
-const companyNews   = r => require.ensure([], () => r(require('pages/views/home/company-news')), 'home');
 // const Login = r => require.ensure([], () => r(require('pages/home/login')), 'home');
 
 export default [
@@ -12,14 +11,6 @@ export default [
         path: '/home',
         name: 'home',
         component: home,
-        meta: {
-            headerMenuIndex: 0
-        }
-    },
-    {
-        path: '/companyNews',
-        name: 'companyNews',
-        component: companyNews,
         meta: {
             headerMenuIndex: 0
         }

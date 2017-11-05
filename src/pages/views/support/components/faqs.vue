@@ -18,37 +18,30 @@
                     p.mb10 {{Faqs.m.answer}}
                     p.mb10 {{Faqs.m.created}}
 </template>
-<script>
+<script lang="ts">
+import { Watch, Component, Provide, Vue } from 'vue-property-decorator';
 import  { Faqs } from 'apis';
-export default {
-    name: 'faqs',
-    data () {
-        return {
-            Faqs: Faqs,
-            action: 'list'
-        };
-    },
-    created () {
+@Component
+export default class FaqsView extends Vue
+{
+    @Provide() Faqs: any = Faqs;
+    @Provide() action: string = 'list';
+    protected created (): void {
         this.init();
-    },
-    watch: {
-    // 如果路由有变化，会再次执行该方法
-        '$route': 'init'
-    },
-    methods: {
-        init () {
-            if (this.$route.params.id) {
-                this.action = 'detail';
-                Faqs.retrieve({id: this.$route.params.id});
-            } else {
-                Faqs.list();
-                this.action = 'list';
-            }
-        },
-        rowClick (m) {
-            // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
-            this.$router.replace({name: 'faqsDetail', params: { id: m.id }});
+    };
+
+    init () {
+        if (this.$route.params.id) {
+            this.action = 'detail';
+            Faqs.retrieve({id: this.$route.params.id});
+        } else {
+            Faqs.list();
+            this.action = 'list';
         }
+    };
+    rowClick (m: any) {
+        // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
+        this.$router.replace({name: 'faqsDetail', params: { id: m.id }});
     }
 };
 </script>

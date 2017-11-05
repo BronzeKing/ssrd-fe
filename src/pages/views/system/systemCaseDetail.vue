@@ -103,52 +103,52 @@
         }
     }
 </style>
-<script>
-    import { infoBanner, piclook }   from 'components';
-    import { SystemCase }    from 'apis';
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import { infoBanner, piclook }   from 'components';
+import { SystemCase }    from 'apis';
 
     // 资讯生活-公司新闻页面
-    export default{
-        name: 'systemCase',
-        components: {
-            infoBanner,
-            piclook
-        },
-        data () {
-            return {
-                SystemCase: SystemCase
-            };
-        },
-        created () {
-            SystemCase.retrieve({id: this.$route.params.id});
-        },
-        methods: {
-            // 放大图片
-            imageShow (pic) {
-                this.$refs.picklool.show({
-                    images: [pic]
-                });
-            },
-            scrollLeft () {
-                let time = 0;
-                let timer = setInterval(() => {
-                    time++;
-                    this.$refs.scrollBox.scrollLeft -= 5;
-                    if (time > 50) {
-                        clearInterval(timer);
-                    }
-                }, 5);
-            },
-            scrollRight () {
-                let time = 0;
-                let timer = setInterval(() => {
-                    time++;
-                    this.$refs.scrollBox.scrollLeft += 5;
-                    if (time > 50) {
-                        clearInterval(timer);
-                    }
-                }, 5);
-            }
-        }
+@Component({
+    components: {
+        infoBanner,
+        piclook
+    }
+})
+export default class SystemCaseDetail extends Vue
+{
+    @Provide() SystemCase: any = SystemCase;
+    @Provide() $refs: {
+        picklool: piclook,
+        scrollBox: any
     };
+    protected created () {
+            SystemCase.retrieve({id: this.$route.params.id});
+    };
+    imageShow (pic: any) {
+        this.$refs.picklool.show({
+            images: [pic]
+        });
+    };
+    scrollLeft () {
+        let time = 0;
+        let timer = setInterval(() => {
+            time++;
+            this.$refs.scrollBox.scrollLeft -= 5;
+            if (time > 50) {
+                clearInterval(timer);
+            }
+        }, 5);
+    }
+    scrollRight () {
+        let time = 0;
+        let timer = setInterval(() => {
+            time++;
+            this.$refs.scrollBox.scrollLeft += 5;
+            if (time > 50) {
+                clearInterval(timer);
+            }
+        }, 5);
+    }
+}
 </script>

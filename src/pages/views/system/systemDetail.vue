@@ -69,58 +69,7 @@
 
 
 </template>
-<script>
-// 系统展示页面
-import { menuBox, infoBanner } from 'components';
-import  { System } from 'apis';
-export default{
-    name: 'systemDetail',
-    data () {
-        return {
-            System: System,
-            menuData: {
-                menuList: [
-                ],
-                title: {
-                    name: '系统展示',
-                    englishName: 'SYSTEM SHOW'
-                },
-                activeTab: 0
-            },
-            dotMenu: ['系统介绍', '系统结构', '功能特性', '现场图片', '相关案例'],
-            activeDotTab: 0
-        };
-    },
-    components: {
-        menuBox,
-        infoBanner
-    },
-    beforeRouteEnter (to, from, next) {
-        next(vm => {
-            vm.menuData.activeTab = Number(vm.$route.params.id) || 0;
-        });
-    },
-    mounted () {
-        System.list().then(r => {
-            let index = r.Records.map(x => { return x.id; }).indexOf(this.menuData.activeTab);
-            this.System.m = r.Records[index];
-            this.menuData.menuList = r.Records;
-        });
-    },
-    methods: {
-        linkTo (data) {
-            this.menuData.activeTab = data.id;
-            let index = this.System.t.Records.map(x => { return x.id; }).indexOf(this.menuData.activeTab);
-            this.System.m = this.System.t.Records[index];
-            this.$router.replace({ name:'systemDetail', params: {id: data.id} });
-        },
-        handDot (index) {
-            this.activeDotTab = index;
-            var anchor = this.$el.querySelector('#text' + index);
-            window.scrollTo(0, anchor.offsetTop);
-        }
-    }
-};
+<script lang="ts" src="./systemDetail.ts">
 </script>
 <style lang="scss">
     @import "~scss/pages/views/system/system-detail";
