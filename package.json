@@ -39,7 +39,7 @@
     "vue-baidu-map": "^0.15.1",
     "vue-property-decorator": "^6.0.0",
     "vue-router": "^3.0.1",
-    "vuex": "^2.5.0",
+    "vuex": "^v3.0.1",
     "webpack-parallel-uglify-plugin": "^1.0.0"
   },
   "devDependencies": {

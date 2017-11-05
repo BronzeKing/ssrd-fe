@@ -1,14 +1,13 @@
 /**
  * vuex相关的处理
  */
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue, { PluginObject } from "vue";
+import Vuex, { Store } from "vuex";
 import createLogger from "vuex/dist/logger";
 
 import global from "./modules/global";
 import home from "./modules/home";
 import user from "./modules/user";
-
 Vue.use(Vuex);
 
 // 是否开启vuex logger。
