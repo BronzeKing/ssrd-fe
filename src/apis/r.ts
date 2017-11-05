@@ -66,7 +66,6 @@ export class Resource<T extends Model> {
     private _pathArgv: Array<string> = [];
 
     public errors: { [x: string]: string } = {};
-    public m: T;
     public t: Table = {
         search: "",
         pageIndex: 1,
@@ -74,9 +73,8 @@ export class Resource<T extends Model> {
         RecordCount: 0,
         Records: []
     };
-    constructor(private url: string, m: T, public rules: Rules = {}) {
-        this.m = m;
-        this.errors = m.errors;
+    constructor(private url: string, public m: T, public rules: Rules = {}) {
+        this.errors = m? m.errors : {};
         let matched = url.match(/:(\w+)/g);
         if (matched) {
             this._pathArgv = (<Array<string>>matched).map(x => {
@@ -159,7 +157,7 @@ export class Resource<T extends Model> {
     }
 
     // 更新单个资源
-    update(body: Payload, config: Payload = {}): AxiosPromise {
+    update(body: Payload = {}, config: Payload = {}): AxiosPromise {
         return this.request(body, config, "update");
     }
 

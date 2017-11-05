@@ -15,6 +15,8 @@ const mutations = {
     [ types.LOGIN ] (state, payload) {
         state.user = assign({}, state.user, payload);
         state.isAuthenticated = true;
+    },
+    [ types.TOKEN ] (state, payload) {
         localStorage.token = 'Bearer ' + payload.token;
     },
     [ types.LOGOUT ] (state) {

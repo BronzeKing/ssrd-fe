@@ -512,7 +512,11 @@ export class ServicePromise extends Model {
 
 
 
-////
+////手写的自定义Model
+export class Default extends Model {
+    @Provide public default: string;
+}
+
 export class Login extends Model {
     @Provide public email: string;
     @Provide public password: string;
@@ -522,4 +526,14 @@ export class Register extends Model {
     @Provide public username: string;
     @Provide public password: string;
     @Provide public email: string;
+}
+export class Email extends Model {
+    @Provide public captcha: string;
+    @Provide public email: string;
+}
+
+export class Password extends Model {
+    @Provide public captcha: string;
+    @Provide public password: string;
+    @Provide public password2: string;
 }
