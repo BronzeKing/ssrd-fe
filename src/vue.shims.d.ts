@@ -1,6 +1,6 @@
 declare module "*.vue" {
-  import Vue from 'vue'
-  export default Vue
+  import Vue from "vue";
+  export default Vue;
 }
 
 /**
@@ -9,7 +9,7 @@ declare module "*.vue" {
 declare module "src/pages/*.vue" {
   global {
     interface Payload {
-        [key: string]: any;
+      [key: string]: any;
     }
   }
 }
@@ -17,19 +17,23 @@ declare module "src/pages/*.vue" {
 declare module "src/pages/*.ts" {
   global {
     interface Payload {
-        [key: string]: any;
+      [key: string]: any;
     }
   }
 }
 
 declare const process: {
-    env: {
-        NODE_ENV: string
-    }
+  env: {
+    NODE_ENV: string;
+  };
 };
 
 declare const require: {
-    <T>(path: string): T;
-    (paths: string[], callback: (...modules: any[]) => void): void;
-    ensure: (paths: string[], callback: (require: <T>(path: string) => T) => void) => void;
+  <T>(path: string): T;
+  (paths: string[], callback: (...modules: any[]) => void): void;
+  ensure: (
+    paths: string[],
+    callback: (require: <T>(path: string) => T) => void,
+    chunkName: string
+  ) => void;
 };
