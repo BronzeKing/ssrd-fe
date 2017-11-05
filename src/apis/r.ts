@@ -17,7 +17,7 @@ function isInArray(array: Array<any>, key: any): Boolean {
     return array.indexOf(key) > -1;
 }
 
-export interface Payload {
+interface Payload {
     [key: string]: any;
 }
 

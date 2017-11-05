@@ -2,7 +2,7 @@ import { Model, Provide } from "./baseModel";
 
 export class AboutUs extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 简介
     @Provide public introduction: string;
     // 企业文化
@@ -11,17 +11,19 @@ export class AboutUs extends Model {
     @Provide public honour: string;
     // 合作伙伴
     @Provide public cooperativePartner: string;
-}
+};
+
 export class Credential extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // user
     @Provide public user: User;
     // 类型
     @Provide public Type: string;
     // verified
     @Provide public verified: string;
-}
+};
+
 export class User extends Model {
     // user
     @Provide public logentry: LogEntry;
@@ -46,7 +48,7 @@ export class User extends Model {
     // user
     @Provide public credential: Credential;
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // password
     @Provide public password: string;
     // last login
@@ -63,10 +65,11 @@ export class User extends Model {
     @Provide public created: string;
     // 状态
     @Provide public status: number;
-}
+};
+
 export class LogEntry extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // action time
     @Provide public action_time: string;
     // user
@@ -81,39 +84,43 @@ export class LogEntry extends Model {
     @Provide public action_flag: string;
     // change message
     @Provide public change_message: string;
-}
+};
+
 export class ContentType extends Model {
     // content type
     @Provide public permission: Permission;
     // content type
     @Provide public logentry: LogEntry;
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // app label
     @Provide public app_label: string;
     // python model class name
     @Provide public model: string;
-}
+};
+
 export class Permission extends Model {
     // permissions
     @Provide public group: Group;
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // name
     @Provide public name: string;
     // content type
     @Provide public content_type: ContentType;
     // codename
     @Provide public codename: string;
-}
+};
+
 export class Group extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // name
     @Provide public name: string;
     // permissions
     @Provide public permissions: Permission;
-}
+};
+
 export class Token extends Model {
     // 键
     @Provide public key: string;
@@ -121,10 +128,11 @@ export class Token extends Model {
     @Provide public user: User;
     // 已创建
     @Provide public created: string;
-}
+};
+
 export class UserSocialAuth extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // user
     @Provide public user: User;
     // provider
@@ -133,10 +141,11 @@ export class UserSocialAuth extends Model {
     @Provide public uid: string;
     // extra data
     @Provide public extra_data: string;
-}
+};
+
 export class Profile extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 所属用户
     @Provide public user: User;
     // 真实姓名
@@ -155,12 +164,13 @@ export class Profile extends Model {
     @Provide public address: string;
     // 邀请码
     @Provide public code: string;
-}
+};
+
 export class Project extends Model {
     // 所属项目
     @Provide public logs: ProjectLog;
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 所属用户
     @Provide public user: User;
     // 项目名称
@@ -173,10 +183,11 @@ export class Project extends Model {
     @Provide public created: string;
     // 更新时间
     @Provide public updated: string;
-}
+};
+
 export class ProjectLog extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 所属项目
     @Provide public project: Project;
     // 行为
@@ -189,12 +200,13 @@ export class ProjectLog extends Model {
     @Provide public updated: string;
     // 附件
     @Provide public attatchment: Document;
-}
+};
+
 export class Document extends Model {
     // 附件
     @Provide public projectlog: ProjectLog;
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 文件名
     @Provide public name: string;
     // 文件
@@ -203,10 +215,11 @@ export class Document extends Model {
     @Provide public created: string;
     // 更新时间
     @Provide public updated: string;
-}
+};
+
 export class AuthorizeCode extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 授权码名称
     @Provide public name: string;
     // 授权码对应用户
@@ -221,10 +234,11 @@ export class AuthorizeCode extends Model {
     @Provide public created: string;
     // 更新时间
     @Provide public updated: string;
-}
+};
+
 export class Invitation extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 邀请码所属用户
     @Provide public creator: User;
     // 受邀用户
@@ -233,10 +247,11 @@ export class Invitation extends Model {
     @Provide public created: string;
     // 更新时间
     @Provide public updated: string;
-}
+};
+
 export class Collect extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 收藏的产品
     @Provide public product: Product;
     // 所属用户
@@ -245,11 +260,12 @@ export class Collect extends Model {
     @Provide public created: string;
     // 更新时间
     @Provide public updated: string;
-}
+};
+
 export class Product extends Model {
     // 收藏的产品
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 产品名称
     @Provide public name: string;
     // 产品描述
@@ -272,19 +288,21 @@ export class Product extends Model {
     @Provide public updated: string;
     // 产品插图
     @Provide public pictures: Images;
-}
+};
+
 export class ProductCategory extends Model {
     // 产品分类
     @Provide public product: Product;
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 产品类别
     @Provide public name: string;
     // 创建时间
     @Provide public created: string;
     // 更新时间
     @Provide public updated: string;
-}
+};
+
 export class Images extends Model {
     // 产品插图
     @Provide public product: Product;
@@ -293,15 +311,16 @@ export class Images extends Model {
     // 系统案例插图
     @Provide public systemcase: SystemCase;
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 图片
     @Provide public image: any;
-}
+};
+
 export class System extends Model {
     // 系统
     @Provide public systemCases: SystemCase;
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 名称
     @Provide public name: string;
     // 简介摘要
@@ -320,10 +339,11 @@ export class System extends Model {
     @Provide public rank: number;
     // 系统插图
     @Provide public pictures: Images;
-}
+};
+
 export class SystemCase extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 标题
     @Provide public title: string;
     // 摘要
@@ -344,10 +364,11 @@ export class SystemCase extends Model {
     @Provide public pictures: Images;
     // 系统
     @Provide public systems: System;
-}
+};
+
 export class FAQs extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 问题
     @Provide public questioin: string;
     // 回答
@@ -356,10 +377,11 @@ export class FAQs extends Model {
     @Provide public rank: number;
     // 创建时间
     @Provide public created: string;
-}
+};
+
 export class FeedBack extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 姓名
     @Provide public name: string;
     // 手机号码
@@ -370,10 +392,11 @@ export class FeedBack extends Model {
     @Provide public content: string;
     // 创建时间
     @Provide public created: string;
-}
+};
+
 export class IndustryLink extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 名称
     @Provide public name: string;
     // 背景图片
@@ -382,10 +405,11 @@ export class IndustryLink extends Model {
     @Provide public link: string;
     // 排序
     @Provide public rank: number;
-}
+};
+
 export class Job extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 姓名
     @Provide public name: string;
     // 职位
@@ -398,14 +422,35 @@ export class Job extends Model {
     @Provide public attatchment: any;
     // 更新时间
     @Provide public updated: string;
-}
+};
+
 export class JSONWebToken extends Model {
     @Provide public email: string;
     @Provide public password: string;
-}
+};
+
+export class Message extends Model {
+    // ID
+    @Provide public id: number;
+    // 所属用户
+    @Provide public userId: number;
+    // 标题
+    @Provide public title: string;
+    // 内容
+    @Provide public content: string;
+    // 创建时间
+    @Provide public created: string;
+    // 消息类型
+    @Provide public category: number;
+    // 已读
+    @Provide public read: number;
+    // 排序
+    @Provide public rank: number;
+};
+
 export class News extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 标题
     @Provide public title: string;
     // 内容
@@ -414,10 +459,11 @@ export class News extends Model {
     @Provide public created: string;
     // 排序
     @Provide public rank: number;
-}
+};
+
 export class Recruitment extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 职位名称
     @Provide public name: string;
     // 薪资待遇
@@ -434,10 +480,11 @@ export class Recruitment extends Model {
     @Provide public created: string;
     // 更新时间
     @Provide public updated: string;
-}
+};
+
 export class ServiceNet extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // 网点名称
     @Provide public name: string;
     // 联系人
@@ -450,20 +497,24 @@ export class ServiceNet extends Model {
     @Provide public address: string;
     // 排序
     @Provide public rank: number;
-}
+};
+
 export class ServicePromise extends Model {
     // ID
-    @Provide public id?: number;
+    @Provide public id: number;
     // title
     @Provide public title: string;
     // content
     @Provide public content: string;
     // 排序
     @Provide public rank: number;
-}
+};
 
+
+
+////
 export class Login extends Model {
-    @Provide public username: string;
+    @Provide public email: string;
     @Provide public password: string;
 }
 

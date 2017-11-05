@@ -2,11 +2,12 @@
 import sys
 import json
 from io import StringIO
-tpl = '''export interface %s {
+header = 'import { Model, Provide } from "./baseModel";\n\n'
+tpl = '''export class %s extends Model {
 %s
-};'''
+};\n'''
 
-field = '    {}: {};'
+field = '    @Provide public {}: {};'
 
 typeMap = {'integer': 'number', 'file': 'any'}
 
@@ -38,8 +39,17 @@ def main(src, dist):
         models = data['definitions']
     [fromModel(sio, key, value) for key, value in models.items()]
     txt = sio.getvalue()
+    custom = None  # 自定义的model
+    with open(dist, 'r') as fd:
+        old = fd.read().splitlines()
+        index = [index for index, line in enumerate(old) if line.startswith('////')]
+        if index:
+            custom = '\n'.join(old[index[0]:])
     with open(dist, 'w') as fd:
+        fd.write(header)
         fd.write(txt)
+        fd.write('\n\n')
+        custom and fd.write(custom)
 
 
 if __name__ == '__main__':
