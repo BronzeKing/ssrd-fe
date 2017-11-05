@@ -10,13 +10,18 @@
     "build": "node build/build.js",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/e2e/specs",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,css,ts,vue}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "@types/qs": "^6.5.1",
     "axios": "^0.16.2",
     "babel-runtime": "^6.26.0",
     "element-ui": "^2.0.1",
+    "imagemin-webpack-plugin": "^1.5.2",
     "mint-ui": "^2.2.7",
     "pug": "^2.0.0-rc.3",
     "qs": "^6.5.0",
@@ -30,11 +35,12 @@
     "typescript": "^2.5.3",
     "typescript-loader": "^1.1.3",
     "viewerjs": "^0.8.0",
-    "vue": "^2.5.2",
+    "vue": "^2.5.3",
     "vue-baidu-map": "^0.15.1",
     "vue-property-decorator": "^6.0.0",
     "vue-router": "^3.0.1",
-    "vuex": "^2.5.0"
+    "vuex": "^2.5.0",
+    "webpack-parallel-uglify-plugin": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -47,7 +53,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "chalk": "^2.1.0",
-    "chromedriver": "^2.27.2",
+    "chromedriver": "^2.33.2",
     "connect-history-api-fallback": "^1.3.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
@@ -67,8 +73,10 @@
     "friendly-errors-webpack-plugin": "^1.1.3",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.3.0",
     "nightwatch": "^0.9.12",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.6.0",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "ora": "^1.2.0",
@@ -92,9 +100,5 @@
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
 }

@@ -1,5 +1,6 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
 import { Captcha, Password, Email } from "apis";
+
 @Component
 export default class Secure extends Vue {
   @Provide() passDialog = false;
@@ -10,8 +11,8 @@ export default class Secure extends Vue {
   @Provide() user = this.$store.state.user.user;
   @Provide()
   $refs: {
-    changeEmailForm: HTMLFormElement,
-    passForm: HTMLFormElement
+    changeEmailForm: HTMLFormElement;
+    passForm: HTMLFormElement;
   };
 
   changePassword() {
