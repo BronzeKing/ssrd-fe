@@ -6,7 +6,6 @@
                 el-breadcrumb-item(:to="{ name: 'manager' }") 管理中心
                 el-breadcrumb-item 我的消息
         div
-
             p {{Message.m.title}} 
             p {{Message.m.created}} 
 

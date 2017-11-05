@@ -24,8 +24,9 @@ export default [
         name: 'product',
         component: product,
         redirect: {name: productList},
-        meta: {
-            headerMenuIndex: 2
+        beforeEnter (to, from, next) {
+            to.meta.headerMenuIndex = 2;
+            next();
         },
         children: [
             {

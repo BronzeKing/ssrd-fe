@@ -33,7 +33,8 @@ import { mapGetters } from 'vuex';
 
 @Component
 export default class Header extends Vue {
-    @Provide() menu = [{ name: 'home', title: '首页' },
+    @Provide() menu = [
+        { name: 'home', title: '首页' },
         { name: 'system', title: '系统展示' },
         { name: 'product', title: '系统产品' },
         { name: 'product', title: '设备辅件' },
@@ -42,9 +43,18 @@ export default class Header extends Vue {
         { name: 'about', title: '关于我们' },
         { name: 'information', title: '资讯生活' }
     ];
-    @Provide() active = 0;
-    @Provide() getNavActive = this.$store.state.global.navBarActive;
-    @Provide() user = this.$store.state.user;
+
+    // 选中的菜单项索引值
+    public get getNavActive(){
+        return this.$store.state.global.navBarActive;
+    }
+
+    // 用户信息
+    public get user() {
+        return this.$store.state.user
+    }
+
+    // 退出登录
     logout () {
         this.$store.commit('logout');
     }
