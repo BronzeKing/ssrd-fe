@@ -19,11 +19,11 @@ import { Login }from "apis";
 @Component
 export default class LoginView extends Vue
 {
-    @Provide() logining: Boolean = false;
-    @Provide() LoginForm: string = '';
-    @Provide() Login: any = Login;
+    @Provide() logining = false;
+    @Provide() LoginForm = '';
+    @Provide() Login = Login;
     @Provide() icons: {[x: string]: string} = {qq: 'icon-qq', weixin: 'icon-wechat', weibo: 'icon-weibo'};
-    $refs: {
+    @Provide() $refs: {
         LoginForm: HTMLFormElement
     };
     loginSubmit () {
@@ -31,12 +31,13 @@ export default class LoginView extends Vue
             if (!valid) {
                 return;
             };
-            Login.create().then((r: any) => {
+            Login.create().then((r: Payload) => {
                 this.$message({
                     message: '登录成功',
                     type: 'success'
                 });
                 this.$router.push({name: 'home'});
+                this.$store.commit('token', r);
             });
             Login.retrieve().then((r: any) => {
                 this.$store.commit('login', r);

@@ -21,36 +21,28 @@
                 
         
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Project } from 'apis';
-export default {
-    name: 'project',
-    data () {
-        return {
-            Project: Project,
-            activeTab: 0,
-            tabs: ['全部项目', '进度类', '维护类', '签证类']
-        };
-    },
-    created () {
+@Component
+export default class ProjectView extends Vue
+{
+    @Provide() Project = Project;
+    @Provide() activeTab = 0;
+    @Provide() tabs = ['全部项目', '进度类', '维护类', '签证类'];
+    protected created () {
         Project.list();
-    },
-    watch: {
-    // 如果路由有变化，会再次执行该方法
-        '$route': 'init'
-    },
-    methods: {
-        rowClick (m) {
-            // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
-            this.$router.replace({name: 'projectDetail', params: { id: m.id }});
-        },
-        clickTab (tab, event) {
-            Project.list();
-        },
-        handleEdit () {
-        },
-        handleDelete () {
-        }
+    }
+    rowClick (m) {
+        // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
+        this.$router.replace({name: 'projectDetail', params: { id: m.id }});
+    }
+    clickTab (tab: any, event: any): void {
+        Project.list();
+    }
+    handleEdit () {
+    }
+    handleDelete () {
     }
 };
 </script>

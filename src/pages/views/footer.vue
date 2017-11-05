@@ -62,26 +62,24 @@
                 a(href="https://szcert.ebs.org.cn/1c48b07e-59b5-465f-822e-5516a71d59b4" target="_blank")
                     img(src="https://szcert.ebs.org.cn/Images/newGovIcon.gif")
 </template>
-<script>
-    import  { System } from 'apis';
-    export default {
-        name: 'login',
-        data () {
-            return  {
-                about: [
-                    {name: 'companyProfile', title: '关于我们'},
-                    {name: 'companyProfile', title: '公司简介'},
-                    {name: 'contactUs', title: '联系我们'},
-                    {name: 'honor', title: '荣誉资质'},
-                    {name: 'cooperativePartner', title: '合作伙伴'}
-                ],
-                System: System
-            };
-        },
-        created () {
-            System.list();
-        }
-    };
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import  { System } from 'apis';
+@Component
+export default class Views extends Vue
+{
+    @Provide() about = [
+        {name: 'companyProfile', title: '关于我们'},
+        {name: 'companyProfile', title: '公司简介'},
+        {name: 'contactUs', title: '联系我们'},
+        {name: 'honor', title: '荣誉资质'},
+        {name: 'cooperativePartner', title: '合作伙伴'}
+    ]
+    @Provide() System = System
+    protected created () {
+        System.list();
+    }
+}
 </script>
 <style lang="scss">
     @import "~scss/pages/views/footer.scss";

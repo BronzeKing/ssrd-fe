@@ -27,41 +27,26 @@
                     i.iconfont.icon-search
                     input.header-search-input(type="text" placeholder="请输入您要搜索的内容...") 
 </template>
-<script>
-import { Logout } from 'apis';
+<script lang="ts">
+import { Component, Provide, Vue } from "vue-property-decorator";
 import { mapGetters } from 'vuex';
 
-export default {
-    name: 'header',
-    data () {
-        return  {
-            menu: [{ name: 'home', title: '首页' },
-                { name: 'system', title: '系统展示' },
-                { name: 'product', title: '系统产品' },
-                { name: 'product', title: '设备辅件' },
-                { name: 'support', title: '服务与支持' },
-                { name: 'support', title: '展会协助' },
-                { name: 'about', title: '关于我们' },
-                { name: 'information', title: '资讯生活' }
-            ],
-            active: 0,
-            user: this.$store.state.user
-        };
-    },
-    computed: {
-        ...mapGetters(['getNavActive'])
-    },
-    methods: {
-        logout () {
-            this.$store.commit('logout');
-            delete localStorage.token;
-            Logout.retrieve().then(r => {
-                this.$message({
-                    message: '注销成功',
-                    type: 'success'
-                });
-            });
-        }
+@Component
+export default class Header extends Vue {
+    @Provide() menu = [{ name: 'home', title: '首页' },
+        { name: 'system', title: '系统展示' },
+        { name: 'product', title: '系统产品' },
+        { name: 'product', title: '设备辅件' },
+        { name: 'support', title: '服务与支持' },
+        { name: 'support', title: '展会协助' },
+        { name: 'about', title: '关于我们' },
+        { name: 'information', title: '资讯生活' }
+    ];
+    @Provide() active = 0;
+    @Provide() getNavActive = this.$store.state.global.navBarActive;
+    @Provide() user = this.$store.state.user;
+    logout () {
+        this.$store.commit('logout');
     }
 };
 </script>

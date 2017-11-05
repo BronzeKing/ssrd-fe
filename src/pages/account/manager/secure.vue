@@ -29,7 +29,7 @@
                         el-input(v-model="Email.m.email" auto-complete="off")
                     el-form-item(label="验证码" prop='captcha' :error="Email.errors.captcha")
                         el-input(v-model="Email.m.captcha" auto-complete="off")
-                        el-button(@click="Captcha.retrieve('email', Email.m.email)") 发送验证邮件
+                        el-button(@click="sendCaptcha") 发送验证邮件
                 div(slot="footer" class="dialog-footer")
                     el-button(@click="changeEmailDialog=false") 取消
                     el-button(type="primary" @click="changeEmail") 提交
@@ -41,55 +41,5 @@
             p 手机验证 您还未验证手机
             el-button 立即验证
 </template>
-<script>
-import  { Captcha, Password, Email } from 'apis';
-export default {
-    name: 'secure',
-    data () {
-        return {
-            passDialog: false,
-            changeEmailDialog: false,
-            Password: Password,
-            Captcha: Captcha,
-            Email: Email,
-            user: this.$store.state.user.user
-        };
-    },
-    methods: {
-        changePassword () {
-            this.$refs.passForm.validate(valid => {
-                if (valid) {
-                    this.passDialog = false;
-                    Password.create().then(r => {
-                        this.$message({
-                            message: '更改成功',
-                            type: 'success'
-                        });
-                    });
-                };
-            });
-        },
-        changeEmail () {
-            this.$refs.changeEmailForm.validate(valid => {
-                if (valid) {
-                    this.changeEmailDialog = false;
-                    Email.create().then(r => {
-                        this.$message({
-                            message: '发送成功',
-                            type: 'success'
-                        });
-                    });
-                };
-            });
-        },
-        sendCaptcha (Type, credential) {
-            Captcha.retrieve({Type: Type, credential: credential, action: 'resetPassword'}).then(r => {
-                this.$message({
-                    message: '更改成功',
-                    type: 'success'
-                });
-            });
-        }
-    }
-};
+<script lang="ts" src="./secure.ts">
 </script>
