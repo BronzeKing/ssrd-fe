@@ -157,12 +157,12 @@ export class Resource<T extends Model> {
     }
 
     // 更新单个资源
-    update(body: Payload = {}, config: Payload = {}): AxiosPromise {
+    update  (body: Payload = {}, config: Payload = {}): AxiosPromise {
         return this.request(body, config, "update");
     }
 
     // 删除单个资源
-    destroy(body: Payload, config: Payload = {}): AxiosPromise {
+    destroy   (body: Payload, config: Payload = {}): AxiosPromise {
         return this.request(body, config, "destroy");
     }
 }
