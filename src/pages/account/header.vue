@@ -29,7 +29,7 @@ export default class Header extends Vue
 </script>
 
 <style>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
+  .el-menu-vertical-demo:not(.el-menu-collapse) {
     width: 200px;
     min-height: 400px;
   }

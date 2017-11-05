@@ -202,7 +202,7 @@ export class ProjectLog extends Model {
     @Provide public attatchment: Document;
 };
 
-export class Document extends Model {
+export class Documents extends Model {
     // 附件
     @Provide public projectlog: ProjectLog;
     // ID

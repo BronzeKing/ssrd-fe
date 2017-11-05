@@ -36,11 +36,11 @@
             el-button(type="primary" @click="handleAuth") 确定
 
         el-dialog(title="项目签字" :visible.sync="dialog.sign")
-            el-form(ref="SignForm" :model="ProjectSign.m" :rules="ProjectSign.rules" label-width="120px" label-position="right")
+            el-form(ref="SignForm" :model="ProjectLog.m" :rules="ProjectLog.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
-                el-form-item(label="签字文件" prop="attatchment" :error="ProjectSign.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="ProjectSign.m.attatchment" action="uploadUrl" :auto-upload="false")
+                el-form-item(label="签字文件" prop="attatchment" :error="ProjectLog.errors.attatchment")
+                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="ProjectLog.m.attatchment" action="uploadUrl" :auto-upload="false")
                         el-button(size="small" type="primary") 点击上传
                         div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
             el-button(@click="dialog.sign = false") 取消
@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import  { Project, AuthorizeCode, ProjectSign } from 'apis';
+import  { Project, AuthorizeCode, ProjectLog } from 'apis';
 import { data } from './data';
 export default {
     name: 'projectTable',
@@ -123,7 +123,7 @@ export default {
             ...data,
             Project: Project,
             uploadUrl: '',
-            ProjectSign: ProjectSign,
+            ProjectLog: ProjectLog,
             AuthorizeCode: AuthorizeCode,
             dialog: {auth: false, sign: false, afterSale: false, audit: false, assist: false, jobJournal: false, design: false, delivery: false}
         };
@@ -228,7 +228,7 @@ export default {
             Project.m = row;
         },
         handleChange (file, fileList) {
-            ProjectSign.m.attatchment = fileList;
+            ProjectLog.m.attatchment = fileList;
         }
     }
 };

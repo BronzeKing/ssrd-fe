@@ -6,11 +6,11 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import Header from './header';
+import PageHeader from './header';
 @Component
 ({
     components:{
-        Header
+        PageHeader
     }
 })
 export default class Project extends Vue
