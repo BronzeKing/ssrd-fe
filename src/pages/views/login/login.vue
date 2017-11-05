@@ -2,8 +2,8 @@
     .login-content
         el-form.demo-loginForm.login-container(:model='Login.m' :rules='Login.rules' ref='LoginForm' label-position='left' label-width='0px')
             h3.title 系统登录
-            el-form-item(prop='username' :error='Login.errors.username')
-                el-input(type='text' v-model='Login.m.username' auto-complete='off' placeholder='手机、邮箱或授权码')
+            el-form-item(prop='email' :error='Login.errors.email')
+                el-input(type='text' v-model='Login.m.email' auto-complete='off' placeholder='手机、邮箱或授权码')
             el-form-item(prop='password' :error='Login.errors.password')
                 el-input(type='password' v-model='Login.m.password' auto-complete='off' placeholder='密码')
             el-form-item(style='width:100%;')

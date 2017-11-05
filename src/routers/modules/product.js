@@ -23,19 +23,13 @@ export default [
         path: '/product',
         name: 'product',
         component: product,
+        redirect: {name: productList},
         meta: {
             headerMenuIndex: 2
         },
         children: [
             {
                 path: '',
-                redirect: 'productList'
-                // meta: {
-                //     headerMenuIndex: 6
-                // }
-            },
-            {
-                path: 'productList',
                 name: 'productList',
                 component: productList,
                 meta: {

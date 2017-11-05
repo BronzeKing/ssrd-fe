@@ -30,23 +30,20 @@
         p {{Product.m.other}} 
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Product, Collect } from 'apis';
-export default {
-    name: 'productDetail',
-    data () {
-        return {
-            Product: Product,
-            Collect: Collect,
-            num: ''
-        };
-    },
-    created () {
+@Component
+export default class ProductDetail extends Vue
+{
+    @Provide() Product = Product;
+    @Provide() Collect = Collect;
+    @Provide() num = '';
+
+    protected created () {
         Product.retrieve({id: this.$route.params.id});
-    },
-    methods: {
-        put2Chart (item) {
-        }
+    }
+    put2Chart (item: any) {
     }
 };
 </script>

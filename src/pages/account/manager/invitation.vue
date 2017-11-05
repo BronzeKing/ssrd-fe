@@ -23,26 +23,24 @@
             el-pagination.mt5(@current-change="Invitation.list" :page-size="Invitation.t.pageSize" layout="prev, pager, next, jumper" :total="Invitation.t.PageCount" :current-page.sync="Invitation.t.pageIndex")
         
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Invitation } from 'apis';
-export default {
-    name: 'invitation',
-    data () {
-        return {
-            user: this.$store.state.user.user,
-            invitationDialog: false,
-            Invitation: Invitation
-        };
-    },
-    created () {
+@Component
+export default class InvitationView extends Vue
+{
+    @Provide() user = this.$store.state.user.user;
+    @Provide() invitationDialog = false;
+    @Provide() Invitation = Invitation;
+    protected created () {
         Invitation.list();
-    },
-    methods: {
-        invitationList () {
-            Invitation.list();
-        },
-        clickInvitation () {
-        }
+    }
+
+    invitationList () {
+        Invitation.list();
+    }
+
+    clickInvitation () {
     }
 };
 </script>

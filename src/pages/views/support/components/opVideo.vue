@@ -33,6 +33,12 @@ export default class OpVideoView extends Vue
     protected created (): void {
         OpVideo.list({source: this.source});
     };
+    @Watch('activeTab')
+    onTabChanged(val: number, oldVal: number) {
+        let name: string = this.tabs[val];
+        this.source = this.$store.state.home.env.document[name];
+    }
+
     player (row: any) {
         window.open(row.file);
     };
