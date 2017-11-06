@@ -86,7 +86,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename:
         process.env.NODE_ENV === "testing" ? "index.html" : config.build.index,
-      template: "index.html",
+      template: "index2.html",
       inject: true,
       minify: {
         removeComments: true,
@@ -127,6 +127,12 @@ var webpackConfig = merge(baseWebpackConfig, {
       pngquant: {
         quality: "80-90" // 压缩质量
       }
+    }),
+
+    // webpack.DllPlugin.js
+    new webpack.DllReferencePlugin({
+      context: path.resolve(__dirname, ".."),
+      manifest: require("./vendor-manifest.json")
     }),
 
     // copy custom static assets

@@ -11,16 +11,17 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run e2e",
     "lint": "eslint --ext .js,.vue src test/e2e/specs",
+    "build:dll": "webpack --config build/webpack.dll.conf.js",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json,css,ts,vue}": ["prettier --write", "git add"]
+    "*.{js,json,css,ts}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "@types/qs": "^6.5.1",
     "axios": "^0.16.2",
     "babel-runtime": "^6.26.0",
-    "element-ui": "^2.0.1",
+    "element-ui": "^2.0.3",
     "imagemin-webpack-plugin": "^1.5.2",
     "mint-ui": "^2.2.7",
     "pug": "^2.0.0-rc.3",

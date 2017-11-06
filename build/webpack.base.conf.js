@@ -1,42 +1,43 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
+var path = require("path");
+var utils = require("./utils");
+var webpack = require("webpack");
+var config = require("../config");
+var vueLoaderConfig = require("./vue-loader.conf");
 
-function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+function resolve(dir) {
+  return path.join(__dirname, "..", dir);
 }
 
 module.exports = {
   entry: {
-    app: './src/main.ts'
+    app: "./src/main.ts"
   },
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    filename: "[name].js",
+    publicPath:
+      process.env.NODE_ENV === "production"
+        ? config.build.assetsPublicPath
+        : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.ts'],
+    extensions: [".js", ".vue", ".json", ".ts"],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      'src': resolve('src'),
-      'apis': resolve('src/apis'),
-      'assets': resolve('src/assets'),
-      'common': resolve('src/common'),
-      'components': resolve('src/components'),
-      'configs': resolve('src/common/configs'),
-      'enums': resolve('src/common/enums'),
-      'filters': resolve('src/common/filters'),
-      'settings': resolve('src/common/settings'),
-      'utils': resolve('src/common/utils'),
-      'pages': resolve('src/pages'),
-      'routers': resolve('src/routers'),
-      'scss': resolve('src/scss'),
-      'vuexs': resolve('src/vuexs')
+      vue$: "vue/dist/vue.esm.js",
+      src: resolve("src"),
+      apis: resolve("src/apis"),
+      assets: resolve("src/assets"),
+      common: resolve("src/common"),
+      components: resolve("src/components"),
+      configs: resolve("src/common/configs"),
+      enums: resolve("src/common/enums"),
+      filters: resolve("src/common/filters"),
+      settings: resolve("src/common/settings"),
+      utils: resolve("src/common/utils"),
+      pages: resolve("src/pages"),
+      routers: resolve("src/routers"),
+      scss: resolve("src/scss"),
+      vuexs: resolve("src/vuexs")
     }
   },
   module: {
@@ -51,53 +52,47 @@ module.exports = {
       //   }
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        loader: "ts-loader",
         exclude: /node_modules|vue\/src/,
         options: {
-            appendTsSuffixTo: [/\.vue$/],
+          appendTsSuffixTo: [/\.vue$/]
         }
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: "vue-loader",
         options: vueLoaderConfig
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader?cacheDirectory=true',
-        include: [resolve('src'), resolve('test')]
+        loader: "babel-loader?cacheDirectory=true",
+        include: [resolve("src"), resolve("test")]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath("img/[name].[hash:7].[ext]")
         }
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+          name: utils.assetsPath("media/[name].[hash:7].[ext]")
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
-          publicPath: '../../'
+          name: utils.assetsPath("fonts/[name].[hash:7].[ext]"),
+          publicPath: "../../"
         }
       }
     ]
-  },
-  plugins: [
-    new webpack.DllReferencePlugin({
-        context: path.resolve(__dirname, '..'),
-        manifest: require('./vendor-manifest.json')
-    })
-  ]
-}
+  }
+};

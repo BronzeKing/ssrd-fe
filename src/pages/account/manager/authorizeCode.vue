@@ -30,7 +30,12 @@ import  { AuthorizeCode } from 'apis';
 export default class Home extends Vue
 {
     @Provide() env: Payload = this.$store.state.home.env;
-    @Provide() statusList = ['-1', '1', '0'].map(x => { return { value: x, label: this.$store.state.home.env.status[x] + '授权码' }; });
+    @Provide() statusList = ['-1', '1', '0'].map(x => { 
+        return {
+            value: x, 
+            label: this.$store.state.home.env.status[x] + '授权码'
+        }; 
+    });
     @Provide() AuthorizeCode = AuthorizeCode;
     protected created () {
         AuthorizeCode.list();
