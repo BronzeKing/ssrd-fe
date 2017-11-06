@@ -14,7 +14,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json,css,ts,vue}": ["prettier --write", "git add"]
+    "*.{js,json,css,ts}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "@types/qs": "^6.5.1",
