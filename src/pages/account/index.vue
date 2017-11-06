@@ -1,8 +1,9 @@
 <template lang="pug">
     .views
         .container.pt20
-            page-header
+            //- page-header
             router-view
+        page-footer
 </template>
 
 <script lang="ts">

@@ -17,6 +17,7 @@ import { SIDEBAR } from './sidebar';
 export default class Header extends Vue
 {
     @Provide() sidebar = SIDEBAR;
+    @Provide() isCollapse = false;
     handleOpen (key: string, keyPath: string) {
     }
     handleClose (key: string, keyPath: string) {

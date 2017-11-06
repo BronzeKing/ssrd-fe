@@ -33,7 +33,7 @@ export default class ProjectView extends Vue
     protected created () {
         Project.list();
     }
-    rowClick (m) {
+    rowClick (m: any) {
         // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
         this.$router.replace({name: 'projectDetail', params: { id: m.id }});
     }

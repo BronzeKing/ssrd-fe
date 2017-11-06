@@ -54,4 +54,5 @@ export default class Secure extends Vue {
       });
     });
   }
+  handleClick() {}
 }

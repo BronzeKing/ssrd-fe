@@ -1,5 +1,9 @@
 const index = (r: any) =>
-  require.ensure([], () => r(require("pages/account/index")), "project");
+  require.ensure(
+    [],
+    () => r(require("pages/account/project/index")),
+    "project"
+  );
 const project = (r: any) =>
   require.ensure(
     [],
