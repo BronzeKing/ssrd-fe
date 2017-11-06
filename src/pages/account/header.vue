@@ -1,8 +1,5 @@
 <template lang="pug">
     .page-header
-        el-radio-group(v-model="isCollapse", style="margin-bottom: 20px;")
-            el-radio-button(:label="false") 展开
-            el-radio-button(:label="true") 收起
         el-menu.el-menu-vertical-demo(default-active="", @open="handleOpen", @close="handleClose", :collapse="isCollapse" :unique-opened="true" :router="true")
             el-submenu(v-for="(menu, index) in sidebar" :key="index" :index="String(index)")
                 template(slot="title")
@@ -20,7 +17,6 @@ import { SIDEBAR } from './sidebar';
 export default class Header extends Vue
 {
     @Provide() sidebar = SIDEBAR;
-    @Provide() isCollapse = false;
     handleOpen (key: string, keyPath: string) {
     }
     handleClose (key: string, keyPath: string) {
@@ -28,10 +24,13 @@ export default class Header extends Vue
 };
 </script>
 
-<style>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-
-    width: 200px;
-    min-height: 400px;
-  }
+<style lang="scss" scoped>
+.page-header{
+    width: 290px;
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 200px;
+        min-height: 400px;
+    }
+}
+  
 </style>

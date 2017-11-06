@@ -4,6 +4,7 @@ import { Captcha, Password, Email } from "apis";
 @Component
 export default class Secure extends Vue {
   @Provide() passDialog = false;
+  @Provide() activeName = "1";
   @Provide() changeEmailDialog = false;
   @Provide() Password = Password;
   @Provide() Captcha = Captcha;

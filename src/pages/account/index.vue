@@ -1,7 +1,8 @@
 <template lang="pug">
     .views
-        page-header
-        router-view
+        .container.pt20
+            page-header
+            router-view
 </template>
 
 <script lang="ts">
@@ -17,3 +18,13 @@ export default class Project extends Vue
 {
 };
 </script>
+<style lang="scss" scoped>
+.views{
+    background-color: #f1f1f1;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+</style>
