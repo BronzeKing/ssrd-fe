@@ -97,7 +97,9 @@ export class Resource<T extends Model> {
     const data = this.m.populate(body).serialize();
     const form = new FormData();
     Object.keys(data).forEach(x => {
-      form.append(x, data[x]);
+      if (data[x]) {
+        form.append(x, data[x]);
+      }
     });
     return form;
   }

@@ -1,0 +1,163 @@
+import { Component, Provide, Vue, Prop } from "vue-property-decorator";
+import { Project, AuthorizeCode, ProjectLog } from "apis";
+import { data } from "./data";
+
+@Component
+export default class ProjectTable extends Vue {
+  @Provide() Project = Project;
+  @Provide() uploadUrl = "";
+  @Provide() ProjectLog = ProjectLog;
+  @Provide() AuthorizeCode = AuthorizeCode;
+  @Provide() audit = data.audit;
+  @Provide() assist = data.assist;
+  @Provide() jobJournal = data.jobJournal;
+  @Provide() design = data.design;
+  @Provide() delivery = data.delivery;
+
+  // auth 项目授权
+  // sign 项目签证
+  // afterSale 售后申请
+  // audit 项目审核
+  // assist 项目协助
+  // jobJournal 工作日志
+  // design 上传设计
+  // delivery 分发
+  // 该属性用于控制dialog是否显示
+  @Provide()
+  dialog: { [x: string]: Boolean } = {
+    auth: false,
+    sign: false,
+    afterSale: false,
+    audit: false,
+    assist: false,
+    jobJournal: false,
+    design: false,
+    delivery: false
+  };
+
+  @Provide()
+  $refs: {
+    AuthForm: HTMLFormElement;
+    SignForm: HTMLFormElement;
+    AssistForm: HTMLFormElement;
+    JobJournalForm: HTMLFormElement;
+    DesignForm: HTMLFormElement;
+    DeliveryForm: HTMLFormElement;
+  };
+
+  // search: 是否显示搜索控件， pagination: 是否显示分页控件
+  @Prop({ default: { search: false, pagination: false } })
+  show: { search: Boolean; pagination: Boolean };
+
+  created() {
+    Project.list();
+  }
+  rowClick(m: any) {}
+  clickTab(tab: any, event: any) {
+    Project.list();
+  }
+  handleAuth() {
+    this.$refs.AuthForm.validate((v: Boolean) => {
+      if (v) {
+        AuthorizeCode.create({
+          name: AuthorizeCode.m.name,
+          projectId: Project.m.id
+        }).then(r => {
+          this.dialog.auth = false;
+          this.$message({
+            message: "授权成功",
+            type: "success"
+          });
+        });
+      }
+    });
+  }
+  handleSign() {
+    this.$refs.SignForm.validate((v: Boolean) => {
+      if (v) {
+        this.dialog.sign = false;
+        AuthorizeCode.create({
+          name: AuthorizeCode.m.name,
+          projectId: Project.m.id
+        }).then(r => {
+          this.$message({
+            message: "签字成功",
+            type: "success"
+          });
+        });
+      }
+    });
+  }
+  handleAssist() {
+    this.$refs.AssistForm.validate((v: Boolean) => {
+      if (v) {
+        this.dialog.assist = false;
+        AuthorizeCode.create({
+          name: AuthorizeCode.m.name,
+          projectId: Project.m.id
+        }).then(r => {
+          this.$message({
+            message: "签字成功",
+            type: "success"
+          });
+        });
+      }
+    });
+  }
+  handleJobJournal() {
+    this.$refs.JobJournalForm.validate((v: Boolean) => {
+      if (v) {
+        this.dialog.jobJournal = false;
+        AuthorizeCode.create({
+          name: AuthorizeCode.m.name,
+          projectId: Project.m.id
+        }).then(r => {
+          this.$message({
+            message: "签字成功",
+            type: "success"
+          });
+        });
+      }
+    });
+  }
+  handleDesign() {
+    this.$refs.DesignForm.validate((v: Boolean) => {
+      if (v) {
+        this.dialog.design = false;
+        AuthorizeCode.create({
+          name: AuthorizeCode.m.name,
+          projectId: Project.m.id
+        }).then(r => {
+          this.$message({
+            message: "签字成功",
+            type: "success"
+          });
+        });
+      }
+    });
+  }
+  handleDelivery() {
+    this.$refs.DeliveryForm.validate((v: Boolean) => {
+      if (v) {
+        this.dialog.delivery = false;
+        AuthorizeCode.create({
+          name: AuthorizeCode.m.name,
+          projectId: Project.m.id
+        }).then(r => {
+          this.$message({
+            message: "签字成功",
+            type: "success"
+          });
+        });
+      }
+    });
+  }
+  handleAfterSave() {}
+  handleDialog(row: any, dialog: string): void {
+    this.dialog[dialog] = true;
+    Project.m = row;
+  }
+  handleChange(file: any, fileList: any): void {
+    ProjectLog.m.attatchment = fileList;
+  }
+}

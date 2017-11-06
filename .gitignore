@@ -12,6 +12,8 @@ test/e2e/reports
 selenium-debug.log
 package-lock.json
 
+test.js
+test.ts
 # Editor directories and files
 .idea
 *.suo
