@@ -98,7 +98,6 @@ export class Resource<T extends Model> {
     const data = assign({}, this.m.serialize(), body);
     const form = new FormData();
     Object.keys(data).forEach(x => {
-      debugger;
       let obj = data[x];
       if (obj) {
         // 当上传多个文件时，逐个把文件append进FormData

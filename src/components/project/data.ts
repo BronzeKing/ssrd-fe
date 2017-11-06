@@ -118,26 +118,19 @@ export const data = {
   design: {
     errors: {
       attatchment: "",
-      price: ""
+      content: ""
     },
     rules: {
-      price: [
+      content: [
         {
           required: true,
           message: "请填写报价",
           trigger: "blur"
         }
-      ],
-      attatchment: [
-        {
-          required: true,
-          message: "请上传设计文件",
-          trigger: "blur"
-        }
       ]
     },
     data: {
-      price: "",
+      content: "",
       attatchment: []
     }
   },
@@ -151,13 +144,6 @@ export const data = {
         {
           required: true,
           message: "请填写缺货项",
-          trigger: "blur"
-        }
-      ],
-      attatchment: [
-        {
-          required: true,
-          message: "请上传缺货清单",
           trigger: "blur"
         }
       ]

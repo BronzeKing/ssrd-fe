@@ -54,7 +54,7 @@
                     el-input(v-model="audit.data.content" auto-complete="off" type="textarea")
             el-button(@click="dialog.audit = false") 取消
             el-button(@click="dialog.audit = false") 驳回
-            el-button(type="primary" @click="handleSign") 通过
+            el-button(type="primary" @click="handleAudit") 通过
 
         el-dialog(title="协助申请" :visible.sync="dialog.assist")
             el-form(ref="AssistForm" :model="assist.data" :rules="assist.rules" label-width="120px" label-position="right")
@@ -87,14 +87,14 @@
             el-form(ref="DesignForm" :model="design.data" :rules="design.rules" label-width="120px" label-position="right")
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
-                el-form-item(label="报价" prop="price" :error="design.errors.price")
-                    el-input(v-model="jobJournal.data.content" auto-complete="off")
+                el-form-item(label="报价" prop="content" :error="design.errors.content")
+                    el-input(v-model="design.data.content" auto-complete="off")
                 el-form-item(label="设计文件" prop="attatchment" :error="design.errors.attatchment")
                     el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="design.data.attatchment" action="uploadUrl" :auto-upload="false")
                         el-button(size="small" type="primary") 点击上传
                         div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
             el-button(@click="dialog.design = false") 取消
-            el-button(type="primary" @click="handleJobJournal") 确认
+            el-button(type="primary" @click="handleDesign") 确认
 
         el-dialog(title="项目发货记录" :visible.sync="dialog.delivery")
             el-form(ref="DeliveryForm" :model="delivery.data" :rules="delivery.rules" label-width="120px" label-position="right")
@@ -103,7 +103,7 @@
                 el-form-item(label="缺货清单" prop="number" :error="delivery.errors.number")
                     div
                         p 共计缺货
-                        el-input-number(v-model="design.data.number" controls-position="right" :min="1")
+                        el-input-number(v-model="delivery.data.number" controls-position="right" :min="1")
                         p 项
                 el-form-item(label="缺货清单文件" prop="attatchment" :error="delivery.errors.attatchment")
                     el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="delivery.data.attatchment" action="uploadUrl" :auto-upload="false")

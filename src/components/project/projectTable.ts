@@ -21,7 +21,7 @@ export default class ProjectTable extends Vue {
   // assist 项目协助
   // jobJournal 工作日志
   // design 上传设计
-  // delivery 分发
+  // delivery 仓库发货
   // 该属性用于控制dialog是否显示
   @Provide()
   dialog: { [x: string]: Boolean } = {
@@ -39,6 +39,7 @@ export default class ProjectTable extends Vue {
   $refs: {
     AuthForm: HTMLFormElement;
     SignForm: HTMLFormElement;
+    AuditForm: HTMLFormElement;
     AssistForm: HTMLFormElement;
     JobJournalForm: HTMLFormElement;
     DesignForm: HTMLFormElement;
@@ -78,8 +79,9 @@ export default class ProjectTable extends Vue {
   handleSign() {
     this.$refs.SignForm.validate((v: Boolean) => {
       if (v) {
-        AuthorizeCode.create({
-          name: AuthorizeCode.m.name,
+        ProjectLog.create({
+          attatchment: ProjectLog.m.attatchment,
+          action: this.env.projectLog["签字"],
           projectId: Project.m.id
         }).then(r => {
           this.dialog.sign = false;
@@ -91,16 +93,34 @@ export default class ProjectTable extends Vue {
       }
     });
   }
+  handleAudit() {
+    this.$refs.AuditForm.validate((v: Boolean) => {
+      if (v) {
+        ProjectLog.create({
+          content: this.audit.data.content,
+          action: this.env.projectLog["审核"],
+          projectId: Project.m.id
+        }).then(r => {
+          this.dialog.audit = false;
+          this.$message({
+            message: "审核成功",
+            type: "success"
+          });
+        });
+      }
+    });
+  }
   handleAssist() {
     this.$refs.AssistForm.validate((v: Boolean) => {
       if (v) {
-        this.dialog.assist = false;
-        AuthorizeCode.create({
-          name: AuthorizeCode.m.name,
+        ProjectLog.create({
+          content: this.audit.data.content,
+          action: this.env.projectLog["审核"],
           projectId: Project.m.id
         }).then(r => {
+          this.dialog.assist = false;
           this.$message({
-            message: "签字成功",
+            message: "申请成功",
             type: "success"
           });
         });
@@ -129,13 +149,15 @@ export default class ProjectTable extends Vue {
   handleDesign() {
     this.$refs.DesignForm.validate((v: Boolean) => {
       if (v) {
-        AuthorizeCode.create({
-          name: AuthorizeCode.m.name,
+        ProjectLog.create({
+          content: this.design.data.content,
+          attatchment: ProjectLog.m.attatchment,
+          action: this.env.projectLog["设计报价"],
           projectId: Project.m.id
         }).then(r => {
           this.dialog.design = false;
           this.$message({
-            message: "签字成功",
+            message: "上传成功",
             type: "success"
           });
         });
@@ -145,8 +167,10 @@ export default class ProjectTable extends Vue {
   handleDelivery() {
     this.$refs.DeliveryForm.validate((v: Boolean) => {
       if (v) {
-        AuthorizeCode.create({
-          name: AuthorizeCode.m.name,
+        ProjectLog.create({
+          number: this.delivery.data.number,
+          attatchment: ProjectLog.m.attatchment,
+          action: this.env.projectLog["设计报价"],
           projectId: Project.m.id
         }).then(r => {
           this.dialog.delivery = false;
