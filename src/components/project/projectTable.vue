@@ -75,7 +75,7 @@
                 el-form-item(label="工作内容" prop="content" :error="jobJournal.errors.content")
                     el-input(v-model="jobJournal.data.content" auto-complete="off" type="textarea")
                 el-form-item(label="照片类型")
-                    el-cascader(:options="jobJournal.data.options" v-model="jobJournal.data.type")
+                    el-cascader(:options="jobJournal.options" v-model="jobJournal.data.type")
                 el-form-item(label="工作照片" prop="attatchment" :error="jobJournal.errors.attatchment")
                     el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="jobJournal.data.attatchment" action="uploadUrl" :auto-upload="false")
                         el-button(size="small" type="primary") 点击上传

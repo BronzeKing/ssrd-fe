@@ -2,6 +2,7 @@
  * 基于RESTFUL封装ajax
  */
 import ajax from "utils/ajax";
+import { assign } from "utils/extends";
 import { Model } from "./baseModel";
 import { AxiosPromise, AxiosInstance } from "axios";
 
@@ -94,11 +95,20 @@ export class Resource<T extends Model> {
     * @参数 body: 请求的body
     */
   formData(body: Payload): FormData {
-    const data = this.m.populate(body).serialize();
+    const data = assign({}, this.m.serialize(), body);
     const form = new FormData();
     Object.keys(data).forEach(x => {
-      if (data[x]) {
-        form.append(x, data[x]);
+      debugger;
+      let obj = data[x];
+      if (obj) {
+        // 当上传多个文件时，逐个把文件append进FormData
+        if (obj.constructor == Array && obj[0].url) {
+          obj.forEach((file: any) => {
+            form.append(x, file.raw);
+          });
+        } else {
+          form.append(x, obj);
+        }
       }
     });
     return form;

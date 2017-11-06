@@ -54,65 +54,65 @@ export const data = {
         }
       ]
     },
+    options: [
+      {
+        value: "enterInto",
+        label: "进场照片",
+        children: [
+          {
+            value: "admission",
+            label: "进场凭证"
+          },
+          {
+            value: "implement",
+            label: "施工凭证"
+          },
+          {
+            value: "complete",
+            label: "竣工凭证"
+          },
+          {
+            value: "checked",
+            label: "验收凭证"
+          },
+          {
+            value: "other",
+            label: "其他"
+          }
+        ]
+      },
+      {
+        value: "leave",
+        label: "离场照片",
+        children: [
+          {
+            value: "admission",
+            label: "进场凭证"
+          },
+          {
+            value: "implement",
+            label: "施工凭证"
+          },
+          {
+            value: "complete",
+            label: "竣工凭证"
+          },
+          {
+            value: "checked",
+            label: "验收凭证"
+          },
+          {
+            value: "other",
+            label: "其他"
+          }
+        ]
+      }
+    ],
     data: {
       content: "",
       type: [],
       date: new Date(),
-      attatchment: [],
-      options: [
-        {
-          value: "enterInto",
-          label: "进场照片",
-          children: [
-            {
-              value: "admission",
-              label: "进场凭证"
-            },
-            {
-              value: "implement",
-              label: "施工凭证"
-            },
-            {
-              value: "complete",
-              label: "竣工凭证"
-            },
-            {
-              value: "checked",
-              label: "验收凭证"
-            },
-            {
-              value: "other",
-              label: "其他"
-            }
-          ]
-        },
-        {
-          value: "leave",
-          label: "离场照片",
-          children: [
-            {
-              value: "admission",
-              label: "进场凭证"
-            },
-            {
-              value: "implement",
-              label: "施工凭证"
-            },
-            {
-              value: "complete",
-              label: "竣工凭证"
-            },
-            {
-              value: "checked",
-              label: "验收凭证"
-            },
-            {
-              value: "other",
-              label: "其他"
-            }
-          ]
-        }
-      ]
+      attatchment: []
     }
   },
   design: {

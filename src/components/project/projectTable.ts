@@ -44,6 +44,9 @@ export default class ProjectTable extends Vue {
     DesignForm: HTMLFormElement;
     DeliveryForm: HTMLFormElement;
   };
+  public get env() {
+    return this.$store.state.home.env;
+  }
 
   // search: 是否显示搜索控件， pagination: 是否显示分页控件
   @Prop({ default: { search: false, pagination: false } })
@@ -75,11 +78,11 @@ export default class ProjectTable extends Vue {
   handleSign() {
     this.$refs.SignForm.validate((v: Boolean) => {
       if (v) {
-        this.dialog.sign = false;
         AuthorizeCode.create({
           name: AuthorizeCode.m.name,
           projectId: Project.m.id
         }).then(r => {
+          this.dialog.sign = false;
           this.$message({
             message: "签字成功",
             type: "success"
@@ -107,13 +110,16 @@ export default class ProjectTable extends Vue {
   handleJobJournal() {
     this.$refs.JobJournalForm.validate((v: Boolean) => {
       if (v) {
-        this.dialog.jobJournal = false;
-        AuthorizeCode.create({
-          name: AuthorizeCode.m.name,
+        ProjectLog.create({
+          date: this.jobJournal.data.date,
+          content: this.jobJournal.data.content,
+          attatchment: ProjectLog.m.attatchment,
+          action: this.env.projectLog["工作日志"],
           projectId: Project.m.id
         }).then(r => {
+          this.dialog.jobJournal = false;
           this.$message({
-            message: "签字成功",
+            message: "提交成功",
             type: "success"
           });
         });
@@ -123,11 +129,11 @@ export default class ProjectTable extends Vue {
   handleDesign() {
     this.$refs.DesignForm.validate((v: Boolean) => {
       if (v) {
-        this.dialog.design = false;
         AuthorizeCode.create({
           name: AuthorizeCode.m.name,
           projectId: Project.m.id
         }).then(r => {
+          this.dialog.design = false;
           this.$message({
             message: "签字成功",
             type: "success"
@@ -139,11 +145,11 @@ export default class ProjectTable extends Vue {
   handleDelivery() {
     this.$refs.DeliveryForm.validate((v: Boolean) => {
       if (v) {
-        this.dialog.delivery = false;
         AuthorizeCode.create({
           name: AuthorizeCode.m.name,
           projectId: Project.m.id
         }).then(r => {
+          this.dialog.delivery = false;
           this.$message({
             message: "签字成功",
             type: "success"
