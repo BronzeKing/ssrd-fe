@@ -41,6 +41,7 @@
     "vue-property-decorator": "^6.0.0",
     "vue-router": "^3.0.1",
     "vuex": "^v3.0.1",
+    "vuex-class": "^0.3.0",
     "webpack-parallel-uglify-plugin": "^1.0.0"
   },
   "devDependencies": {

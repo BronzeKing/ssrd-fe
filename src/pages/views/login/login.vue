@@ -26,6 +26,10 @@ export default class LoginView extends Vue
     @Provide() $refs: {
         LoginForm: HTMLFormElement
     };
+    mounted() {
+        this.$store.commit('logout');
+    }
+
     loginSubmit () {
         this.$refs.LoginForm.validate((valid: Boolean) => {
             if (!valid) {

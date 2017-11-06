@@ -1,10 +1,10 @@
 import Vue from "vue";
-import Router from "vue-router";
+import Router, { Route } from "vue-router";
 import store from "vuexs";
 
 import views from "./modules/views";
 import account from "./account";
-const error = r =>
+const error = (r: any) =>
   require.ensure([], () => r(require("pages/views/error")), "views");
 // const viewsPage = r => require.ensure([], () => r(require('pages/views/views')), 'views');
 
@@ -17,12 +17,12 @@ const route = new Router({
       name: "error",
       component: error
     },
-    views
-    // ...account
+    views,
+    account
   ]
 });
 
-route.afterEach((to, from) => {
+route.afterEach((to: Route, from: Route) => {
   // 设置页面标题
   if (to.meta.title) {
     let title = to.meta.title || "深圳市盛世润达智能科技有限公司";
