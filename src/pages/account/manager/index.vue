@@ -1,21 +1,19 @@
 <template lang="pug">
     .views
-        //- page-header
+        slider
         router-view
-        page-footer
 </template>
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-// import PageHeader from './slider';
-import pageFooter from '../views/footer.vue';
+import Slider from '../slider.vue';
 @Component
 ({
     components:{
-        pageFooter
+        Slider
     }
 })
-export default class Account extends Vue
+export default class Manager extends Vue
 {
 };
 </script>

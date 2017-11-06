@@ -1,5 +1,9 @@
 const index = (r: any) =>
-  require.ensure([], () => r(require("pages/account/index")), "manager");
+  require.ensure(
+    [],
+    () => r(require("pages/account/manager/index")),
+    "manager"
+  );
 const secure = (r: any) =>
   require.ensure(
     [],
