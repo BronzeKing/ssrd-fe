@@ -1,5 +1,5 @@
 <template lang="pug">
-    div
+    div.mt20
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页

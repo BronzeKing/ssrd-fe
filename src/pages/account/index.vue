@@ -1,6 +1,6 @@
 <template lang="pug">
     .views
-        //- page-header
+        page-header
         router-view
         page-footer
 </template>
@@ -9,10 +9,12 @@
 import { Component, Provide, Vue } from 'vue-property-decorator';
 // import PageHeader from './slider';
 import pageFooter from '../views/footer.vue';
+import pageHeader from './header.vue';
 @Component
 ({
     components:{
-        pageFooter
+        pageFooter,
+        pageHeader
     }
 })
 export default class Account extends Vue

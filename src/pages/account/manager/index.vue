@@ -1,5 +1,5 @@
 <template lang="pug">
-    .container
+    .container.mt20
         slider
         router-view
 </template>
