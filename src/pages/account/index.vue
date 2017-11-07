@@ -1,8 +1,7 @@
 <template lang="pug">
     .views
-        .container.pt20
-            //- page-header
-            router-view
+        //- page-header
+        router-view
         page-footer
 </template>
 
@@ -24,9 +23,5 @@ export default class Account extends Vue
 .views{
     background-color: #f1f1f1;
 }
-.container{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
+
 </style>

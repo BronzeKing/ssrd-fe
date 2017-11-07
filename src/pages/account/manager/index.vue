@@ -1,5 +1,5 @@
 <template lang="pug">
-    .views
+    .container
         slider
         router-view
 </template>
@@ -17,3 +17,11 @@ export default class Manager extends Vue
 {
 };
 </script>
+<style lang="scss" scoped>
+.container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+</style>
