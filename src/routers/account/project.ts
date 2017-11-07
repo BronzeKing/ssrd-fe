@@ -16,6 +16,18 @@ const projectDetail = (r: any) =>
     () => r(require("pages/account/project/projectDetail")),
     "project"
   );
+const projectCreate = (r: any) =>
+  require.ensure(
+    [],
+    () => r(require("pages/account/project/projectCreate")),
+    "project"
+  );
+const projectCreateDetail = (r: any) =>
+  require.ensure(
+    [],
+    () => r(require("pages/account/project/projectCreateDetail")),
+    "project"
+  );
 export default [
   {
     path: "/project",
@@ -33,5 +45,15 @@ export default [
         component: projectDetail
       }
     ]
+  },
+  {
+    path: "projectCreate",
+    name: "projectCreate",
+    component: projectCreate
+  },
+  {
+    path: "projectCreate/:id",
+    name: "projectCreateDetail",
+    component: projectCreateDetail
   }
 ];

@@ -170,7 +170,7 @@ export default class ProjectTable extends Vue {
         ProjectLog.create({
           number: this.delivery.data.number,
           attatchment: ProjectLog.m.attatchment,
-          action: this.env.projectLog["设计报价"],
+          action: this.env.projectLog["发送成功"],
           projectId: Project.m.id
         }).then(r => {
           this.dialog.delivery = false;

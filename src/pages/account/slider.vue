@@ -1,6 +1,6 @@
 <template lang="pug">
     .page-header
-        el-menu.el-menu-vertical-demo(default-active="", @open="handleOpen", @close="handleClose", :collapse="isCollapse" :unique-opened="true" :router="true")
+        el-menu.el-menu-vertical-demo(default-active="" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :unique-opened="true" :router="true")
             el-submenu(v-for="(menu, index) in sidebar" :key="index" :index="String(index)")
                 template(slot="title")
                     i.el-icon-message
