@@ -13,6 +13,7 @@
 </template>
 
 <script lang="ts">
+// 项目动态
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Project} from 'apis';
 import { projectTable } from 'components';

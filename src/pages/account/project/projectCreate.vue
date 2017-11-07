@@ -13,6 +13,7 @@
 
 </template>
 <script lang="ts">
+// 新建项目
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { System } from 'apis';
 @Component

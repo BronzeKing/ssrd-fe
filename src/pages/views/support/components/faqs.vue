@@ -27,7 +27,13 @@ export default class FaqsView extends Vue
     @Provide() Faqs: any = Faqs;
     @Provide() action: string = 'list';
 
+    protected created() {
+        this.init()
+    }
     @Watch("$route")
+    onRouteChange() {
+        this.init()
+    }
     init () {
         if (this.$route.params.id) {
             this.action = 'detail';

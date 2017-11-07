@@ -3,9 +3,16 @@ import { News } from "apis";
 
 @Component
 export default class NewsDetail extends Vue {
-  @Provide() News = News;
-  @Watch("$route")
-  onRouteChange() {
-    News.retrieve({ id: this.$route.params.id });
-  }
+    @Provide() News = News;
+
+    protected created() {
+        this.init();
+    }
+    @Watch("$route")
+    onRouteChange() {
+        this.init();
+    }
+    init() {
+        News.retrieve({ id: this.$route.params.id });
+    }
 }

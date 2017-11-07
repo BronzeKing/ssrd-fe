@@ -48,6 +48,7 @@
 
 </template>
 <script lang="ts">
+// 项目详情页面
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Project, ProjectLog } from 'apis';
 @Component

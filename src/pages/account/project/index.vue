@@ -22,6 +22,7 @@
         
 </template>
 <script lang="ts">
+// 项目管理页面
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Project } from 'apis';
 @Component

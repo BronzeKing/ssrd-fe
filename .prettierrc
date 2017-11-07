@@ -1,7 +1,4 @@
-// 参考https://github.com/prettier/prettier
 {
-    "tabWidth": 4, // 格式化长度
-    "printWidth": 100 // 视觉换行长度，通常为80
-        // "singleQuote": false,    // 是否单引号
-        // "trailingComma": "es5"   // 是否在object,array结尾保留逗号
+    "tabWidth": 4,
+    "printWidth": 100
 }

@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts">
+// 侧边栏
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import { SIDEBAR } from './sidebar';
 
