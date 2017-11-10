@@ -7,8 +7,8 @@
                 h2 个人中心
             nav
                 router-link(class="user-header-link active" to="/home") 首页
-                router-link(class="user-header-link" to="/home") 账户设置
-                router-link(class="user-header-link" to="/home") 消息
+                router-link(class="user-header-link" :to="{name: 'secure'}") 账户设置
+                router-link(class="user-header-link" :to="{name: 'message'}") 消息
                 router-link(class="user-header-link" to="/home") 购物车
 </template>
 

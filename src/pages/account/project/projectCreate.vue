@@ -3,7 +3,7 @@
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
-                el-breadcrumb-item(:to="{ name: 'project' }") 项目中心
+                el-breadcrumb-item(:to="{ name: 'order' }") 订单中心
                 el-breadcrumb-item 新建项目
         div
             div(v-for="item in System.t.Records" :key="item.id")
