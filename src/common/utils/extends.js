@@ -102,21 +102,17 @@ const n2br = text => {
 /**
     * @说明 生成options的数据
     * @参数 options eg.['其他']
+    * @参数 defaultValue 返回的items 里value的默认值
+    * @参数 value 返回的value的默认值
     * @返回值  eg. [{name: '其他', value: '其他']
 */
-const getOptions = function(options) {
-    return options.map(x => {
-        return { name: x, value: x };
-    });
+const Option = function(options, defaultValue, value) {
+    return {
+        items: options.map(x => {
+            return { name: x, value: String(defaultValue === null ? x : defaultValue) };
+        }),
+        value: value
+    };
 };
 
-export {
-    assign,
-    isEmptyObject,
-    getUrlParams,
-    toUrlParams,
-    isMobileNumber,
-    typeOf,
-    n2br,
-    getOptions
-};
+export { assign, isEmptyObject, getUrlParams, toUrlParams, isMobileNumber, typeOf, n2br, Option };

@@ -7,33 +7,67 @@
                 el-breadcrumb-item 新建项目
         div
             div(v-show="index===0")
-                el-form(ref="form" :model="data" label-width="80px")
+                el-form(ref="form" :model="labor" label-width="80px")
                     el-form-item(label="区域")
-                        el-select(v-model="data.area" placeholder="请选择")
-                            el-option(v-for="(item, index) in  options.area" :key="index" :label="item.name" :value="item.value")
-                    el-form-item(label="大门数量")
-                        el-input-number(v-model="data.door" controls-position="right" :min="1" :max="100000")
+                        div(v-for="(item, index) in labor.区域选择.items" :key="index")
+                            p {{item.name}}大门数量
+                            el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
                     el-form-item(label="闸机类型")
-                        el-select(v-model="data.gate" placeholder="请选择")
-                            el-option(v-for="(item, index) in  options.gate" :key="index" :label="item.name" :value="item.value")
-                    el-form-item(label="闸机数量")
-                        el-input-number(v-model="data.gateNumber" controls-position="right" :min="1" :max="100000")
+                        div(v-for="(item, index) in labor.闸机.items" :key="index")
+                            p {{item.name}}数量
+                            el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
                     el-form-item(label="通行方式")
-                        el-select(v-model="data.passage" placeholder="请选择")
-                            el-option(v-for="(item, index) in  options.passage" :key="index" :label="item.name" :value="item.value")
-                    el-form-item(label="数量")
-                        el-input-number(v-model="data.passageNumber" controls-position="right" :min="1" :max="100000")
+                        div(v-for="(item, index) in labor.通行方式.items" :key="index")
+                            p {{item.name}}
+                            el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
                     el-form-item(label="扩展功能")
-                        el-select(v-model="data.extension" placeholder="请选择")
-                            el-option(v-for="(item, index) in  options.extension" :key="index" :label="item.name" :value="item.value")
-                    el-form-item(label="发卡中心")
-                        el-select(v-model="data.center" placeholder="请选择")
-                            el-option(v-for="(item, index) in  options.center" :key="index" :label="item.name" :value="item.value")
+                      el-checkbox-group(v-model="labor.扩展功能.value")
+                        el-checkbox(v-for="(item, index) in labor.扩展功能.items" :key="index" :label="item.name")
+                    el-form-item(label="发卡中心位置")
+                      el-checkbox-group(v-model="labor.发卡中心.value")
+                        el-checkbox(v-for="(item, index) in labor.发卡中心.items" :key="index" :label="item.name")
+                    el-form-item(label="入场劳务人员数量")
+                        el-input-number(v-model="labor.入场劳务人员数量" controls-position="right" :min="1" :max="100000") 个
                     el-form-item(label="备注")
-                        el-input(v-model="data.remark" type="textarea")
+                        el-input(v-model="labor.备注" type="textarea")
                     el-button(type="primary" @click="submit") 加入购物车
                     el-button(type="primary" @click="cancel") 重置
 
+            div(v-show="index===1")
+                el-form(ref="form" :model="monitor" label-width="80px")
+                    el-form-item(label="区域")
+                        div(v-for="(item, index) in monitor.区域选择.items" :key="index")
+                            p {{item.name}}大门数量
+                            el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
+                    el-form-item(label="监控位置")
+                        div(v-for="(item, index) in monitor.监控位置.items" :key="index")
+                            p {{item.name}}
+                            el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
+                    el-form-item(label="现场施工图纸")
+                      el-radio(v-for="(item, index) in monitor.现场施工图纸.items" :key="index" v-model="monitor.现场施工图纸.value" :label="item.name") {{item.name}}
+                    el-form-item(label="备注")
+                        el-input(v-model="monitor.备注" type="textarea")
+                    el-button(type="primary" @click="submit") 加入购物车
+                    el-button(type="primary" @click="cancel") 重置
+
+            div(v-show="index===2")
+                el-form(ref="form" :model="car" label-width="80px")
+                    el-form-item(label="大门数量")
+                        el-input-number(v-model="car.door" controls-position="right" :min="1" :max="100000") 个
+                    el-form-item(label="尺寸")
+                        div(v-for="(item, index) in car.尺寸.items" :key="index")
+                            p {{item.name}}
+                            el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
+                    el-form-item(label="模式选择")
+                      el-checkbox-group(v-model="car.模式选择.value")
+                        el-checkbox(v-for="(item, index) in car.模式选择.items" :key="index" :label="item.name")
+                    el-form-item(label="功能选择")
+                      el-checkbox-group(v-model="car.功能选择.value")
+                        el-checkbox(v-for="(item, index) in car.功能选择.items" :key="index" :label="item.name")
+                    el-form-item(label="备注")
+                        el-input(v-model="car.备注" type="textarea")
+                    el-button(type="primary" @click="submit") 加入购物车
+                    el-button(type="primary" @click="cancel") 重置
 
 </template>
 <script lang="ts" src="./projectCreateDetail.ts">
