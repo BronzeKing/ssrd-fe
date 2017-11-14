@@ -16,7 +16,7 @@ export const SIDEBAR = [
                 title: "快捷下单"
             },
             {
-                name: "order",
+                name: "mineOrder",
                 title: "我的订单"
             },
             {

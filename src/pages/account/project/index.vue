@@ -1,6 +1,6 @@
 <template lang="pug">
-    div.mt20
-        .breadcrumb
+    .project-page
+        .breadcrumb.pt15.pl15
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
                 el-breadcrumb-item(:to="{ name: 'project' }") 项目中心
@@ -32,7 +32,7 @@ export default class ProjectView extends Vue
     @Provide() activeTab = 0;
     @Provide() tabs = ['全部项目', '进度类', '维护类', '签证类'];
     protected created () {
-        Project.list();
+        //Project.list();
     }
     rowClick (m: any) {
         // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
@@ -47,3 +47,10 @@ export default class ProjectView extends Vue
     }
 };
 </script>
+<style lang="scss" scoped>
+.project-page{
+    background-color: #fff;
+    width: 1000px;
+}
+
+</style>

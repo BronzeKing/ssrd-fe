@@ -44,7 +44,7 @@
 </template>
 <script lang="ts" src="./secure.ts">
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .page-secure{
     width: 870px;
     background: #fff;
