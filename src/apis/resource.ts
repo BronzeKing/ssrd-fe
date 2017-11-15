@@ -81,7 +81,7 @@ export class Resource<T extends Model> {
     * @param url rest对应的url
     * @param m  rest对应资源的model,用于存储单条资源的数据
     * @param rules 校验规则，用于form表单
-    * @param cache 用于判断是否缓存结果
+    * @param cache 用于判断是否缓存结果,当资源为静态资源，没有搜索、分页等动态条件时打开
     */
     constructor(
         private url: string,

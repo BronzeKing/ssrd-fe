@@ -51,7 +51,7 @@ export default class AfterMarket extends Vue
         duration: '', //工期
         budget: '', //预算
         description: '', //需求描述
-        attatchment: '' //材料
+        attatchment: [] //材料
 
     };
     submit () {

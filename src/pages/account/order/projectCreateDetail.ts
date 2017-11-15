@@ -1,5 +1,6 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
 import { Option } from "common/utils/extends";
+import { System } from "apis";
 
 @Component
 export default class ProjectCreateDetail extends Vue {
@@ -7,14 +8,20 @@ export default class ProjectCreateDetail extends Vue {
         return this.$route.params.id;
     }
 
+    @Provide() System = System;
+
     @Provide()
     $refs: {
         form: HTMLFormElement;
     };
 
+    protected create() {
+        System.list();
+    }
+
     @Provide()
     labor = {
-        // 可视化劳务管理
+        labor: "可视化劳务管理",
         区域选择: Option(["施工区", "生活区", "其他"], ""), // 区域选择
         闸机: Option(["三辊闸", "翼闸", "摆动闸"], ""), //闸机
         通行方式: Option(["IC卡", "人脸识别"], ""), // 通行方式
@@ -25,7 +32,7 @@ export default class ProjectCreateDetail extends Vue {
     };
     @Provide()
     monitor = {
-        //智能化视频监控的配置
+        name: "智能化视频监控的配置",
         区域选择: Option(["施工区", "生活区", "其他"], ""), // 区域选择
         监控位置: Option(["塔吊监控", "人员通道", "车辆出入口", "围墙监控", "材料堆场", "就餐区监控", "地磅监控", "电梯口", "高空抛物"], ""), //监控位置
         现场施工图纸: Option(["有", "无", "其他"], ""), // 现场施工图纸
@@ -33,7 +40,7 @@ export default class ProjectCreateDetail extends Vue {
     };
     @Provide()
     car = {
-        //专业车辆出入管理
+        name: "专业车辆出入管理",
         大门数量: "", //大门数量
         尺寸: Option(["长", "宽", "高"], ""), //尺寸
         模式选择: Option(["双枪击模式", "四枪机模式"], null, []), // 模式选择
@@ -42,7 +49,7 @@ export default class ProjectCreateDetail extends Vue {
     };
     @Provide()
     collect = {
-        // 综合数据采集远程传输
+        name: "综合数据采集远程传输",
         区域选择: Option(["施工区", "生活区", "其他"], ""), // 区域选择
         功能选择: Option(
             ["噪声采集", "粉尘采集", "风速采集", "风向采集", "温度采集", "湿度采集", "PM值采集", "PM2.5采集"],
@@ -54,7 +61,7 @@ export default class ProjectCreateDetail extends Vue {
     };
     @Provide()
     safe = {
-        // 塔机安全防碰撞系统
+        name: "塔机安全防碰撞系统",
         类型: Option(["塔吊防碰撞", "升降机监控"], ""),
         可选功能: Option(
             ["倾角传感器", "风速传感器", "防碰撞模块", "人脸识别机", "重量传感器及安装支架", "高度速度传感器", "轿厢抓拍", "其他"],
@@ -66,7 +73,7 @@ export default class ProjectCreateDetail extends Vue {
 
     @Provide()
     media = {
-        //多媒体音视频输出体系
+        name: "多媒体音视频输出体系",
         房间数量: "",
         房间尺寸: Option(["长", "宽", "高"], ""), //尺寸
         功能选择: Option(["投影", "扩声", "远程视频", "LED屏显示", "其他"], null, []), // 功能选择

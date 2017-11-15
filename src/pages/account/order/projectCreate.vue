@@ -8,7 +8,7 @@
         div
             el-row
                 el-col(:span="8" v-for="(item, index) in System.t.Records" :key="index")
-                    router-link(:to="{name: 'projectCreateDetail', params: {id: item.id}}")
+                    router-link(:to="{name: 'projectCreateDetail', params: {id: index}}")
                         el-card(:body-style="{ padding: '0px' }")
                             img(:src="item.picture" class="image")
                             div(style="padding: 14px;")
