@@ -12,7 +12,7 @@ export const SIDEBAR = [
                 title: "售后申请"
             },
             {
-                name: "quickOrder",
+                name: "quick",
                 title: "快捷下单"
             },
             {
@@ -20,7 +20,7 @@ export const SIDEBAR = [
                 title: "我的订单"
             },
             {
-                name: "chart",
+                name: "cart",
                 title: "我的购物车"
             },
             {

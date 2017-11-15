@@ -6,8 +6,15 @@ const projectCreateDetail = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/projectCreateDetail")), "order");
 const afterMarket = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/afterMarket")), "order"); //售后申请
+const quick = (r: any) =>
+    require.ensure([], () => r(require("pages/account/order/quick")), "order"); //快捷下单
 const mineOrder = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/mineOrder")), "order"); //我的订单
+const cart = (r: any) => require.ensure([], () => r(require("pages/account/order/cart")), "order"); //我的购物车
+const collect = (r: any) =>
+    require.ensure([], () => r(require("pages/account/order/collect")), "order"); //我的收藏
+const history = (r: any) =>
+    require.ensure([], () => r(require("pages/account/order/history")), "order"); //我的浏览记录
 export default [
     {
         path: "order",
@@ -18,6 +25,26 @@ export default [
                 path: "afterMarket",
                 name: "afterMarket",
                 component: afterMarket
+            },
+            {
+                path: "quick",
+                name: "quick",
+                component: quick
+            },
+            {
+                path: "cart",
+                name: "cart",
+                component: cart
+            },
+            {
+                path: "collect",
+                name: "collect",
+                component: collect
+            },
+            {
+                path: "history",
+                name: "history",
+                component: history
             },
             {
                 path: "projectCreate",
