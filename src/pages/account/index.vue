@@ -1,19 +1,23 @@
 <template lang="pug">
     .views
         page-header
-        router-view
+        .container.mt20
+            slider
+            .page-right
+                router-view
         page-footer
 </template>
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-// import PageHeader from './slider';
+import Slider from './slider.vue';
 import pageFooter from '../views/footer.vue';
 import pageHeader from './header.vue';
 @Component
 ({
     components:{
         pageFooter,
+        Slider,
         pageHeader
     }
 })
@@ -25,5 +29,26 @@ export default class Account extends Vue
 .views{
     background-color: #f1f1f1;
 }
+.container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
 
+.page-right{
+    width: 870px;
+    background: #fff;
+    padding: 15px;
+    .secure-item{
+        display: flex;
+        align-items: center;
+        .state-icon{
+            width: 50px;
+        }
+        .item-info{
+            width: 500px;
+            margin-left: 20px;
+        }
+    }
+}
 </style>

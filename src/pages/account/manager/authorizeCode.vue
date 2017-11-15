@@ -24,31 +24,5 @@
             el-pagination.mt5(@current-change="AuthorizeCode.list" :page-size="AuthorizeCode.t.pageSize" layout="prev, pager, next, jumper" :total="AuthorizeCode.t.PageCount" :current-page.sync="AuthorizeCode.t.pageIndex")
         
 </template>
-<script lang="ts">
-import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { AuthorizeCode } from 'apis';
-export default class Home extends Vue
-{
-    @Provide() env: Payload = this.$store.state.home.env;
-    @Provide() statusList = ['-1', '1', '0'].map(x => { 
-        return {
-            value: x, 
-            label: this.$store.state.home.env.status[x] + '授权码'
-        }; 
-    });
-    @Provide() AuthorizeCode = AuthorizeCode;
-    protected created () {
-        AuthorizeCode.list();
-    }
-    authoriazeCodeList () {
-        AuthorizeCode.list();
-    }
-    authorizeCodeDestroy (data: Payload) {
-        AuthorizeCode.destroy(data);
-        this.authoriazeCodeList();
-    }
-    authorizeCodeUpdate (data: Payload) {
-        AuthorizeCode.update(data);
-    }
-};
+<script lang="ts" src="./authorizeCode.ts">
 </script>

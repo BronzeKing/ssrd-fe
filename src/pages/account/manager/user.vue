@@ -1,5 +1,5 @@
 <template lang="pug">
-    div
+    .page-secure
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ name: 'account' }") 个人中心
@@ -24,6 +24,7 @@
         
 </template>
 <script lang="ts">
+//子账号管理
 import { Component, Provide, Vue } from "vue-property-decorator";
 import  { User } from 'apis';
 @Component

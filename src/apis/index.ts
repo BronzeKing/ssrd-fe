@@ -17,16 +17,10 @@ export const Env = new Resource(API.env, new m.Default({})); // 获取系统配�
 export const News = new Resource(API.news, new m.News({}));
 
 /* 新闻 */
-export const Recruitment = new Resource(
-  API.recruitments,
-  new m.Recruitment({})
-);
+export const Recruitment = new Resource(API.recruitments, new m.Recruitment({}));
 
 /* 行业链接 */
-export const IndustryLink = new Resource(
-  API.industryLink,
-  new m.IndustryLink({})
-); // 获取行业链接
+export const IndustryLink = new Resource(API.industryLink, new m.IndustryLink({})); // 获取行业链接
 export const Job = new Resource(API.jobs, new m.Job({})); // 提交简历
 
 /* 文档列表(荣誉资质和合作伙伴) */
@@ -49,11 +43,8 @@ export const Email = new Resource(API.email, new m.Email({})); // 修改或验�
 export const Captcha = new Resource(API.captcha, new m.Email({})); // 验证码
 export const User = new Resource(API.user, new m.User({})); // 用户
 export const Message = new Resource(API.message, new m.Message({})); // 消息
-export const Invitation = new Resource(API.invitation, new m.Invitation({})); // 消息
-export const AuthorizeCode = new Resource(
-  API.authorizeCode,
-  new m.AuthorizeCode({})
-); // 消息
+export const Invitation = new Resource(API.invitation, new m.Invitation({})); // 邀请码
+export const AuthorizeCode = new Resource(API.authorizeCode, new m.AuthorizeCode({})); // 授权码
 export const Profile = new Resource(API.profile, new m.Profile({})); // 个人资料
-export const ProjectLog = new Resource(API.projectLog, new m.ProjectLog({})); // 个人资料
-export const Project = new Resource(API.project, new m.Project({})); // 个人资料
+export const ProjectLog = new Resource(API.projectLog, new m.ProjectLog({})); // 项目日志
+export const Project = new Resource(API.project, new m.Project({})); // 项目

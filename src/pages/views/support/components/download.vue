@@ -35,10 +35,13 @@ export default class DownloadView extends Vue
     protected created () {
         Download.list({source: this.source});
     }
+    public get env() {
+        return this.$store.state.home.env
+    }
     @Watch('activeTab')
     onTabChanged(val: number, oldVal: number) {
         let name: string = this.tabs[val];
-        this.source = this.$store.state.home.env.document[name];
+        this.source = this.env.document[name];
     }
     clickTab (tab: any, event: any) {
         Download.list({source: this.source});

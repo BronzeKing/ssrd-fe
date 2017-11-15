@@ -4,11 +4,13 @@
 const index = (r: any) => require.ensure([], () => r(require("pages/account/index")), "account");
 
 import manager from "./manager";
+import project from "./project";
+import order from "./order";
 
 export default {
     path: "/user",
     // name: 'views',
     component: index,
-    //redirect: "/account",
-    children: [...manager]
+    redirect: "/account",
+    children: [...manager, ...project, ...order]
 };

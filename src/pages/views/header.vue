@@ -58,6 +58,10 @@ export default class Header extends Vue {
     // 退出登录
     logout () {
         this.$store.commit('logout');
+          this.$message({
+            message: "注销成功",
+            type: "success"
+          });
     }
 };
 </script>
