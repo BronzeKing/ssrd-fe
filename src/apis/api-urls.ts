@@ -2,47 +2,120 @@
  * API url集合
  */
 
-import { apiUrl } from "settings";
+import { apiUrl } from "src/common/settings";
 
 export default {
-  // 登录注册相关接口
-  login: `${apiUrl}/login`, // 登录接口
-  logout: `${apiUrl}/logout`, // 登出
-  register: `${apiUrl}/register`, // 注册接口
-  env: `${apiUrl}/env`, // 注册接口
+    // 登录注册相关接口
+    /**
+  * 登录
+  */
+    login: `${apiUrl}/login`,
+    /**
+  * 登出
+  */
+    logout: `${apiUrl}/logout`,
+    /**
+  * 注册
+  */
+    register: `${apiUrl}/register`,
+    /**
+  * 获取环境变量
+  */
+    env: `${apiUrl}/env`,
 
-  // 新闻
-  news: `${apiUrl}/news`, // 获取新闻
+    /**
+  * 新闻
+  */
+    news: `${apiUrl}/news`,
 
-  // 关于我们
-  recruitments: `${apiUrl}/recruitments`, // 招聘
-  jobs: `${apiUrl}/jobs`, // 提交简历
+    /**
+  * 招聘信息
+  */
+    recruitments: `${apiUrl}/recruitments`,
+    /**
+  * 提交简历
+  */
+    jobs: `${apiUrl}/jobs`,
 
-  // 行业链接
-  industryLink: `${apiUrl}/industryLinks`, // 获取行业链接
+    /**
+  * 行业链接
+  */
+    industryLink: `${apiUrl}/industryLinks`,
 
-  // 文档列表(荣誉资质和合作伙伴)
-  documents: `${apiUrl}/documents`, // 获取行业链接
+    /**
+  * 文档列表(荣誉资质和合作伙伴)
+  */
+    documents: `${apiUrl}/documents`,
 
-  // 系统展示
-  systems: `${apiUrl}/systems`, // 获取系统展示
+    /**
+  * 系统展示
+  */
+    systems: `${apiUrl}/systems`,
 
-  // 案例展示
-  systemCase: `${apiUrl}/systemCases`, // 获取案例展示
-  faqs: `${apiUrl}/faqs`, // 获取常见问题解答
-  opVideo: `${apiUrl}/documents`, // 获取操作视频
-  download: `${apiUrl}/documents`, // 获取文档下载
-  product: `${apiUrl}/products`, // 获取产品
-  collect: `${apiUrl}/collects`, // 收藏
+    /**
+  * 系统案例
+  */
+    systemCase: `${apiUrl}/systemCases`,
 
-  password: `${apiUrl}/password/change`, // 更改密码
-  email: `${apiUrl}/email/change`, // 更改邮箱
-  captcha: `${apiUrl}/captcha`, // 验证码
-  user: `${apiUrl}/users`, // 用户
-  message: `${apiUrl}/messages`, // 消息
-  profile: `${apiUrl}/users/{id}/profile`, // 个人资料
-  invitation: `${apiUrl}/invitations`, // 获取邀请码
-  project: `${apiUrl}/projects`, // 获取项目列表
-  projectLog: `${apiUrl}/projects/:projectId/logs`, // 项目日志
-  authorizeCode: `${apiUrl}/authorizeCodes` // 授权码
+    /**
+  * 获取常见问题解答
+  */
+    faqs: `${apiUrl}/faqs`,
+    /**
+  * 获取操作视频
+  */
+    opVideo: `${apiUrl}/documents`,
+    /**
+  * 获取文档下载
+  */
+    download: `${apiUrl}/documents`,
+    /**
+  * 产品
+  */
+    product: `${apiUrl}/products`,
+    /**
+  * 收藏
+  */
+    collect: `${apiUrl}/collects`,
+
+    /**
+  * 更改密码
+  */
+    password: `${apiUrl}/password/change`,
+    /**
+  * 更改邮箱
+  */
+    email: `${apiUrl}/email/change`,
+    /**
+  * 更改验证码
+  */
+    captcha: `${apiUrl}/captcha`,
+    /**
+  * 用户
+  */
+    user: `${apiUrl}/users`,
+    /**
+  * 消息
+  */
+    message: `${apiUrl}/messages`,
+    /**
+  * 个人资料
+  */
+    profile: `${apiUrl}/users/{id}/profile`,
+    /**
+  * 邀请码
+  */
+    invitation: `${apiUrl}/invitations`,
+    /**
+  * 项目列表 
+  */
+    project: `${apiUrl}/projects`,
+    /**
+  * 项目日志
+  */
+    projectLog: `${apiUrl}/projects/:projectId/logs`,
+    /**
+  * 授权码
+  */
+    authorizeCode: `${apiUrl}/authorizeCodes`
 };

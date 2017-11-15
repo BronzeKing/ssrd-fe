@@ -1,4 +1,3 @@
-export const a = "b";
 import { Model as BaseModel, ModelRecipe } from "rawmodel";
 
 // defining a basic model
@@ -36,4 +35,3 @@ export function Provide(
     }
     Model.provides[name].push(propertyKey);
 }
-
