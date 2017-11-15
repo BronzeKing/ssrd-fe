@@ -14,10 +14,6 @@ const invitation = (r: any) =>
     require.ensure([], () => r(require("pages/account/manager/invitation")), "manager");
 const profile = (r: any) =>
     require.ensure([], () => r(require("pages/account/manager/profile")), "manager");
-const mineOrder = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/mineOrder")), "order");
-import project from "./project";
-import order from "./order";
 export default [
     {
         path: "/account",
@@ -59,14 +55,7 @@ export default [
                 path: "profile",
                 name: "profile",
                 component: profile
-            },
-            {
-                path: "mineOrder",
-                name: "mineOrder",
-                component: mineOrder
-            },
-            ...project,
-            ...order
+            }
         ]
     }
 ];

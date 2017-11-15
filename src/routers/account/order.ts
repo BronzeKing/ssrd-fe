@@ -6,12 +6,13 @@ const projectCreateDetail = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/projectCreateDetail")), "order");
 const afterMarket = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/afterMarket")), "order"); //售后申请
+const mineOrder = (r: any) =>
+    require.ensure([], () => r(require("pages/account/order/mineOrder")), "order"); //我的订单
 export default [
     {
         path: "order",
         name: "order",
         component: index,
-        redirect: "/order/projectCreate",
         children: [
             {
                 path: "afterMarket",
@@ -27,6 +28,11 @@ export default [
                 path: "projectCreate/:id",
                 name: "projectCreateDetail",
                 component: projectCreateDetail
+            },
+            {
+                path: "mine",
+                name: "mineOrder",
+                component: mineOrder
             }
         ]
     }

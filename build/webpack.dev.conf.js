@@ -31,14 +31,14 @@ module.exports = merge(baseWebpackConfig, {
             template: "index.html",
             inject: true
         }),
-        new FriendlyErrorsPlugin(),
-        new TypedocWebpackPlugin({
-            name: "Ssrd",
-            mode: "file",
-            includeDeclarations: false,
-            ignoreCompilerErrors: true,
-            excludeExternals: true,
-            exclude: "**/node_modules/**/*.*"
-        })
+        new FriendlyErrorsPlugin()
+        // new TypedocWebpackPlugin({
+        // name: "Ssrd",
+        // mode: "file",
+        // includeDeclarations: false,
+        // ignoreCompilerErrors: true,
+        // excludeExternals: true,
+        // exclude: "**/node_modules/**/*.*"
+        // })
     ]
 });

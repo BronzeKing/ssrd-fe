@@ -8,9 +8,8 @@ import project from "./project";
 import order from "./order";
 
 export default {
-    path: "/user",
-    // name: 'views',
+    path: "/account",
     component: index,
-    redirect: "/account",
+    redirect: "/account/order",
     children: [...manager, ...project, ...order]
 };
