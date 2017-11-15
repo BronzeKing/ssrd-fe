@@ -11,7 +11,7 @@ import { Resource } from "./resource"; // 改为ts后的Resoure
 // 接口用大写
 export const Login = new Resource(API.login, new m.Login({})); // 登录接口
 export const Register = new Resource(API.register, new m.Register({})); // 注册接口
-export const Env = new Resource(API.env, new m.Default({})); // 获取系统配置
+export const Env = new Resource(API.env, new m.Default({}), {}, true); // 获取系统配置
 
 /* 关于我们 */
 export const News = new Resource(API.news, new m.News({}));
@@ -27,8 +27,8 @@ export const Job = new Resource(API.jobs, new m.Job({})); // 提交简历
 export const Documents = new Resource(API.documents, new m.Documents({}));
 
 /* 系统展示 */
-export const System = new Resource(API.systems, new m.System({})); // 获取系统展示
-export const SystemCase = new Resource(API.systemCase, new m.SystemCase({})); // 案例展示列表
+export const System = new Resource(API.systems, new m.System({}), {}, true); // 获取系统展示
+export const SystemCase = new Resource(API.systemCase, new m.SystemCase({}), {}, true); // 案例展示列表
 
 /* 案例展示 */
 export const Faqs = new Resource(API.faqs, new m.FAQs({})); // 常见问题解答

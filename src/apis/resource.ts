@@ -75,7 +75,20 @@ export class Resource<T extends Model> {
         RecordCount: 0,
         Records: []
     };
-    constructor(private url: string, public m: T, public rules: Rules = {}) {
+    private cached: { [key: string]: any } = {}; //用于存储缓存的结果
+    /**
+    *
+    * @param url rest对应的url
+    * @param m  rest对应资源的model,用于存储单条资源的数据
+    * @param rules 校验规则，用于form表单
+    * @param cache 用于判断是否缓存结果
+    */
+    constructor(
+        private url: string,
+        public m: T,
+        public rules: Rules = {},
+        private cache: Boolean = false
+    ) {
         this.errors = m ? m.errors : {};
         let matched = url.match(/:(\w+)/g);
         if (matched) {
@@ -127,6 +140,9 @@ export class Resource<T extends Model> {
         let method = _methodMap[action];
         let response: AxiosPromise;
         let url = replaceUrl(this.url, body, this._pathArgv, action);
+        if (this.cache && this.cached[action]) {
+            return this.cached[action];
+        }
 
         // retrieve, list方法 为GET方法
         body = isInArray(["retrieve", "list"], action) ? { params: body } : this.formData(body);
@@ -145,6 +161,9 @@ export class Resource<T extends Model> {
                 });
             }
         });
+        if (this.cache) {
+            this.cached[action] = response;
+        }
         return response;
     }
 

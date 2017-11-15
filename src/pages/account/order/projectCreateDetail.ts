@@ -3,7 +3,9 @@ import { Option } from "common/utils/extends";
 
 @Component
 export default class ProjectCreateDetail extends Vue {
-    @Provide() index = 2;
+    public get index() {
+        return this.$route.params.id;
+    }
 
     @Provide()
     $refs: {
