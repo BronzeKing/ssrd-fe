@@ -11,11 +11,11 @@
                     router-link.home-user-item(:to={name: 'account'})
                         i.iconfont.icon-team
                         p 客户中心
-                    a.home-user-item(href="javascript: void(0);")
-                        i.iconfont.icon-order
+                    router-link.home-user-item(:to={name: 'mineOrder'})
+                        i.iconfont.icon-team
                         p 订单中心
-                    a.home-user-item(href="javascript: void(0);")
-                        i.iconfont.icon-project
+                    router-link.home-user-item(:to={name: 'project'})
+                        i.iconfont.icon-team
                         p 项目管理中心
                     a.home-user-item(href="javascript: void(0);")
                         i.iconfont.icon-manage
@@ -30,12 +30,8 @@
                 i.iconfont.icon-flow.font-blue.f24.fb
                 strong.f16.ml10.mr10 下单流程
                 span.f14.font-grey ORDER PROCESS
-            li.home-flow-item.active 客户登陆
-            li.home-flow-item 需求下单
-            li.home-flow-item 上传图纸
-            li.home-flow-item 在线提交
-            li.home-flow-item 需求沟通
-            li.home-flow-item 方案报价
+            li.home-flow-item(v-for="(item, index) in orderProcess" :key="index" :class="{active: item.active}") 
+                router-link.home-introduce-text(:to="{ name: item.name}") {{item.label}}
         .home-introduce.mb20
             .home-introduce-item(v-for="item in SystemCase.t.Records" :key="item.id")
                 .home-introduce-case
