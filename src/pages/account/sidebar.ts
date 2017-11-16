@@ -1,5 +1,26 @@
+// 侧边栏
+import { Component, Provide, Vue, Watch } from "vue-property-decorator";
+
+@Component
+export default class Header extends Vue {
+    @Provide() sidebar = SIDEBAR;
+    @Provide() isCollapse = false;
+    @Provide() activeMenu = "0-1";
+
+    protected created() {
+        this.activeMenu = IndexMap[this.$route.name || "order"];
+    }
+
+    @Watch("$route")
+    onRouteChange() {
+        this.activeMenu = IndexMap[this.$route.name || "order"];
+        console.log(this.activeMenu);
+    }
+    handleOpen(key: string, keyPath: string) {}
+    handleClose(key: string, keyPath: string) {}
+}
 // 侧边栏的配置信息，包括标题
-export const SIDEBAR = [
+const SIDEBAR = [
     {
         title: "订单中心",
         sub: [
@@ -110,3 +131,12 @@ export const SIDEBAR = [
         ]
     }
 ];
+/**
+* 给name和index做个映射关系，存储的是{user: 1} 这样的，用于sidebar默认打开某个menu
+*/
+const IndexMap: { [key: string]: string } = {};
+SIDEBAR.map((item, index) => {
+    item.sub.map((x, i) => {
+        IndexMap[x.name] = String(index) + "-" + String(i);
+    });
+});

@@ -33,6 +33,7 @@ export default class UserView extends Vue {
     @Provide() statusList = ['-1', '1', '0'].map(x => { return { value: x, label: this.$store.state.home.env.status[x] + '账号' }; });
     @Provide() User = User;
     protected created () {
+        debugger;
         User.list();
     }
     userList () {
