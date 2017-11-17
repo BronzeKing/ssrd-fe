@@ -9,9 +9,11 @@ export default [
         path: "project",
         name: "project",
         component: index,
+        redirect: "/account/project/dynamic",
         children: [
             {
-                path: "/",
+                path: "dynamic",
+                name: "projectList",
                 component: project
             },
             {

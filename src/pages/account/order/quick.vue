@@ -42,12 +42,15 @@ export default class QuickView extends Vue
     data = {
         name: '', // 项目名称
         address: '', //地址
-        type: Option(['故障维护', '迁移', '拆除']),  // 申请类别
+        type: Option(this.env.ProjectType), //项目类别
         duration: '', //工期
         description: '', //需求描述
         system: '',
         attatchment: [] //材料
 
+    };
+    public get env() {
+        return this.$store.state.home.env;
     };
     @Provide() System = System;
     protected created () {

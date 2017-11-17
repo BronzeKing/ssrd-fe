@@ -104,7 +104,7 @@ const n2br = text => {
     * @参数 options eg.['其他']
     * @参数 defaultValue 返回的items 里value的默认值
     * @参数 value 返回的value的默认值
-    * @返回值  eg. [{name: '其他', value: '其他']
+    * @返回值  eg. {items: [{name: 'xxx', value: 'xxx'}], value: xxx}
 */
 const Option = function(options, defaultValue, value) {
     return {

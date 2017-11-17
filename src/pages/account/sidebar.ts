@@ -9,6 +9,7 @@ export default class Header extends Vue {
 
     protected created() {
         this.activeMenu = IndexMap[this.$route.name || "order"];
+        console.log(this.$route.name, this.activeMenu);
     }
 
     @Watch("$route")
@@ -70,7 +71,7 @@ const SIDEBAR = [
                 title: "项目资料"
             },
             {
-                name: "project",
+                name: "projectList",
                 title: "项目动态"
             }
         ]

@@ -8,13 +8,11 @@
         div
             p 项目名称：{{Project.m.name}}
             p 类型：{{Project.m.type}}
-            p 开始日期：{{Project.m.created}}
             p 地点：{{Project.m.address}}
-            p 要求施工日期：{{Project.m.implementDate}}
-            p 预计施工日期：{{Project.m.implementExpectedDate}}
-            p 项目创建者：{{Project.m.creator.username}}
-            p 联系人：{{Project.m.creator.linkman}}
-            p 内容：{{Project.m.creator.content}}
+            p 项目创建者：{{Project.m.user.username}}
+            p 联系人：{{Project.m.linkman}}
+            p 手机：{{Project.m.mobile}}
+            p 内容：{{Project.m.content}}
             el-steps(:space="200" :active="Project.m.status" finish-status="success")
                 el-step(title="沟通中")
                 el-step(title="跟进中")
@@ -47,19 +45,5 @@
                                 a(:href="scope.row.attatchment[0].file") {{scope.row.attatchment[0].name}}
 
 </template>
-<script lang="ts">
-// 项目详情页面
-// import { Component, Provide, Vue } from 'vue-property-decorator';
-// import  { Project, ProjectLog } from 'apis';
-// @Component
-// export default class ProjectDetail extends Vue
-// {
-//     @Provide() activeName = '1';
-//     @Provide() Project = Project;
-//     @Provide() ProjectLog = ProjectLog;
-//     protected created () {
-//         Project.retrieve({id: this.$route.params.id});
-//         ProjectLog.list({projectId: this.$route.params.id});
-//     }
-// };
+<script lang="ts" src="./projectDetail.ts">
 </script>
