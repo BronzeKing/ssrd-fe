@@ -16,10 +16,10 @@ const profile = (r: any) =>
     require.ensure([], () => r(require("pages/account/manager/profile")), "manager");
 export default [
     {
-        path: "/account",
+        path: "account",
         name: "account",
         component: index,
-        redirect: "/account/secure",
+        redirect: "secure",
         children: [
             {
                 path: "secure",

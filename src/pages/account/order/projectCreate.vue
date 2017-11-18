@@ -1,16 +1,16 @@
 <template lang="pug">
-    div
+    div.project-create
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
                 el-breadcrumb-item(:to="{ name: 'order' }") 订单中心
                 el-breadcrumb-item 新建项目
         div
-            el-row
-                el-col(:span="8" v-for="(item, index) in System.t.Records" :key="index")
+            el-row(:gutter="20")
+                el-col(:span="8" class="project-create-item mb20" v-for="(item, index) in System.t.Records" :key="index")
                     router-link(:to="{name: 'projectCreateDetail', params: {id: index}}")
                         el-card(:body-style="{ padding: '0px' }")
-                            img(:src="item.picture" class="image")
+                            img.project-create-image(:src="item.picture" class="image")
                             div(style="padding: 14px;")
                                 span {{item.name}}
                                 div(class="bottom clearfix")
@@ -34,7 +34,11 @@ export default class ProjectCreate extends Vue
 };
 </script>
 
-<style>
+<style lang="scss">
+
+.project-create-image{
+    min-height: 204px;
+}
   .time {
     font-size: 13px;
     color: #999;
@@ -53,15 +57,5 @@ export default class ProjectCreate extends Vue
   .image {
     width: 100%;
     display: block;
-  }
-
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
-  
-  .clearfix:after {
-      clear: both
   }
 </style>

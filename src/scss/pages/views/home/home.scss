@@ -1,5 +1,5 @@
 @charset 'UTF-8';
-@import "../base/mixins";
+@import "~scss/base/mixins";
 
 /* 官网首页 */
 .page-home{
@@ -162,24 +162,34 @@
     .home-introduce{
         display: flex;
         justify-content:space-between;
+        min-height: 265px;
         .home-introduce-item{
             width: 32.5%;
             cursor: pointer;
+            position: relative;
             &:hover{
-                .home-introduce-case{
-                    display: none;
-                }
                 .home-introduce-text{
-                    display: block;
+                    opacity: 1;
+                    z-index: 1;
                 }
+            }
+            // 案例图片
+            .introduce-case-image{
+                min-height: 155px;
             }
             .home-introduce-text{
                 background-color: $base-color;
                 color: $font-white;
                 padding: 31px 32px 20px 26px;
-                position: relative;
-                height: 100%;
-                display: none;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                transition: all .5s ease-in;
+                opacity: 0;
+                // display: none;
             }
             .introduce-text-title{
                 font-size: $f16;
@@ -203,7 +213,7 @@
             .home-introduce-case{
                 padding: 11px 18px 27px 18px;
                 border: 1px solid $border-ad;
-                
+                transition: all .3s ease-in;
             }
         }
         

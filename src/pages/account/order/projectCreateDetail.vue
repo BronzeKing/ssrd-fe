@@ -9,16 +9,16 @@
             div(v-show="index===0")
                 el-form(ref="form" :model="labor" label-width="80px")
                     el-form-item(label="区域")
-                        div(v-for="(item, index) in labor.区域选择.items" :key="index")
-                            p {{item.name}}大门数量
+                        div.project-detail-argbox(v-for="(item, index) in labor.区域选择.items" :key="index")
+                            span.detail-artbox-label {{item.name}}大门数量
                             el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
                     el-form-item(label="闸机类型")
-                        div(v-for="(item, index) in labor.闸机.items" :key="index")
-                            p {{item.name}}数量
+                        div.project-detail-argbox(v-for="(item, index) in labor.闸机.items" :key="index")
+                            span.detail-artbox-label {{item.name}}数量
                             el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
                     el-form-item(label="通行方式")
-                        div(v-for="(item, index) in labor.通行方式.items" :key="index")
-                            p {{item.name}}
+                        div.project-detail-argbox(v-for="(item, index) in labor.通行方式.items" :key="index")
+                            span.detail-artbox-label {{item.name}}
                             el-input-number(v-model="item.value" controls-position="right" :min="1" :max="100000") 个
                     el-form-item(label="扩展功能")
                       el-checkbox-group(v-model="labor.扩展功能.value")
@@ -72,3 +72,13 @@
 </template>
 <script lang="ts" src="./projectCreateDetail.ts">
 </script>
+<style lang="scss">
+    .project-detail-argbox{
+        line-height: 50px;
+        .detail-artbox-label{
+            display: inline-block;
+            min-width: 120px;
+        }
+    }
+</style>
+

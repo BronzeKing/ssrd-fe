@@ -32,10 +32,10 @@
                 span.f14.font-grey ORDER PROCESS
             li.home-flow-item(v-for="(item, index) in orderProcess" :key="index" :class="{active: item.active}") 
                 router-link.home-introduce-text(:to="{ name: item.name}") {{item.label}}
-        .home-introduce.mb20
+        .home-introduce.mb20(v-if="SystemCase.t.Records && SystemCase.t.Records.length > 0")
             .home-introduce-item(v-for="item in SystemCase.t.Records" :key="item.id")
                 .home-introduce-case
-                    img(:src="item.picture" width='360px' height='155px')
+                    img.introduce-case-image(:src="item.picture" width='360px' height='155px')
                     div
                         h4.fn.f16.mt5.mb5 {{item.title}}
                         p {{item.summary.slice(0, 30)}}
@@ -66,5 +66,5 @@
 <script src="./home.ts" lang="ts">
 </script>
 <style lang="scss">
-    @import "~scss/pages/home";
+    @import "~scss/pages/views/home/home";
 </style>

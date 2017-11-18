@@ -35,12 +35,40 @@
                 el-table-column(prop="date" label="状态")
                 el-table-column(prop="date" label="操作")
 </template>
-<script lang="ts" src="./secure.ts">
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+@Component
+export default class Personal extends Vue
+{
+    @Provide() activeName: string = "1";
+    @Provide() tableData: Array<any> = [
+        {
+            date: '2016-05-02',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            date: '2016-05-04',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1517 弄'
+          }, {
+            date: '2016-05-01',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1519 弄'
+          }, {
+            date: '2016-05-03',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1516 弄'
+          }];
+
+    public handleClick(): void{
+
+    }
+}
 </script>
 <style lang="scss">
 .page-secure{
     .secure-wrap{
-        width: 870px;
+        // width: 870px;
         background: #fff;
         padding: 15px;
         .secure-info{

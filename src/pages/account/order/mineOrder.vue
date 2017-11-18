@@ -22,9 +22,9 @@
 <script lang="ts">
 
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .page-mineOrder{
-    width: 1000px;
+    // width: 1000px;
     background: #fff;
     .title{
         height: 40px;

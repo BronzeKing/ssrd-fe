@@ -1,7 +1,7 @@
 <template lang="pug">
     .user-header
         .container.flex
-            .user-header-logo
+            router-link.user-header-logo(to="/usercenter")
                 img(src="~assets/logo.png")
                 i.user-header-line
                 h2 个人中心

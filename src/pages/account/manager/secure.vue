@@ -44,9 +44,9 @@
 </template>
 <script lang="ts" src="./secure.ts">
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .page-secure{
-    width: 870px;
+    // width: 870px;
     background: #fff;
     padding: 15px;
     .secure-item{

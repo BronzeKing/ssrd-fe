@@ -1,5 +1,5 @@
 <template lang="pug">
-    .page-header
+    .page-slider
         el-menu.el-menu-vertical-demo(:default-active="activeMenu" @open="handleOpen" @close="handleClose" :collapse="isCollapse" :unique-opened="true" :router="true")
             el-submenu(v-for="(menu, index) in sidebar" :key="index" :index="String(index)")
                 template(slot="title")
@@ -12,11 +12,11 @@
 <script lang="ts" src="./sidebar.ts">
 </script>
 
-<style lang="scss" scoped>
-.page-header{
+<style lang="scss">
+.page-slider{
     width: 290px;
     .el-menu-vertical-demo:not(.el-menu--collapse) {
-        width: 200px;
+        // width: 200px;
         min-height: 400px;
     }
 }

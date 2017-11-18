@@ -2,20 +2,20 @@
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
 
 @Component
-export default class Header extends Vue {
+export default class Slider extends Vue {
     @Provide() sidebar = SIDEBAR;
     @Provide() isCollapse = false;
     @Provide() activeMenu = "0-1";
 
     protected created() {
         this.activeMenu = IndexMap[this.$route.name || "order"];
-        console.log(this.$route.name, this.activeMenu);
+        // console.log(this.$route.name, this.activeMenu);
     }
 
     @Watch("$route")
     onRouteChange() {
         this.activeMenu = IndexMap[this.$route.name || "order"];
-        console.log(this.activeMenu);
+        // console.log(this.activeMenu);
     }
     handleOpen(key: string, keyPath: string) {}
     handleClose(key: string, keyPath: string) {}

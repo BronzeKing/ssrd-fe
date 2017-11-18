@@ -6,7 +6,7 @@
                 span
                     router-link.user-option-item.active(v-show="!user.isAuthenticated" :to="{name: 'login'}") [ 登陆 ]
                     router-link.user-option-item(v-show="!user.isAuthenticated" :to="{name: 'register'}") [ 注册 ]
-                    router-link.user-option-item(:to="{name: 'account' }") 个人中心
+                    router-link.user-option-item(:to="{path: '/usercenter' }") 个人中心
                     a.user-option-item(v-show="user.isAuthenticated" href="javascript: void(0);" @click='logout') 注销
                     a.user-option-item(href="javascript: void(0);") 购物车
                     a.user-option-item(href="javascript: void(0);") 快捷下单

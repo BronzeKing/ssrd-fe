@@ -9,11 +9,10 @@ import { n2br } from "utils/extends";
 import Raven from "raven-js";
 import RavenVue from "raven-js/plugins/vue";
 
-console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
-  Raven.config("https://75710b6ea670418fbfb735b9f94b1aac@sentry.io/219602")
-    .addPlugin(RavenVue, Vue)
-    .install();
+    Raven.config("https://75710b6ea670418fbfb735b9f94b1aac@sentry.io/219602")
+        .addPlugin(RavenVue, Vue)
+        .install();
 }
 
 // import Core from './core';
@@ -31,7 +30,7 @@ Vue.use(ElementUI);
 
 // 注册vue filters;
 Object.keys(filters).forEach(name => {
-  Vue.filter(name, filters[name]);
+    Vue.filter(name, filters[name]);
 });
 
 // 注册全局组件

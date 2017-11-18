@@ -58,6 +58,7 @@ body{
 a{
     text-decoration: none;
     cursor: pointer;
+    transition: all .3s linear;
     &:link,
     &:visited{
         color: $font-base;
