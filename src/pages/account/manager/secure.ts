@@ -37,8 +37,8 @@ export default class Secure extends Vue {
     changeEmail() {
         this.$refs.changeEmailForm.validate((valid: Boolean) => {
             if (valid) {
-                this.changeEmailDialog = false;
                 Credential.create(Email.m.serialize()).then((r: Payload) => {
+                    this.changeEmailDialog = false;
                     this.$message({
                         message: "发送成功",
                         type: "success"
@@ -46,6 +46,7 @@ export default class Secure extends Vue {
                 });
             }
         });
+        Email.errors = Credential.errors;
     }
     /**
   * 获取验证码
