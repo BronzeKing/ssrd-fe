@@ -87,6 +87,10 @@ export default {
   */
     email: `${apiUrl}/email/change`,
     /**
+  * 更改邮箱、手机
+  */
+    credential: `${apiUrl}/credential`,
+    /**
   * 更改验证码
   */
     captcha: `${apiUrl}/captcha`,

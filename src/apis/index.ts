@@ -40,6 +40,7 @@ export const Collect = new Resource(API.collect, new m.Default({})); // 收藏
 
 export const Password = new Resource(API.password, new m.Password({})); // 修改密码
 export const Email = new Resource(API.email, new m.Email({})); // 修改或验证邮箱
+export const Credential = new Resource(API.credential, new m.Credential({})); // 修改或验证邮箱、手机
 export const Captcha = new Resource(API.captcha, new m.Email({})); // 验证码
 export const User = new Resource(API.user, new m.User({})); // 用户
 export const Message = new Resource(API.message, new m.Message({})); // 消息
