@@ -6,12 +6,16 @@
                     .user-face
                         img(src="http://static.fallchat.com/dist/timg.jpg")
                     .user-btn.mt10
-                        span.line 个人资料
-                        span 我的收益
+                        router-link(:to="{name: 'profile'}")
+                            span.line 个人资料
+                        router-link(:to="{name: 'invitation'}")
+                            span 我的收益
                 .secure-warp
                     p.mb10 账户安全：
-                    p.mb10 绑定手机：158451564849
-                    p.mb10 绑定邮箱：asd@esda.com
+                    p.mb10(v-show="user.mobile") 绑定手机：{{user.mobile}}
+                    p.mb10(v-show="!user.mobile") 绑定手机：尚未绑定手机
+                    p.mb10(v-show="user.email") 绑定邮箱：{{user.email}}
+                    p.mb10(v-show="!user.email") 绑定手机：尚未绑定邮箱
                     
             
         .survey-wrap
@@ -60,6 +64,9 @@ export default class Personal extends Vue
             address: '上海市普陀区金沙江路 1516 弄'
           }];
 
+    public get user() {
+        return this.$store.state.user.user;
+    }
     public handleClick(): void{
 
     }

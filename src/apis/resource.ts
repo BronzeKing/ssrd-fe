@@ -96,6 +96,7 @@ export class Resource<T extends Model> {
                 return x;
             });
         }
+        // 把model中的值默认放到table中去，用于调用list方法时传参
         this.t = {
             ...this.t,
             ...this.m
@@ -168,10 +169,12 @@ export class Resource<T extends Model> {
     }
 
     list(params: Payload = {}, config: Payload = {}): Payload {
-        // 默认把this.t里的search, pageIndex, pageSize参数传到list方法里
-        params["search"] = this.t.search;
-        params["pageIndex"] = this.t.pageIndex;
-        params["pageSize"] = this.t.pageSize;
+        // 默认把this.t里的search, pageIndex, pageSize以及来自model的值作为参数传到list方法里
+        Object.keys(this.t).forEach((x: string) => {
+            if (this.t[x] && !isInArray(["Records", "RecordCount"], x)) {
+                params[x] = this.t[x];
+            }
+        });
 
         return this.request(params, config, "list").then((r: Payload) => {
             this.t.RecordCount = r["RecordCount"];
