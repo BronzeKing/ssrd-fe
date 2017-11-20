@@ -4,11 +4,15 @@
 const index = (r: any) => require.ensure([], () => r(require("pages/admin/index")), "admin");
 const recruit = (r: any) => require.ensure([], () => r(require("pages/admin/components/recruit")), "admin");
 const system = (r: any) => require.ensure([], () => r(require("pages/admin/components/system")), "admin");
+const video = (r: any) => require.ensure([], () => r(require("pages/admin/components/video")), "admin");
+const documents = (r: any) => require.ensure([], () => r(require("pages/admin/components/documents")), "admin");
 
 
 export default {
     path: "/admin/",
     component: index,
+    name: 'admin',
+    redirect: '/admin/system',
     children: [
         {
             path: "recruit",
@@ -19,6 +23,16 @@ export default {
             path: "system",
             name: "admin.system",
             component: system
+        },
+        {
+            path: "documents",
+            name: "admin.documents",
+            component: documents
+        },
+        {
+            path: "video",
+            name: "admin.video",
+            component: video
         }
     ]
 };

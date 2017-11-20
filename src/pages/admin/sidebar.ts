@@ -32,6 +32,14 @@ const SIDEBAR = [
             {
                 name: "admin.recruit",
                 title: "招聘信息"
+            },
+            {
+                name: "admin.video",
+                title: "视频管理"
+            },
+            {
+                name: "admin.documents",
+                title: "下载文件管理"
             }
         ]
     },
@@ -39,16 +47,8 @@ const SIDEBAR = [
         title: "基本信息",
         sub: [
             {
-                name: "download",
-                title: "文档下载"
-            },
-            {
-                name: "projectDocument",
-                title: "项目资料"
-            },
-            {
-                name: "projectList",
-                title: "项目动态"
+                name: "admin.honor",
+                title: "公司荣耀"
             }
         ]
     },

@@ -17,8 +17,8 @@
                     router-link.home-user-item(:to={name: 'project'})
                         i.iconfont.icon-team
                         p 项目管理中心
-                    a.home-user-item(href="javascript: void(0);")
-                        i.iconfont.icon-manage
+                    router-link.home-user-item(:to={name: 'admin'})
+                        i.iconfont.icon-team
                         p 内部管理中心
                 .home-article
                     h4.home-article-title 最新公告
