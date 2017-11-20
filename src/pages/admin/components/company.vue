@@ -13,6 +13,12 @@
                         el-input(type="textarea" autosize v-model="AboutUs.m.culture" auto-complete="off" placeholder="请填写企业文化")
                     el-form-item(label="公司地址")
                         el-input(autosize v-model="AboutUs.m.address" auto-complete="off" placeholder="请填写公司地址")
+                    el-form-item(label="公司邮箱")
+                        el-input(autosize v-model="AboutUs.m.email" auto-complete="off" placeholder="请填写公司邮箱")
+                    el-form-item(label="公司电话")
+                        el-input(autosize v-model="AboutUs.m.tel" auto-complete="off" placeholder="请填写公司电话")
+                    el-form-item(label="公司邮编")
+                        el-input(autosize v-model="AboutUs.m.postcode" auto-complete="off" placeholder="请填写公司邮编")
                 el-button(@click="dialog.aboutUs = false") 取消
                 el-button(type="primary" @click="handleAboutUs") 确定
 
@@ -31,20 +37,16 @@ export default class AboutUsView extends Vue {
     protected created(): void {
         AboutUs.retrieve();
     }
-    public get env() {
-        return this.$store.state.home.env;
-    }
-    aboutUsList () {
+    aboutUsRetrieve () {
         AboutUs.retrieve();
     }
-
     handleUpdate() {
         this.dialog.aboutUs = true;
     }
     handleAboutUs() {
         AboutUs.update().then((r: any) => {
             this.dialog.aboutUs = false;
-            this.aboutUsList()
+            this.aboutUsRetrieve();
         });
     }
 }
