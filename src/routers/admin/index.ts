@@ -3,6 +3,7 @@
  */
 const index = (r: any) => require.ensure([], () => r(require("pages/admin/index")), "admin");
 const recruit = (r: any) => require.ensure([], () => r(require("pages/admin/components/recruit")), "admin");
+const system = (r: any) => require.ensure([], () => r(require("pages/admin/components/system")), "admin");
 
 
 export default {
@@ -13,6 +14,11 @@ export default {
             path: "recruit",
             name: "admin.recruit",
             component: recruit
+        },
+        {
+            path: "system",
+            name: "admin.system",
+            component: system
         }
     ]
 };

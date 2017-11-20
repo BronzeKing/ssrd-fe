@@ -1,17 +1,29 @@
 <template lang="pug">
-    router-view
+    .page-usercenter
+        page-header
+        .container.mt20.pb50
+            slider
+            .page-right
+                router-view
+        page-footer
 </template>
 
 <script lang="ts">
-/*
-* 后台管理页面首页
-*/
 import { Component, Provide, Vue } from 'vue-property-decorator';
+import Slider from './slider.vue';
+import pageFooter from '../views/footer.vue';
+import pageHeader from './header.vue';
 @Component
-export default class AdminView extends Vue
+({
+    components:{
+        pageFooter,
+        Slider,
+        pageHeader
+    }
+})
+export default class Account extends Vue
 {
 };
-
 </script>
 <style lang="scss">
 .page-usercenter{

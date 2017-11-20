@@ -5,7 +5,7 @@
                 el-breadcrumb-item(:to="{ path: '/' }") 后台管理
                 el-breadcrumb-item(:to="{ path: '/about' }") 招聘信息
         .about-wrap.mt10
-            el-button(suffix-icon='el-icon-edit' @click="handleCreate") 新建招聘信息
+            el-button(suffix-icon='el-icon-edit' @click="handleCreate") 新建
             el-input(placeholder="职位搜索" suffix-icon="el-icon-search" v-model="Recruitment.t.search" @change="Recruitment.list()")
             el-table.mt10(:data="Recruitment.t.Records" highlight-current-row @current-change="handleCurrentChange" style="width: 100%")
                 el-table-column(property="name" label="职位名称")
@@ -27,9 +27,9 @@
                     el-form-item(label="招聘人数")
                         el-input(v-model="Recruitment.m.number" auto-complete="off" placeholder="请填写招聘人数")
                     el-form-item(label="岗位职责")
-                        el-input(type="textarea" v-model="Recruitment.m.jobResponsibilities" auto-complete="off" placeholder="请填写岗位职责")
+                        el-input(type="textarea" autosize v-model="Recruitment.m.jobResponsibilities" auto-complete="off" placeholder="请填写岗位职责")
                     el-form-item(label="任职要求")
-                        el-input(type="textarea" v-model="Recruitment.m.jobDetail" auto-complete="off" placeholder="请填写任职要求")
+                        el-input(type="textarea" autosize v-model="Recruitment.m.jobDetail" auto-complete="off" placeholder="请填写任职要求")
                 el-button(@click="dialog.recruit = false") 取消
                 el-button(type="primary" @click="handleRecruitment") 确定
 </template>
