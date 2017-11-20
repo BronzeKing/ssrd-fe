@@ -53,6 +53,10 @@ const SIDEBAR = [
             {
                 name: "admin.partner",
                 title: "合作伙伴"
+            },
+            {
+                name: "admin.company",
+                title: "关于公司"
             }
         ]
     },

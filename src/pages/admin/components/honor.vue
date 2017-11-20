@@ -6,8 +6,6 @@
                 el-breadcrumb-item 荣耀资质
         .about-wrap.mt10.p15
             div
-                el-tabs(tpye="card" v-model="activeTab"  @tab-click="honorList")
-                    el-tab-pane(v-for="(item, index) in tabs" :key="index" :label="item.name" :value="item.value")
                 el-button(suffix-icon='el-icon-edit' @click="handleCreate") 新建
                 el-input(placeholder="请输入要搜索的资质名称" suffix-icon="el-icon-search" v-model="Honor.t.search" @change="honorList")
                 el-table.mt10(:data="Honor.t.Records" stripe @current-change="handleCurrentChange" highlight-current-row style="width: 100%")

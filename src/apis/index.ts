@@ -13,7 +13,9 @@ export const Login = new Resource(API.login, new m.Login({})); // 登录接口
 export const Register = new Resource(API.register, new m.Register({})); // 注册接口
 export const Env = new Resource(API.env, new m.Default({}), {}, true); // 获取系统配置
 
-/* 关于我们 */
+/* 关于关于我们*/
+export const AboutUs = new Resource(API.aboutUs, new m.AboutUs({}));
+/* 关于新闻公告 */
 export const News = new Resource(API.news, new m.News({}));
 
 /* 新闻 */

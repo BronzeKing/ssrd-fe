@@ -8,9 +8,7 @@ export class AboutUs extends Model {
     // 企业文化
     @Provide public culture: string;
     // 荣耀
-    @Provide public honour: string;
-    // 合作伙伴
-    @Provide public cooperativePartner: string;
+    @Provide public address: string;
 };
 
 export class Credential extends Model {

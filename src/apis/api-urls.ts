@@ -23,6 +23,10 @@ export default {
   */
     env: `${apiUrl}/env`,
 
+  /**
+  * 获取关于我们
+  */
+    aboutUs: `${apiUrl}/aboutUs`,
     /**
   * 新闻
   */

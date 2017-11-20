@@ -8,6 +8,7 @@ const video = (r: any) => require.ensure([], () => r(require("pages/admin/compon
 const documents = (r: any) => require.ensure([], () => r(require("pages/admin/components/documents")), "admin");
 const partner = (r: any) => require.ensure([], () => r(require("pages/admin/components/partner")), "admin");
 const honor = (r: any) => require.ensure([], () => r(require("pages/admin/components/honor")), "admin");
+const company= (r: any) => require.ensure([], () => r(require("pages/admin/components/company")), "admin");
 
 
 export default {
@@ -45,6 +46,11 @@ export default {
             path: "honor",
             name: "admin.honor",
             component: honor
+        },
+        {
+            path: "company",
+            name: "admin.company",
+            component: company
         }
     ]
 };
