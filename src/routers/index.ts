@@ -4,6 +4,7 @@ import store from "vuexs";
 
 import views from "./modules/views";
 import account from "./account";
+import admin from "./admin";
 const error = (r: any) =>
   require.ensure([], () => r(require("pages/views/error")), "views");
 // const viewsPage = r => require.ensure([], () => r(require('pages/views/views')), 'views');
@@ -18,6 +19,7 @@ const route = new Router({
       component: error
     },
     views,
+    admin,
     account
   ]
 });

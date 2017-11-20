@@ -111,8 +111,7 @@ export class Resource<T extends Model> {
     *
     * @参数 body: 请求的body
     */
-    formData(body: Payload): FormData {
-        const data = assign({}, this.m.serialize(), body);
+    formData(data: Payload): FormData {
         const form = new FormData();
         Object.keys(data).forEach(x => {
             let obj = data[x];
@@ -140,6 +139,9 @@ export class Resource<T extends Model> {
     request(body: Payload, config: Payload, action: string): AxiosPromise {
         let method = _methodMap[action];
         let response: AxiosPromise;
+        if (isInArray(['destroy', 'update', 'create'], action)) {
+            body = assign({}, this.m.serialize(), body);
+        }
         let url = replaceUrl(this.url, body, this._pathArgv, action);
         if (this.cache && this.cached[action]) {
             return this.cached[action];

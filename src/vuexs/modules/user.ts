@@ -28,7 +28,8 @@ const mutations = {
 };
 
 const actions = {
-
+  login: ({ commit }: any, payload: any) => commit(types.LOGIN, payload),
+  logout: ({ commit }: any) => commit(types.LOGOUT)
 };
 
 const getters = {

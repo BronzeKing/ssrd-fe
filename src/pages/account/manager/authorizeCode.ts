@@ -10,7 +10,6 @@ export default class AuthorizeCodeView extends Vue {
         };
     });
     @Provide() AuthorizeCode = AuthorizeCode;
-    @Provide() status = '1';
 
     public get env() {
         return this.$store.state.home.env;
