@@ -16,13 +16,12 @@
                 el-table-column(property="created" label="创建时间")
                 el-table-column(label="操作")
                     template(slot-scope="scope")
-                        el-select(v-model="scope.row.status" :placeholder="env.status[String(scope.row.status)]" @change="authorizeCodeUpdate(scope.row)")
-                            el-option(label="启用" value="1")
-                            el-option(label="停用" value="0")
-                        el-button(suffix-icon='el-icon-delete' @click="authorizeCodeDestroy(scope.row)")
+                        el-select(v-model="scope.row.status" @change="authorizeCodeUpdate(scope.row)")
+                            el-option(label="启用" :value="1")
+                            el-option(label="停用" :value="0")
+                        el-button(suffix-icon='el-icon-delete' @click="authorizeCodeDestroy(scope.row)") 删除
 
             el-pagination.mt5(@current-change="AuthorizeCode.list" :page-size="AuthorizeCode.t.pageSize" layout="prev, pager, next, jumper" :total="AuthorizeCode.t.PageCount" :current-page.sync="AuthorizeCode.t.pageIndex")
-        
 </template>
 <script lang="ts" src="./authorizeCode.ts">
 </script>

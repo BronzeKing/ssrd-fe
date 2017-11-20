@@ -24,7 +24,10 @@ export default class App extends Vue {
                     this.$store.commit('login', r);
                 }
             });
-        };
+        } else {
+            this.$store.commit('logout');
+
+        }
         Env.retrieve().then((r: Payload) => {
             this.$store.commit('env', r);
         });

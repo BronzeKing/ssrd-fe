@@ -10,7 +10,7 @@ let _methodMap: { [x: string]: any } = {
     list: ajax.Axios.get,
     retrieve: ajax.Axios.get,
     create: ajax.Axios.post,
-    update: ajax.Axios.post,
+    update: ajax.Axios.put,
     destroy: ajax.Axios.delete
 };
 

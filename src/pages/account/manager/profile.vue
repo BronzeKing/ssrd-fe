@@ -8,7 +8,7 @@
         div
             el-form(ref="form" :model="Profile" label-width="80px")
                 el-form-item(label="真实姓名")
-                    el-input(v-model="Profile.m.name")
+                    el-input(v-model="Profile.m.name" :placeholder="Profile.m.name")
                 el-form-item(label="性别")
                     el-radio-group(v-model="Profile.m.gender")
                         el-radio(label="男" value="male")
@@ -17,11 +17,11 @@
                     el-col(:span="11")
                         el-date-picker(type="date" placeholder="选择日期" v-model="Profile.m.birthday" style="width: 100%;")
                 el-form-item(label="所属公司")
-                    el-input(v-model="Profile.m.company")
+                    el-input(v-model="Profile.m.company" :placeholder="Profile.m.company")
                 el-form-item(label="职位")
-                    el-input(v-model="Profile.m.position")
+                    el-input(v-model="Profile.m.position" :placeholder="Profile.m.position")
                 el-form-item(label="地址")
-                    el-input(v-model="Profile.m.address")
+                    el-input(v-model="Profile.m.address" :placeholder="Profile.m.address")
                 el-button(type="primary" @click="submit") 保存
 </template>
 
@@ -32,6 +32,13 @@ import  { Profile } from 'apis';
 export default class ProfileView extends Vue
 {
     @Provide() Profile = Profile;
+    public get user () {
+        return this.$store.state.user.user;
+    }
+    public created () {
+        this.user;
+        Profile.retrieve({userId: this.user.id});
+    }
     submit () {
         Profile.update();
     }

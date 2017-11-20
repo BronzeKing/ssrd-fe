@@ -1,5 +1,5 @@
-import { Component, Provide, Vue } from "vue-property-decorator";
-import { AuthorizeCode } from "apis";
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import { AuthorizeCode } from 'apis';
 @Component
 export default class AuthorizeCodeView extends Vue {
     @Provide()
@@ -10,6 +10,7 @@ export default class AuthorizeCodeView extends Vue {
         };
     });
     @Provide() AuthorizeCode = AuthorizeCode;
+    @Provide() status = '1';
 
     public get env() {
         return this.$store.state.home.env;

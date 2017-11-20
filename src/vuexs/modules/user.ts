@@ -4,6 +4,7 @@
 
 import * as types from "./types";
 import { assign } from "common/utils/extends";
+import { Login } from 'apis';
 
 const state = {
   user: {},
@@ -17,7 +18,7 @@ const mutations = {
     state.isAuthenticated = true;
   },
   [types.TOKEN](state: any, payload: any) {
-    localStorage.token = "Bearer " + payload.token;
+    localStorage.token = 'Bearer ' + payload.token;
   },
   [types.LOGOUT](state: any) {
     state.isAuthenticated = false;
@@ -27,12 +28,11 @@ const mutations = {
 };
 
 const actions = {
-  login: ({ commit }: any, payload: any) => commit(types.LOGIN, payload),
-  logout: ({ commit }: any) => commit(types.LOGOUT)
+
 };
 
 const getters = {
-  getUser: (state: any) => state.user
+  user: (state: any) => state.user
 };
 
 export default { state, mutations, actions, getters };

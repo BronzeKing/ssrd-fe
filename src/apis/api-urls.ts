@@ -105,7 +105,7 @@ export default {
     /**
   * 个人资料
   */
-    profile: `${apiUrl}/users/{id}/profile`,
+    profile: `${apiUrl}/users/:userId/profile`,
     /**
   * 邀请码
   */
