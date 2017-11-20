@@ -6,6 +6,8 @@ const recruit = (r: any) => require.ensure([], () => r(require("pages/admin/comp
 const system = (r: any) => require.ensure([], () => r(require("pages/admin/components/system")), "admin");
 const video = (r: any) => require.ensure([], () => r(require("pages/admin/components/video")), "admin");
 const documents = (r: any) => require.ensure([], () => r(require("pages/admin/components/documents")), "admin");
+const partner = (r: any) => require.ensure([], () => r(require("pages/admin/components/partner")), "admin");
+const honor = (r: any) => require.ensure([], () => r(require("pages/admin/components/honor")), "admin");
 
 
 export default {
@@ -33,6 +35,16 @@ export default {
             path: "video",
             name: "admin.video",
             component: video
+        },
+        {
+            path: "partner",
+            name: "admin.partner",
+            component: partner
+        },
+        {
+            path: "honor",
+            name: "admin.honor",
+            component: honor
         }
     ]
 };

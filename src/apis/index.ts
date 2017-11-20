@@ -33,6 +33,8 @@ export const SystemCase = new Resource(API.systemCase, new m.SystemCase({}), {},
 /* 案例展示 */
 export const Faqs = new Resource(API.faqs, new m.FAQs({})); // 常见问题解答
 export const Video = new Resource(API.opVideo, new m.Documents({})); // 操作视频
+export const Partner = new Resource(API.documents, new m.Documents({})); // 合作伙伴
+export const Honor = new Resource(API.documents, new m.Documents({})); // 荣誉资质
 export const Download = new Resource(API.download, new m.Documents({})); // 文档下载
 
 export const Product = new Resource(API.product, new m.Product({})); // 产品

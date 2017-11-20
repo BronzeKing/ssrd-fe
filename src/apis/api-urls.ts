@@ -42,7 +42,7 @@ export default {
   */
     industryLink: `${apiUrl}/industryLinks`,
 
-    /**
+  /**
   * 文档列表(荣誉资质和合作伙伴)
   */
     documents: `${apiUrl}/documents`,

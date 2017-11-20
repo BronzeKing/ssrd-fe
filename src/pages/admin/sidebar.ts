@@ -49,6 +49,10 @@ const SIDEBAR = [
             {
                 name: "admin.honor",
                 title: "公司荣耀"
+            },
+            {
+                name: "admin.partner",
+                title: "合作伙伴"
             }
         ]
     },

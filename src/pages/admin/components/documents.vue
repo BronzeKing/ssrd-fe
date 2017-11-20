@@ -3,7 +3,6 @@
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ name: 'admin' }") 后台管理
-                el-breadcrumb-item(:to="{ name: 'admin' }") 首页管理
                 el-breadcrumb-item 文档下载
         .about-wrap.mt10.p15
             div
