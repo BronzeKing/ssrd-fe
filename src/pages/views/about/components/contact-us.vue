@@ -14,93 +14,70 @@
                         p
                             span.company-info-item 
                                 i.iconfont.icon-telephone
-                                | 总机：0755-82182153
+                                | 总机：{{AboutUs.m.tel}}
                             span.company-info-item 
                                 i.iconfont.icon-fax
-                                | 传真：0755-82226563
+                                | 传真：{{AboutUs.m.fax}}
                             span.company-info-item 
                                 i.iconfont.icon-mail
-                                | 邮箱：2669607714@qq.com
+                                | 邮箱：{{AboutUs.m.email}}
                             span.company-info-item 
                                 i.iconfont.icon-postcode
-                                | 邮编：57800
+                                | 邮编：{{AboutUs.m.postcode}}
                             
                     .company-info-aside
                         h3 24小时客服热线
                         p
                             span.company-info-item 
                                 i.iconfont.icon-tel
-                                | 业务咨询1：0755-82182153
+                                | 业务咨询1：{{AboutUs.m.tel}}
                             span.company-info-item 
                                 i.iconfont.icon-tel
-                                | 业务咨询2：0755-82182153
+                                | 业务咨询2：{{AboutUs.m.tel}}
                             span.company-info-item 
                                 i.iconfont.icon-tel
-                                | 业务咨询3：0755-82182153
+                                | 业务咨询3：{{AboutUs.m.tel}}
                             span.company-info-item 
                                 i.iconfont.icon-tel
-                                | 业务咨询4：0755-82182153
+                                | 业务咨询4：{{AboutUs.m.tel}}
                     p.f12 
                         i.iconfont.icon-map
-                        | 地址：广东省深圳市龙岗区南湾街道丹竹头康正路48号莲塘工业区2栋5楼(南区)
+                        | 地址：{{AboutUs.m.address}}
                 //- img(src="~assets/address_mark.png")
                 baidu-map(id="bd-map" ak="BAIDU_MAP" @ready="onMapReady" :center="center" :zoom="mapZoom" :scroll-wheel-zoom="true")
                     bm-marker(:position="center" animation="BMAP_ANIMATION_BOUNCE")
                         bm-label(content="深圳市盛世润达智能科技有限公司" :labelStyle="{color: '#333', fontSize : '16px', borderColor: '#333'}" :offset="{width: -35, height: 30}")
                     bm-geolocation(class="map-geolocation" anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true")
 </template>
-<script>
+<script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import { AboutUs } from 'apis';
+
 import { BaiduMap, BmGeolocation, BmMarker, BmLabel } from 'vue-baidu-map';
 import { baiduMapAk } from 'settings';
 
-export default {
-    name: 'contact-us',
-    data () {
-        return {
-            BAIDU_MAP: baiduMapAk,
-            center: {
-                lng: 114.154858,
-                lat: 22.634009
-            },
-            mapZoom: 15
-        };
-    },
+@Component({
     components: {
         BaiduMap,
         BmGeolocation,
         BmMarker,
         BmLabel
-    },
-    methods: {
-        onMapReady (e) {
-            /* eslint-disable */
-            console.log(e);
-            /* eslint-enable */
-        }
+    }
+
+})
+export default class ContactUs extends Vue
+{
+    @Provide() AboutUs = AboutUs;
+    @Provide() BAIDU_MAP: string = baiduMapAk;
+    @Provide() center: {lng: number, lat: number}=  {
+                lng: 114.154858,
+                lat: 22.634009
+            }
+    @Provide() mapZoom: number = 15;
+    protected created(): void {
+        AboutUs.retrieve();
     }
 };
-// vue-baidu-map 还不支持ts
-// import { Component, Provide, Vue } from 'vue-property-decorator';
-// import { BaiduMap, BmGeolocation, BmMarker, BmLabel } from 'vue-baidu-map';
-// import { baiduMapAk } from 'settings';
-
-// @Component({
-    // components: {
-        // BaiduMap,
-        // BmGeolocation,
-        // BmMarker,
-        // BmLabel
-    // }
-// })
-// export default class ContactUs extends Vue
-// {
-    // @Provide() BAIDU_MAP: string = baiduMapAk;
-    // @Provide() center: {lng: number, lat: number}=  {
-                // lng: 114.154858,
-                // lat: 22.634009
-            // }
-    // @Provide() mapZoom: number = 15;
-// };
 </script>
 <style lang="scss">
 // F:\Work Object\ssrd-fe\src\scss\pages\views\about\contact-us.scss

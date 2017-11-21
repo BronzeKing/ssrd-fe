@@ -14,7 +14,7 @@ export const Register = new Resource(API.register, new m.Register({})); // 注�
 export const Env = new Resource(API.env, new m.Default({}), {}, true); // 获取系统配置
 
 /* 关于关于我们*/
-export const AboutUs = new Resource(API.aboutUs, new m.AboutUs({}));
+export const AboutUs = new Resource(API.aboutUs, new m.AboutUs({}), {}, true);
 /* 关于新闻公告 */
 export const News = new Resource(API.news, new m.News({}));
 

@@ -3,7 +3,7 @@
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ name: 'admin' }") 后台管理
-                el-breadcrumb-item {{关于公司}}
+                el-breadcrumb-item 关于公司
         .about-wrap.mt10.p15
             div
                 el-form(ref="AboutUsForm" :model="AboutUs.m" :rules="AboutUs.rules" label-width="120px" label-position="right")

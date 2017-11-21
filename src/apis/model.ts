@@ -9,6 +9,11 @@ export class AboutUs extends Model {
     @Provide public culture: string;
     // 荣耀
     @Provide public address: string;
+
+    @Provide public tel: string;
+    @Provide public fax: string;
+    @Provide public email: string;
+    @Provide public postcode: string;
 };
 
 export class Credential extends Model {
