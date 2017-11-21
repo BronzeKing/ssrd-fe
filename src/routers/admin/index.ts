@@ -10,6 +10,7 @@ const partner = (r: any) => require.ensure([], () => r(require("pages/admin/comp
 const honor = (r: any) => require.ensure([], () => r(require("pages/admin/components/honor")), "admin");
 const company= (r: any) => require.ensure([], () => r(require("pages/admin/components/company")), "admin");
 const news = (r: any) => require.ensure([], () => r(require("pages/admin/components/news")), "admin");
+const group = (r: any) => require.ensure([], () => r(require("pages/admin/components/group")), "admin");
 
 
 export default {
@@ -52,6 +53,11 @@ export default {
             path: "honor",
             name: "admin.honor",
             component: honor
+        },
+        {
+            path: "group",
+            name: "admin.group",
+            component: group
         },
         {
             path: "company",

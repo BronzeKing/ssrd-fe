@@ -7,13 +7,16 @@ export class AboutUs extends Model {
     @Provide public introduction: string;
     // 企业文化
     @Provide public culture: string;
-    // 荣耀
+    // 联系地址
     @Provide public address: string;
-
-    @Provide public tel: string;
-    @Provide public fax: string;
+    // 邮箱
     @Provide public email: string;
+    // 邮编
     @Provide public postcode: string;
+    // 电话
+    @Provide public tel: string;
+    // 传真
+    @Provide public fax: string;
 };
 
 export class Credential extends Model {
@@ -36,8 +39,6 @@ export class User extends Model {
     @Provide public social_auth: UserSocialAuth;
     // 所属用户
     @Provide public profile: User;
-    // 所属用户
-    @Provide public projects: Project;
     // 授权码对应用户
     @Provide public authorizecode: User;
     // 所属用户
@@ -47,9 +48,11 @@ export class User extends Model {
     // 受邀用户
     @Provide public invited: User;
     // 所属用户
+    @Provide public projects: Project;
+    // 所属用户
     @Provide public collects: Collect;
     // user
-    @Provide public credential: Credential;
+    @Provide public credentials: Credential;
     // ID
     @Provide public id: number;
     // password
@@ -167,57 +170,8 @@ export class Profile extends Model {
     @Provide public address: string;
     // 邀请码
     @Provide public code: string;
-};
-
-export class Project extends Model {
-    // 所属项目
-    @Provide public logs: ProjectLog;
-    // ID
-    @Provide public id: number;
-    // 所属用户
-    @Provide public user: User;
-    // 项目名称
-    @Provide public name: string;
-    // 项目状态
-    @Provide public status: number;
-    // 背景图片
-    @Provide public picture: any;
-    // 创建时间
-    @Provide public created: string;
-    // 更新时间
-    @Provide public updated: string;
-};
-
-export class ProjectLog extends Model {
-    // ID
-    @Provide public id: number;
-    // 所属项目
-    @Provide public project: Project;
-    // 行为
-    @Provide public action: number;
-    // 内容
-    @Provide public content: string;
-    // 创建时间
-    @Provide public created: string;
-    // 更新时间
-    @Provide public updated: string;
-    // 附件
-    @Provide public attatchment: Document;
-};
-
-export class Documents extends Model {
-    // 附件
-    @Provide public projectlog: ProjectLog;
-    // ID
-    @Provide public id: number;
-    // 文件名
-    @Provide public name: string;
-    // 文件
-    @Provide public file: any;
-    // 项目时间
-    @Provide public created: string;
-    // 更新时间
-    @Provide public updated: string;
+    // group
+    @Provide public group: Group;
 };
 
 export class AuthorizeCode extends Model {
@@ -247,6 +201,75 @@ export class Invitation extends Model {
     // 受邀用户
     @Provide public user: User;
     // 创建时间
+    @Provide public created: string;
+    // 更新时间
+    @Provide public updated: string;
+};
+
+export class Project extends Model {
+    // 所属项目
+    @Provide public logs: ProjectLog;
+    // ID
+    @Provide public id: number;
+    // 所属用户
+    @Provide public user: User;
+    // 项目名称
+    @Provide public name: string;
+    // 项目类型
+    @Provide public type: string;
+    // Mobile Phone
+    @Provide public mobile: string;
+    // 项目状态
+    @Provide public status: number;
+    // 补充说明
+    @Provide public remark: string;
+    // 工期
+    @Provide public duration: number;
+    // 工期
+    @Provide public budget: number;
+    // 联系人
+    @Provide public linkman: string;
+    // 内容
+    @Provide public content: string;
+    // 地址
+    @Provide public address: string;
+    // 创建时间
+    @Provide public created: string;
+    // 更新时间
+    @Provide public updated: string;
+    // 附件
+    @Provide public attatchment: Documents;
+};
+
+export class ProjectLog extends Model {
+    // ID
+    @Provide public id: number;
+    // 所属项目
+    @Provide public project: Project;
+    // 行为
+    @Provide public action: number;
+    // 内容
+    @Provide public content: string;
+    // 创建时间
+    @Provide public created: string;
+    // 更新时间
+    @Provide public updated: string;
+    // 附件
+    @Provide public attatchment: Documents;
+};
+
+export class Documents extends Model {
+    // 附件
+    @Provide public project: Project;
+    // 附件
+    @Provide public projectlog: ProjectLog;
+    // ID
+    @Provide public id: number;
+    // 文件名
+    @Provide public name: string;
+    // 文件
+    @Provide public file: any;
+    // 项目时间
     @Provide public created: string;
     // 更新时间
     @Provide public updated: string;
@@ -284,7 +307,6 @@ export class Product extends Model {
     // 背景图片
     @Provide public background: any;
     // 产品分类
-    @Provide public category: ProductCategory;
     // 创建时间
     @Provide public created: string;
     // 更新时间
@@ -369,17 +391,21 @@ export class SystemCase extends Model {
     @Provide public systems: System;
 };
 
-export class FAQs extends Model {
+export class News extends Model {
     // ID
     @Provide public id: number;
-    // 问题
-    @Provide public questioin: string;
-    // 回答
-    @Provide public answer: string;
-    // 排序
-    @Provide public rank: number;
+    // 标题
+    @Provide public title: string;
+    // 内容
+    @Provide public content: string;
     // 创建时间
     @Provide public created: string;
+    // 更新时间
+    @Provide public updated: string;
+    // 类型
+    @Provide public type: number;
+    // 排序
+    @Provide public rank: number;
 };
 
 export class FeedBack extends Model {
@@ -447,19 +473,6 @@ export class Message extends Model {
     @Provide public category: number;
     // 已读
     @Provide public read: number;
-    // 排序
-    @Provide public rank: number;
-};
-
-export class News extends Model {
-    // ID
-    @Provide public id: number;
-    // 标题
-    @Provide public title: string;
-    // 内容
-    @Provide public content: string;
-    // 创建时间
-    @Provide public created: string;
     // 排序
     @Provide public rank: number;
 };

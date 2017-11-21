@@ -65,11 +65,11 @@ const SIDEBAR = [
         ]
     },
     {
-        title: "服务中心",
+        title: "用户管理",
         sub: [
             {
-                name: "servicePromise",
-                title: "服务承诺"
+                name: "admin.group",
+                title: "部门管理"
             },
             {
                 name: "feedback",

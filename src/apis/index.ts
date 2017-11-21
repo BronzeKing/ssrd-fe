@@ -47,6 +47,7 @@ export const Email = new Resource(API.email, new m.Email({})); // 修改或验�
 export const Credential = new Resource(API.credential, new m.Credential({})); // 修改或验证邮箱、手机
 export const Captcha = new Resource(API.captcha, new m.Email({})); // 验证码
 export const User = new Resource(API.user, new m.User({})); // 用户
+export const Group = new Resource(API.group, new m.User({})); // 部门
 export const Message = new Resource(API.message, new m.Message({})); // 消息
 export const Invitation = new Resource(API.invitation, new m.Invitation({})); // 邀请码
 export const AuthorizeCode = new Resource(API.authorizeCode, new m.AuthorizeCode({})); // 授权码

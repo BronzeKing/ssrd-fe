@@ -11,6 +11,16 @@
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import { AboutUs } from 'apis';
 import marked from 'marked'
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false
+});
 
 @Component
 export default class CompanyProfile extends Vue
@@ -20,7 +30,7 @@ export default class CompanyProfile extends Vue
         AboutUs.retrieve();
     }
     public compiledMarkdown () {
-        return marked(AboutUs.m.introduction, { sanitize: true });
+        return marked(AboutUs.m.introduction, {});
     }
 }
 </script>

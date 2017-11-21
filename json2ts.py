@@ -34,9 +34,13 @@ def fromModel(sio, key, value):
 
 def main(src, dist):
     sio = StringIO()
-    with open(src, 'r') as fd:
-        data = json.load(fd)
-        models = data['definitions']
+    if src.startswith('http'):
+        import requests
+        data = requests.get(src).json()
+    else:
+        with open(src, 'r') as fd:
+            data = json.load(fd)
+    models = data['definitions']
     [fromModel(sio, key, value) for key, value in models.items()]
     txt = sio.getvalue()
     custom = None  # 自定义的model
@@ -60,6 +64,6 @@ if __name__ == '__main__':
     elif len(sys.argv) == 3:
         src, dict = sys.argv[1:3]
     else:
-        src = 'api.json'
-        dist = 'model.ts'
+        src = 'http://127.0.0.1:8888/?format=openapi'
+        dist = 'src/apis/model.ts'
     main(src, dist)

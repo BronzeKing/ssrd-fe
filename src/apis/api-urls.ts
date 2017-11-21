@@ -102,6 +102,10 @@ export default {
   * 用户
   */
     user: `${apiUrl}/users`,
+  /**
+  * 用户
+  */
+    group: `${apiUrl}/groups`,
     /**
   * 消息
   */
