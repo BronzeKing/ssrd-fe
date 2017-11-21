@@ -18,7 +18,7 @@
                 el-pagination.mt5(@current-change="Group.list" :page-size="Group.t.pageSize" layout="prev, pager, next, jumper" :total="Group.t.PageCount" :current-page.sync="Group.t.pageIndex")
                 el-dialog(title="部门管理" :visible.sync="dialog.group")
                     el-form(ref="GroupForm" :model="Group.m" :rules="Group.rules" label-width="120px" label-position="right")
-                        el-form-item(label="部门名称")
+                        el-form-item(label="部门名称" :error="Group.errors.name")
                             el-input(type="textarea" autosize v-model="Group.m.name" auto-complete="off" placeholder="请填写部门名称")
                     el-button(@click="dialog.group = false") 取消
                     el-button(type="primary" @click="handleGroup") 确定

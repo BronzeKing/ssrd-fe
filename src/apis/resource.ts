@@ -164,7 +164,7 @@ export class Resource<T extends Model> {
                 });
             }
         });
-        if (this.cache) {
+        if (this.cache && isInArray(['list', 'retrieve'], action)) {
             this.cached[action] = response;
         }
         return response;

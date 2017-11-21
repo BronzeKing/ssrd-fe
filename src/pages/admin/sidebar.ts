@@ -72,12 +72,8 @@ const SIDEBAR = [
                 title: "部门管理"
             },
             {
-                name: "feedback",
-                title: "意见反馈"
-            },
-            {
-                name: "survey",
-                title: "满意度调查"
+                name: "admin.user",
+                title: "用户(员工)管理"
             }
         ]
     },
