@@ -7,7 +7,6 @@
         .about-wrap.mt10.p15
             div
                 el-button(suffix-icon='el-icon-edit' @click="handleCreate") 新建
-                el-input(placeholder="请输入要搜索的合作伙伴名称" suffix-icon="el-icon-search" v-model="Partner.t.search" @change="partnerList")
                 el-table.mt10(:data="Partner.t.Records" stripe @current-change="handleCurrentChange" highlight-current-row style="width: 100%")
                     el-table-column(property="name", label="文件名称")
                     el-table-column(property="updated" label="更新时间")

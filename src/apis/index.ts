@@ -17,6 +17,7 @@ export const Env = new Resource(API.env, new m.Default({}), {}, true); // 获取
 export const AboutUs = new Resource(API.aboutUs, new m.AboutUs({}), {}, true);
 /* 关于新闻公告 */
 export const News = new Resource(API.news, new m.News({}));
+export const Faqs = new Resource(API.news, new m.News({})); // 常见问题解答
 
 /* 新闻 */
 export const Recruitment = new Resource(API.recruitments, new m.Recruitment({}));
@@ -33,7 +34,6 @@ export const System = new Resource(API.systems, new m.System({}), {}, true); // 
 export const SystemCase = new Resource(API.systemCase, new m.SystemCase({}), {}, true); // 案例展示列表
 
 /* 案例展示 */
-export const Faqs = new Resource(API.faqs, new m.FAQs({})); // 常见问题解答
 export const Video = new Resource(API.opVideo, new m.Documents({})); // 操作视频
 export const Partner = new Resource(API.documents, new m.Documents({})); // 合作伙伴
 export const Honor = new Resource(API.documents, new m.Documents({})); // 荣誉资质

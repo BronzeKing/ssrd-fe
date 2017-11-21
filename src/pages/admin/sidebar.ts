@@ -34,6 +34,10 @@ const SIDEBAR = [
                 title: "招聘信息"
             },
             {
+                name: "admin.news",
+                title: "资讯管理"
+            },
+            {
                 name: "admin.video",
                 title: "视频管理"
             },

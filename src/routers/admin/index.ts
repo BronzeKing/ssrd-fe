@@ -9,6 +9,7 @@ const documents = (r: any) => require.ensure([], () => r(require("pages/admin/co
 const partner = (r: any) => require.ensure([], () => r(require("pages/admin/components/partner")), "admin");
 const honor = (r: any) => require.ensure([], () => r(require("pages/admin/components/honor")), "admin");
 const company= (r: any) => require.ensure([], () => r(require("pages/admin/components/company")), "admin");
+const news = (r: any) => require.ensure([], () => r(require("pages/admin/components/news")), "admin");
 
 
 export default {
@@ -31,6 +32,11 @@ export default {
             path: "documents",
             name: "admin.documents",
             component: documents
+        },
+        {
+            path: "news",
+            name: "admin.news",
+            component: news
         },
         {
             path: "video",

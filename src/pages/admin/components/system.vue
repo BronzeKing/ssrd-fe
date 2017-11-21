@@ -11,20 +11,20 @@
                 el-table-column(property="name" label="方案名称")
                 el-table-column(label="摘要")
                     template(slot-scope="scope")
-                        el-popover(trigger="hover" placement="top")
+                        el-popover(trigger="hover" placement="top" width="500")
                             p {{scope.row.summary}}
                             div(slot="reference" class="name-wrapper")
                                 p {{scope.row.summary.slice(0,20)}}...
                 el-table-column(label="系统介绍")
                     template(slot-scope="scope")
-                        el-popover(trigger="hover" placement="top")
+                        el-popover(trigger="hover" placement="top" width="500")
                             p {{scope.row.introduction}}
                             div(slot="reference" class="name-wrapper")
                                 p {{scope.row.introduction.slice(0,20)}}...
                 el-table-column(property="structure" label="系统结构")
                 el-table-column(label="功能特性")
                     template(slot-scope="scope")
-                        el-popover(trigger="hover" placement="top")
+                        el-popover(trigger="hover" placement="top" width="500")
                             p {{scope.row.funtionalFeature}}
                             div(slot="reference" class="name-wrapper")
                                 p {{scope.row.funtionalFeature.slice(0,20)}}...

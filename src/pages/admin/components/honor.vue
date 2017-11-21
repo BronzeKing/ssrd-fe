@@ -7,7 +7,6 @@
         .about-wrap.mt10.p15
             div
                 el-button(suffix-icon='el-icon-edit' @click="handleCreate") 新建
-                el-input(placeholder="请输入要搜索的资质名称" suffix-icon="el-icon-search" v-model="Honor.t.search" @change="honorList")
                 el-table.mt10(:data="Honor.t.Records" stripe @current-change="handleCurrentChange" highlight-current-row style="width: 100%")
                     el-table-column(property="name", label="文件名称")
                     el-table-column(property="updated" label="更新时间")
