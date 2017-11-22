@@ -8,7 +8,7 @@
                 //- img(src="~assets/home_banner.png")
             article.home-info
                 nav.home-user-nav
-                    router-link.home-user-item(:to={name: 'account'})
+                    router-link.home-user-item(:to={name: 'personal'})
                         i.iconfont.icon-team
                         p 客户中心
                     router-link.home-user-item(:to={name: 'mineOrder'})

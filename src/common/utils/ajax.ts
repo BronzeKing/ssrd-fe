@@ -34,10 +34,7 @@ const _priviate: {
     // baseURL: 'api',               // 因为我本地做了反向代理
     timeout: 10000,
     responseType: "json",
-    withCredentials: true, // 是否跨域请求携带cookies
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-    }
+    withCredentials: true // 是否跨域请求携带cookies
   },
   requestOptions: {}
 };
@@ -53,13 +50,10 @@ Axios.interceptors.request.use(
     if (config.method === "post" || config.method === "put") {
       let isForm = config.data instanceof FormData;
       // 数据是否为表单类型
-      isForm
-        ? // 设置请求类型为表单
+      if (isForm) {
+         // 设置请求类型为表单
           (config.headers["Content-Type"] = "multipart/form-data")
-        : // 序列化
-          (config.data = qs.stringify(config.data.params || config.data, {
-            arrayFormat: "indices"
-          }));
+      }
     }
 
     // 若是有做鉴权token , 就给头部带上token

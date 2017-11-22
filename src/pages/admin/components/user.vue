@@ -20,26 +20,29 @@
                                 el-option(label="停用" :value="0")
                             el-button(suffix-icon='el-icon-delete' @click="handleDestroy(scope.row)") 删除
                             el-button(suffix-icon='el-icon-delete' @click="handleUpdate") 编辑
-                el-pagination.mt5(@current-change="User.list" :page-size="User.t.pageSize" layout="prev, pager, next, jumper" :total="User.t.PageCount" :current-page.sync="User.t.pageIndex")
+                el-pagination.mt5(@current-change="userList" :page-size="User.t.pageSize" layout="prev, pager, next, jumper" :total="User.t.PageCount" :current-page.sync="User.t.pageIndex")
                 el-dialog(title="用户管理" :visible.sync="dialog.user")
-                    el-form-item(prop='username' :error='User.errors.username')
-                        el-input(type='text' v-model='User.m.username' auto-complete='off' placeholder='用户名')
-                    el-form-item(prop='email' :error='User.errors.email')
-                        el-input(type='text' v-model='User.m.email' auto-complete='off' placeholder='邮箱')
-                    el-form-item(prop='password' :error='User.errors.password')
-                        el-input(type='password' v-model='User.m.password' auto-complete='off' placeholder='密码')
+                    el-form(ref="UserForm" :model="User.m" :rules="User.rules" label-width="120px" label-position="right")
+                        el-form-item(label="用户名" prop='username' :error='User.errors.username')
+                            el-input(type='text' v-model='User.m.username' auto-complete='off' placeholder='用户名')
+                        el-form-item(label="邮箱" prop='email' :error='User.errors.email')
+                            el-input(type='text' v-model='User.m.email' auto-complete='off' placeholder='邮箱')
+                        el-form-item(label="部门" prop='group' :error='User.errors.group')
+                            el-select.mr15(v-model="User.m.group" placeholder="请选择部门")
+                                el-option(v-for="(item, index) in Group.t.Records" :key="index" :label="item.name" :value="item.id")
                     el-button(@click="dialog.user = false") 取消
                     el-button(type="primary" @click="handleUser") 确定
 
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { User } from "apis";
+import { User, Group } from "apis";
 
 @Component
 export default class UserView extends Vue {
     @Provide() statusList = ['-1', '1', '0'].map(x => { return { value: x, label: this.env.status[x] + '账号' }; });
-    @Provide() User: any = User;
+    @Provide() User = User;
+    @Provide() Group = Group;
     @Provide() dialog = { user: false };
     @Provide() action = "";
     $refs: {
@@ -47,6 +50,7 @@ export default class UserView extends Vue {
     };
     protected created(): void {
         this.userList()
+        Group.list();
     }
     public get env() {
         return this.$store.state.home.env;
