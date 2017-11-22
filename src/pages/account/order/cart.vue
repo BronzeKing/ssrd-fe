@@ -1,22 +1,26 @@
 <template lang="pug">
-    .page-mineOrder
+    .page-cart
         .title.f18 我的订单
         .order-item
                 .order-item-info
                     el-col(:span="5") 2017-07-31 15:15:30
-                    el-col(:span="13") 订单号：16516515156
-                    el-col(:span="4") 2
-                    el-col(:span="2") 201
+                    el-col(:span="9") 订单号：16516515156
+                    el-col(:span="4") 备注
+                    el-col(:span="2") 单价
+                    el-col(:span="2") 数量
+                    el-col(:span="2") 总价
                 .order-item-des(v-for="n in 2")
                     el-col(:span="5")
                         .order-img
                             img(src="http://element.eleme.io/static/guide.0a8462c.png")
-                    el-col.pr30(:span="13") 多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体
+                    el-col.pr30(:span="9") 多媒体多媒体多媒体多媒体多媒体多媒体多多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体
                     el-col(:span="4") 备注：无
-                    el-col(:span="2")
+                    el-col(:span="2") 155
+                    el-col(:span="2") 10
+                    el-col(:span="2") 1550
                 .order-item-btn
-                    span.btn 申请售后
                     span.btn 订单详情
+                    span.btn 提交订单
                         
 </template>
 <script lang="ts">
@@ -24,8 +28,7 @@
 
 </script>
 <style lang="scss" scoped>
-.page-mineOrder{
-    width: 1000px;
+.page-cart{
     background: #fff;
     .title{
         height: 40px;

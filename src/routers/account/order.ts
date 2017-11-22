@@ -12,7 +12,9 @@ const mineOrder = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/mineOrder")), "order"); //我的订单
 const orderDetail = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/orderDetail")), "order"); //订单详情
-const cart = (r: any) => require.ensure([], () => r(require("pages/account/order/cart")), "order"); //我的购物车
+const cart = (r: any) => require.ensure([], () => r(require("pages/account/order/cart")), "Cart"); //我的购物车
+const settleCart = (r: any) =>
+    require.ensure([], () => r(require("pages/account/order/settleCart")), "settleCart"); //结算购物车
 const collect = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/collect")), "order"); //我的收藏
 const history = (r: any) =>
@@ -37,6 +39,11 @@ export default [
                 path: "cart",
                 name: "cart",
                 component: cart
+            },
+            {
+                path: "settleCart",
+                name: "settleCart",
+                component: settleCart
             },
             {
                 path: "collect",
