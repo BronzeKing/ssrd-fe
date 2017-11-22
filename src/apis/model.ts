@@ -50,7 +50,7 @@ export class User extends Model {
     // 所属用户
     @Provide public projects: Project;
     // 所属用户
-    @Provide public collects: Collect;
+    @Provide public collects: Collected;
     // user
     @Provide public credentials: Credential;
     // ID
@@ -71,6 +71,8 @@ export class User extends Model {
     @Provide public created: string;
     // 状态
     @Provide public status: number;
+    // group
+    @Provide public group: Group;
 };
 
 export class LogEntry extends Model {
@@ -170,8 +172,6 @@ export class Profile extends Model {
     @Provide public address: string;
     // 邀请码
     @Provide public code: string;
-    // group
-    @Provide public group: Group;
 };
 
 export class AuthorizeCode extends Model {
@@ -275,7 +275,7 @@ export class Documents extends Model {
     @Provide public updated: string;
 };
 
-export class Collect extends Model {
+export class Collected extends Model {
     // ID
     @Provide public id: number;
     // 收藏的产品
@@ -290,6 +290,7 @@ export class Collect extends Model {
 
 export class Product extends Model {
     // 收藏的产品
+    @Provide public collected: Collected;
     // ID
     @Provide public id: number;
     // 产品名称
@@ -307,6 +308,7 @@ export class Product extends Model {
     // 背景图片
     @Provide public background: any;
     // 产品分类
+    @Provide public category: ProductCategory;
     // 创建时间
     @Provide public created: string;
     // 更新时间

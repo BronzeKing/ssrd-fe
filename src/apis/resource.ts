@@ -111,22 +111,22 @@ export class Resource<T extends Model> {
     *
     * @参数 body: 请求的body
     */
-    formData(data: Payload): FormData {
-        const form = new FormData();
+    formData(data: Payload): Payload {
         Object.keys(data).forEach(x => {
             let obj = data[x];
             if (obj) {
                 // 当上传多个文件时，逐个把文件append进FormData
-                if (obj.constructor == Array && obj[0].url) {
+                if (obj.constructor === Array && obj[0].url) {
+                    let files: Array<any> = new Array();
+                    debugger;
                     obj.forEach((file: any) => {
-                        form.append(x, file.raw);
+                        files.push(file);
                     });
-                } else {
-                    form.append(x, obj);
+                    obj = files;
                 }
             }
         });
-        return form;
+        return data;
     }
 
     /**

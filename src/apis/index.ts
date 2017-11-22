@@ -40,7 +40,7 @@ export const Honor = new Resource(API.documents, new m.Documents({})); // 荣誉
 export const Download = new Resource(API.download, new m.Documents({})); // 文档下载
 
 export const Product = new Resource(API.product, new m.Product({})); // 产品
-export const Collect = new Resource(API.collect, new m.Default({})); // 收藏
+export const Collect = new Resource(API.collect, new m.Collected({})); // 收藏
 
 export const Password = new Resource(API.password, new m.Password({})); // 修改密码
 export const Email = new Resource(API.email, new m.Email({})); // 修改或验证邮箱

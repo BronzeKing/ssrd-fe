@@ -14,7 +14,7 @@
                         template(slot-scope="scope")
                             el-button(suffix-icon='el-icon-delete' @click="handleDestroy(scope.row)") 删除
                             el-button(suffix-icon='el-icon-delete' @click="handleUpdate") 编辑
-                el-pagination.mt5(@current-change="Honor.list" :page-size="Honor.t.pageSize" layout="prev, pager, next, jumper" :total="Honor.t.PageCount" :current-page.sync="Honor.t.pageIndex")
+                el-pagination.mt5(@current-change="honorList" :page-count="Honor.t.PageCount" :page-size="Honor.t.pageSize" layout="prev, pager, next, jumper" :total="Honor.t.PageCount" :current-page.sync="Honor.t.pageIndex")
                 el-dialog(title="方案管理" :visible.sync="dialog.honor")
                     el-form(ref="HonorForm" :model="Honor.m" :rules="Honor.rules" label-width="120px" label-position="right")
                         el-form-item(label="名称")
