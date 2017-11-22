@@ -1,18 +1,22 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
 import { Option } from "common/utils/extends";
-import { System } from "apis";
+import { System, Project, Profile } from "apis";
+import { Model as BaseModel, ModelRecipe } from "rawmodel";
 
 @Component
 export default class ProjectCreateDetail extends Vue {
     public get index() {
         return this.$route.params.id;
     }
-
+    @Provide() action = 'create';  // create: 新建项目， settle：结算项目页面
     @Provide() System = System;
+    @Provide() Project = Project;
+    @Provide() Profile = Profile;
 
     @Provide()
     $refs: {
         form: HTMLFormElement;
+        settleForm: HTMLFormElement;
     };
 
     protected create() {
@@ -80,7 +84,9 @@ export default class ProjectCreateDetail extends Vue {
         备注: "" // 备注
     };
 
-    submit() {}
+    submit() {
+        this.action = 'settle'
+    }
 
     cancel() {
         this.$refs.form.resetFields();

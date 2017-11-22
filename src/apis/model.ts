@@ -1,557 +1,1445 @@
-import { Model, Provide } from "./baseModel";
+import { Model } from "./baseModel";
 
 export class AboutUs extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 简介
-    @Provide public introduction: string;
+    public introduction: string;
     // 企业文化
-    @Provide public culture: string;
+    public culture: string;
     // 联系地址
-    @Provide public address: string;
+    public address: string;
     // 邮箱
-    @Provide public email: string;
+    public email: string;
     // 邮编
-    @Provide public postcode: string;
+    public postcode: string;
     // 电话
-    @Provide public tel: string;
+    public tel: string;
     // 传真
-    @Provide public fax: string;
-};
+    public fax: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('introduction', {
+      type: 'String',
+    });
+        this.defineField('culture', {
+      type: 'String',
+    });
+        this.defineField('address', {
+      type: 'String',
+    });
+        this.defineField('email', {
+      type: 'String',
+    });
+        this.defineField('postcode', {
+      type: 'String',
+    });
+        this.defineField('tel', {
+      type: 'String',
+    });
+        this.defineField('fax', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Credential extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // user
-    @Provide public user: User;
+    public user: User;
     // 类型
-    @Provide public Type: string;
+    public Type: string;
     // verified
-    @Provide public verified: string;
-};
+    public verified: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('Type', {
+      type: 'String',
+    });
+        this.defineField('verified', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class User extends Model {
-    // user
-    @Provide public logentry: LogEntry;
+        // user
+    public logentry: LogEntry;
     // 用户
-    @Provide public auth_token: User;
+    public auth_token: User;
     // user
-    @Provide public social_auth: UserSocialAuth;
+    public social_auth: UserSocialAuth;
     // 所属用户
-    @Provide public profile: User;
+    public profile: User;
     // 授权码对应用户
-    @Provide public authorizecode: User;
+    public authorizecode: User;
     // 所属用户
-    @Provide public authorizecodes: AuthorizeCode;
+    public authorizecodes: AuthorizeCode;
     // 邀请码所属用户
-    @Provide public invitations: Invitation;
+    public invitations: Invitation;
     // 受邀用户
-    @Provide public invited: User;
+    public invited: User;
     // 所属用户
-    @Provide public projects: Project;
+    public projects: Project;
     // 所属用户
-    @Provide public collects: Collected;
+    public collects: Collected;
     // user
-    @Provide public credentials: Credential;
+    public credentials: Credential;
     // ID
-    @Provide public id: number;
+    public id: number;
     // password
-    @Provide public password: string;
+    public password: string;
     // last login
-    @Provide public last_login: string;
+    public last_login: string;
     // email address
-    @Provide public email: string;
+    public email: string;
     // username
-    @Provide public username: string;
+    public username: string;
     // Mobile Phone
-    @Provide public mobile: string;
+    public mobile: string;
     // 用户权限
-    @Provide public role: number;
+    public role: number;
     // date joined
-    @Provide public created: string;
+    public created: string;
     // 状态
-    @Provide public status: number;
+    public status: number;
     // group
-    @Provide public group: Group;
-};
+    public group: Group;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('logentry', {
+      type: LogEntry,
+    });
+        this.defineField('auth_token', {
+      type: User,
+    });
+        this.defineField('social_auth', {
+      type: UserSocialAuth,
+    });
+        this.defineField('profile', {
+      type: User,
+    });
+        this.defineField('authorizecode', {
+      type: User,
+    });
+        this.defineField('authorizecodes', {
+      type: AuthorizeCode,
+    });
+        this.defineField('invitations', {
+      type: Invitation,
+    });
+        this.defineField('invited', {
+      type: User,
+    });
+        this.defineField('projects', {
+      type: Project,
+    });
+        this.defineField('collects', {
+      type: Collected,
+    });
+        this.defineField('credentials', {
+      type: Credential,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('password', {
+      type: 'String',
+    });
+        this.defineField('last_login', {
+      type: 'String',
+    });
+        this.defineField('email', {
+      type: 'String',
+    });
+        this.defineField('username', {
+      type: 'String',
+    });
+        this.defineField('mobile', {
+      type: 'String',
+    });
+        this.defineField('role', {
+      type: 'Number',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('status', {
+      type: 'Number',
+    });
+        this.defineField('group', {
+      type: Group,
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class LogEntry extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // action time
-    @Provide public action_time: string;
+    public action_time: string;
     // user
-    @Provide public user: User;
+    public user: User;
     // content type
-    @Provide public content_type: ContentType;
+    public content_type: ContentType;
     // object id
-    @Provide public object_id: string;
+    public object_id: string;
     // object repr
-    @Provide public object_repr: string;
+    public object_repr: string;
     // action flag
-    @Provide public action_flag: string;
+    public action_flag: string;
     // change message
-    @Provide public change_message: string;
-};
+    public change_message: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('action_time', {
+      type: 'String',
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('content_type', {
+      type: ContentType,
+    });
+        this.defineField('object_id', {
+      type: 'String',
+    });
+        this.defineField('object_repr', {
+      type: 'String',
+    });
+        this.defineField('action_flag', {
+      type: 'String',
+    });
+        this.defineField('change_message', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class ContentType extends Model {
+        // content type
+    public permission: Permission;
     // content type
-    @Provide public permission: Permission;
-    // content type
-    @Provide public logentry: LogEntry;
+    public logentry: LogEntry;
     // ID
-    @Provide public id: number;
+    public id: number;
     // app label
-    @Provide public app_label: string;
+    public app_label: string;
     // python model class name
-    @Provide public model: string;
-};
+    public model: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('permission', {
+      type: Permission,
+    });
+        this.defineField('logentry', {
+      type: LogEntry,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('app_label', {
+      type: 'String',
+    });
+        this.defineField('model', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Permission extends Model {
-    // permissions
-    @Provide public group: Group;
+        // permissions
+    public group: Group;
     // ID
-    @Provide public id: number;
+    public id: number;
     // name
-    @Provide public name: string;
+    public name: string;
     // content type
-    @Provide public content_type: ContentType;
+    public content_type: ContentType;
     // codename
-    @Provide public codename: string;
-};
+    public codename: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('group', {
+      type: Group,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('content_type', {
+      type: ContentType,
+    });
+        this.defineField('codename', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Group extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // name
-    @Provide public name: string;
+    public name: string;
     // permissions
-    @Provide public permissions: Permission;
-};
+    public permissions: Permission;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('permissions', {
+      type: Permission,
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Token extends Model {
-    // 键
-    @Provide public key: string;
+        // 键
+    public key: string;
     // 用户
-    @Provide public user: User;
+    public user: User;
     // 已创建
-    @Provide public created: string;
-};
+    public created: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('key', {
+      type: 'String',
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class UserSocialAuth extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // user
-    @Provide public user: User;
+    public user: User;
     // provider
-    @Provide public provider: string;
+    public provider: string;
     // uid
-    @Provide public uid: string;
+    public uid: string;
     // extra data
-    @Provide public extra_data: string;
-};
+    public extra_data: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('provider', {
+      type: 'String',
+    });
+        this.defineField('uid', {
+      type: 'String',
+    });
+        this.defineField('extra_data', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Profile extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 所属用户
-    @Provide public user: User;
+    public user: User;
     // 真实姓名
-    @Provide public name: string;
+    public name: string;
     // 性别
-    @Provide public gender: string;
+    public gender: string;
     // 生日
-    @Provide public birthday: string;
+    public birthday: string;
     // 所属公司
-    @Provide public company: string;
+    public company: string;
     // 职位
-    @Provide public position: string;
+    public position: string;
     // QQ号码
-    @Provide public qq: string;
+    public qq: string;
     // 地址
-    @Provide public address: string;
+    public address: string;
     // 邀请码
-    @Provide public code: string;
-};
+    public code: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('gender', {
+      type: 'String',
+    });
+        this.defineField('birthday', {
+      type: 'String',
+    });
+        this.defineField('company', {
+      type: 'String',
+    });
+        this.defineField('position', {
+      type: 'String',
+    });
+        this.defineField('qq', {
+      type: 'String',
+    });
+        this.defineField('address', {
+      type: 'String',
+    });
+        this.defineField('code', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class AuthorizeCode extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 授权码名称
-    @Provide public name: string;
+    public name: string;
     // 授权码对应用户
-    @Provide public user: User;
+    public user: User;
     // 所属用户
-    @Provide public creator: User;
+    public creator: User;
     // 授权码
-    @Provide public code: string;
+    public code: string;
     // 授权码状态
-    @Provide public status: number;
+    public status: number;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
-};
+    public updated: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('creator', {
+      type: User,
+    });
+        this.defineField('code', {
+      type: 'String',
+    });
+        this.defineField('status', {
+      type: 'Number',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Invitation extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 邀请码所属用户
-    @Provide public creator: User;
+    public creator: User;
     // 受邀用户
-    @Provide public user: User;
+    public user: User;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
-};
+    public updated: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('creator', {
+      type: User,
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Project extends Model {
-    // 所属项目
-    @Provide public logs: ProjectLog;
+        // 所属项目
+    public logs: ProjectLog;
     // ID
-    @Provide public id: number;
+    public id: number;
     // 所属用户
-    @Provide public user: User;
+    public user: User;
     // 项目名称
-    @Provide public name: string;
+    public name: string;
     // 项目类型
-    @Provide public type: string;
+    public type: string;
     // Mobile Phone
-    @Provide public mobile: string;
+    public mobile: string;
     // 项目状态
-    @Provide public status: number;
+    public status: number;
     // 补充说明
-    @Provide public remark: string;
+    public remark: string;
     // 工期
-    @Provide public duration: number;
+    public duration: number;
     // 工期
-    @Provide public budget: number;
+    public budget: number;
     // 联系人
-    @Provide public linkman: string;
-    // 内容
-    @Provide public content: string;
+    public linkman: string;
     // 地址
-    @Provide public address: string;
+    public address: string;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
+    public updated: string;
     // 附件
-    @Provide public attatchment: Documents;
-};
+    public attatchment: Documents;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('logs', {
+      type: ProjectLog,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('type', {
+      type: 'String',
+    });
+        this.defineField('mobile', {
+      type: 'String',
+    });
+        this.defineField('status', {
+      type: 'Number',
+    });
+        this.defineField('remark', {
+      type: 'String',
+    });
+        this.defineField('duration', {
+      type: 'Number',
+    });
+        this.defineField('budget', {
+      type: 'Number',
+    });
+        this.defineField('linkman', {
+      type: 'String',
+    });
+        this.defineField('address', {
+      type: 'String',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+        this.defineField('attatchment', {
+      type: Documents,
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class ProjectLog extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 所属项目
-    @Provide public project: Project;
+    public project: Project;
     // 行为
-    @Provide public action: number;
+    public action: number;
     // 内容
-    @Provide public content: string;
+    public content: string;
+    // 基本信息
+    public profile: string;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
+    public updated: string;
     // 附件
-    @Provide public attatchment: Documents;
-};
+    public attatchment: Documents;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('project', {
+      type: Project,
+    });
+        this.defineField('action', {
+      type: 'Number',
+    });
+        this.defineField('content', {
+      type: 'String',
+    });
+        this.defineField('profile', {
+      type: 'String',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+        this.defineField('attatchment', {
+      type: Documents,
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Documents extends Model {
+        // 附件
+    public project: Project;
     // 附件
-    @Provide public project: Project;
-    // 附件
-    @Provide public projectlog: ProjectLog;
+    public projectlog: ProjectLog;
     // ID
-    @Provide public id: number;
+    public id: number;
     // 文件名
-    @Provide public name: string;
+    public name: string;
     // 文件
-    @Provide public file: any;
+    public file: Object;
     // 项目时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
-};
+    public updated: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('project', {
+      type: Project,
+    });
+        this.defineField('projectlog', {
+      type: ProjectLog,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('file', {
+      type: 'Object',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Collected extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 收藏的产品
-    @Provide public product: Product;
+    public product: Product;
     // 所属用户
-    @Provide public user: User;
+    public user: User;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
-};
+    public updated: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('product', {
+      type: Product,
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Product extends Model {
-    // 收藏的产品
-    @Provide public collected: Collected;
+        // 收藏的产品
+    public collected: Collected;
     // ID
-    @Provide public id: number;
+    public id: number;
     // 产品名称
-    @Provide public name: string;
+    public name: string;
     // 产品描述
-    @Provide public description: string;
+    public description: string;
     // 产品概述
-    @Provide public summary: string;
+    public summary: string;
     // 技术参数
-    @Provide public techParameter: string;
+    public techParameter: string;
     // 应用领域
-    @Provide public domain: string;
+    public domain: string;
     // 其他
-    @Provide public other: string;
+    public other: string;
     // 背景图片
-    @Provide public background: any;
+    public background: Object;
     // 产品分类
-    @Provide public category: ProductCategory;
+    public category: ProductCategory;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
+    public updated: string;
     // 产品插图
-    @Provide public pictures: Images;
-};
+    public pictures: Images;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('collected', {
+      type: Collected,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('description', {
+      type: 'String',
+    });
+        this.defineField('summary', {
+      type: 'String',
+    });
+        this.defineField('techParameter', {
+      type: 'String',
+    });
+        this.defineField('domain', {
+      type: 'String',
+    });
+        this.defineField('other', {
+      type: 'String',
+    });
+        this.defineField('background', {
+      type: 'Object',
+    });
+        this.defineField('category', {
+      type: ProductCategory,
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+        this.defineField('pictures', {
+      type: Images,
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class ProductCategory extends Model {
-    // 产品分类
-    @Provide public product: Product;
+        // 产品分类
+    public product: Product;
     // ID
-    @Provide public id: number;
+    public id: number;
     // 产品类别
-    @Provide public name: string;
+    public name: string;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
-};
+    public updated: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('product', {
+      type: Product,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Images extends Model {
-    // 产品插图
-    @Provide public product: Product;
+        // 产品插图
+    public product: Product;
     // 系统插图
-    @Provide public system: System;
+    public system: System;
     // 系统案例插图
-    @Provide public systemcase: SystemCase;
+    public systemcase: SystemCase;
     // ID
-    @Provide public id: number;
+    public id: number;
     // 图片
-    @Provide public image: any;
-};
+    public image: Object;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('product', {
+      type: Product,
+    });
+        this.defineField('system', {
+      type: System,
+    });
+        this.defineField('systemcase', {
+      type: SystemCase,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('image', {
+      type: 'Object',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class System extends Model {
-    // 系统
-    @Provide public systemCases: SystemCase;
+        // 系统
+    public systemCases: SystemCase;
     // ID
-    @Provide public id: number;
+    public id: number;
     // 名称
-    @Provide public name: string;
+    public name: string;
     // 简介摘要
-    @Provide public summary: string;
+    public summary: string;
     // 简介摘要插图
-    @Provide public picture: any;
+    public picture: Object;
     // 系统介绍
-    @Provide public introduction: string;
+    public introduction: string;
     // 系统特性
-    @Provide public systemFeature: string;
+    public systemFeature: string;
     // 系统结构
-    @Provide public structure: any;
+    public structure: Object;
     // 功能特性
-    @Provide public funtionalFeature: string;
+    public funtionalFeature: string;
     // 排序
-    @Provide public rank: number;
+    public rank: number;
     // 系统插图
-    @Provide public pictures: Images;
-};
+    public pictures: Images;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('systemCases', {
+      type: SystemCase,
+    });
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('summary', {
+      type: 'String',
+    });
+        this.defineField('picture', {
+      type: 'Object',
+    });
+        this.defineField('introduction', {
+      type: 'String',
+    });
+        this.defineField('systemFeature', {
+      type: 'String',
+    });
+        this.defineField('structure', {
+      type: 'Object',
+    });
+        this.defineField('funtionalFeature', {
+      type: 'String',
+    });
+        this.defineField('rank', {
+      type: 'Number',
+    });
+        this.defineField('pictures', {
+      type: Images,
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class SystemCase extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 标题
-    @Provide public title: string;
+    public title: string;
     // 摘要
-    @Provide public summary: string;
+    public summary: string;
     // 描述
-    @Provide public description: string;
+    public description: string;
     // 工程地址
-    @Provide public address: string;
+    public address: string;
     // 工程内容
-    @Provide public content: string;
+    public content: string;
     // 背景图片
-    @Provide public picture: any;
+    public picture: Object;
     // 项目时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
+    public updated: string;
     // 系统案例插图
-    @Provide public pictures: Images;
+    public pictures: Images;
     // 系统
-    @Provide public systems: System;
-};
+    public systems: System;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('title', {
+      type: 'String',
+    });
+        this.defineField('summary', {
+      type: 'String',
+    });
+        this.defineField('description', {
+      type: 'String',
+    });
+        this.defineField('address', {
+      type: 'String',
+    });
+        this.defineField('content', {
+      type: 'String',
+    });
+        this.defineField('picture', {
+      type: 'Object',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+        this.defineField('pictures', {
+      type: Images,
+    });
+        this.defineField('systems', {
+      type: System,
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class News extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 标题
-    @Provide public title: string;
+    public title: string;
     // 内容
-    @Provide public content: string;
+    public content: string;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
+    public updated: string;
     // 类型
-    @Provide public type: number;
+    public type: number;
     // 排序
-    @Provide public rank: number;
-};
+    public rank: number;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('title', {
+      type: 'String',
+    });
+        this.defineField('content', {
+      type: 'String',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+        this.defineField('type', {
+      type: 'Number',
+    });
+        this.defineField('rank', {
+      type: 'Number',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class FeedBack extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 姓名
-    @Provide public name: string;
+    public name: string;
     // 手机号码
-    @Provide public mobile: string;
+    public mobile: string;
     // 邮箱
-    @Provide public email: string;
+    public email: string;
     // 反馈内容
-    @Provide public content: string;
+    public content: string;
     // 创建时间
-    @Provide public created: string;
-};
+    public created: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('mobile', {
+      type: 'String',
+    });
+        this.defineField('email', {
+      type: 'String',
+    });
+        this.defineField('content', {
+      type: 'String',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class IndustryLink extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 名称
-    @Provide public name: string;
+    public name: string;
     // 背景图片
-    @Provide public picture: any;
+    public picture: Object;
     // 行业链接
-    @Provide public link: string;
+    public link: string;
     // 排序
-    @Provide public rank: number;
-};
+    public rank: number;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('picture', {
+      type: 'Object',
+    });
+        this.defineField('link', {
+      type: 'String',
+    });
+        this.defineField('rank', {
+      type: 'Number',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Job extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 姓名
-    @Provide public name: string;
+    public name: string;
     // 职位
-    @Provide public job: string;
+    public job: string;
     // 手机号码
-    @Provide public mobile: string;
+    public mobile: string;
     // 邮箱
-    @Provide public email: string;
+    public email: string;
     // 附件
-    @Provide public attatchment: any;
+    public attatchment: Object;
     // 更新时间
-    @Provide public updated: string;
-};
+    public updated: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('job', {
+      type: 'String',
+    });
+        this.defineField('mobile', {
+      type: 'String',
+    });
+        this.defineField('email', {
+      type: 'String',
+    });
+        this.defineField('attatchment', {
+      type: 'Object',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class JSONWebToken extends Model {
-    @Provide public email: string;
-    @Provide public password: string;
-};
+        public email: string;
+    public password: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('email', {
+      type: 'String',
+    });
+        this.defineField('password', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Message extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 所属用户
-    @Provide public userId: number;
+    public userId: number;
     // 标题
-    @Provide public title: string;
+    public title: string;
     // 内容
-    @Provide public content: string;
+    public content: string;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 消息类型
-    @Provide public category: number;
+    public category: number;
     // 已读
-    @Provide public read: number;
+    public read: number;
     // 排序
-    @Provide public rank: number;
-};
+    public rank: number;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('userId', {
+      type: 'Number',
+    });
+        this.defineField('title', {
+      type: 'String',
+    });
+        this.defineField('content', {
+      type: 'String',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('category', {
+      type: 'Number',
+    });
+        this.defineField('read', {
+      type: 'Number',
+    });
+        this.defineField('rank', {
+      type: 'Number',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class Recruitment extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 职位名称
-    @Provide public name: string;
+    public name: string;
     // 薪资待遇
-    @Provide public salary: string;
+    public salary: string;
     // 职位简介
-    @Provide public jobDetail: string;
+    public jobDetail: string;
     // 岗位职责
-    @Provide public jobResponsibilities: string;
+    public jobResponsibilities: string;
     // 地点
-    @Provide public address: string;
+    public address: string;
     // 招聘数量
-    @Provide public number: string;
+    public number: string;
     // 创建时间
-    @Provide public created: string;
+    public created: string;
     // 更新时间
-    @Provide public updated: string;
-};
+    public updated: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('salary', {
+      type: 'String',
+    });
+        this.defineField('jobDetail', {
+      type: 'String',
+    });
+        this.defineField('jobResponsibilities', {
+      type: 'String',
+    });
+        this.defineField('address', {
+      type: 'String',
+    });
+        this.defineField('number', {
+      type: 'String',
+    });
+        this.defineField('created', {
+      type: 'String',
+    });
+        this.defineField('updated', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class ServiceNet extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // 网点名称
-    @Provide public name: string;
+    public name: string;
     // 联系人
-    @Provide public linkman: string;
+    public linkman: string;
     // 联系手机
-    @Provide public mobile: string;
+    public mobile: string;
     // email address
-    @Provide public email: string;
+    public email: string;
     // 联系地址
-    @Provide public address: string;
+    public address: string;
     // 排序
-    @Provide public rank: number;
-};
+    public rank: number;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('linkman', {
+      type: 'String',
+    });
+        this.defineField('mobile', {
+      type: 'String',
+    });
+        this.defineField('email', {
+      type: 'String',
+    });
+        this.defineField('address', {
+      type: 'String',
+    });
+        this.defineField('rank', {
+      type: 'Number',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 export class ServicePromise extends Model {
-    // ID
-    @Provide public id: number;
+        // ID
+    public id: number;
     // title
-    @Provide public title: string;
+    public title: string;
     // content
-    @Provide public content: string;
+    public content: string;
     // 排序
-    @Provide public rank: number;
-};
+    public rank: number;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('title', {
+      type: 'String',
+    });
+        this.defineField('content', {
+      type: 'String',
+    });
+        this.defineField('rank', {
+      type: 'Number',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
 
 
 
 ////手写的自定义Model
 export class Default extends Model {
-    @Provide public default: string;
+  public default: string;
+  public constructor(data = {}) {
+    super(data);
+    this.defineField('default', {
+      type: 'String',
+    });
+  }
 }
 
 export class Login extends Model {
-    @Provide public email: string;
-    @Provide public password: string;
+  public login: string;
+  public password: string;
+  public constructor(data = {}) {
+    super(data);
+    this.defineField('login', {
+      type: 'String',
+    });
+    this.defineField('password', {
+      type: 'String',
+    });
+  }
 }
 
 export class Register extends Model {
-    @Provide public username: string;
-    @Provide public password: string;
-    @Provide public email: string;
+  public username: string;
+  public password: string;
+  public email: string;
+  public constructor(data = {}) {
+    super(data);
+    this.defineField('username', {
+      type: 'String',
+    });
+    this.defineField('password', {
+      type: 'String',
+    });
+    this.defineField('email', {
+      type: 'String',
+    });
+  }
 }
 export class Email extends Model {
-    @Provide public captcha: string;
-    @Provide public email: string;
+  public captcha: string;
+  public email: string;
+  public constructor(data = {}) {
+    super(data);
+    this.defineField('captcha', {
+      type: 'String',
+    });
+    this.defineField('email', {
+      type: 'String',
+    });
+  }
 }
 
 export class Password extends Model {
-    @Provide public captcha: string;
-    @Provide public password: string;
-    @Provide public password2: string;
+  public captcha: string;
+  public password: string;
+  public password2: string;
+  public constructor(data = {}) {
+    super(data);
+    this.defineField('captcha', {
+      type: 'String',
+    });
+    this.defineField('password', {
+      type: 'String',
+    });
+    this.defineField('password2', {
+      type: 'String',
+    });
+  }
 }

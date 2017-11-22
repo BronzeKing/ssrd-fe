@@ -89,6 +89,7 @@ export class Resource<T extends Model> {
         public rules: Rules = {},
         private cache: Boolean = false
     ) {
+        if (m) { this.m.init() };
         this.errors = m ? m.errors : {};
         let matched = url.match(/:(\w+)/g);
         if (matched) {
@@ -118,7 +119,6 @@ export class Resource<T extends Model> {
                 // 当上传多个文件时，逐个把文件append进FormData
                 if (obj.constructor === Array && obj[0].url) {
                     let files: Array<any> = new Array();
-                    debugger;
                     obj.forEach((file: any) => {
                         files.push(file);
                     });
