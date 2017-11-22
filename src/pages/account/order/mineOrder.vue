@@ -1,7 +1,7 @@
 <template lang="pug">
     .page-mineOrder
         .title.f18 我的订单
-        .order-item
+        .order-item(@click="rowClick")
                 .order-item-info
                     el-col(:span="5") 2017-07-31 15:15:30
                     el-col(:span="13") 订单号：16516515156
@@ -20,7 +20,21 @@
                         
 </template>
 <script lang="ts">
+import { Component, Provide, Vue } from 'vue-property-decorator';
+import  { Message } from 'apis';
+@Component
+export default class MessageView extends Vue
+{
+    @Provide() data = '';
+    protected created () {
+        Message.list();
+    }
+    rowClick (m: Payload) {
+        // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
+        this.$router.replace({name: 'orderDetail', params: { id: '1' }});
+    }
 
+};
 </script>
 <style lang="scss">
 .page-mineOrder{

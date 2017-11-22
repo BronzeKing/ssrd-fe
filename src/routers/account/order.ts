@@ -10,6 +10,8 @@ const quick = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/quick")), "order"); //快捷下单
 const mineOrder = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/mineOrder")), "order"); //我的订单
+const orderDetail = (r: any) =>
+    require.ensure([], () => r(require("pages/account/order/orderDetail")), "order"); //订单详情
 const cart = (r: any) => require.ensure([], () => r(require("pages/account/order/cart")), "order"); //我的购物车
 const collect = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/collect")), "order"); //我的收藏
@@ -60,6 +62,11 @@ export default [
                 path: "mine",
                 name: "mineOrder",
                 component: mineOrder
+            },
+            {
+                path: "orderDetail/:id",
+                name: "orderDetail",
+                component: orderDetail
             }
         ]
     }
