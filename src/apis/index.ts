@@ -51,6 +51,6 @@ export const Group = new Resource(API.group, new m.Group({})); // 部门
 export const Message = new Resource(API.message, new m.Message({})); // 消息
 export const Invitation = new Resource(API.invitation, new m.Invitation({})); // 邀请码
 export const AuthorizeCode = new Resource(API.authorizeCode, new m.AuthorizeCode({})); // 授权码
-export const Profile = new Resource(API.profile, new m.Profile({})); // 个人资料
+export const Profile = new Resource(API.profile, new m.Profile({}), {}, true); // 个人资料
 export const ProjectLog = new Resource(API.projectLog, new m.ProjectLog({})); // 项目日志
 export const Project = new Resource(API.project, new m.Project({})); // 项目

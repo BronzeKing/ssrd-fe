@@ -18,8 +18,13 @@ export default class ProjectCreateDetail extends Vue {
         form: HTMLFormElement;
         settleForm: HTMLFormElement;
     };
+    public get userState () {
+        return this.$store.state.user.user;
 
-    protected create() {
+    }
+
+    protected created() {
+        Profile.retrieve({userId: this.userState.id});
         System.list();
     }
 

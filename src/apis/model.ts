@@ -1382,11 +1382,11 @@ export class Default extends Model {
 }
 
 export class Login extends Model {
-  public login: string;
+  public email: string;
   public password: string;
   public constructor(data = {}) {
     super(data);
-    this.defineField('login', {
+    this.defineField('email', {
       type: 'String',
     });
     this.defineField('password', {

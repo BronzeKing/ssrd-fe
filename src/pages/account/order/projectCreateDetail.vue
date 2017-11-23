@@ -19,7 +19,7 @@
                 el-form-item(label="所属公司" :error="Project.errors.company")
                     el-input(v-model="Project.m.company" :placeholder="Profile.m.company")
                 el-form-item(label="手机" :error="Project.errors.mobile")
-                    el-input(v-model="Project.m.mobile" :placeholder="Profile.m.mobile")
+                    el-input(v-model="Project.m.mobile" :placeholder="Profile.m.user.email")
                 el-form-item(label="备注" :error="Project.errors.remark")
                     el-input(v-model="Project.m.remark" type="textare备注" autosize)
                 el-button(type="primary" @click="submit") 提交

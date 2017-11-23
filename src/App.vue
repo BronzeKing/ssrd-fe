@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Env, Login } from 'apis';
+import { Env, Login, Profile } from 'apis';
 
 @Component
 export default class App extends Vue {
@@ -23,6 +23,7 @@ export default class App extends Vue {
                 } else {
                     this.$store.commit('login', r);
                 }
+                Profile.retrieve({userId: r.id});
             });
         } else {
             this.$store.commit('logout');
