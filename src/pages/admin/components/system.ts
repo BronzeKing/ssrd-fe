@@ -21,8 +21,7 @@ export default class SystemView extends Vue {
         System.list();
     }
     handleCurrentChange(row: any) {
-        let {pictures, systemCases, ...rest} = row;
-        console.log(rest);
+        let {pictures, systemCases, ...rest} = row; // pictures, systemCases比较特殊 用populate的时候会报错
         this.System.m.populate(rest);
     }
     handleCreate() {

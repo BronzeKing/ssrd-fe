@@ -29,6 +29,8 @@ export const Job = new Resource(API.jobs, new m.Job({})); // 提交简历
 /* 文档列表(荣誉资质和合作伙伴) */
 export const Documents = new Resource(API.documents, new m.Documents({}));
 
+/* 远程终端访问平台 */
+export const Terminal = new Resource(API.terminals, new m.Terminal({}), {}, true); // 获取系统展示
 /* 系统展示 */
 export const System = new Resource(API.systems, new m.System({}), {}, true); // 获取系统展示
 export const SystemCase = new Resource(API.systemCase, new m.SystemCase({}), {}, true); // 案例展示列表

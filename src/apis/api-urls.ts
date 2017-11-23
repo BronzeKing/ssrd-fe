@@ -32,6 +32,8 @@ export default {
   */
     news: `${apiUrl}/news`,
 
+    terminals: `${apiUrl}/terminals`,
+
     /**
   * 招聘信息
   */

@@ -87,6 +87,8 @@ export class User extends Model {
     public social_auth: UserSocialAuth;
     // 所属用户
     public profile: User;
+    // 所属用户
+    public cart: User;
     // 授权码对应用户
     public authorizecode: User;
     // 所属用户
@@ -134,6 +136,9 @@ export class User extends Model {
       type: UserSocialAuth,
     });
         this.defineField('profile', {
+      type: User,
+    });
+        this.defineField('cart', {
       type: User,
     });
         this.defineField('authorizecode', {
@@ -450,6 +455,30 @@ export class Profile extends Model {
   }
 }
 
+export class Cart extends Model {
+        // ID
+    public id: number;
+    // 所属用户
+    public user: User;
+    // 内容
+    public content: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('user', {
+      type: User,
+    });
+        this.defineField('content', {
+      type: 'String',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
+
 export class AuthorizeCode extends Model {
         // ID
     public id: number;
@@ -677,7 +706,7 @@ export class Documents extends Model {
     public name: string;
     // 文件
     public file: any;
-    // 项目时间
+    // 创建时间
     public created: string;
     // 更新时间
     public updated: string;
@@ -1362,6 +1391,35 @@ export class ServicePromise extends Model {
     });
         this.defineField('rank', {
       type: 'Number',
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
+
+export class Terminal extends Model {
+        // ID
+    public id: number;
+    // 名称
+    public name: string;
+    // 链接
+    public link: string;
+    // 背景图片
+    public picture: any;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+    });
+        this.defineField('name', {
+      type: 'String',
+    });
+        this.defineField('link', {
+      type: 'String',
+    });
+        this.defineField('picture', {
+      type: 'Any',
     });
     this.populate(data);
     this.commit();
