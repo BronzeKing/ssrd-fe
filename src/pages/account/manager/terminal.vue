@@ -3,8 +3,8 @@
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
-                el-breadcrumb-item(:to="{ name: 'order' }") 订单中心
-                el-breadcrumb-item 新建项目
+                el-breadcrumb-item(:to="{ name: 'account' }") 管理中心
+                el-breadcrumb-item 远程终端访问平台
         div
             el-row(:gutter="20")
                 el-col(:span="8" class="project-create-item mb20" v-for="(item, index) in Terminal.t.Records" :key="index")
