@@ -5,10 +5,8 @@ import { Model as BaseModel, ModelRecipe } from "rawmodel";
 
 @Component
 export default class ProjectCreateDetail extends Vue {
-    public get index() {
-        return this.$route.params.id;
-    }
     @Provide() action = 'create';  // create: 新建项目， settle：结算项目页面
+    @Provide() index= '0';  // 决定显示哪个system的form
     @Provide() System = System;
     @Provide() Project = Project;
     @Provide() Profile = Profile;
@@ -18,14 +16,10 @@ export default class ProjectCreateDetail extends Vue {
         form: HTMLFormElement;
         settleForm: HTMLFormElement;
     };
-    public get userState () {
-        return this.$store.state.user.user;
-
-    }
 
     protected created() {
-        Profile.retrieve({userId: this.userState.id});
         System.list();
+        this.index = String(this.$route.params.id);
     }
 
     @Provide()
