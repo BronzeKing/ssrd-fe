@@ -19,7 +19,7 @@ fieldDefine = '''        this.defineField('%s', {
       type: %s,
     });'''
 
-typeMap = {'integer': 'number', 'file': 'Object'}
+typeMap = {'integer': 'number', 'file': 'any'}
 
 
 def fromField(name, desc, define=False):

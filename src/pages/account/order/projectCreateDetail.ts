@@ -1,12 +1,10 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
 import { Option } from "common/utils/extends";
-import { System, Project, Profile } from "apis";
-import { Model as BaseModel, ModelRecipe } from "rawmodel";
+import { System, ProjectCreate as Project, Profile } from "apis";
 
 @Component
 export default class ProjectCreateDetail extends Vue {
-    @Provide() action = 'create';  // create: 新建项目， settle：结算项目页面
-    @Provide() index= '0';  // 决定显示哪个system的form
+    @Provide() index= 0;  // 决定显示哪个system的form
     @Provide() System = System;
     @Provide() Project = Project;
     @Provide() Profile = Profile;
@@ -19,7 +17,7 @@ export default class ProjectCreateDetail extends Vue {
 
     protected created() {
         System.list();
-        this.index = String(this.$route.params.id);
+        this.index = Number(this.$route.params.id);
     }
 
     @Provide()
@@ -84,7 +82,10 @@ export default class ProjectCreateDetail extends Vue {
     };
 
     submit() {
-        this.action = 'settle'
+        this.$router.push({name: 'cartCheckout'});
+    }
+    addToCart() {
+        this.$router.push({name: 'projectCreate'});
     }
 
     cancel() {

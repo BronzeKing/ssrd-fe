@@ -8,7 +8,8 @@
         div
             el-form(ref="form" :model="data" label-width="80px")
                 el-form-item(label="项目名称")
-                    el-input(v-model="data.name")
+                    el-select(v-model="data.type.value" placeholder="请选择")
+                        el-option(v-for="(item, index) in Project.t.Records" :key="index" :label="item.name" :value="item.name")
                 el-form-item(label="地址")
                     el-input(v-model="data.address")
                 el-form-item(label="申请类别")
@@ -37,6 +38,7 @@
 // 售后申请页面
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import { Option } from "common/utils/extends";
+import { Project } from 'apis';
 
 @Component
 export default class AfterMarket extends Vue
@@ -52,8 +54,11 @@ export default class AfterMarket extends Vue
         budget: '', //预算
         description: '', //需求描述
         attatchment: [] //材料
-
     };
+    @Provide() Project = Project;
+    protected created () {
+        Project.list();
+    }
     submit () {
     }
   handleChange(file: any, fileList: any): void {

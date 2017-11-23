@@ -13,6 +13,7 @@ const mineOrder = (r: any) =>
 const orderDetail = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/orderDetail")), "order"); //订单详情
 const cart = (r: any) => require.ensure([], () => r(require("pages/account/order/cart")), "order"); //我的购物车
+const cartCheckout = (r: any) => require.ensure([], () => r(require("pages/account/order/cartCheckout")), "order"); //结算购物车
 const collect = (r: any) =>
     require.ensure([], () => r(require("pages/account/order/collect")), "order"); //我的收藏
 const history = (r: any) =>
@@ -37,6 +38,11 @@ export default [
                 path: "cart",
                 name: "cart",
                 component: cart
+            },
+            {
+                path: "cart/checkout",
+                name: "cartCheckout",
+                component: cartCheckout
             },
             {
                 path: "collect",

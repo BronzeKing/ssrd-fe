@@ -15,13 +15,15 @@ export default class SystemView extends Vue {
     @Provide() action = '';
     $refs: {
         SystemForm: HTMLFormElement
-    }
+}
 
     protected created(): void {
         System.list();
     }
-    handleCurrentChange(data: any) {
-        this.System.m.populate(data);
+    handleCurrentChange(row: any) {
+        let {pictures, systemCases, ...rest} = row;
+        console.log(rest);
+        this.System.m.populate(rest);
     }
     handleCreate() {
         this.dialog.system = true;

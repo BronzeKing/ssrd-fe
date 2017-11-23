@@ -676,7 +676,7 @@ export class Documents extends Model {
     // 文件名
     public name: string;
     // 文件
-    public file: Object;
+    public file: any;
     // 项目时间
     public created: string;
     // 更新时间
@@ -697,7 +697,7 @@ export class Documents extends Model {
       type: 'String',
     });
         this.defineField('file', {
-      type: 'Object',
+      type: 'Any',
     });
         this.defineField('created', {
       type: 'String',
@@ -762,7 +762,7 @@ export class Product extends Model {
     // 其他
     public other: string;
     // 背景图片
-    public background: Object;
+    public background: any;
     // 产品分类
     public category: ProductCategory;
     // 创建时间
@@ -799,7 +799,7 @@ export class Product extends Model {
       type: 'String',
     });
         this.defineField('background', {
-      type: 'Object',
+      type: 'Any',
     });
         this.defineField('category', {
       type: ProductCategory,
@@ -862,7 +862,7 @@ export class Images extends Model {
     // ID
     public id: number;
     // 图片
-    public image: Object;
+    public image: any;
 
   public constructor(data = {}) {
     super(data);
@@ -879,7 +879,7 @@ export class Images extends Model {
       type: 'Number',
     });
         this.defineField('image', {
-      type: 'Object',
+      type: 'Any',
     });
     this.populate(data);
     this.commit();
@@ -896,13 +896,13 @@ export class System extends Model {
     // 简介摘要
     public summary: string;
     // 简介摘要插图
-    public picture: Object;
+    public picture: any;
     // 系统介绍
     public introduction: string;
     // 系统特性
     public systemFeature: string;
     // 系统结构
-    public structure: Object;
+    public structure: any;
     // 功能特性
     public funtionalFeature: string;
     // 排序
@@ -925,7 +925,7 @@ export class System extends Model {
       type: 'String',
     });
         this.defineField('picture', {
-      type: 'Object',
+      type: 'Any',
     });
         this.defineField('introduction', {
       type: 'String',
@@ -934,7 +934,7 @@ export class System extends Model {
       type: 'String',
     });
         this.defineField('structure', {
-      type: 'Object',
+      type: 'Any',
     });
         this.defineField('funtionalFeature', {
       type: 'String',
@@ -964,7 +964,7 @@ export class SystemCase extends Model {
     // 工程内容
     public content: string;
     // 背景图片
-    public picture: Object;
+    public picture: any;
     // 项目时间
     public created: string;
     // 更新时间
@@ -995,7 +995,7 @@ export class SystemCase extends Model {
       type: 'String',
     });
         this.defineField('picture', {
-      type: 'Object',
+      type: 'Any',
     });
         this.defineField('created', {
       type: 'String',
@@ -1103,7 +1103,7 @@ export class IndustryLink extends Model {
     // 名称
     public name: string;
     // 背景图片
-    public picture: Object;
+    public picture: any;
     // 行业链接
     public link: string;
     // 排序
@@ -1118,7 +1118,7 @@ export class IndustryLink extends Model {
       type: 'String',
     });
         this.defineField('picture', {
-      type: 'Object',
+      type: 'Any',
     });
         this.defineField('link', {
       type: 'String',
@@ -1143,7 +1143,7 @@ export class Job extends Model {
     // 邮箱
     public email: string;
     // 附件
-    public attatchment: Object;
+    public attatchment: any;
     // 更新时间
     public updated: string;
 
@@ -1165,7 +1165,7 @@ export class Job extends Model {
       type: 'String',
     });
         this.defineField('attatchment', {
-      type: 'Object',
+      type: 'Any',
     });
         this.defineField('updated', {
       type: 'String',
