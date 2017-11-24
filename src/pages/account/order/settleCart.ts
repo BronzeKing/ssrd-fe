@@ -17,7 +17,7 @@ export default class ProjectCreateDetail extends Vue {
     };
 
     protected create() {
-        Project.m.retrieve({id: this.$route.params.id});
+        Project.retrieve({id: this.$route.params.id});
     }
 
     submit() {
