@@ -133,7 +133,7 @@ export default class ProjectTable extends Vue {
         ProjectLog.create({
           date: this.jobJournal.data.date,
           content: this.jobJournal.data.content,
-          attatchment: ProjectLog.m.attatchment,
+          attatchment: this.jobJournal.data.attatchment,
           action: this.env.projectLog["工作日志"],
           projectId: Project.m.id
         }).then(r => {

@@ -89,7 +89,7 @@ export class Resource<T extends Model> {
             let obj = data[x];
             if (obj) {
                 // 当上传多个文件时，逐个把文件append进FormData
-                if (obj.constructor === Array && obj[0].url) {
+                if (obj.constructor === Array && obj.length && obj[0].url) {
                     let files: Array<any> = new Array();
                     obj.forEach((file: any) => {
                         files.push(file);

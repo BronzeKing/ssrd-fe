@@ -8,10 +8,10 @@
         div
             el-form(ref="form" :model="data" label-width="80px")
                 el-form-item(label="项目名称")
-                    el-select(v-model="data.type.value" placeholder="请选择")
-                        el-option(v-for="(item, index) in Project.t.Records" :key="index" :label="item.name" :value="item.name")
+                    el-select(v-model="data.name" placeholder="请选择")
+                        el-option(v-for="(item, index) in Project.t.Records" :key="index" :label="item.name" :value="item")
                 el-form-item(label="地址")
-                    el-input(v-model="data.address")
+                    el-input(v-model="data.address" :placeholder='data.name.address')
                 el-form-item(label="申请类别")
                     el-select(v-model="data.type.value" placeholder="请选择")
                         el-option(v-for="(item, index) in data.type.items" :key="index" :label="item.name" :value="item.name")
@@ -45,7 +45,7 @@ export default class AfterMarket extends Vue
 {
     @Provide()
     data = {
-        name: '', // 项目名称
+        name: {}, // 项目
         address: '', //地址
         type: Option(['故障维护', '迁移', '拆除']),  // 申请类别
         repair: '', // 是否在保修期
