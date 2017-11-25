@@ -1473,12 +1473,16 @@ export class Register extends Model {
 export class Email extends Model {
   public captcha: string;
   public email: string;
+  public mobile: string;
   public constructor(data = {}) {
     super(data);
     this.defineField('captcha', {
       type: 'String',
     });
     this.defineField('email', {
+      type: 'String',
+    });
+    this.defineField('mobile', {
       type: 'String',
     });
   }

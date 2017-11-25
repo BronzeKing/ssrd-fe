@@ -29,7 +29,8 @@ const actions = {
 };
 
 const getters = {
-  gethomeData: (state: any) => state.homeData
+  gethomeData: (state: any) => state.homeData,
+  env: (state: any) => state.env
 };
 
 export default { state, mutations, actions, getters };
