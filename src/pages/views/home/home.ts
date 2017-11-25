@@ -35,6 +35,10 @@ export default class Home extends Vue {
      */
     protected created(): void {
         // 获取新闻内容咯
+        let next = this.$route.query.next
+        if (next) {
+            this.$router.push(next)
+        }
         News.list({ PageSize: 3 });
         IndustryLink.list();
         SystemCase.list({ PageSize: 3 });

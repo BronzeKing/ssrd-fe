@@ -44,10 +44,9 @@ export default class LoginView extends Vue
                 });
                 this.$store.commit('token', r);
                 Login.retrieve().then((r: any) => {
-                    this.$store.commit('login', r);
+                    this.$store.dispatch('login', r)
+                    this.$router.push(pushed)
                 });
-                console.log(pushed);
-                this.$router.push(pushed)
             });
         });
     }

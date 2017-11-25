@@ -33,7 +33,8 @@ const actions = {
 };
 
 const getters = {
-  user: (state: any) => state.user
+  user: (state: any) => state.user,
+  authenticated: (state: any) => state.isAuthenticated
 };
 
 export default { state, mutations, actions, getters };
