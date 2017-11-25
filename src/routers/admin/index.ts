@@ -19,6 +19,7 @@ export default {
     component: index,
     name: 'admin',
     redirect: '/admin/system',
+    meta: {auth: true},
     children: [
         {
             path: "recruit",

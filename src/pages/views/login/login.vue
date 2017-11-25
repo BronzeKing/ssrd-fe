@@ -32,6 +32,7 @@ export default class LoginView extends Vue
     }
 
     loginSubmit () {
+        let pushed = this.$route.query.next ? {path: this.$route.query.next} : {name: 'home'} 
         this.$refs.LoginForm.validate((valid: Boolean) => {
             if (!valid) {
                 return;
@@ -41,11 +42,12 @@ export default class LoginView extends Vue
                     message: '登录成功',
                     type: 'success'
                 });
-                this.$router.push({name: 'home'});
                 this.$store.commit('token', r);
                 Login.retrieve().then((r: any) => {
                     this.$store.commit('login', r);
                 });
+                console.log(pushed);
+                this.$router.push(pushed)
             });
         });
     }
