@@ -9,7 +9,7 @@
                 router-link(class="user-header-link active" to="/home") 首页
                 router-link(class="user-header-link" :to="{name: 'secure'}") 账户设置
                 router-link(class="user-header-link" :to="{name: 'message'}") 消息
-                router-link(class="user-header-link" to="/home") 购物车
+                router-link(class="user-header-link" :to="{name: 'cart'}") 购物车
 </template>
 
 <script lang="ts">

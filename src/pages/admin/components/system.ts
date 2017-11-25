@@ -12,29 +12,30 @@ export default class SystemView extends Vue {
     @Provide() dialog = { system: false };
     @Provide() loading = false;
     @Provide() System = System;
-    @Provide() action = '';
+    @Provide() action = "";
     $refs: {
-        SystemForm: HTMLFormElement
-    }
+        SystemForm: HTMLFormElement;
+    };
 
     protected created(): void {
         System.list();
     }
-    handleCurrentChange(data: any) {
-        this.System.m.populate(data);
+    handleCurrentChange(row: any) {
+        let { pictures, systemCases, ...rest } = row; // pictures, systemCases比较特殊 用populate的时候会报错
+        this.System.m.populate(rest);
     }
     handleCreate() {
         this.dialog.system = true;
-        this.action = 'create';
+        this.action = "create";
         System.m.reset();
     }
     handleUpdate() {
         this.dialog.system = true;
-        this.action = 'update';
+        this.action = "update";
     }
     handleDestroy(data: any) {
         System.destroy(data).then((r: any) => {
-        System.list();
+            System.list();
         });
     }
     /**
@@ -43,16 +44,16 @@ export default class SystemView extends Vue {
      * @param {any} action create: 新建招聘信息
      */
     handleSystem() {
-        if (this.action === 'create') {
+        if (this.action === "create") {
             System.create().then((r: any) => {
                 this.dialog.system = false;
                 System.list();
-            })
+            });
         } else {
-            System.update().then((r:any) => {
+            System.update().then((r: any) => {
                 this.dialog.system = false;
-                System.list()
-            })
+                System.list();
+            });
         }
     }
 }

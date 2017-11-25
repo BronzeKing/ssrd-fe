@@ -35,35 +35,6 @@ interface Rules {
     [key: string]: Array<any>;
 }
 
-/**
-* @brief 替换url中的 /:{var}参数，以及当action为update，destroy, retrieve时，如果body中有{id},则把{id}放到拼接到url中
-*
-* @param url 请求的url
-* @param body 请求的参数，可能为querystring或者htto的body
-* @param pathArgv url中的变量,eg ['/:project']
-* @param action 请求方法
-*
-* @return url 请求url
-*/
-function replaceUrl(url: string, body: Payload, pathArgv: Array<string>, action: string): string {
-    let id: string;
-    let value: string;
-    pathArgv.forEach(x => {
-        // eg: x = :projectId
-        ({ [x.slice(1)]: value, ...body } = body);
-        url = url.replace(x, value);
-    });
-    // 标准rest接口中retrieve, update,  delete 方法path中都带有id
-    // 若是非标准rest接口则不带id
-    if (!isInArray(["list", "create"], action)) {
-        ({ id, ...body } = body);
-        if (id) {
-            url = url + "/" + id;
-        }
-    }
-    return url;
-}
-
 export class Resource<T extends Model> {
     private _pathArgv: Array<string> = [];
 
@@ -89,6 +60,9 @@ export class Resource<T extends Model> {
         public rules: Rules = {},
         private cache: Boolean = false
     ) {
+        if (m) {
+            this.m.init();
+        }
         this.errors = m ? m.errors : {};
         let matched = url.match(/:(\w+)/g);
         if (matched) {
@@ -116,9 +90,8 @@ export class Resource<T extends Model> {
             let obj = data[x];
             if (obj) {
                 // 当上传多个文件时，逐个把文件append进FormData
-                if (obj.constructor === Array && obj[0].url) {
+                if (obj.constructor === Array && obj.length && obj[0].url) {
                     let files: Array<any> = new Array();
-                    debugger;
                     obj.forEach((file: any) => {
                         files.push(file);
                     });
@@ -139,10 +112,28 @@ export class Resource<T extends Model> {
     request(body: Payload, config: Payload, action: string): AxiosPromise {
         let method = _methodMap[action];
         let response: AxiosPromise;
-        if (isInArray(['destroy', 'update', 'create'], action)) {
+        let id: string;
+        let value: string;
+        let url = this.url;
+        if (isInArray(["destroy", "update", "create"], action)) {
             body = assign({}, this.m.serialize(), body);
         }
-        let url = replaceUrl(this.url, body, this._pathArgv, action);
+
+        // @brief 替换url中的 /:{var}参数，以及当action为update，destroy, retrieve时，如果body中有{id},则把{id}放到拼接到url中
+        this._pathArgv.forEach((x: string) => {
+            // eg: x = :projectId
+            ({ [x.slice(1)]: value, ...body } = body);
+            url = url.replace(x, value);
+        });
+        // 标准rest接口中retrieve, update,  delete 方法path中都带有id
+        // 若是非标准rest接口则不带id
+        if (!isInArray(["list", "create"], action)) {
+            ({ id, ...body } = body);
+            if (id) {
+                url = url + "/" + id;
+            }
+        }
+
         if (this.cache && this.cached[action]) {
             return this.cached[action];
         }
@@ -164,8 +155,11 @@ export class Resource<T extends Model> {
                 });
             }
         });
-        if (this.cache && isInArray(['list', 'retrieve'], action)) {
+        // 但使用get请求时，把结果给缓存了，但使用post put请求时，把缓存的结果清空
+        if (this.cache && isInArray(["list", "retrieve"], action)) {
             this.cached[action] = response;
+        } else {
+            this.cached = {};
         }
         return response;
     }

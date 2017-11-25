@@ -14,12 +14,14 @@ const invitation = (r: any) =>
     require.ensure([], () => r(require("pages/account/manager/invitation")), "manager");
 const profile = (r: any) =>
     require.ensure([], () => r(require("pages/account/manager/profile")), "manager");
+const terminal = (r: any) =>
+    require.ensure([], () => r(require("pages/account/manager/terminal")), "manager"); //远程终端访问平台
 export default [
     {
         path: "account",
         name: "account",
         component: index,
-        redirect: "secure",
+        redirect: { name: "secure" },
         children: [
             {
                 path: "secure",
@@ -55,6 +57,11 @@ export default [
                 path: "profile",
                 name: "profile",
                 component: profile
+            },
+            {
+                path: "terminal",
+                name: "terminal",
+                component: terminal
             }
         ]
     }

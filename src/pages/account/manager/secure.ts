@@ -4,6 +4,7 @@ import { Captcha, Password, Email, Credential } from "apis";
 @Component
 export default class Secure extends Vue {
     @Provide() passDialog = false;
+    @Provide() dialog = { mobile: false };
     @Provide() activeName = "1";
     @Provide() changeEmailDialog = false;
     @Provide() Password = Password;
@@ -13,6 +14,7 @@ export default class Secure extends Vue {
     $refs: {
         changeEmailForm: HTMLFormElement;
         passForm: HTMLFormElement;
+        changeMobileForm: HTMLFormElement;
     };
 
     public get user() {
@@ -34,6 +36,20 @@ export default class Secure extends Vue {
             }
         });
     }
+    changeMobile() {
+        this.$refs.changeMobileForm.validate((valid: Boolean) => {
+            if (valid) {
+                Credential.create(Email.m.serialize()).then((r: Payload) => {
+                    this.changeEmailDialog = false;
+                    this.$message({
+                        message: "发送成功",
+                        type: "success"
+                    });
+                });
+            }
+        });
+        Email.errors = Credential.errors;
+    }
     changeEmail() {
         this.$refs.changeEmailForm.validate((valid: Boolean) => {
             if (valid) {
@@ -54,23 +70,15 @@ export default class Secure extends Vue {
   * @param type email: 更改邮箱的时候传email， 更改手机的时传mobile
   */
     sendCaptcha(type: string): void {
-        let credential: string, form: HTMLFormElement, action: string;
+        let payload = {};
         if (type === "email") {
-            form = this.$refs.changeEmailForm;
-            credential = Email.m.email;
-            action = "changeEmail";
+            payload = { email: Email.m.email, action: "changeEmail" };
         } else {
-            form = this.$refs.changeEmailForm;
-            credential = Email.m.email;
-            action = "changeEmail";
+            payload = { mobile: Email.m.mobile, action: "changeMobile" };
         }
-        Captcha.retrieve({
-            Type: type,
-            credential: credential,
-            action: action
-        }).then((r: Payload) => {
+        Captcha.retrieve(payload).then((r: Payload) => {
             this.$message({
-                message: "校验码已发出，请注意查收邮箱",
+                message: "校验码已发出，请注意查收",
                 type: "success"
             });
         });

@@ -2,21 +2,35 @@
 import sys
 import json
 from io import StringIO
-header = 'import { Model, Provide } from "./baseModel";\n\n'
+header = 'import { Model } from "./baseModel";\n\n'
 tpl = '''export class %s extends Model {
-%s
-};\n'''
+    %s
 
-field = '    @Provide public {}: {};'
+  public constructor(data = {}) {
+    super(data);
+%s
+    this.populate(data);
+    this.commit();
+  }
+}\n'''
+
+field = '    public {}: {};'
+fieldDefine = '''        this.defineField('%s', {
+      type: %s,
+    });'''
 
 typeMap = {'integer': 'number', 'file': 'any'}
 
 
-def fromField(name, desc):
+def fromField(name, desc, define=False):
     type = desc.get('type')
     type = typeMap.get(type, type)
     if desc.get('$ref'):
         type = desc['$ref'].split('/')[-1]
+    elif define:
+        type = "'{}'".format(type.capitalize())
+    if define:
+        return fieldDefine % (name, type)
     txt = field.format(name, type)
     description = desc.get('description')
     if description:
@@ -26,8 +40,10 @@ def fromField(name, desc):
 
 
 def fromModel(sio, key, value):
-    body = '\n'.join(fromField(k, v) for k, v in value['properties'].items())
-    model = tpl % (key, body)
+    items = value['properties'].items
+    body = '\n'.join(fromField(k, v) for k, v in items())
+    txtDefine = '\n'.join(fromField(k, v, True) for k, v in items())
+    model = tpl % (key, body, txtDefine)
     sio.write(model)
     sio.write('\n')
 

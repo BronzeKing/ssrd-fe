@@ -23,7 +23,7 @@ export default {
   */
     env: `${apiUrl}/env`,
 
-  /**
+    /**
   * 获取关于我们
   */
     aboutUs: `${apiUrl}/aboutUs`,
@@ -31,6 +31,8 @@ export default {
   * 新闻
   */
     news: `${apiUrl}/news`,
+
+    terminals: `${apiUrl}/terminals`,
 
     /**
   * 招聘信息
@@ -46,7 +48,7 @@ export default {
   */
     industryLink: `${apiUrl}/industryLinks`,
 
-  /**
+    /**
   * 文档列表(荣誉资质和合作伙伴)
   */
     documents: `${apiUrl}/documents`,
@@ -102,7 +104,7 @@ export default {
   * 用户
   */
     user: `${apiUrl}/users`,
-  /**
+    /**
   * 用户
   */
     group: `${apiUrl}/groups`,

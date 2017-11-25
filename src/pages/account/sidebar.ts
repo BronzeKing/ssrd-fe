@@ -50,10 +50,6 @@ const SIDEBAR = [
                 title: "我的收藏"
             },
             {
-                name: "terminal",
-                title: "远程终端访问平台"
-            },
-            {
                 name: "history",
                 title: "我的浏览记录"
             }
@@ -119,6 +115,10 @@ const SIDEBAR = [
             {
                 name: "companyProfile",
                 title: "企业信息"
+            },
+            {
+                name: "terminal",
+                title: "远程终端访问平台"
             }
         ]
     },

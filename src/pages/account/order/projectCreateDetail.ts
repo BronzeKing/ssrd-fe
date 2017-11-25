@@ -1,22 +1,23 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
 import { Option } from "common/utils/extends";
-import { System } from "apis";
+import { System, ProjectCreate as Project, Profile } from "apis";
 
 @Component
 export default class ProjectCreateDetail extends Vue {
-    public get index() {
-        return this.$route.params.id;
-    }
-
+    @Provide() index = 0; // 决定显示哪个system的form
     @Provide() System = System;
+    @Provide() Project = Project;
+    @Provide() Profile = Profile;
 
     @Provide()
     $refs: {
         form: HTMLFormElement;
+        settleForm: HTMLFormElement;
     };
 
-    protected create() {
+    protected created() {
         System.list();
+        this.index = Number(this.$route.params.id);
     }
 
     @Provide()
@@ -80,7 +81,12 @@ export default class ProjectCreateDetail extends Vue {
         备注: "" // 备注
     };
 
-    submit() {}
+    submit() {
+        this.$router.push({ name: "cartCheckout" });
+    }
+    addToCart() {
+        this.$router.push({ name: "projectCreate" });
+    }
 
     cancel() {
         this.$refs.form.resetFields();

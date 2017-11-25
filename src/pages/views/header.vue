@@ -4,10 +4,10 @@
             .container.flex
                 span 欢迎来到深圳市盛世润达智能科技有限公司官方网站
                 span
-                    router-link.user-option-item.active(v-show="!user.isAuthenticated" :to="{name: 'login'}") [ 登陆 ]
-                    router-link.user-option-item(v-show="!user.isAuthenticated" :to="{name: 'register'}") [ 注册 ]
-                    router-link.user-option-item(:to="{path: '/usercenter' }") 个人中心
-                    a.user-option-item(v-show="user.isAuthenticated" href="javascript: void(0);" @click='logout') 注销
+                    router-link.user-option-item.active(v-show="!user.authenticated" :to="{name: 'login'}") [ 登陆 ]
+                    router-link.user-option-item(v-show="!user.authenticated" :to="{name: 'register'}") [ 注册 ]
+                    router-link.user-option-item(:to="{name: 'personal' }") 个人中心
+                    a.user-option-item(v-show="user.authenticated" href="javascript: void(0);" @click='logout') 注销
                     a.user-option-item(href="javascript: void(0);") 购物车
                     a.user-option-item(href="javascript: void(0);") 快捷下单
         .container.flex.pt10.pb10

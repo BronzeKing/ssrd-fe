@@ -13,6 +13,7 @@ export default {
     path: "/usercenter/",
     component: index,
     // redirect: "/account/order",
+    meta: { auth: true },
     children: [
         {
             path: "",

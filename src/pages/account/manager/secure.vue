@@ -25,7 +25,7 @@
             el-dialog(title="修改邮箱" :visible.sync="changeEmailDialog")
                 el-form(:model="Email" ref="changeEmailForm" :rules="Email.rules")
                     el-form-item(label="我的邮箱" prop="email" :error="Email.errors.email")
-                        el-input(v-model="Email.m.email" auto-complete="off" placeholder="请输入您的常用邮箱")
+                        el-input(v-model="Email.m.email" auto-complete="off" :placeholder="user.email || '请输入您的常用邮箱'")
                     el-form-item(label="验证码" prop='captcha' :error="Email.errors.captcha")
                         el-input(v-model="Email.m.captcha" auto-complete="off")
                         el-button(@click="sendCaptcha('email')") 发送验证邮件
@@ -40,7 +40,17 @@
                 span 您验证的手机是：{{user.mobile}}
             .item-info(v-show="!user.verified.mobile")
                 span 您还未验证手机
-            el-button(type="text") 立即验证
+            el-button(type="text" @click="dialog.mobile = true") 立即验证
+            el-dialog(title="修改手机" :visible.sync="dialog.mobile")
+                el-form(:model="Email" ref="changeMobileForm" :rules="Email.rules")
+                    el-form-item(label="手机" prop="mobile" :error="Email.errors.mobile")
+                        el-input(v-model="Email.m.mobile" auto-complete="off" :disabled='Boolean(user.mobile)' :placeholder='user.mobile')
+                    el-form-item(label="验证码" prop='captcha' :error="Email.errors.captcha")
+                        el-input(v-model="Email.m.captcha" auto-complete="off")
+                        el-button(@click="sendCaptcha('mobile')") 发送验证码
+                div(slot="footer" class="dialog-footer")
+                    el-button(@click="dialog.mobile=false") 取消
+                    el-button(type="primary" @click="changeMobile") 提交
 </template>
 <script lang="ts" src="./secure.ts">
 </script>

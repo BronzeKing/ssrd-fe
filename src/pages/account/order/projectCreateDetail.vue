@@ -3,7 +3,7 @@
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
-                el-breadcrumb-item(:to="{ name: 'project' }") 项目中心
+                el-breadcrumb-item(:to="{ name: 'order' }") 订单中心
                 el-breadcrumb-item 新建项目
         div
             div(v-show="index===0")
@@ -30,7 +30,8 @@
                         el-input-number(v-model="labor.入场劳务人员数量" controls-position="right" :min="1" :max="100000") 个
                     el-form-item(label="备注")
                         el-input(v-model="labor.备注" type="textarea")
-                    el-button(type="primary" @click="submit") 加入购物车
+                    el-button(type="primary" @click="submit") 立即新建
+                    el-button(type="primary" @click="addToCart") 加入购物车
                     el-button(type="primary" @click="cancel") 重置
 
             div(v-show="index===1")
@@ -47,7 +48,8 @@
                       el-radio(v-for="(item, index) in monitor.现场施工图纸.items" :key="index" v-model="monitor.现场施工图纸.value" :label="item.name") {{item.name}}
                     el-form-item(label="备注")
                         el-input(v-model="monitor.备注" type="textarea")
-                    el-button(type="primary" @click="submit") 加入购物车
+                    el-button(type="primary" @click="submit") 立即新建
+                    el-button(type="primary" @click="addToCart") 加入购物车
                     el-button(type="primary" @click="cancel") 重置
 
             div(v-show="index===2")
@@ -66,7 +68,8 @@
                         el-checkbox(v-for="(item, index) in car.功能选择.items" :key="index" :label="item.name")
                     el-form-item(label="备注")
                         el-input(v-model="car.备注" type="textarea")
-                    el-button(type="primary" @click="submit") 加入购物车
+                    el-button(type="primary" @click="submit") 立即新建
+                    el-button(type="primary" @click="addToCart") 加入购物车
                     el-button(type="primary" @click="cancel") 重置
 
 </template>

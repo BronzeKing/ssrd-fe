@@ -24,6 +24,7 @@ export default [
         path: "order",
         name: "order",
         component: index,
+        redirect: { name: "projectCreate" },
         children: [
             {
                 path: "afterMarket",
