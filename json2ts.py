@@ -2,6 +2,11 @@
 import sys
 import json
 from io import StringIO
+defaultMap = {
+    'pictures': '[]',
+    'systemCases': '[]'
+}
+default = 'defaultValue () { return %s }'
 header = 'import { Model } from "./baseModel";\n\n'
 tpl = '''export class %s extends Model {
     %s
@@ -17,20 +22,26 @@ tpl = '''export class %s extends Model {
 field = '    public {}: {};'
 fieldDefine = '''        this.defineField('%s', {
       type: %s,
+      %s
     });'''
 
 typeMap = {'integer': 'number', 'file': 'any'}
 
 
 def fromField(name, desc, define=False):
+    # define 写this.defineField的时候传真
     type = desc.get('type')
     type = typeMap.get(type, type)
     if desc.get('$ref'):
         type = desc['$ref'].split('/')[-1]
     elif define:
         type = "'{}'".format(type.capitalize())
+    defaultValue = defaultMap.get(name, '')
+    if defaultValue:
+        type = '[' + type + ']'
+        defaultValue = default % defaultValue
     if define:
-        return fieldDefine % (name, type)
+        return fieldDefine % (name, type, defaultValue)
     txt = field.format(name, type)
     description = desc.get('description')
     if description:

@@ -44,7 +44,7 @@
                             .line
                         .system-content-text(id="text3")
                             .sceneImgList
-                                .scene-img(v-for="item in System.m.pictures")
+                                .scene-img(v-for="(item, index) in System.m.pictures" :key="index")
                                     img(:src="item.image")
                         .cutoff-line
                             h4 相关案例
