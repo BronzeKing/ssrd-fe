@@ -16,12 +16,13 @@ export default class ProjectCreateDetail extends Vue {
     };
 
     protected created() {
-        System.list();
-        System.t.Records.map(item => {
-            if (item.id === Number(this.$route.params.id)) {
-                System.m.populate(item);
-            }
-        })
+        System.list().then((r: any) => {
+            System.t.Records.map(item => {
+                if (item.id === Number(this.$route.params.id)) {
+                    System.m.populate(item);
+                }
+            })
+        });
         this.index = Number(this.$route.params.id);
     }
 

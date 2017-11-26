@@ -4,7 +4,8 @@
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
                 el-breadcrumb-item(:to="{ name: 'order' }") 订单中心
-                el-breadcrumb-item 新建项目
+                el-breadcrumb-item(:to="{ name: 'projectCreate' }") 新建项目
+                el-breadcrumb-item {{System.m.name}}
         div
             div(v-show="System.m.name==='可视化劳务管理'")
                 el-form(ref="form" :model="labor" label-width="80px")
