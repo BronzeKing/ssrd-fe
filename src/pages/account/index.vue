@@ -5,7 +5,8 @@
             slider
             .page-right
                 router-view
-        page-footer
+        keep-alive
+            page-footer
 </template>
 
 <script lang="ts">
