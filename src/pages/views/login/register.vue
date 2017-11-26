@@ -48,7 +48,9 @@ export default class RegisterView extends Vue
                         cancelButtonText: '取消',
                         type: 'success'
                     });
-                    this.$router.push({name: 'home'});
+                    this.$store.dispatch('login', Register.m.serialize()).then(() => {
+                        this.$router.push({name: 'home'});
+                    })
                 }).catch((err: any) => {
                     this.$message.error(err.msg);
                 });

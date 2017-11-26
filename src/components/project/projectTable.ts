@@ -56,7 +56,11 @@ export default class ProjectTable extends Vue {
     created() {
         Project.list();
     }
-    rowClick(m: any) {}
+    rowClick(row: any, event: any, column: any) {
+        if (column.label !== '操作') {
+            this.$router.push({ name: 'projectDetail', params: { id: row.id } });
+        }
+    }
     clickTab(tab: any, event: any) {
         Project.list();
     }
@@ -182,7 +186,7 @@ export default class ProjectTable extends Vue {
             }
         });
     }
-    handleAfterSave() {}
+    handleAfterSave() { }
     handleDialog(row: any, dialog: string): void {
         this.dialog[dialog] = true;
         Project.m = row;

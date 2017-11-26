@@ -37,17 +37,13 @@ export default class LoginView extends Vue
             if (!valid) {
                 return;
             };
-            Login.create().then((r: Payload) => {
+            this.$store.dispatch('login', Login.m.serialize()).then(() => {
                 this.$message({
                     message: '登录成功',
                     type: 'success'
                 });
-                this.$store.commit('token', r);
-                Login.retrieve().then((r: any) => {
-                    this.$store.dispatch('login', r)
-                    this.$router.push(pushed)
-                });
-            });
+                this.$router.push(pushed)
+            })
         });
     }
 };

@@ -28,8 +28,15 @@ const mutations = {
 };
 
 const actions = {
-    login: ({ commit }: any, payload: any) => commit(types.LOGIN, payload),
-    logout: ({ commit }: any) => commit(types.LOGOUT)
+    logout: ({ commit }: any) => commit(types.LOGOUT),
+    login: ({ commit }: any, payload: any) => {
+        Login.create(payload).then((r: Payload) => {
+            commit('token', r);
+            Login.retrieve().then((r: any) => {
+                commit('login', r)
+            });
+        });
+    }
 };
 
 const getters = {

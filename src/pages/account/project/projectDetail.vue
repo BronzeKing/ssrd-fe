@@ -4,6 +4,7 @@
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
                 el-breadcrumb-item(:to="{ name: 'project' }") 项目中心
+                el-breadcrumb-item(:to="{ name: 'projectList' }") 项目动态
                 el-breadcrumb-item {{Project.m.name}}
         div
             p.f14.mb10 项目名称：{{Project.m.name}}
