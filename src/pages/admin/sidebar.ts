@@ -76,44 +76,6 @@ const SIDEBAR = [
                 title: "用户(员工)管理"
             }
         ]
-    },
-    {
-        title: "管理中心",
-        sub: [
-            {
-                name: "secure",
-                title: "安全设置"
-            },
-            {
-                name: "user",
-                title: "子账号管理"
-            },
-            {
-                name: "authorizeCode",
-                title: "授权码管理"
-            },
-            {
-                name: "message",
-                title: "我的消息"
-            },
-            {
-                name: "profile",
-                title: "个人资料"
-            },
-            {
-                name: "companyProfile",
-                title: "企业信息"
-            }
-        ]
-    },
-    {
-        title: "合作伙伴",
-        sub: [
-            {
-                name: "cooperationGuide",
-                title: "合作指南"
-            }
-        ]
     }
 ];
 /**
