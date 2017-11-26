@@ -29,6 +29,8 @@
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Product } from 'apis';
+
+@Component
 export default class ProductView extends Vue
 {
     @Provide() Product = Product;
