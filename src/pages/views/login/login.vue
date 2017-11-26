@@ -32,21 +32,18 @@ export default class LoginView extends Vue
     }
 
     loginSubmit () {
+        let pushed = this.$route.query.next ? {path: this.$route.query.next} : {name: 'home'} 
         this.$refs.LoginForm.validate((valid: Boolean) => {
             if (!valid) {
                 return;
             };
-            Login.create().then((r: Payload) => {
+            this.$store.dispatch('login', Login.m.serialize()).then(() => {
                 this.$message({
                     message: '登录成功',
                     type: 'success'
                 });
-                this.$router.push({name: 'home'});
-                this.$store.commit('token', r);
-                Login.retrieve().then((r: any) => {
-                    this.$store.commit('login', r);
-                });
-            });
+                this.$router.push(pushed)
+            })
         });
     }
 };

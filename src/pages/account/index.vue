@@ -5,7 +5,8 @@
             slider
             .page-right
                 router-view
-        page-footer
+        keep-alive
+            page-footer
 </template>
 
 <script lang="ts">
@@ -21,7 +22,7 @@ import pageHeader from './header.vue';
         pageHeader
     }
 })
-export default class Account extends Vue
+export default class AccountView extends Vue
 {
 };
 </script>

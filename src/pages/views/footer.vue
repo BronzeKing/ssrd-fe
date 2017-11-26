@@ -11,7 +11,7 @@
                         ul.left-sub-flex
                             li.left-progeny
                                 router-link.left-content(:to="{ name: 'system'}") 系统介绍/方案
-                            li.left-progeny(v-for="(item, index) in System.t.Records")
+                            li.left-progeny(v-for="(item, index) in System.t.Records.slice(0, 6)")
                                 router-link.left-content(:to="{ name: 'systemDetail', params: {id: item.id}}") {{item.name}}
                     li.left-sub
                         ul.left-sub-flex

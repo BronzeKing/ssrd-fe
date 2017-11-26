@@ -7,27 +7,11 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Env, Login } from 'apis';
+import { Env, Login, Profile } from 'apis';
 
 @Component
 export default class App extends Vue {
     protected created () {
-        this.init();
-    }
-    init () {
-        if (localStorage.token) {
-            Login.retrieve().then((r: Payload) => {
-                // 如果返回url的话 说明需要重定向 登录不成功
-                if (r.url) {
-                    this.$store.commit('logout');
-                } else {
-                    this.$store.commit('login', r);
-                }
-            });
-        };
-        Env.retrieve().then((r: Payload) => {
-            this.$store.commit('env', r);
-        });
     }
 };
 </script>

@@ -13,7 +13,7 @@
                 el-input(type='password' v-model='Register.m.password' auto-complete='off' placeholder='密码')
             el-button(type='primary' style='width:100%;' @click.native.prevent='RegisterSubmit' :loading='logining') 注 册
         .last-item
-            a.font-black(v-for="x in $store.state.home.env" :key="x.name" :href="x.url")
+            a.font-black(v-for="x in this.env" :key="x.name" :href="x.url")
                 i.iconfont(:class="icons[x.name]")
 </template>
 
@@ -36,6 +36,9 @@ export default class RegisterView extends Vue
     $refs: {
         RegisterForm: HTMLFormElement
     };
+    public get env () {
+        return this.$store.state.home.env
+    }
     RegisterSubmit () {
         this.$refs.RegisterForm.validate((valid: Boolean) => {
             if (valid) {
@@ -45,7 +48,9 @@ export default class RegisterView extends Vue
                         cancelButtonText: '取消',
                         type: 'success'
                     });
-                    this.$router.push({name: 'home'});
+                    this.$store.dispatch('login', Register.m.serialize()).then(() => {
+                        this.$router.push({name: 'home'});
+                    })
                 }).catch((err: any) => {
                     this.$message.error(err.msg);
                 });

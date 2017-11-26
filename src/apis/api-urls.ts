@@ -24,9 +24,15 @@ export default {
     env: `${apiUrl}/env`,
 
     /**
+  * 获取关于我们
+  */
+    aboutUs: `${apiUrl}/aboutUs`,
+    /**
   * 新闻
   */
     news: `${apiUrl}/news`,
+
+    terminals: `${apiUrl}/terminals`,
 
     /**
   * 招聘信息
@@ -87,6 +93,10 @@ export default {
   */
     email: `${apiUrl}/email/change`,
     /**
+  * 更改邮箱、手机
+  */
+    credential: `${apiUrl}/credential`,
+    /**
   * 更改验证码
   */
     captcha: `${apiUrl}/captcha`,
@@ -95,13 +105,17 @@ export default {
   */
     user: `${apiUrl}/users`,
     /**
+  * 用户
+  */
+    group: `${apiUrl}/groups`,
+    /**
   * 消息
   */
     message: `${apiUrl}/messages`,
     /**
   * 个人资料
   */
-    profile: `${apiUrl}/users/{id}/profile`,
+    profile: `${apiUrl}/users/:userId/profile`,
     /**
   * 邀请码
   */

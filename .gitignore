@@ -3,7 +3,7 @@ tags
 .cache
 .vscode
 node_modules/
-dist/
+dist/*
 .cache/
 npm-debug.log*
 yarn-debug.log*

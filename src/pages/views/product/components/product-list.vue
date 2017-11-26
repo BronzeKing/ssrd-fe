@@ -15,10 +15,10 @@
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Product } from 'apis';
 @Component
-export default class ProductView extends Vue
+export default class ProductListView extends Vue
 {
     @Provide() Product = Product;
-    @Provide() activeNames = [];
+    @Provide() activeNames = '';
     protected created () {
         Product.list();
     }

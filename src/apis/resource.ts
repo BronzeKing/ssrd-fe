@@ -10,7 +10,7 @@ let _methodMap: { [x: string]: any } = {
     list: ajax.Axios.get,
     retrieve: ajax.Axios.get,
     create: ajax.Axios.post,
-    update: ajax.Axios.post,
+    update: ajax.Axios.put,
     destroy: ajax.Axios.delete
 };
 
@@ -33,35 +33,6 @@ interface Table {
 
 interface Rules {
     [key: string]: Array<any>;
-}
-
-/**
-* @brief 替换url中的 /:{var}参数，以及当action为update，destroy, retrieve时，如果body中有{id},则把{id}放到拼接到url中
-*
-* @param url 请求的url
-* @param body 请求的参数，可能为querystring或者htto的body
-* @param pathArgv url中的变量,eg ['/:project']
-* @param action 请求方法
-*
-* @return url 请求url
-*/
-function replaceUrl(url: string, body: Payload, pathArgv: Array<string>, action: string): string {
-    let id: string;
-    let value: string;
-    pathArgv.forEach(x => {
-        // eg: x = :projectId
-        ({ [x.slice(1)]: value, ...body } = body);
-        url = url.replace(x, value);
-    });
-    // 标准rest接口中retrieve, update,  delete 方法path中都带有id
-    // 若是非标准rest接口则不带id
-    if (!isInArray(["list", "create"], action)) {
-        ({ id, ...body } = body);
-        if (id) {
-            url = url + "/" + id;
-        }
-    }
-    return url;
 }
 
 export class Resource<T extends Model> {
@@ -89,6 +60,9 @@ export class Resource<T extends Model> {
         public rules: Rules = {},
         private cache: Boolean = false
     ) {
+        if (m) {
+            this.m.init();
+        }
         this.errors = m ? m.errors : {};
         let matched = url.match(/:(\w+)/g);
         if (matched) {
@@ -96,6 +70,7 @@ export class Resource<T extends Model> {
                 return x;
             });
         }
+        // 把model中的值默认放到table中去，用于调用list方法时传参
         this.t = {
             ...this.t,
             ...this.m
@@ -110,23 +85,21 @@ export class Resource<T extends Model> {
     *
     * @参数 body: 请求的body
     */
-    formData(body: Payload): FormData {
-        const data = assign({}, this.m.serialize(), body);
-        const form = new FormData();
+    formData(data: Payload): Payload {
         Object.keys(data).forEach(x => {
             let obj = data[x];
             if (obj) {
                 // 当上传多个文件时，逐个把文件append进FormData
-                if (obj.constructor == Array && obj[0].url) {
+                if (obj.constructor === Array && obj.length && obj[0].url) {
+                    let files: Array<any> = new Array();
                     obj.forEach((file: any) => {
-                        form.append(x, file.raw);
+                        files.push(file);
                     });
-                } else {
-                    form.append(x, obj);
+                    obj = files;
                 }
             }
         });
-        return form;
+        return data;
     }
 
     /**
@@ -139,7 +112,28 @@ export class Resource<T extends Model> {
     request(body: Payload, config: Payload, action: string): AxiosPromise {
         let method = _methodMap[action];
         let response: AxiosPromise;
-        let url = replaceUrl(this.url, body, this._pathArgv, action);
+        let id: string;
+        let value: string;
+        let url = this.url;
+        if (isInArray(["destroy", "update", "create"], action)) {
+            body = assign({}, this.m.serialize(), body);
+        }
+
+        // @brief 替换url中的 /:{var}参数，以及当action为update，destroy, retrieve时，如果body中有{id},则把{id}放到拼接到url中
+        this._pathArgv.forEach((x: string) => {
+            // eg: x = :projectId
+            ({ [x.slice(1)]: value, ...body } = body);
+            url = url.replace(x, value);
+        });
+        // 标准rest接口中retrieve, update,  delete 方法path中都带有id
+        // 若是非标准rest接口则不带id
+        if (!isInArray(["list", "create"], action)) {
+            ({ id, ...body } = body);
+            if (id) {
+                url = url + "/" + id;
+            }
+        }
+
         if (this.cache && this.cached[action]) {
             return this.cached[action];
         }
@@ -161,17 +155,22 @@ export class Resource<T extends Model> {
                 });
             }
         });
-        if (this.cache) {
+        // 但使用get请求时，把结果给缓存了，但使用post put请求时，把缓存的结果清空
+        if (this.cache && isInArray(["list", "retrieve"], action)) {
             this.cached[action] = response;
+        } else {
+            this.cached = {};
         }
         return response;
     }
 
     list(params: Payload = {}, config: Payload = {}): Payload {
-        // 默认把this.t里的search, pageIndex, pageSize参数传到list方法里
-        params["search"] = this.t.search;
-        params["pageIndex"] = this.t.pageIndex;
-        params["pageSize"] = this.t.pageSize;
+        // 默认把this.t里的search, pageIndex, pageSize以及来自model的值作为参数传到list方法里
+        Object.keys(this.t).forEach((x: string) => {
+            if (this.t[x] && !isInArray(["Records", "RecordCount"], x)) {
+                params[x] = this.t[x];
+            }
+        });
 
         return this.request(params, config, "list").then((r: Payload) => {
             this.t.RecordCount = r["RecordCount"];

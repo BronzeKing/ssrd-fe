@@ -2,21 +2,43 @@
 import sys
 import json
 from io import StringIO
-header = 'import { Model, Provide } from "./baseModel";\n\n'
+defaultMap = {'pictures': '[]', 'systemCases': '[]'}
+default = 'defaultValue () { return %s }'
+header = 'import { Model } from "./baseModel";\n\n'
 tpl = '''export class %s extends Model {
-%s
-};\n'''
+    %s
 
-field = '    @Provide public {}: {};'
+  public constructor(data = {}) {
+    super(data);
+%s
+    this.populate(data);
+    this.commit();
+  }
+}\n'''
+
+field = '    public {}: {};'
+fieldDefine = '''        this.defineField('%s', {
+      type: %s,
+      %s
+    });'''
 
 typeMap = {'integer': 'number', 'file': 'any'}
 
 
-def fromField(name, desc):
+def fromField(name, desc, define=False):
+    # define 写this.defineField的时候传真
     type = desc.get('type')
     type = typeMap.get(type, type)
     if desc.get('$ref'):
         type = desc['$ref'].split('/')[-1]
+    elif define:
+        type = "'{}'".format(type.capitalize())
+    defaultValue = defaultMap.get(name, '')
+    if defaultValue:
+        type = '[' + type + ']'
+        defaultValue = default % defaultValue
+    if define:
+        return fieldDefine % (name, type, defaultValue)
     txt = field.format(name, type)
     description = desc.get('description')
     if description:
@@ -26,23 +48,31 @@ def fromField(name, desc):
 
 
 def fromModel(sio, key, value):
-    body = '\n'.join(fromField(k, v) for k, v in value['properties'].items())
-    model = tpl % (key, body)
+    items = value['properties'].items
+    body = '\n'.join(fromField(k, v) for k, v in items())
+    txtDefine = '\n'.join(fromField(k, v, True) for k, v in items())
+    model = tpl % (key, body, txtDefine)
     sio.write(model)
     sio.write('\n')
 
 
 def main(src, dist):
     sio = StringIO()
-    with open(src, 'r') as fd:
-        data = json.load(fd)
-        models = data['definitions']
+    if src.startswith('http'):
+        import requests
+        data = requests.get(src).json()
+    else:
+        with open(src, 'r') as fd:
+            data = json.load(fd)
+    models = data['definitions']
     [fromModel(sio, key, value) for key, value in models.items()]
     txt = sio.getvalue()
     custom = None  # 自定义的model
     with open(dist, 'r') as fd:
         old = fd.read().splitlines()
-        index = [index for index, line in enumerate(old) if line.startswith('////')]
+        index = [
+            index for index, line in enumerate(old) if line.startswith('////')
+        ]
         if index:
             custom = '\n'.join(old[index[0]:])
     with open(dist, 'w') as fd:
@@ -60,6 +90,6 @@ if __name__ == '__main__':
     elif len(sys.argv) == 3:
         src, dict = sys.argv[1:3]
     else:
-        src = 'api.json'
-        dist = 'model.ts'
+        src = 'http://127.0.0.1:8888/?format=openapi'
+        dist = 'src/apis/model.ts'
     main(src, dist)

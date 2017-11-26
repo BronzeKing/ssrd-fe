@@ -8,7 +8,7 @@
                 //- img(src="~assets/home_banner.png")
             article.home-info
                 nav.home-user-nav
-                    router-link.home-user-item(:to={name: 'account'})
+                    router-link.home-user-item(:to={name: 'personal'})
                         i.iconfont.icon-team
                         p 客户中心
                     router-link.home-user-item(:to={name: 'mineOrder'})
@@ -17,8 +17,8 @@
                     router-link.home-user-item(:to={name: 'project'})
                         i.iconfont.icon-team
                         p 项目管理中心
-                    a.home-user-item(href="javascript: void(0);")
-                        i.iconfont.icon-manage
+                    router-link.home-user-item(:to={name: 'admin'})
+                        i.iconfont.icon-team
                         p 内部管理中心
                 .home-article
                     h4.home-article-title 最新公告

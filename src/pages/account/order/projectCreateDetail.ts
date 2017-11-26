@@ -1,22 +1,29 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
 import { Option } from "common/utils/extends";
-import { System } from "apis";
+import { System, ProjectCreate as Project, Profile } from "apis";
 
 @Component
 export default class ProjectCreateDetail extends Vue {
-    public get index() {
-        return this.$route.params.id;
-    }
-
+    @Provide() index = 0; // 决定显示哪个system的form
     @Provide() System = System;
+    @Provide() Project = Project;
+    @Provide() Profile = Profile;
 
     @Provide()
     $refs: {
         form: HTMLFormElement;
+        settleForm: HTMLFormElement;
     };
 
-    protected create() {
-        System.list();
+    protected created() {
+        System.list().then((r: any) => {
+            System.t.Records.map(item => {
+                if (item.id === Number(this.$route.params.id)) {
+                    System.m.populate(item);
+                }
+            });
+        });
+        this.index = Number(this.$route.params.id);
     }
 
     @Provide()
@@ -50,13 +57,13 @@ export default class ProjectCreateDetail extends Vue {
     @Provide()
     collect = {
         name: "综合数据采集远程传输",
-        区域选择: Option(["施工区", "生活区", "其他"], ""), // 区域选择
+        区域选择: Option(["施工区", "生活区", "其他"], null, []), // 区域选择
         功能选择: Option(
             ["噪声采集", "粉尘采集", "风速采集", "风向采集", "温度采集", "湿度采集", "PM值采集", "PM2.5采集"],
             null,
             []
         ), // 功能选择
-        显示方式: Option(["LED屏显示", "后台LCD显示"], ""), // 显示方式
+        显示方式: Option(["LED屏显示", "后台LCD显示"], null, []), // 显示方式
         备注: "" // 备注
     };
     @Provide()
@@ -80,7 +87,12 @@ export default class ProjectCreateDetail extends Vue {
         备注: "" // 备注
     };
 
-    submit() {}
+    submit() {
+        this.$router.push({ name: "cartCheckout" });
+    }
+    addToCart() {
+        this.$router.push({ name: "projectCreate" });
+    }
 
     cancel() {
         this.$refs.form.resetFields();
