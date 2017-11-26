@@ -45,4 +45,3 @@ ready().then(() => {
         render: h => h(App)
     });
 })
-

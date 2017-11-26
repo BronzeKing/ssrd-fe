@@ -29,12 +29,12 @@ const mutations = {
 
 const actions = {
     logout: ({ commit }: any) => commit(types.LOGOUT),
-    login: ({ commit }: any, payload: any) => {
-        Login.create(payload).then((r: Payload) => {
+    async login({ dispatch, commit }: any, payload: any) {
+        await Login.create(payload).then((r: Payload) => {
             commit('token', r);
-            Login.retrieve().then((r: any) => {
-                commit('login', r)
-            });
+        });
+        await Login.retrieve().then((r: any) => {
+            commit('login', r)
         });
     }
 };
