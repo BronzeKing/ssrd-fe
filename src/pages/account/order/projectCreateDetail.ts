@@ -17,6 +17,11 @@ export default class ProjectCreateDetail extends Vue {
 
     protected created() {
         System.list();
+        System.t.Records.map(item => {
+            if (item.id === Number(this.$route.params.id)) {
+                System.m.populate(item);
+            }
+        })
         this.index = Number(this.$route.params.id);
     }
 
@@ -51,13 +56,13 @@ export default class ProjectCreateDetail extends Vue {
     @Provide()
     collect = {
         name: "综合数据采集远程传输",
-        区域选择: Option(["施工区", "生活区", "其他"], ""), // 区域选择
+        区域选择: Option(["施工区", "生活区", "其他"], null, []), // 区域选择
         功能选择: Option(
             ["噪声采集", "粉尘采集", "风速采集", "风向采集", "温度采集", "湿度采集", "PM值采集", "PM2.5采集"],
             null,
             []
         ), // 功能选择
-        显示方式: Option(["LED屏显示", "后台LCD显示"], ""), // 显示方式
+        显示方式: Option(["LED屏显示", "后台LCD显示"], null, []), // 显示方式
         备注: "" // 备注
     };
     @Provide()

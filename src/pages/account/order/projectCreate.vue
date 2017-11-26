@@ -8,7 +8,7 @@
         div
             el-row(:gutter="20")
                 el-col(:span="8" class="project-create-item mb20" v-for="(item, index) in System.t.Records" :key="index")
-                    router-link(:to="{name: 'projectCreateDetail', params: {id: index}}")
+                    router-link(:to="{name: 'projectCreateDetail', params: {id: item.id}}")
                         el-card(:body-style="{ padding: '0px' }")
                             img.project-create-image(:src="item.picture" class="image")
                             div(style="padding: 14px;")
@@ -17,21 +17,7 @@
                                     el-button(type="text" class="button") 新建
 
 </template>
-<script lang="ts">
-// 新建项目
-/**
-* #TODO 目前el-col样式未完成，直接用的官网的demo
-*/
-import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { System } from 'apis';
-@Component
-export default class ProjectCreate extends Vue
-{
-    @Provide() System = System;
-    protected created () {
-        System.list();
-    }
-};
+<script lang="ts" src="./projectCreate.ts">
 </script>
 
 <style lang="scss">
