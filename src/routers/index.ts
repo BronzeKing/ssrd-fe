@@ -42,12 +42,6 @@ route.afterEach((to: Route, from: Route) => {
         let title = to.meta.title || "深圳市盛世润达智能科技有限公司";
         document.title = title;
     }
-
-    // 设置当前激活的菜单
-    if (typeof to.meta.headerMenuIndex === "number") {
-        let index = to.meta.headerMenuIndex;
-        store.dispatch("updateNavActive", index);
-    }
 });
 
 export default route;

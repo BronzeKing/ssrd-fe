@@ -45,10 +45,6 @@ export default [
     name: "product",
     component: product,
     redirect: "/product/productList",
-    beforeEnter(to: Route, from: Route, next: any) {
-      to.meta.headerMenuIndex = 2;
-      next();
-    },
     children: [
       {
         path: "productList",

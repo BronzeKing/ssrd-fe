@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-export default class AccountHeader extends Vue
+export default class PageHeader extends Vue
 {
 };
 </script>

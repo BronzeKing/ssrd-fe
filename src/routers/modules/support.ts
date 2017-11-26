@@ -49,10 +49,6 @@ export default [
     name: "support",
     redirect: "/support/faqs",
     component: support,
-    beforeEnter(to: Route, from: Route, next: any) {
-      to.meta.headerMenuIndex = 4;
-      next();
-    },
     children: [
       {
         path: "faqs",

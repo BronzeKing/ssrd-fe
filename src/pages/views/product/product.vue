@@ -21,7 +21,7 @@
                                 
             .right-product
                 transition(name="router-fade" mode="out-in")
-                        router-view
+                    router-view
         
     
 </template>
@@ -32,7 +32,7 @@ import  { Product } from 'apis';
 export default class ProductView extends Vue
 {
     @Provide() Product = Product;
-    @Provide() activeNames = [];
+    @Provide() activeNames = '';
     @Provide() searchValue = '';
 
     protected created () {

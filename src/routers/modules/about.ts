@@ -51,12 +51,9 @@ const contactUs = (r: any) =>
 export default [
   {
     path: "/about",
-    // name: 'about',
+    name: 'about',
     component: about,
-    beforeEnter(to: Route, from: Route, next: any) {
-      to.meta.headerMenuIndex = 6;
-      next();
-    },
+    redirect: {name: 'companyProfile'},
     children: [
       {
         path: "",
