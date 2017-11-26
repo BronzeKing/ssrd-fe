@@ -19,7 +19,7 @@ export default class CorporateCulture extends Vue
         AboutUs.retrieve();
     }
     public compiledMarkdown () {
-        return marked(AboutUs.m.culture, { sanitize: true });
+        return marked(AboutUs.m.culture || '', { sanitize: true });
     }
 }
 </script>

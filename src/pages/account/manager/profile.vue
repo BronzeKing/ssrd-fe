@@ -32,12 +32,7 @@ import  { Profile } from 'apis';
 export default class ProfileView extends Vue
 {
     @Provide() Profile = Profile;
-    public get user () {
-        return this.$store.state.user.user;
-    }
     public created () {
-        this.user;
-        Profile.retrieve({userId: this.user.id});
     }
     submit () {
         Profile.update();

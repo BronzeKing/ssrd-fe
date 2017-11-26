@@ -30,7 +30,7 @@ export default class CompanyProfile extends Vue
         AboutUs.retrieve();
     }
     public compiledMarkdown () {
-        return marked(AboutUs.m.introduction, {});
+        return marked(AboutUs.m.introduction || '', {});
     }
 }
 </script>
