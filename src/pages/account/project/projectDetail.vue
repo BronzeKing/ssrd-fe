@@ -1,19 +1,26 @@
 <template lang="pug">
-    div
+    .page-projectDetail
         .breadcrumb
             el-breadcrumb
                 el-breadcrumb-item(:to="{ path: '/' }") 首页
                 el-breadcrumb-item(:to="{ name: 'project' }") 项目中心
                 el-breadcrumb-item {{Project.m.name}}
         div
-            p 项目名称：{{Project.m.name}}
-            p 类型：{{Project.m.type}}
-            p 地点：{{Project.m.address}}
-            p 项目创建者：{{Project.m.user.username}}
-            p 联系人：{{Project.m.linkman}}
-            p 手机：{{Project.m.mobile}}
-            p 内容：{{Project.m.content}}
-            el-steps(:space="200" :active="Project.m.status" finish-status="success")
+            p.f14.mb10 项目名称：{{Project.m.name}}
+            table.detail-table(border="1" bordercolor="#e6ebf5")
+                tbody
+                    tr
+                        td 类型：{{Project.m.type}}
+                        td
+                    tr
+                        td 地点：{{Project.m.address}}
+                        td 项目创建者：{{Project.m.user.username}}
+                    tr
+                        td 联系人：{{Project.m.linkman}}
+                        td 手机：{{Project.m.mobile}}
+                    tr
+                        td(colspan="2") 内容：{{Project.m.content}}
+            el-steps.mt20.mb20.ml10(:space="200" :active="Project.m.status" finish-status="success")
                 el-step(title="沟通中")
                 el-step(title="跟进中")
                 el-step(title="实施中")
@@ -47,3 +54,27 @@
 </template>
 <script lang="ts" src="./projectDetail.ts">
 </script>
+<style lang="scss" scoped>
+.page-projectDetail{
+    background: #fff;
+    .title{
+        height: 40px;
+        border-bottom: 1px solid #E9E9E9;
+        line-height: 40px;
+        padding: 0 10px;
+        margin-bottom: 10px;
+    }
+    .detail-table{
+        display: table;
+        border-color: 1px solid #e6ebf5;
+        border-collapse: collapse;
+        color: #5a5e66;
+        width: 100%;
+        td{
+            padding: 10px 10px;
+            width: 50%;
+        }
+    }
+}
+
+</style>
