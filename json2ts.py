@@ -2,10 +2,7 @@
 import sys
 import json
 from io import StringIO
-defaultMap = {
-    'pictures': '[]',
-    'systemCases': '[]'
-}
+defaultMap = {'pictures': '[]', 'systemCases': '[]'}
 default = 'defaultValue () { return %s }'
 header = 'import { Model } from "./baseModel";\n\n'
 tpl = '''export class %s extends Model {
@@ -73,7 +70,9 @@ def main(src, dist):
     custom = None  # 自定义的model
     with open(dist, 'r') as fd:
         old = fd.read().splitlines()
-        index = [index for index, line in enumerate(old) if line.startswith('////')]
+        index = [
+            index for index, line in enumerate(old) if line.startswith('////')
+        ]
         if index:
             custom = '\n'.join(old[index[0]:])
     with open(dist, 'w') as fd:
