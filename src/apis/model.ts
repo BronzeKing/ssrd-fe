@@ -455,30 +455,6 @@ export class Profile extends Model {
     }
 }
 
-export class Cart extends Model {
-    // ID
-    public id: number;
-    // 所属用户
-    public user: User;
-    // 内容
-    public content: string;
-
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("content", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
-}
-
 export class AuthorizeCode extends Model {
     // ID
     public id: number;
@@ -1507,6 +1483,23 @@ export class Password extends Model {
         });
         this.defineField("password2", {
             type: "String"
+        });
+    }
+}
+
+export class Cart extends Model {
+    public user: User;
+    public content: Array<{[key: string]: any}>;
+    public constructor(data = {}) {
+        super(data);
+        this.defineField("user", {
+            type: User
+        });
+        this.defineField("content", {
+            type: "String",
+            defaultValue() {
+                return [];
+            }
         });
     }
 }

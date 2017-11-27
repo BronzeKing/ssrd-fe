@@ -105,9 +105,13 @@ export default {
   */
     user: `${apiUrl}/users`,
     /**
-  * 用户
+  * 用户组（部门）
   */
     group: `${apiUrl}/groups`,
+    /**
+  * 购物车
+  */
+    cart: `${apiUrl}/carts`,
     /**
   * 消息
   */

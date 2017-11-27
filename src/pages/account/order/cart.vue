@@ -1,22 +1,25 @@
 <template lang="pug">
     .page-cart
-        .title.f18 我的订单
+        .title.f18 我的购物车
         .order-item
-                .order-item-info
-                    el-col(:span="5") 2017-07-31 15:15:30
-                .order-item-des(v-for="item in carts")
-                    el-col(:span="5")
-                        .order-img
-                            img(:src="item.picture")
-                    el-col.pr30(:span="9") {{item.content}}
-                    el-col(:span="4") 备注：{{item.remark || '无'}}
-                .order-item-btn
-                    span.btn 订单详情
+                p(v-show="!carts.length") 无可用数据
+                div(v-show="carts.length")
+                    .order-item-info
+                        el-col(:span="5") 2017-11-31 15:15:30
+                    .order-item-des(v-for="item in carts")
+                        el-col(:span="5")
+                            .order-img
+                                img(:src="item.picture")
+                        el-col.pr30(:span="9")
+                            p(v-html="n2br(item.content)")
+                        el-col(:span="4") 备注：{{item.remark || '无'}}
+                    .order-item-btn
+                        span.btn 订单详情
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
 import { System } from "apis";
-import { makeMap, typeOf } from 'utils/extends';
+import { n2br, makeMap, typeOf } from 'utils/extends';
 
 function makeContent(item: {[key: string]: any}) {
     let {name, picture, remark, content, ...rest} = item;
@@ -33,7 +36,7 @@ function makeContent(item: {[key: string]: any}) {
             }).filter((x: string) => x)
             return key + ': ' + (txt.join(',') || '无')
         }
-    }).filter(x => x).join(';')
+    }).filter(x => x).join('\n')
 }
 @Component
 export default class CartView extends Vue {

@@ -50,6 +50,7 @@ export const Credential = new Resource(API.credential, new m.Credential({})); //
 export const Captcha = new Resource(API.captcha, new m.Email({})); // 验证码
 export const User = new Resource(API.user, new m.User({})); // 用户
 export const Group = new Resource(API.group, new m.Group({})); // 部门
+export const Cart = new Resource(API.cart, new m.Cart({})); // 购物车
 export const Message = new Resource(API.message, new m.Message({})); // 消息
 export const Invitation = new Resource(API.invitation, new m.Invitation({})); // 邀请码
 export const AuthorizeCode = new Resource(API.authorizeCode, new m.AuthorizeCode({})); // 授权码

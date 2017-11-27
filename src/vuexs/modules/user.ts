@@ -4,7 +4,7 @@
 
 import * as types from "./types";
 import { assign } from "common/utils/extends";
-import { Login } from "apis";
+import { Login, Cart } from "apis";
 import { type } from "os";
 
 const state = {
@@ -46,8 +46,10 @@ const actions = {
         });
     },
     // 添加到购物车
-    async addCart ({ dispatch, commit }: any, payload: any) {
+    async addCart ({ dispatch, commit, state }: any, payload: any) {
         commit(types.ADDCART, payload)
+        Cart.create({content: state.cart}).then(r => {
+        })
     }
 
 };
