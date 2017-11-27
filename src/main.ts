@@ -34,8 +34,10 @@ async function env() {
     });
 }
 async function ready() {
-    await user();
-    await env();
+    let userResposne = user();
+    let envRresponse = env();
+    await userResposne;
+    await envRresponse;
 }
 ready().then(() => {
     new Vue({

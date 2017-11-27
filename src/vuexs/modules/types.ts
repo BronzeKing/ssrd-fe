@@ -9,3 +9,6 @@ export const LOGOUT = "logout";
 export const ENV = "env";
 
 export const TOKEN = "token";
+
+export const ADDCART = 'addCart';
+export const CLEARCART = 'clearCart';

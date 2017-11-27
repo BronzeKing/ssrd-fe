@@ -5,10 +5,12 @@
 import * as types from "./types";
 import { assign } from "common/utils/extends";
 import { Login } from "apis";
+import { type } from "os";
 
 const state = {
     user: { verified: { email: false, mobile: false } },
-    authenticated: Boolean(localStorage.token)
+    authenticated: Boolean(localStorage.token),
+    cart: []
 };
 
 // 纯函数，必需同步
@@ -24,6 +26,12 @@ const mutations = {
         state.user = {};
         state.authenticated = false;
         delete localStorage.token;
+    },
+    [types.ADDCART](state: any, payload: any) {
+        state.cart.push(payload)
+    },
+    [types.CLEARCART](state: any) {
+        state.cart = []
     }
 };
 
@@ -31,17 +39,23 @@ const actions = {
     logout: ({ commit }: any) => commit(types.LOGOUT),
     async login({ dispatch, commit }: any, payload: any) {
         await Login.create(payload).then((r: Payload) => {
-            commit("token", r);
+            commit(types.TOKEN, r);
         });
         await Login.retrieve().then((r: any) => {
-            commit("login", r);
+            commit(types.LOGIN, r);
         });
+    },
+    // 添加到购物车
+    async addCart ({ dispatch, commit }: any, payload: any) {
+        commit(types.ADDCART, payload)
     }
+
 };
 
 const getters = {
     user: (state: any) => state.user,
-    authenticated: (state: any) => state.authenticated
+    authenticated: (state: any) => state.authenticated,
+    cart: (state: any) => state.cart
 };
 
 export default { state, mutations, actions, getters };
