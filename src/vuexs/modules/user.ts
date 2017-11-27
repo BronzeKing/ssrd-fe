@@ -32,6 +32,9 @@ const mutations = {
     },
     [types.CLEARCART](state: any) {
         state.cart = []
+    },
+    [types.CART](state: any, payload: Array<any>) {
+        state.cart = payload
     }
 };
 
@@ -48,8 +51,7 @@ const actions = {
     // 添加到购物车
     async addCart ({ dispatch, commit, state }: any, payload: any) {
         commit(types.ADDCART, payload)
-        Cart.create({content: state.cart}).then(r => {
-        })
+        Cart.create({content: state.cart})
     }
 
 };

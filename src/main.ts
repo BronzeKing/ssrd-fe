@@ -3,7 +3,7 @@ import App from "./App.vue";
 
 import router from "routers"; // 所有路由文件配置
 import store from "vuexs"; // 所有vuex文件
-import { Env, Login, Profile } from "apis";
+import { Cart, Env, Login, Profile } from "apis";
 
 import "configs"; // 第三方插件引用以及全局函数挂载
 
@@ -33,11 +33,18 @@ async function env() {
         store.commit("env", r);
     });
 }
+async function cart() {
+    Cart.retrieve().then((r: Array<any>) => {
+        store.commit('cart', r)
+    })
+}
 async function ready() {
     let userResposne = user();
     let envRresponse = env();
+    let cartResponse = cart();
     await userResposne;
     await envRresponse;
+    await cartResponse;
 }
 ready().then(() => {
     new Vue({

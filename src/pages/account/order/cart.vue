@@ -44,12 +44,11 @@ export default class CartView extends Vue {
         let items = this.$store.getters.cart;
         System.list().then((r: any) => {
             let map = makeMap(r.Records)
-            items.forEach((element: any) => {
+            items.length && items.forEach((element: any) => {
                 element['picture'] =  map[element.name].picture
                 element['content'] = makeContent(element)
             });
         });
-        console.log(items)
         return items;
     }
     protected created() {

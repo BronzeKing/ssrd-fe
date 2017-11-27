@@ -11,4 +11,7 @@ export const ENV = "env";
 export const TOKEN = "token";
 
 export const ADDCART = 'addCart';
+
+export const CART = 'cart';
+
 export const CLEARCART = 'clearCart';

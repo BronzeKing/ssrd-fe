@@ -41,8 +41,8 @@ export default class ProjectCreateDetailView extends Vue {
                 message: '添加成功',
                 type: 'success'
             });
+            this.$router.push({ name: "projectCreate" });
         })
-        this.$router.push({ name: "projectCreate" });
     }
 
     cancel() {
