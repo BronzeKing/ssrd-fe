@@ -18,13 +18,16 @@ export default class ProjectCreateDetail extends Vue {
     }
 
     submit() {
-        debugger
         this.$refs.form.validate((valid: Boolean) => {
-            if (valid) {
-                Project.create()
-            } else {
+            if (!valid) {
                 return false
             }
+            Project.create({type: 'create'}).then((r: any) => {
+                this.$message({
+                    message: '提交成功',
+                    type: 'success'
+                });
+            })
         })
     }
 

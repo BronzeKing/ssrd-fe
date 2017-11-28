@@ -2,7 +2,7 @@
 import sys
 import json
 from io import StringIO
-defaultMap = {'pictures': '[]', 'systemCases': '[]', 'systems': '[]'}
+defaultMap = {'pictures': '[]', 'systemCases': '[]', 'systems': '[]', 'attatchment': '[]'}
 
 default = 'defaultValue () { return %s }'
 header = 'import { Model } from "./baseModel";\n\n'

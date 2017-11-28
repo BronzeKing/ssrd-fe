@@ -700,12 +700,14 @@ export class Project extends Model {
     public linkman: string;
     // 地址
     public address: string;
+    // 所属公司
+    public company: string;
     // 创建时间
     public created: string;
     // 更新时间
     public updated: string;
     // 附件
-    public attatchment: Documents;
+    public attatchment: [Documents];
 
   public constructor(data = {}) {
     super(data);
@@ -757,6 +759,10 @@ export class Project extends Model {
       type: 'String',
       
     });
+        this.defineField('company', {
+      type: 'String',
+      
+    });
         this.defineField('created', {
       type: 'String',
       
@@ -766,8 +772,8 @@ export class Project extends Model {
       
     });
         this.defineField('attatchment', {
-      type: Documents,
-      
+      type: [Documents],
+      defaultValue () { return [] }
     });
     this.populate(data);
     this.commit();
@@ -788,7 +794,7 @@ export class ProjectLog extends Model {
     // 更新时间
     public updated: string;
     // 附件
-    public attatchment: Documents;
+    public attatchment: [Documents];
 
   public constructor(data = {}) {
     super(data);
@@ -817,8 +823,8 @@ export class ProjectLog extends Model {
       
     });
         this.defineField('attatchment', {
-      type: Documents,
-      
+      type: [Documents],
+      defaultValue () { return [] }
     });
     this.populate(data);
     this.commit();
@@ -830,6 +836,8 @@ export class Documents extends Model {
     public project: Project;
     // 附件
     public projectlog: ProjectLog;
+    // 附件
+    public job: Job;
     // ID
     public id: number;
     // 文件名
@@ -851,6 +859,10 @@ export class Documents extends Model {
       type: ProjectLog,
       
     });
+        this.defineField('job', {
+      type: Job,
+      
+    });
         this.defineField('id', {
       type: 'Number',
       
@@ -870,6 +882,57 @@ export class Documents extends Model {
         this.defineField('updated', {
       type: 'String',
       
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
+
+export class Job extends Model {
+        // ID
+    public id: number;
+    // 姓名
+    public name: string;
+    // 职位
+    public job: string;
+    // 手机号码
+    public mobile: string;
+    // 邮箱
+    public email: string;
+    // 更新时间
+    public updated: string;
+    // 附件
+    public attatchment: [Documents];
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('job', {
+      type: 'String',
+      
+    });
+        this.defineField('mobile', {
+      type: 'String',
+      
+    });
+        this.defineField('email', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+        this.defineField('attatchment', {
+      type: [Documents],
+      defaultValue () { return [] }
     });
     this.populate(data);
     this.commit();
@@ -1358,57 +1421,6 @@ export class IndustryLink extends Model {
     });
         this.defineField('rank', {
       type: 'Number',
-      
-    });
-    this.populate(data);
-    this.commit();
-  }
-}
-
-export class Job extends Model {
-        // ID
-    public id: number;
-    // 姓名
-    public name: string;
-    // 职位
-    public job: string;
-    // 手机号码
-    public mobile: string;
-    // 邮箱
-    public email: string;
-    // 附件
-    public attatchment: any;
-    // 更新时间
-    public updated: string;
-
-  public constructor(data = {}) {
-    super(data);
-        this.defineField('id', {
-      type: 'Number',
-      
-    });
-        this.defineField('name', {
-      type: 'String',
-      
-    });
-        this.defineField('job', {
-      type: 'String',
-      
-    });
-        this.defineField('mobile', {
-      type: 'String',
-      
-    });
-        this.defineField('email', {
-      type: 'String',
-      
-    });
-        this.defineField('attatchment', {
-      type: 'Any',
-      
-    });
-        this.defineField('updated', {
-      type: 'String',
       
     });
     this.populate(data);
