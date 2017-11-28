@@ -2,19 +2,20 @@
     .page-cart
         .title.f18 我的购物车
         .order-item
-                p(v-show="!carts.length") 无可用数据
-                div(v-show="carts.length")
-                    .order-item-info
-                        el-col(:span="5") 2017-11-31 15:15:30
-                    .order-item-des(v-for="item in carts")
-                        el-col(:span="5")
-                            .order-img
-                                img(:src="item.picture")
-                        el-col.pr30(:span="9")
-                            p(v-html="n2br(item.content)")
-                        el-col(:span="4") 备注：{{item.remark || '无'}}
-                    .order-item-btn
-                        span.btn(@click="submit") 提交订单
+                el-table(:data="carts" style="width: 100%")
+                    el-table-column(prop="img" label="2017-07-31 15:15:30" width="180")
+                        template(scope="scope")
+                            img(:src="scope.row.picture", alt="" style="width:100%;")
+                    el-table-column(prop="text" label="订单号：16516515156")
+                        template(scope="scope")
+                            p(v-html="n2br(scope.row.content)")
+                    el-table-column(prop="name" label="名称" width="180")
+                    el-table-column(prop="remark" label="备注" width="100")
+                    el-table-column(prop="" label="" width="100")
+                        template(scope="scope")
+                            el-button(type="text") 订单详情
+                .order-item-btn
+                    span.btn(@click="submit") 提交订单
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
@@ -23,6 +24,15 @@ import { n2br, makeMap, typeOf } from 'utils/extends';
 
 @Component
 export default class CartView extends Vue {
+    @Provide() tableData = [{
+            img: 'http://element.eleme.io/static/guide.0a8462c.png',
+            text: '多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体',
+            des: '备注：无'
+          }, {
+            img: 'http://element.eleme.io/static/guide.0a8462c.png',
+            text: '多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体',
+            des: '备注：无'
+    }];
     public get carts () {
         return this.$store.getters.cart || []
     }

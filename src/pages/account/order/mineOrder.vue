@@ -2,22 +2,16 @@
     .page-mineOrder
         .title.f18 我的订单
         .order-item(@click="rowClick")
-                .order-item-info
-                    el-col(:span="5") 2017-07-31 15:15:30
-                    el-col(:span="13") 订单号：16516515156
-                    el-col(:span="4") 2
-                    el-col(:span="2") 201
-                .order-item-des(v-for="n in 2")
-                    el-col(:span="5")
-                        .order-img
-                            img(src="http://element.eleme.io/static/guide.0a8462c.png")
-                    el-col.pr30(:span="13") 多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体
-                    el-col(:span="4") 备注：无
-                    el-col(:span="2")
+                el-table(:data="tableData" style="width: 100%")
+                    el-table-column(prop="img" label="2017-07-31 15:15:30" width="180")
+                        template(scope="scope")
+                            img(:src="scope.row.img", alt="" style="width:100%;")
+                    el-table-column(prop="text" label="订单号：16516515156")
+                    el-table-column(prop="des" label="" width="100")
+                    el-table-column(prop="date" label="" width="100")
                 .order-item-btn
                     span.btn 申请售后
                     span.btn 订单详情
-                        
 </template>
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
@@ -26,6 +20,15 @@ import  { Message } from 'apis';
 export default class MessageView extends Vue
 {
     @Provide() data = '';
+    @Provide() tableData = [{
+            img: 'http://element.eleme.io/static/guide.0a8462c.png',
+            text: '多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体',
+            des: '备注：无'
+          }, {
+            img: 'http://element.eleme.io/static/guide.0a8462c.png',
+            text: '多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体',
+            des: '备注：无'
+    }];
     protected created () {
         Message.list();
     }
@@ -47,27 +50,7 @@ export default class MessageView extends Vue
         padding: 0 10px;
     }
     .order-item{
-        padding: 15px 0;
-        .order-item-info{
-            padding: 0 15px;
-            height: 30px;
-        }
-        .order-item-des{
-            height: 115px;
-            background-color: #E9E9E9;
-            border-bottom: 1px solid #fff;
-            padding: 8px 15px;
-            line-height: 22px;
-            .order-img{
-                width: 150px;
-                height: 100px;
-                overflow: hidden;
-                img{
-                    width: 100%;
-                }
-            }
-            
-        }
+        padding: 15px 0;    
         .order-item-btn{
             //height: 30px;
             margin-top: 20px;
