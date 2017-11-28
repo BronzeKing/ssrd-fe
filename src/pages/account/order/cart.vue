@@ -21,37 +21,13 @@ import { Component, Provide, Vue, Watch } from "vue-property-decorator";
 import { System } from "apis";
 import { n2br, makeMap, typeOf } from 'utils/extends';
 
-function makeContent(item: {[key: string]: any}) {
-    let {name, picture, remark, content, ...rest} = item;
-    return Object.keys(rest).map(key => {
-        let ele: any = rest[key]
-        let type: string = typeOf(ele)
-        if (type !== 'object') {  // 直接输入数字或文字
-            return ele ? (key + ': ' + ele) : ''
-        } else if (typeOf(ele.value) === 'array') { // 多选checkbox
-            return ele.value ? (key + ': ' + (ele.value.join(',')) || '无') : ''
-        } else {   //多选输入， 如输入长宽高, 过滤未选中的表单，当没有一个选中时 显示  `无`
-            let txt = ele.items.map((x: any) => {
-                return x.value ? (x.name + ' ' + x.value) : ''
-            }).filter((x: string) => x)
-            return key + ': ' + (txt.join(',') || '无')
-        }
-    }).filter(x => x).join('\n')
-}
 @Component
 export default class CartView extends Vue {
-    public get carts() {
-        let items = this.$store.getters.cart;
-        System.list().then((r: any) => {
-            let map = makeMap(r.Records)
-            items.length && items.forEach((element: any) => {
-                element['picture'] =  map[element.name].picture
-                element['content'] = makeContent(element)
-            });
-        });
-        return items;
+    public get carts () {
+        return this.$store.getters.cart || []
     }
-    protected created() {
+    created() {
+        this.$store.dispatch('cart')
     }
     public submit () {
         this.$router.push({ name: "settleCart" });

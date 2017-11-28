@@ -3,8 +3,8 @@
  */
 
 import * as types from "./types";
-import { assign } from "common/utils/extends";
-import { Login, Cart } from "apis";
+import { assign, makeContent, makeMap } from "common/utils/extends";
+import { System, Login, Cart } from "apis";
 import { type } from "os";
 
 const state = {
@@ -27,12 +27,15 @@ const mutations = {
         state.authenticated = false;
         delete localStorage.token;
     },
+    // 添加到购物车
     [types.ADDCART](state: any, payload: any) {
         state.cart.push(payload)
     },
+    // 清空购物车
     [types.CLEARCART](state: any) {
         state.cart = []
     },
+    // 从后台获取购物车数据
     [types.CART](state: any, payload: Array<any>) {
         state.cart = payload
     }
@@ -49,17 +52,29 @@ const actions = {
         });
     },
     // 添加到购物车
-    async addCart ({ dispatch, commit, state }: any, payload: any) {
-        commit(types.ADDCART, payload)
+    async addCart ({ dispatch, commit, state }: any, cart: any) {
+        await System.list().then((r: any) => { // 从后台获取购物车的图片
+            let map = makeMap(r.Records)
+            cart['picture'] = map[cart.name].picture
+            commit(types.ADDCART, cart)
+        });
         Cart.create({content: state.cart})
+    },
+    cart ({commit, state}: any) {
+        Cart.retrieve().then((r: Array<any>) => {
+            commit('cart', r)
+        })
     }
-
 };
 
 const getters = {
     user: (state: any) => state.user,
     authenticated: (state: any) => state.authenticated,
-    cart: (state: any) => state.cart
+    cart: (state: any) => {
+        return state.cart.map((item: any) => {
+            return {content: makeContent(item), ...item}
+        })
+    }
 };
 
 export default { state, mutations, actions, getters };

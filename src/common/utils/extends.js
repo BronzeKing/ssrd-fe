@@ -130,4 +130,22 @@ const makeMap = function (objs, key = 'name') {
     return response
 }
 
-export { assign, isEmptyObject, getUrlParams, toUrlParams, isMobileNumber, typeOf, n2br, Option, makeMap };
+function makeContent(item) {
+    let {name, picture, remark, content, ...rest} = item;
+    return Object.keys(rest).map(key => {
+        let ele= rest[key]
+        let type= typeOf(ele)
+        if (type !== 'object') {  // 直接输入数字或文字
+            return ele ? (key + ': ' + ele) : ''
+        } else if (typeOf(ele.value) === 'array') { // 多选checkbox
+            return ele.value ? (key + ': ' + (ele.value.join(',')) || '无') : ''
+        } else {   //多选输入， 如输入长宽高, 过滤未选中的表单，当没有一个选中时 显示  `无`
+            let txt = ele.items.map((x) => {
+                return x.value ? (x.name + ' ' + x.value) : ''
+            }).filter((x) => x)
+            return key + ': ' + (txt.join(',') || '无')
+        }
+    }).filter(x => x).join('\n')
+}
+
+export { assign, isEmptyObject, getUrlParams, toUrlParams, isMobileNumber, typeOf, n2br, Option, makeMap, makeContent};

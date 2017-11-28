@@ -31,7 +31,7 @@ export default class MessageView extends Vue
     }
     rowClick (m: Payload) {
         // 用push有个bug， 当点击表格中的某一行之后跳转到当条faq的页面然后在点击面包屑的服务与支持 会发生bug
-        this.$router.replace({name: 'orderDetail', params: { id: '1' }});
+        this.$router.push({name: 'orderDetail', params: { id: '1' }});
     }
 
 };
