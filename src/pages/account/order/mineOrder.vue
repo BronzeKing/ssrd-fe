@@ -4,7 +4,7 @@
         .order-item(@click="rowClick")
                 el-table(:data="tableData" style="width: 100%")
                     el-table-column(prop="img" label="2017-07-31 15:15:30" width="180")
-                        template(scope="scope")
+                        template(slot-scope="scope")
                             img(:src="scope.row.img", alt="" style="width:100%;")
                     el-table-column(prop="text" label="订单号：16516515156")
                     el-table-column(prop="des" label="" width="100")

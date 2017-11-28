@@ -4,15 +4,15 @@
         .order-item
                 el-table(:data="carts" style="width: 100%")
                     el-table-column(prop="img" label="2017-07-31 15:15:30" width="180")
-                        template(scope="scope")
+                        template(slot-scope="scope")
                             img(:src="scope.row.picture", alt="" style="width:100%;")
                     el-table-column(prop="text" label="订单号：16516515156")
-                        template(scope="scope")
+                        template(slot-scope="scope")
                             p(v-html="n2br(scope.row.content)")
                     el-table-column(prop="name" label="名称" width="180")
                     el-table-column(prop="remark" label="备注" width="100")
                     el-table-column(prop="" label="" width="100")
-                        template(scope="scope")
+                        template(slot-scope="scope")
                             el-button(type="text") 订单详情
                 .order-item-btn
                     span.btn(@click="submit") 提交订单
