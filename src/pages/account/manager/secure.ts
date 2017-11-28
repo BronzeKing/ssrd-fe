@@ -40,9 +40,9 @@ export default class Secure extends Vue {
         this.$refs.changeMobileForm.validate((valid: Boolean) => {
             if (valid) {
                 Credential.create(Email.m.serialize()).then((r: Payload) => {
-                    this.changeEmailDialog = false;
+                    this.dialog.mobile = false;
                     this.$message({
-                        message: "发送成功",
+                        message: "验证成功",
                         type: "success"
                     });
                 });
@@ -56,7 +56,7 @@ export default class Secure extends Vue {
                 Credential.create(Email.m.serialize()).then((r: Payload) => {
                     this.changeEmailDialog = false;
                     this.$message({
-                        message: "发送成功",
+                        message: "验证成功",
                         type: "success"
                     });
                 });

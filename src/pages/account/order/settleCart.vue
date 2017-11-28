@@ -1,30 +1,30 @@
 <template lang="pug">
     .page-settleCart
         .title.f18 订单信息
-        el-form(ref="form" label-width="80px")
-            el-form-item(label="需求信息")
+        el-form(ref="form" :model="Project.m" label-width="80px" :rules="Project.rules")
+            el-form-item(label="需求信息" :error="Project.errors.budget" prop='budget')
                 el-input(v-model="Project.m.duration" style="width:200px")
                     template(slot="prepend") 工期
                     template(slot="append") 天
                 el-input.ml10(v-model="Project.m.budget" style="width:200px")
                     template(slot="prepend") 预算
                     template(slot="append") 万
-            el-form-item(label="项目名称")
-                el-input(v-model="Project.m.name" style="width:300px" required)
-            el-form-item(label="联系人")
-                el-input(v-model="Project.m.linkman" style="width:300px")
+            el-form-item(label="项目名称"  :error="Project.errors.name" prop='name')
+                el-input(v-model="Project.m.name" style="width:300px")
+            el-form-item(label="联系人" prop="linkman" :error='Project.m.linkman')
+                el-input(v-model="Project.m.linkman" style="width:300px" :placeholder='Profile.m.name')
             el-form-item(label="公司")
-                el-input(v-model="Project.m.company" style="width:300px")
+                el-input(v-model="Project.m.company" style="width:300px" :placeholder='Profile.m.company')
             el-form-item(label="地址")
-                el-input(v-model="Project.m.address" style="width:300px")
-            el-form-item(label="手机")
-                el-input(v-model="Project.m.mobile" style="width:300px")
+                el-input(v-model="Project.m.address" style="width:300px" :placeholder='Profile.m.address')
+            el-form-item(label="手机" prop='mobile' :error='Project.errors.mobile')
+                el-input(v-model="Project.m.mobile" style="width:300px" :error="Project.errors.mobile" :placeholder='Profile.m.user.mobile')
             el-form-item(label="备注")
                 el-input(type="textarea" v-model="Project.m.input" style="width:500px")
             el-form-item(label="补充文件")
                 el-button(plain) 上传文件
             el-form-item
-                el-button(type="primary") 提交
+                el-button(type="primary" @click="submit") 提交
                 el-button(plain) 取消
 </template>
 <script lang="ts" src="./settleCart.ts">

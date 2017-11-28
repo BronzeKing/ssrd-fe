@@ -40,7 +40,8 @@
                 span 您验证的手机是：{{user.mobile}}
             .item-info(v-show="!user.verified.mobile")
                 span 您还未验证手机
-            el-button(type="text" @click="dialog.mobile = true") 立即验证
+            el-button(v-show="!user.verified.mobile" type="text" @click="dialog.mobile = true") 立即验证
+            el-button(v-show="user.verified.mobile" type="text" @click="dialog.mobile = true") 修改手机
             el-dialog(title="修改手机" :visible.sync="dialog.mobile")
                 el-form(:model="Email" ref="changeMobileForm" :rules="Email.rules")
                     el-form-item(label="手机" prop="mobile" :error="Email.errors.mobile")

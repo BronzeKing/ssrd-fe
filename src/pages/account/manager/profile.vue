@@ -11,8 +11,8 @@
                     el-input(v-model="Profile.m.name" :placeholder="Profile.m.name")
                 el-form-item(label="性别")
                     el-radio-group(v-model="Profile.m.gender")
-                        el-radio(label="男" value="male")
-                        el-radio(label="女" value="female")
+                        el-radio(label="male") 男
+                        el-radio(label="female") 女
                 el-form-item(label="出生日期")
                     el-col(:span="11")
                         el-date-picker(type="date" placeholder="选择日期" v-model="Profile.m.birthday" style="width: 100%;")
@@ -35,7 +35,13 @@ export default class ProfileView extends Vue
     public created () {
     }
     submit () {
-        Profile.update();
+        Profile.create({userId: Profile.m.user.id}).then((r: any) => {
+            this.$message({
+                message: '保存成功',
+                type: 'success'
+            });
+
+        });
     }
 };
 </script>

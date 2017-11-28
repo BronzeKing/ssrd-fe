@@ -5,6 +5,7 @@
 
 import API from "./api-urls"; // 接口URL
 import * as m from "./model"; //改为ts后的model
+import * as r from "./rules"; // form校验规则
 import { Resource } from "./resource"; // 改为ts后的Resoure
 
 /* 登录注册相关接口 */
@@ -56,5 +57,5 @@ export const Invitation = new Resource(API.invitation, new m.Invitation({})); //
 export const AuthorizeCode = new Resource(API.authorizeCode, new m.AuthorizeCode({})); // 授权码
 export const Profile = new Resource(API.profile, new m.Profile({}), {}, true); // 个人资料
 export const ProjectLog = new Resource(API.projectLog, new m.ProjectLog({})); // 项目日志
-export const Project = new Resource(API.project, new m.Project({})); // 项目
+export const Project = new Resource(API.project, new m.Project({}), r.Project); // 项目
 export const ProjectCreate = new Resource(API.project, new m.Project({})); // 新建项目用到的model，用于与项目详情区别开

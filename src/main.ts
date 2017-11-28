@@ -12,9 +12,9 @@ Vue.config.productionTip = process.env.NODE_ENV !== "production";
 
 /* eslint-disable no-new */
 
-function user() {
+async function user() {
     if (localStorage.token) {
-        Login.retrieve().then((payload: Payload) => {
+        await Login.retrieve().then((payload: Payload) => {
             // 如果返回url的话 说明需要重定向 登录不成功
             let { profile, ...r } = payload;
             if (r.url) {
