@@ -26,7 +26,7 @@ export default class CartView extends Vue {
     public get carts () {
         return this.$store.getters.cart || []
     }
-    created() {
+    protected created() {
         this.$store.dispatch('cart')
     }
     public submit () {

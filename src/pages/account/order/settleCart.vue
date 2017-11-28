@@ -10,7 +10,7 @@
                     template(slot="prepend") 预算
                     template(slot="append") 万
             el-form-item(label="项目名称")
-                el-input(v-model="Project.m.name" style="width:300px")
+                el-input(v-model="Project.m.name" style="width:300px" required)
             el-form-item(label="联系人")
                 el-input(v-model="Project.m.linkman" style="width:300px")
             el-form-item(label="公司")

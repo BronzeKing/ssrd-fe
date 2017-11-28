@@ -1,7 +1,7 @@
 import { Model } from "./baseModel";
 
 export class AboutUs extends Model {
-    // ID
+        // ID
     public id: number;
     // 简介
     public introduction: string;
@@ -18,39 +18,47 @@ export class AboutUs extends Model {
     // 传真
     public fax: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("introduction", {
-            type: "String"
-        });
-        this.defineField("culture", {
-            type: "String"
-        });
-        this.defineField("address", {
-            type: "String"
-        });
-        this.defineField("email", {
-            type: "String"
-        });
-        this.defineField("postcode", {
-            type: "String"
-        });
-        this.defineField("tel", {
-            type: "String"
-        });
-        this.defineField("fax", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('introduction', {
+      type: 'String',
+      
+    });
+        this.defineField('culture', {
+      type: 'String',
+      
+    });
+        this.defineField('address', {
+      type: 'String',
+      
+    });
+        this.defineField('email', {
+      type: 'String',
+      
+    });
+        this.defineField('postcode', {
+      type: 'String',
+      
+    });
+        this.defineField('tel', {
+      type: 'String',
+      
+    });
+        this.defineField('fax', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Credential extends Model {
-    // ID
+        // ID
     public id: number;
     // user
     public user: User;
@@ -59,27 +67,31 @@ export class Credential extends Model {
     // verified
     public verified: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("Type", {
-            type: "String"
-        });
-        this.defineField("verified", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('Type', {
+      type: 'String',
+      
+    });
+        this.defineField('verified', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class User extends Model {
-    // user
+        // user
     public logentry: LogEntry;
     // 用户
     public auth_token: User;
@@ -89,6 +101,8 @@ export class User extends Model {
     public profile: User;
     // 所属用户
     public cart: User;
+    // 所属用户
+    public order: Order;
     // 授权码对应用户
     public authorizecode: User;
     // 所属用户
@@ -124,81 +138,107 @@ export class User extends Model {
     // group
     public group: Group;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("logentry", {
-            type: LogEntry
-        });
-        this.defineField("auth_token", {
-            type: User
-        });
-        this.defineField("social_auth", {
-            type: UserSocialAuth
-        });
-        this.defineField("profile", {
-            type: User
-        });
-        this.defineField("cart", {
-            type: User
-        });
-        this.defineField("authorizecode", {
-            type: User
-        });
-        this.defineField("authorizecodes", {
-            type: AuthorizeCode
-        });
-        this.defineField("invitations", {
-            type: Invitation
-        });
-        this.defineField("invited", {
-            type: User
-        });
-        this.defineField("projects", {
-            type: Project
-        });
-        this.defineField("collects", {
-            type: Collected
-        });
-        this.defineField("credentials", {
-            type: Credential
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("password", {
-            type: "String"
-        });
-        this.defineField("last_login", {
-            type: "String"
-        });
-        this.defineField("email", {
-            type: "String"
-        });
-        this.defineField("username", {
-            type: "String"
-        });
-        this.defineField("mobile", {
-            type: "String"
-        });
-        this.defineField("role", {
-            type: "Number"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("status", {
-            type: "Number"
-        });
-        this.defineField("group", {
-            type: Group
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('logentry', {
+      type: LogEntry,
+      
+    });
+        this.defineField('auth_token', {
+      type: User,
+      
+    });
+        this.defineField('social_auth', {
+      type: UserSocialAuth,
+      
+    });
+        this.defineField('profile', {
+      type: User,
+      
+    });
+        this.defineField('cart', {
+      type: User,
+      
+    });
+        this.defineField('order', {
+      type: Order,
+      
+    });
+        this.defineField('authorizecode', {
+      type: User,
+      
+    });
+        this.defineField('authorizecodes', {
+      type: AuthorizeCode,
+      
+    });
+        this.defineField('invitations', {
+      type: Invitation,
+      
+    });
+        this.defineField('invited', {
+      type: User,
+      
+    });
+        this.defineField('projects', {
+      type: Project,
+      
+    });
+        this.defineField('collects', {
+      type: Collected,
+      
+    });
+        this.defineField('credentials', {
+      type: Credential,
+      
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('password', {
+      type: 'String',
+      
+    });
+        this.defineField('last_login', {
+      type: 'String',
+      
+    });
+        this.defineField('email', {
+      type: 'String',
+      
+    });
+        this.defineField('username', {
+      type: 'String',
+      
+    });
+        this.defineField('mobile', {
+      type: 'String',
+      
+    });
+        this.defineField('role', {
+      type: 'Number',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('status', {
+      type: 'Number',
+      
+    });
+        this.defineField('group', {
+      type: Group,
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class LogEntry extends Model {
-    // ID
+        // ID
     public id: number;
     // action time
     public action_time: string;
@@ -215,39 +255,47 @@ export class LogEntry extends Model {
     // change message
     public change_message: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("action_time", {
-            type: "String"
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("content_type", {
-            type: ContentType
-        });
-        this.defineField("object_id", {
-            type: "String"
-        });
-        this.defineField("object_repr", {
-            type: "String"
-        });
-        this.defineField("action_flag", {
-            type: "String"
-        });
-        this.defineField("change_message", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('action_time', {
+      type: 'String',
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('content_type', {
+      type: ContentType,
+      
+    });
+        this.defineField('object_id', {
+      type: 'String',
+      
+    });
+        this.defineField('object_repr', {
+      type: 'String',
+      
+    });
+        this.defineField('action_flag', {
+      type: 'String',
+      
+    });
+        this.defineField('change_message', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class ContentType extends Model {
-    // content type
+        // content type
     public permission: Permission;
     // content type
     public logentry: LogEntry;
@@ -258,30 +306,35 @@ export class ContentType extends Model {
     // python model class name
     public model: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("permission", {
-            type: Permission
-        });
-        this.defineField("logentry", {
-            type: LogEntry
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("app_label", {
-            type: "String"
-        });
-        this.defineField("model", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('permission', {
+      type: Permission,
+      
+    });
+        this.defineField('logentry', {
+      type: LogEntry,
+      
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('app_label', {
+      type: 'String',
+      
+    });
+        this.defineField('model', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Permission extends Model {
-    // permissions
+        // permissions
     public group: Group;
     // ID
     public id: number;
@@ -292,78 +345,89 @@ export class Permission extends Model {
     // codename
     public codename: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("group", {
-            type: Group
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("content_type", {
-            type: ContentType
-        });
-        this.defineField("codename", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('group', {
+      type: Group,
+      
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('content_type', {
+      type: ContentType,
+      
+    });
+        this.defineField('codename', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Group extends Model {
-    // ID
+        // ID
     public id: number;
     // name
     public name: string;
     // permissions
     public permissions: Permission;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("permissions", {
-            type: Permission
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('permissions', {
+      type: Permission,
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Token extends Model {
-    // 键
+        // 键
     public key: string;
     // 用户
     public user: User;
     // 已创建
     public created: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("key", {
-            type: "String"
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('key', {
+      type: 'String',
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class UserSocialAuth extends Model {
-    // ID
+        // ID
     public id: number;
     // user
     public user: User;
@@ -374,30 +438,35 @@ export class UserSocialAuth extends Model {
     // extra data
     public extra_data: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("provider", {
-            type: "String"
-        });
-        this.defineField("uid", {
-            type: "String"
-        });
-        this.defineField("extra_data", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('provider', {
+      type: 'String',
+      
+    });
+        this.defineField('uid', {
+      type: 'String',
+      
+    });
+        this.defineField('extra_data', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Profile extends Model {
-    // ID
+        // ID
     public id: number;
     // 所属用户
     public user: User;
@@ -418,45 +487,100 @@ export class Profile extends Model {
     // 邀请码
     public code: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("gender", {
-            type: "String"
-        });
-        this.defineField("birthday", {
-            type: "String"
-        });
-        this.defineField("company", {
-            type: "String"
-        });
-        this.defineField("position", {
-            type: "String"
-        });
-        this.defineField("qq", {
-            type: "String"
-        });
-        this.defineField("address", {
-            type: "String"
-        });
-        this.defineField("code", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('gender', {
+      type: 'String',
+      
+    });
+        this.defineField('birthday', {
+      type: 'String',
+      
+    });
+        this.defineField('company', {
+      type: 'String',
+      
+    });
+        this.defineField('position', {
+      type: 'String',
+      
+    });
+        this.defineField('qq', {
+      type: 'String',
+      
+    });
+        this.defineField('address', {
+      type: 'String',
+      
+    });
+        this.defineField('code', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
+}
+
+export class Order extends Model {
+        // ID
+    public id: number;
+    // 所属用户
+    public user: User;
+    // 内容
+    public content: string;
+    // 订单号
+    public code: string;
+    // 创建时间
+    public created: string;
+    // 更新时间
+    public updated: string;
+
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('content', {
+      type: 'String',
+      
+    });
+        this.defineField('code', {
+      type: 'String',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class AuthorizeCode extends Model {
-    // ID
+        // ID
     public id: number;
     // 授权码名称
     public name: string;
@@ -473,39 +597,47 @@ export class AuthorizeCode extends Model {
     // 更新时间
     public updated: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("creator", {
-            type: User
-        });
-        this.defineField("code", {
-            type: "String"
-        });
-        this.defineField("status", {
-            type: "Number"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('creator', {
+      type: User,
+      
+    });
+        this.defineField('code', {
+      type: 'String',
+      
+    });
+        this.defineField('status', {
+      type: 'Number',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Invitation extends Model {
-    // ID
+        // ID
     public id: number;
     // 邀请码所属用户
     public creator: User;
@@ -516,30 +648,35 @@ export class Invitation extends Model {
     // 更新时间
     public updated: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("creator", {
-            type: User
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('creator', {
+      type: User,
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Project extends Model {
-    // 所属项目
+        // 所属项目
     public logs: ProjectLog;
     // ID
     public id: number;
@@ -570,60 +707,75 @@ export class Project extends Model {
     // 附件
     public attatchment: Documents;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("logs", {
-            type: ProjectLog
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("type", {
-            type: "String"
-        });
-        this.defineField("mobile", {
-            type: "String"
-        });
-        this.defineField("status", {
-            type: "Number"
-        });
-        this.defineField("remark", {
-            type: "String"
-        });
-        this.defineField("duration", {
-            type: "Number"
-        });
-        this.defineField("budget", {
-            type: "Number"
-        });
-        this.defineField("linkman", {
-            type: "String"
-        });
-        this.defineField("address", {
-            type: "String"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.defineField("attatchment", {
-            type: Documents
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('logs', {
+      type: ProjectLog,
+      
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('type', {
+      type: 'String',
+      
+    });
+        this.defineField('mobile', {
+      type: 'String',
+      
+    });
+        this.defineField('status', {
+      type: 'Number',
+      
+    });
+        this.defineField('remark', {
+      type: 'String',
+      
+    });
+        this.defineField('duration', {
+      type: 'Number',
+      
+    });
+        this.defineField('budget', {
+      type: 'Number',
+      
+    });
+        this.defineField('linkman', {
+      type: 'String',
+      
+    });
+        this.defineField('address', {
+      type: 'String',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+        this.defineField('attatchment', {
+      type: Documents,
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class ProjectLog extends Model {
-    // ID
+        // ID
     public id: number;
     // 所属项目
     public project: Project;
@@ -638,36 +790,43 @@ export class ProjectLog extends Model {
     // 附件
     public attatchment: Documents;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("project", {
-            type: Project
-        });
-        this.defineField("action", {
-            type: "Number"
-        });
-        this.defineField("content", {
-            type: "String"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.defineField("attatchment", {
-            type: Documents
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('project', {
+      type: Project,
+      
+    });
+        this.defineField('action', {
+      type: 'Number',
+      
+    });
+        this.defineField('content', {
+      type: 'String',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+        this.defineField('attatchment', {
+      type: Documents,
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Documents extends Model {
-    // 附件
+        // 附件
     public project: Project;
     // 附件
     public projectlog: ProjectLog;
@@ -682,36 +841,43 @@ export class Documents extends Model {
     // 更新时间
     public updated: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("project", {
-            type: Project
-        });
-        this.defineField("projectlog", {
-            type: ProjectLog
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("file", {
-            type: "Any"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('project', {
+      type: Project,
+      
+    });
+        this.defineField('projectlog', {
+      type: ProjectLog,
+      
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('file', {
+      type: 'Any',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Collected extends Model {
-    // ID
+        // ID
     public id: number;
     // 收藏的产品
     public product: Product;
@@ -722,30 +888,35 @@ export class Collected extends Model {
     // 更新时间
     public updated: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("product", {
-            type: Product
-        });
-        this.defineField("user", {
-            type: User
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('product', {
+      type: Product,
+      
+    });
+        this.defineField('user', {
+      type: User,
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Product extends Model {
-    // 收藏的产品
+        // 收藏的产品
     public collected: Collected;
     // ID
     public id: number;
@@ -772,57 +943,67 @@ export class Product extends Model {
     // 产品插图
     public pictures: [Images];
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("collected", {
-            type: Collected
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("description", {
-            type: "String"
-        });
-        this.defineField("summary", {
-            type: "String"
-        });
-        this.defineField("techParameter", {
-            type: "String"
-        });
-        this.defineField("domain", {
-            type: "String"
-        });
-        this.defineField("other", {
-            type: "String"
-        });
-        this.defineField("background", {
-            type: "Any"
-        });
-        this.defineField("category", {
-            type: ProductCategory
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.defineField("pictures", {
-            type: [Images],
-            defaultValue() {
-                return [];
-            }
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('collected', {
+      type: Collected,
+      
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('description', {
+      type: 'String',
+      
+    });
+        this.defineField('summary', {
+      type: 'String',
+      
+    });
+        this.defineField('techParameter', {
+      type: 'String',
+      
+    });
+        this.defineField('domain', {
+      type: 'String',
+      
+    });
+        this.defineField('other', {
+      type: 'String',
+      
+    });
+        this.defineField('background', {
+      type: 'Any',
+      
+    });
+        this.defineField('category', {
+      type: ProductCategory,
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+        this.defineField('pictures', {
+      type: [Images],
+      defaultValue () { return [] }
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class ProductCategory extends Model {
-    // 产品分类
+        // 产品分类
     public product: Product;
     // ID
     public id: number;
@@ -833,30 +1014,35 @@ export class ProductCategory extends Model {
     // 更新时间
     public updated: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("product", {
-            type: Product
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('product', {
+      type: Product,
+      
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Images extends Model {
-    // 产品插图
+        // 产品插图
     public product: Product;
     // 系统插图
     public system: System;
@@ -867,30 +1053,35 @@ export class Images extends Model {
     // 图片
     public image: any;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("product", {
-            type: Product
-        });
-        this.defineField("system", {
-            type: System
-        });
-        this.defineField("systemcase", {
-            type: SystemCase
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("image", {
-            type: "Any"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('product', {
+      type: Product,
+      
+    });
+        this.defineField('system', {
+      type: System,
+      
+    });
+        this.defineField('systemcase', {
+      type: SystemCase,
+      
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('image', {
+      type: 'Any',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class System extends Model {
-    // 系统
+        // 系统
     public systemCases: [SystemCase];
     // ID
     public id: number;
@@ -913,54 +1104,59 @@ export class System extends Model {
     // 系统插图
     public pictures: [Images];
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("systemCases", {
-            type: [SystemCase],
-            defaultValue() {
-                return [];
-            }
-        });
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("summary", {
-            type: "String"
-        });
-        this.defineField("picture", {
-            type: "Any"
-        });
-        this.defineField("introduction", {
-            type: "String"
-        });
-        this.defineField("systemFeature", {
-            type: "String"
-        });
-        this.defineField("structure", {
-            type: "Any"
-        });
-        this.defineField("funtionalFeature", {
-            type: "String"
-        });
-        this.defineField("rank", {
-            type: "Number"
-        });
-        this.defineField("pictures", {
-            type: [Images],
-            defaultValue() {
-                return [];
-            }
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('systemCases', {
+      type: [SystemCase],
+      defaultValue () { return [] }
+    });
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('summary', {
+      type: 'String',
+      
+    });
+        this.defineField('picture', {
+      type: 'Any',
+      
+    });
+        this.defineField('introduction', {
+      type: 'String',
+      
+    });
+        this.defineField('systemFeature', {
+      type: 'String',
+      
+    });
+        this.defineField('structure', {
+      type: 'Any',
+      
+    });
+        this.defineField('funtionalFeature', {
+      type: 'String',
+      
+    });
+        this.defineField('rank', {
+      type: 'Number',
+      
+    });
+        this.defineField('pictures', {
+      type: [Images],
+      defaultValue () { return [] }
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class SystemCase extends Model {
-    // ID
+        // ID
     public id: number;
     // 标题
     public title: string;
@@ -981,53 +1177,61 @@ export class SystemCase extends Model {
     // 系统案例插图
     public pictures: [Images];
     // 系统
-    public systems: System;
+    public systems: [System];
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("title", {
-            type: "String"
-        });
-        this.defineField("summary", {
-            type: "String"
-        });
-        this.defineField("description", {
-            type: "String"
-        });
-        this.defineField("address", {
-            type: "String"
-        });
-        this.defineField("content", {
-            type: "String"
-        });
-        this.defineField("picture", {
-            type: "Any"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.defineField("pictures", {
-            type: [Images],
-            defaultValue() {
-                return [];
-            }
-        });
-        this.defineField("systems", {
-            type: System
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('title', {
+      type: 'String',
+      
+    });
+        this.defineField('summary', {
+      type: 'String',
+      
+    });
+        this.defineField('description', {
+      type: 'String',
+      
+    });
+        this.defineField('address', {
+      type: 'String',
+      
+    });
+        this.defineField('content', {
+      type: 'String',
+      
+    });
+        this.defineField('picture', {
+      type: 'Any',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+        this.defineField('pictures', {
+      type: [Images],
+      defaultValue () { return [] }
+    });
+        this.defineField('systems', {
+      type: [System],
+      defaultValue () { return [] }
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class News extends Model {
-    // ID
+        // ID
     public id: number;
     // 标题
     public title: string;
@@ -1042,36 +1246,43 @@ export class News extends Model {
     // 排序
     public rank: number;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("title", {
-            type: "String"
-        });
-        this.defineField("content", {
-            type: "String"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.defineField("type", {
-            type: "Number"
-        });
-        this.defineField("rank", {
-            type: "Number"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('title', {
+      type: 'String',
+      
+    });
+        this.defineField('content', {
+      type: 'String',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+        this.defineField('type', {
+      type: 'Number',
+      
+    });
+        this.defineField('rank', {
+      type: 'Number',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class FeedBack extends Model {
-    // ID
+        // ID
     public id: number;
     // 姓名
     public name: string;
@@ -1084,33 +1295,39 @@ export class FeedBack extends Model {
     // 创建时间
     public created: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("mobile", {
-            type: "String"
-        });
-        this.defineField("email", {
-            type: "String"
-        });
-        this.defineField("content", {
-            type: "String"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('mobile', {
+      type: 'String',
+      
+    });
+        this.defineField('email', {
+      type: 'String',
+      
+    });
+        this.defineField('content', {
+      type: 'String',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class IndustryLink extends Model {
-    // ID
+        // ID
     public id: number;
     // 名称
     public name: string;
@@ -1121,30 +1338,35 @@ export class IndustryLink extends Model {
     // 排序
     public rank: number;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("picture", {
-            type: "Any"
-        });
-        this.defineField("link", {
-            type: "String"
-        });
-        this.defineField("rank", {
-            type: "Number"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('picture', {
+      type: 'Any',
+      
+    });
+        this.defineField('link', {
+      type: 'String',
+      
+    });
+        this.defineField('rank', {
+      type: 'Number',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Job extends Model {
-    // ID
+        // ID
     public id: number;
     // 姓名
     public name: string;
@@ -1159,53 +1381,62 @@ export class Job extends Model {
     // 更新时间
     public updated: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("job", {
-            type: "String"
-        });
-        this.defineField("mobile", {
-            type: "String"
-        });
-        this.defineField("email", {
-            type: "String"
-        });
-        this.defineField("attatchment", {
-            type: "Any"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('job', {
+      type: 'String',
+      
+    });
+        this.defineField('mobile', {
+      type: 'String',
+      
+    });
+        this.defineField('email', {
+      type: 'String',
+      
+    });
+        this.defineField('attatchment', {
+      type: 'Any',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class JSONWebToken extends Model {
-    public email: string;
+        public email: string;
     public password: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("email", {
-            type: "String"
-        });
-        this.defineField("password", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('email', {
+      type: 'String',
+      
+    });
+        this.defineField('password', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Message extends Model {
-    // ID
+        // ID
     public id: number;
     // 所属用户
     public userId: number;
@@ -1222,39 +1453,47 @@ export class Message extends Model {
     // 排序
     public rank: number;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("userId", {
-            type: "Number"
-        });
-        this.defineField("title", {
-            type: "String"
-        });
-        this.defineField("content", {
-            type: "String"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("category", {
-            type: "Number"
-        });
-        this.defineField("read", {
-            type: "Number"
-        });
-        this.defineField("rank", {
-            type: "Number"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('userId', {
+      type: 'Number',
+      
+    });
+        this.defineField('title', {
+      type: 'String',
+      
+    });
+        this.defineField('content', {
+      type: 'String',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('category', {
+      type: 'Number',
+      
+    });
+        this.defineField('read', {
+      type: 'Number',
+      
+    });
+        this.defineField('rank', {
+      type: 'Number',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Recruitment extends Model {
-    // ID
+        // ID
     public id: number;
     // 职位名称
     public name: string;
@@ -1273,42 +1512,51 @@ export class Recruitment extends Model {
     // 更新时间
     public updated: string;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("salary", {
-            type: "String"
-        });
-        this.defineField("jobDetail", {
-            type: "String"
-        });
-        this.defineField("jobResponsibilities", {
-            type: "String"
-        });
-        this.defineField("address", {
-            type: "String"
-        });
-        this.defineField("number", {
-            type: "String"
-        });
-        this.defineField("created", {
-            type: "String"
-        });
-        this.defineField("updated", {
-            type: "String"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('salary', {
+      type: 'String',
+      
+    });
+        this.defineField('jobDetail', {
+      type: 'String',
+      
+    });
+        this.defineField('jobResponsibilities', {
+      type: 'String',
+      
+    });
+        this.defineField('address', {
+      type: 'String',
+      
+    });
+        this.defineField('number', {
+      type: 'String',
+      
+    });
+        this.defineField('created', {
+      type: 'String',
+      
+    });
+        this.defineField('updated', {
+      type: 'String',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class ServiceNet extends Model {
-    // ID
+        // ID
     public id: number;
     // 网点名称
     public name: string;
@@ -1323,36 +1571,43 @@ export class ServiceNet extends Model {
     // 排序
     public rank: number;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("linkman", {
-            type: "String"
-        });
-        this.defineField("mobile", {
-            type: "String"
-        });
-        this.defineField("email", {
-            type: "String"
-        });
-        this.defineField("address", {
-            type: "String"
-        });
-        this.defineField("rank", {
-            type: "Number"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('linkman', {
+      type: 'String',
+      
+    });
+        this.defineField('mobile', {
+      type: 'String',
+      
+    });
+        this.defineField('email', {
+      type: 'String',
+      
+    });
+        this.defineField('address', {
+      type: 'String',
+      
+    });
+        this.defineField('rank', {
+      type: 'Number',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class ServicePromise extends Model {
-    // ID
+        // ID
     public id: number;
     // title
     public title: string;
@@ -1361,27 +1616,31 @@ export class ServicePromise extends Model {
     // 排序
     public rank: number;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("title", {
-            type: "String"
-        });
-        this.defineField("content", {
-            type: "String"
-        });
-        this.defineField("rank", {
-            type: "Number"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('title', {
+      type: 'String',
+      
+    });
+        this.defineField('content', {
+      type: 'String',
+      
+    });
+        this.defineField('rank', {
+      type: 'Number',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
 
 export class Terminal extends Model {
-    // ID
+        // ID
     public id: number;
     // 名称
     public name: string;
@@ -1390,24 +1649,30 @@ export class Terminal extends Model {
     // 背景图片
     public picture: any;
 
-    public constructor(data = {}) {
-        super(data);
-        this.defineField("id", {
-            type: "Number"
-        });
-        this.defineField("name", {
-            type: "String"
-        });
-        this.defineField("link", {
-            type: "String"
-        });
-        this.defineField("picture", {
-            type: "Any"
-        });
-        this.populate(data);
-        this.commit();
-    }
+  public constructor(data = {}) {
+    super(data);
+        this.defineField('id', {
+      type: 'Number',
+      
+    });
+        this.defineField('name', {
+      type: 'String',
+      
+    });
+        this.defineField('link', {
+      type: 'String',
+      
+    });
+        this.defineField('picture', {
+      type: 'Any',
+      
+    });
+    this.populate(data);
+    this.commit();
+  }
 }
+
+
 
 ////手写的自定义Model
 export class Default extends Model {
@@ -1501,5 +1766,7 @@ export class Cart extends Model {
                 return [];
             }
         });
+        this.populate(data);
+        this.commit();
     }
 }

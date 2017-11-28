@@ -2,7 +2,8 @@
 import sys
 import json
 from io import StringIO
-defaultMap = {'pictures': '[]', 'systemCases': '[]'}
+defaultMap = {'pictures': '[]', 'systemCases': '[]', 'systems': '[]'}
+
 default = 'defaultValue () { return %s }'
 header = 'import { Model } from "./baseModel";\n\n'
 tpl = '''export class %s extends Model {
