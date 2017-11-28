@@ -41,10 +41,8 @@ async function cart() {
 async function ready() {
     let userResposne = user();
     let envRresponse = env();
-    let cartResponse = cart();
     await userResposne;
     await envRresponse;
-    await cartResponse;
 }
 ready().then(() => {
     new Vue({

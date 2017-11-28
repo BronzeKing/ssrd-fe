@@ -5,19 +5,14 @@ import { Project } from "apis";
 
 @Component
 export default class ProjectCreateDetail extends Vue {
-    public get index() {
-        return this.$route.params.id;
-    }
-
     @Provide() Project = Project;
-
     @Provide()
     $refs: {
         form: HTMLFormElement;
     };
 
     protected create() {
-        Project.retrieve({ id: this.$route.params.id });
+        Project.m.populate(this.$store.state.user.profile)
     }
 
     submit() {}

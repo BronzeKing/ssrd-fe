@@ -27,7 +27,7 @@ export default class ProjectCreateDetailView extends Vue {
         });
     }
     submit() {
-        this.$router.push({ name: "cartCheckout" });
+        this.$router.push({ name: "settleCart" });
     }
     addToCart() {
         let item;

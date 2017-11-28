@@ -14,7 +14,7 @@
                             p(v-html="n2br(item.content)")
                         el-col(:span="4") 备注：{{item.remark || '无'}}
                     .order-item-btn
-                        span.btn 订单详情
+                        span.btn(@click="submit") 提交订单
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
@@ -53,8 +53,8 @@ export default class CartView extends Vue {
     }
     protected created() {
     }
-    public makeContent(obj: any) {
-
+    public submit () {
+        this.$router.push({ name: "settleCart" });
     }
     public handleCurrentChange() {
 
