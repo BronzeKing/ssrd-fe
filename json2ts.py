@@ -2,10 +2,25 @@
 import sys
 import json
 from io import StringIO
-defaultMap = {'pictures': '[]', 'systemCases': '[]', 'systems': '[]', 'attatchment': '[]'}
+defaultMap = {
+    'pictures': '[]',
+    'systemCases': '[]',
+    'systems': '[]',
+    'attatchment': '[]',
+    'logs': '[]'
+}
+
+exclude = {'Cart'}
+
+config = {'Project': {'content': "Payload"}}
 
 default = 'defaultValue () { return %s }'
-header = 'import { Model } from "./baseModel";\n\n'
+header = '''import { Model } from "./baseModel";
+
+interface Payload {
+    [key: string]: any;
+}
+'''
 tpl = '''export class %s extends Model {
     %s
 
@@ -26,7 +41,7 @@ fieldDefine = '''        this.defineField('%s', {
 typeMap = {'integer': 'number', 'file': 'any'}
 
 
-def fromField(name, desc, define=False):
+def fromField(name, desc, _config, define=False):
     # define 写this.defineField的时候传真
     type = desc.get('type')
     type = typeMap.get(type, type)
@@ -38,6 +53,7 @@ def fromField(name, desc, define=False):
     if defaultValue:
         type = '[' + type + ']'
         defaultValue = default % defaultValue
+    type = _config.get(name, type)
     if define:
         return fieldDefine % (name, type, defaultValue)
     txt = field.format(name, type)
@@ -49,9 +65,12 @@ def fromField(name, desc, define=False):
 
 
 def fromModel(sio, key, value):
+    if key in exclude:
+        return
     items = value['properties'].items
-    body = '\n'.join(fromField(k, v) for k, v in items())
-    txtDefine = '\n'.join(fromField(k, v, True) for k, v in items())
+    _config = config.get(key, {})
+    body = '\n'.join(fromField(k, v, _config) for k, v in items())
+    txtDefine = '\n'.join(fromField(k, v, _config, True) for k, v in items())
     model = tpl % (key, body, txtDefine)
     sio.write(model)
     sio.write('\n')

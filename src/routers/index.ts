@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router, { Route } from "vue-router";
 import store from "vuexs";
 import User from "vuexs/modules/user";
+import { Env, Login, Profile } from "apis";
 
 import views from "./modules/views";
 import account from "./account";
@@ -10,6 +11,38 @@ const error = (r: any) => require.ensure([], () => r(require("pages/views/error"
 // const viewsPage = r => require.ensure([], () => r(require('pages/views/views')), 'views');
 
 Vue.use(Router);
+let isReady = false // 用于判断是否已经加载env和user接口
+
+async function user() {
+    if (localStorage.token) {
+        await Login.retrieve().then((payload: Payload) => {
+            // 如果返回url的话 说明需要重定向 登录不成功
+            let { profile, ...r } = payload;
+            if (r.url) {
+                store.commit("logout");
+            } else {
+                Profile.m.populate(profile);
+                store.commit("login", r);
+            }
+        });
+    } else {
+        store.commit("logout");
+    }
+}
+async function env() {
+    Env.retrieve().then((r: any) => {
+        store.commit("env", r);
+    });
+}
+async function ready() {
+    if (!isReady) {
+        let userResposne = user();
+        let envRresponse = env();
+        await userResposne;
+        await envRresponse;
+        isReady = true;
+    }
+}
 
 const route = new Router({
     routes: [
@@ -26,14 +59,16 @@ const route = new Router({
 
 route.beforeEach((to: Route, from: Route, next: any) => {
     // 判断该路由是否需要登录权限
-    if (to.matched.some(m => m.meta.auth) && !store.getters.authenticated) {
-        next({
-            name: "login",
-            query: { next: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
-        });
-    } else {
-        next();
-    }
+    ready().then(() => {
+        if (to.matched.some(m => m.meta.auth) && !store.getters.authenticated) {
+            next({
+                name: "login",
+                query: { next: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+            });
+        } else {
+            next();
+        }
+    })
 });
 
 route.afterEach((to: Route, from: Route) => {

@@ -7,11 +7,11 @@ export abstract class Model extends BaseModel {
         let instance: any, field: any;
         Object.keys(this._fields).forEach(name => {
             field = this.getField(name);
-            if (typeof field.type === "function") {
+            if (typeof field.type === 'function') {
                 instance = () => field.type();
                 this.populate({ [name]: instance });
             }
-            this.errors[name] = "";
+            this.errors[name] = '';
         });
     }
 }

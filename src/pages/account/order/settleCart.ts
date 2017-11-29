@@ -15,14 +15,16 @@ export default class ProjectCreateDetail extends Vue {
     protected created() {
         let {name, user, ...profile} = Profile.m.serialize()
         Project.m.populate({linkman: name, mobile: user.mobile, ...profile})
+        this.$store.dispatch('cart')
     }
 
     submit() {
+        let content = this.$store.getters.cart
         this.$refs.form.validate((valid: Boolean) => {
             if (!valid) {
                 return false
             }
-            Project.create({type: 'create'}).then((r: any) => {
+            Project.create({type: 'create', content: content}).then((r: any) => {
                 this.$message({
                     message: '提交成功',
                     type: 'success'

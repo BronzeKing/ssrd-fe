@@ -1,5 +1,8 @@
 import { Model } from "./baseModel";
 
+interface Payload {
+    [key: string]: any;
+}
 export class AboutUs extends Model {
         // ID
     public id: number;
@@ -677,7 +680,7 @@ export class Invitation extends Model {
 
 export class Project extends Model {
         // 所属项目
-    public logs: ProjectLog;
+    public logs: [ProjectLog];
     // ID
     public id: number;
     // 所属用户
@@ -686,6 +689,8 @@ export class Project extends Model {
     public name: string;
     // 项目类型
     public type: string;
+    // 内容
+    public content: [Payload];
     // Mobile Phone
     public mobile: string;
     // 项目状态
@@ -712,8 +717,8 @@ export class Project extends Model {
   public constructor(data = {}) {
     super(data);
         this.defineField('logs', {
-      type: ProjectLog,
-      
+      type: [ProjectLog],
+      defaultValue () { return [] }
     });
         this.defineField('id', {
       type: 'Number',
@@ -729,6 +734,10 @@ export class Project extends Model {
     });
         this.defineField('type', {
       type: 'String',
+      
+    });
+        this.defineField('content', {
+      type: 'Array',
       
     });
         this.defineField('mobile', {
