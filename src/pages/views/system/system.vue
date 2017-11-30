@@ -8,14 +8,14 @@
             .systems-list.mt5
                 router-link(v-for="(item, index) in System.t.Records.slice(0, 3)" :key="item.id" :to="{ name:'systemDetail', params: { id: item.id} }")
                     .systems-item
-                        i(class="iconfont font-sea" :class="icons[index]")
+                        i(class="iconfont font-sea" :class="icons[item.name]")
                         p.fb.f16.mb5 {{item.name}}
                         p.system-introduce {{item.summary.slice(0, 80)}}...
                         i.iconfont.icon-right.font-grey.f24
             .systems-list.mt30
                 router-link(v-for="(item, index) in System.t.Records.slice(3, 6)" :key="item.id" :to="{ name:'systemDetail', params: { id: item.id} }")
                     .systems-item
-                        i(class="iconfont font-sea" :class="icons[index + 3]")
+                        i(class="iconfont font-sea" :class="icons[item.name]")
                         p.fb.f16.mb5 {{item.name}}
                         p {{item.summary.slice(0, 80)}}...
                         i.iconfont.icon-right.font-grey.f24
@@ -48,7 +48,7 @@ export default class SystemView extends Vue
 {
     @Provide() System: any = System;
     @Provide() SystemCase: any = SystemCase;
-    @Provide() icons: Array<string> = ['icon-shuzihua', 'icon-tubiao01', 'icon-shipinjiankong', 'icon-shujutubiao08', 'icon-cheliangchuruchaxun', 'icon-anquan'];
+    @Provide() icons = {云端数字化管理平台:'icon-shuzihua', 可视化劳务管理:'icon-tubiao01', 智能化视频监控:'icon-shipinjiankong', 综合数据采集远程传输:'icon-shujutubiao08', 专业工地车辆出入管理:'icon-cheliangchuruchaxun', 塔机安全防碰撞系统:'icon-anquan'};
     protected created () {
         System.list();
         SystemCase.list();
