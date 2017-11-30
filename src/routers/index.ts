@@ -35,13 +35,13 @@ async function env() {
     });
 }
 async function ready() {
-    isReady = true;
     if (!isReady) {
         let userResposne = user();
         let envRresponse = env();
         await userResposne;
         await envRresponse;
     }
+    isReady = true;
 }
 
 const route = new Router({

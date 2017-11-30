@@ -46,8 +46,8 @@ import { infoBanner }   from 'components';
 })
 export default class SystemView extends Vue
 {
-    @Provide() System: any = System;
-    @Provide() SystemCase: any = SystemCase;
+    @Provide() System = System;
+    @Provide() SystemCase = SystemCase;
     @Provide() icons = {云端数字化管理平台:'icon-shuzihua', 可视化劳务管理:'icon-tubiao01', 智能化视频监控:'icon-shipinjiankong', 综合数据采集远程传输:'icon-shujutubiao08', 专业工地车辆出入管理:'icon-cheliangchuruchaxun', 塔机安全防碰撞系统:'icon-anquan'};
     protected created () {
         System.list();
