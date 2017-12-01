@@ -1,7 +1,7 @@
 <template lang="pug">
     div.page-information
-        .information-banner
-                img(src="~assets/support-banner.png")
+        //- .information-banner
+        //-         img(src="~assets/support-banner.png")
         .container
             .information-content
                 .information-menu
@@ -31,9 +31,9 @@ export default class Information extends Vue
     @Provide() name = 'support';
     @Provide() index = 1;
     @Provide() menu = [
-    {title: '公益咨询', name: 'caringNews'},
-    {title: '我们的行动', name: 'action'},
-    {title: '捐助说明', name: 'description'}
+        {title: '公益咨询', name: 'caringNews'},
+        {title: '我们的行动', name: 'action'},
+        {title: '捐助说明', name: 'description'}
     ];
 };
 </script>

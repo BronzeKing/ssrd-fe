@@ -40,7 +40,7 @@
         "typescript-loader": "^1.1.3",
         "viewerjs": "^0.8.0",
         "vue": "^2.5.3",
-        "vue-baidu-map": "^0.18.8",
+        "vue-baidu-map": "^0.18.9",
         "vue-markdown": "^2.2.4",
         "vue-property-decorator": "^6.0.0",
         "vue-router": "^3.0.1",

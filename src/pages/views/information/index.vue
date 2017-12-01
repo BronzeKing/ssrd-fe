@@ -1,7 +1,7 @@
 <template lang="pug">
     div.page-information
-        .information-banner
-                img(src="~assets/support-banner.png")
+        //- .information-banner
+        //-     img(src="~assets/support-banner.png")
         .container
             .information-content
                 .information-menu

@@ -4,11 +4,11 @@
 
 .page-information{
     background: #F0F0F0;
-    .information-banner{
-        img{
-            width: 100%;
-        }
-    }
+    // .information-banner{
+    //     img{
+    //         width: 100%;
+    //     }
+    // }
     .container{
         .information-content{
             display: flex;
@@ -25,7 +25,8 @@
                 width: 300px;
                 position: absolute;
                 left: 0;
-                top: -63px;
+                // top: -63px;
+                top: 15px;
                 .menu-title{
                     width: 100%;
                     height: 58px;

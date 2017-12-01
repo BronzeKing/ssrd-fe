@@ -1,7 +1,7 @@
 <template lang="pug">
     div.page-about
-        .about-banner
-                img(src="~assets/support-banner.png")
+        //- .about-banner
+        //-         img(src="~assets/support-banner.png")
         .container
             .about-content
                 .about-menu
