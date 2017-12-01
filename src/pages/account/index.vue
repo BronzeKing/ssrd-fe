@@ -1,10 +1,11 @@
 <template lang="pug">
     .page-usercenter
-        page-header
-        .container.mt20.pb50
-            slider
-            .page-right
-                router-view
+        .page-wrapper
+            page-header
+            .container.mt20.pb50
+                slider
+                .page-right
+                    router-view
         keep-alive
             page-footer
 </template>
@@ -28,6 +29,7 @@ export default class AccountView extends Vue
 </script>
 <style lang="scss">
 .page-usercenter{
+    height: 100%;
     background-color: #f1f1f1;
     .container{
         display: flex;

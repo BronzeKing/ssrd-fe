@@ -45,8 +45,14 @@ body{
     position: relative;
 }
 
-#app{
+#app,
+.views{
     height: 100%;
+}
+
+.page-wrapper{
+    min-height: 100%;
+    padding-bottom: 383px;
 }
 
 .container{

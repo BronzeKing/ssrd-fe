@@ -22,14 +22,3 @@ export default class Views extends Vue
 {
 }
 </script>
-
-<style lang="scss">
-    .views{
-        height: 100%;
-    }
-
-    .page-wrapper{
-        min-height: 100%;
-        padding-bottom: 383px;
-    }
-</style>

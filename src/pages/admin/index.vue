@@ -1,10 +1,11 @@
 <template lang="pug">
     .page-usercenter
-        page-header
-        .container.mt20.pb50
-            slider
-            .page-right
-                router-view
+        .page-wrapper
+            page-header
+            .container.mt20.pb50
+                slider
+                .page-right
+                    router-view
         page-footer
 </template>
 
