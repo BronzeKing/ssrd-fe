@@ -1,13 +1,14 @@
 @charset 'UTF-8';
 @import "../../base/mixins";
 .page-footer {
+    margin-top: -383px;
     /* 整个尾部上外边距53px*/
     .footer-bar {
         width: 100%;
     }
     /*尾部上半部分的样式*/
     .container-upper-part {
-        display: flex;
+        // display: flex;
         background-color: #626262;
         padding-top: 30px;
         padding-bottom: 30px;
