@@ -41,12 +41,22 @@ export default class UserView extends Vue {
     };
     userDestroy (data: any) {
         User.destroy(data).then((r: any) => {
-            User.list();
+            User.list().then((x: any) => {
+                this.$message({
+                    message: "删除成功",
+                    type: "success"
+                });
+
+            });
         });
     };
     userUpdate (data: any) {
         User.update(data).then((r: any) => {
             User.list();
+            this.$message({
+                message: "修改成功",
+                type: "success"
+            });
         });
     }
 };
