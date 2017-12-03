@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  ssrd-fe:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "0.0.0.0:8090:8090"
+    network_mode: host
+    environment:
+      - NODE_ENV=local
+    container_name: fe
+    volumes:
+      - .:/app
+      - /app/node_modules/
