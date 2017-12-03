@@ -11,7 +11,7 @@ const error = (r: any) => require.ensure([], () => r(require("pages/views/error"
 // const viewsPage = r => require.ensure([], () => r(require('pages/views/views')), 'views');
 
 Vue.use(Router);
-let isReady = false // 用于判断是否已经加载env和user接口
+let isReady = false; // 用于判断是否已经加载env和user接口
 
 async function user() {
     if (localStorage.token) {
@@ -35,10 +35,10 @@ async function env() {
     });
 }
 async function ready() {
-    isReady = true;
     if (!isReady) {
         let userResposne = user();
         let envRresponse = env();
+        isReady = true;
         await userResposne;
         await envRresponse;
     }
@@ -68,7 +68,7 @@ route.beforeEach((to: Route, from: Route, next: any) => {
         } else {
             next();
         }
-    })
+    });
 });
 
 route.afterEach((to: Route, from: Route) => {

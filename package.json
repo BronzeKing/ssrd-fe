@@ -36,6 +36,7 @@
         "tslint": "^5.8.0",
         "tslint-config-standard": "^7.0.0",
         "tslint-loader": "^3.5.3",
+        "typedoc": "^0.9.0",
         "typescript": "^2.5.3",
         "typescript-loader": "^1.1.3",
         "viewerjs": "^0.8.0",
@@ -82,7 +83,7 @@
         "husky": "^0.14.3",
         "lint-staged": "^4.3.0",
         "nightwatch": "^0.9.12",
-        "node-sass": "^4.6.0",
+        "node-sass": "^4.7.2",
         "opn": "^5.1.0",
         "optimize-css-assets-webpack-plugin": "^2.0.0",
         "ora": "^1.2.0",
@@ -91,7 +92,6 @@
         "selenium-server": "^3.0.1",
         "semver": "^5.4.1",
         "shelljs": "^0.7.6",
-        "typedoc": "^0.9.0",
         "typedoc-webpack-plugin": "^1.1.4",
         "url-loader": "^0.5.8",
         "vue-loader": "^13.3.0",
@@ -101,7 +101,7 @@
         "webpack": "^2.6.1",
         "webpack-bundle-analyzer": "^2.2.1",
         "webpack-dev-middleware": "^1.10.0",
-        "webpack-hot-middleware": "^2.18.0",
+        "webpack-hot-middleware": "^2.21.0",
         "webpack-merge": "^4.1.0"
     },
     "engines": {

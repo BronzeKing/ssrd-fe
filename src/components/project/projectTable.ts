@@ -1,6 +1,6 @@
 import { Component, Provide, Vue, Prop } from "vue-property-decorator";
 import { Project, AuthorizeCode, ProjectLog } from "apis";
-import { makeContent as _makeContent } from 'utils/extends';
+import { makeContent as _makeContent } from "utils/extends";
 import { data } from "./data";
 
 @Component
@@ -65,9 +65,13 @@ export default class ProjectTable extends Vue {
     clickTab(tab: any, event: any) {
         Project.list();
     }
-    makeContent (row: any, column: any, cellValue: any) {
-        console.log(row, column, cellValue)
-        return _makeContent(cellValue)
+    makeContent(row: any, column: any, cellValue: any): string {
+        let result = cellValue
+            .map((item: any) => {
+                return _makeContent(item);
+            })
+            .join("\n");
+        return result;
     }
     handleAuth() {
         this.$refs.AuthForm.validate((v: Boolean) => {
