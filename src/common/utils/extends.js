@@ -2,7 +2,7 @@
 // Object Assign 及 polify 深度复制对象 详细用法参考 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 const assign =
     Object.assign ||
-    function (target) {
+    function(target) {
         for (let i = 1; i < arguments.length; i++) {
             let source = arguments[i];
             for (let key in source) {
@@ -20,7 +20,7 @@ const assign =
  * @return [Boolean] 返回对象是否为空的布尔值;
  */
 
-const isEmptyObject = function (obj) {
+const isEmptyObject = function(obj) {
     let t;
     for (t in obj) {
         return !1;
@@ -32,12 +32,12 @@ const isEmptyObject = function (obj) {
  * 获取网页参数键值对
  * @return [Object] 返回Url上的参数转换的对象;
  */
-const getUrlParams = function () {
+const getUrlParams = function() {
     let urlParam = {};
 
     if (window.location.search) {
         let url = window.location.search.slice(1, window.location.search.length).split("&");
-        url.map(function (item) {
+        url.map(function(item) {
             let value = item.toLocaleLowerCase().split("=");
             urlParam[value[0]] = decodeURIComponent(value[1]);
         });
@@ -49,7 +49,7 @@ const getUrlParams = function () {
             .slice(startIndex !== -1 ? startIndex + 1 : 2, window.location.hash.length)
             .split("&");
 
-        url.map(function (item) {
+        url.map(function(item) {
             let value = item.toLocaleLowerCase().split("=");
             urlParam[value[0]] = decodeURIComponent(value[1]);
         });
@@ -62,7 +62,7 @@ const getUrlParams = function () {
  * 对象转换成url编码键值对
  * @return [String] 将对象类型的转换成URL编码，仅支持对象层级为1级的 不支持#单页获取参数;
  */
-const toUrlParams = function (arg) {
+const toUrlParams = function(arg) {
     let urlParam = "";
     for (let key in arg) {
         urlParam += key + "=" + arg[key] + "&";
@@ -100,13 +100,13 @@ const n2br = text => {
 };
 
 /**
-    * @说明 生成options的数据
-    * @参数 options eg.['其他']
-    * @参数 defaultValue 返回的items 里value的默认值
-    * @参数 value 返回的value的默认值
-    * @返回值  eg. {items: [{name: 'xxx', value: 'xxx'}], value: xxx}
-*/
-const Option = function (options, defaultValue, value) {
+ * @说明 生成options的数据
+ * @参数 options eg.['其他']
+ * @参数 defaultValue 返回的items 里value的默认值
+ * @参数 value 返回的value的默认值
+ * @返回值  eg. {items: [{name: 'xxx', value: 'xxx'}], value: xxx}
+ */
+const Option = function(options, defaultValue, value) {
     return {
         items: options.map(x => {
             return { name: x, value: String(defaultValue === null ? x : defaultValue) };
@@ -116,36 +116,58 @@ const Option = function (options, defaultValue, value) {
 };
 /**
  * 根据objs生成{name: obj} 的字典结构
- * 
- * @param {Array} objs 
- * @param {string} [key='name'] 
- * @returns 
+ *
+ * @param {Array} objs
+ * @param {string} [key='name']
+ * @returns
  */
-const makeMap = function (objs, key = 'name') {
-    let response = {}
+const makeMap = function(objs, key = "name") {
+    let response = {};
     objs.forEach(element => {
-        let name = element[key]
-        response[name] = element
+        let name = element[key];
+        response[name] = element;
     });
-    return response
-}
+    return response;
+};
 
 function makeContent(item) {
-    let {name, picture, remark, content, ...rest} = item;
-    return Object.keys(rest).map(key => {
-        let ele= rest[key]
-        let type= typeOf(ele)
-        if (type !== 'object') {  // 直接输入数字或文字
-            return ele ? (key + ': ' + ele) : ''
-        } else if (typeOf(ele.value) === 'array') { // 多选checkbox
-            return ele.value ? (key + ': ' + (ele.value.join(',')) || '无') : ''
-        } else {   //多选输入， 如输入长宽高, 过滤未选中的表单，当没有一个选中时 显示  `无`
-            let txt = ele.items.map((x) => {
-                return x.value ? (x.name + ' ' + x.value) : ''
-            }).filter((x) => x)
-            return key + ': ' + (txt.join(',') || '无')
-        }
-    }).filter(x => x).join('\n')
+    if (!item) {
+        return "";
+    }
+    let { name, picture, remark, content, ...rest } = item;
+    return Object.keys(rest)
+        .map(key => {
+            let ele = rest[key];
+            let type = typeOf(ele);
+            if (type !== "object") {
+                // 直接输入数字或文字
+                return ele ? key + ": " + ele : "";
+            } else if (typeOf(ele.value) === "array") {
+                // 多选checkbox
+                return ele.value ? key + ": " + ele.value.join(",") || "无" : "";
+            } else {
+                //多选输入， 如输入长宽高, 过滤未选中的表单，当没有一个选中时 显示  `无`
+                let txt = ele.items
+                    .map(x => {
+                        return x.value ? x.name + " " + x.value : "";
+                    })
+                    .filter(x => x);
+                return key + ": " + (txt.join(",") || "无");
+            }
+        })
+        .filter(x => x)
+        .join("\n");
 }
 
-export { assign, isEmptyObject, getUrlParams, toUrlParams, isMobileNumber, typeOf, n2br, Option, makeMap, makeContent};
+export {
+    assign,
+    isEmptyObject,
+    getUrlParams,
+    toUrlParams,
+    isMobileNumber,
+    typeOf,
+    n2br,
+    Option,
+    makeMap,
+    makeContent
+};

@@ -20,7 +20,7 @@
                         td 联系人：{{Project.m.linkman}}
                         td 手机：{{Project.m.mobile}}
                     tr
-                        td(colspan="2") 内容：{{Project.m.content}}
+                        td(colspan="2" v-html="makeContent()")
             el-steps.mt20.mb20.ml10(:space="200" :active="Project.m.status" finish-status="success")
                 el-step(title="沟通中")
                 el-step(title="跟进中")
