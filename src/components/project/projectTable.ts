@@ -1,7 +1,7 @@
 import { Component, Provide, Vue, Prop } from "vue-property-decorator";
 import { Project, AuthorizeCode, ProjectLog } from "apis";
 import { makeContent as _makeContent } from "utils/extends";
-import { data } from "./data";
+import { data, permissionMap, actionMap } from "./data";
 
 @Component
 export default class ProjectTable extends Vue {
@@ -14,6 +14,8 @@ export default class ProjectTable extends Vue {
     @Provide() jobJournal = data.jobJournal;
     @Provide() design = data.design;
     @Provide() delivery = data.delivery;
+    @Provide() permissions: Array<string> = [];
+    @Provide() actionMap = actionMap;
 
     // auth 项目授权
     // sign 项目签证
@@ -49,6 +51,9 @@ export default class ProjectTable extends Vue {
     public get env() {
         return this.$store.state.home.env;
     }
+    public get user() {
+        return this.$store.state.user.user;
+    }
 
     // search: 是否显示搜索控件， pagination: 是否显示分页控件
     @Prop({ default: { search: false, pagination: false } })
@@ -56,7 +61,12 @@ export default class ProjectTable extends Vue {
 
     created() {
         Project.list();
+        this.permissions = permissionMap[this.user.group.name] || [];
     }
+    inPermission(key: string, item: string): Boolean {
+        return key === item;
+    }
+
     rowClick(row: any, event: any, column: any) {
         if (column.label !== "操作") {
             this.$router.push({ name: "projectDetail", params: { id: row.id } });

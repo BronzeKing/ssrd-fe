@@ -4,26 +4,27 @@
         el-table.mt10(:data="Project.t.Records" stripe highlight-current-row @row-click="rowClick" style="width: 100%")
             el-table-column(property="name" label="名称")
             el-table-column(property="type" label="项目类型")
-            el-table-column(property="content" label="事项"  formatter='makeContent')
+            el-table-column(property="content" label="事项"  :formatter='makeContent')
             el-table-column(label="操作")
                 template(slot-scope="scope")
-                    el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top")
-                        el-button(size="mini" @click="handleDialog(scope.row, 'auth')") 授权
-                    el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top")
-                        el-button(size="mini" @click="handleDialog(scope.row, 'sign')") 签字
-                    el-tooltip.item(effect="light" content="申请售后服务" placement="top")
-                        router-link(:to="{name: 'home'}")
-                            el-button(size="mini") 售后申请
-                    el-tooltip.item(effect="light" content="审批或者驳回项目" placement="top")
-                        el-button(size="mini" @click="handleDialog(scope.row, 'audit')") 审核
-                    el-tooltip.item(effect="light" content="申请协助并留下协助记录" placement="top")
-                        el-button(size="mini" @click="handleDialog(scope.row, 'assist')") 协助申请
-                    el-tooltip.item(effect="light" content="记录每天的工作情况" placement="top")
-                        el-button(size="mini" @click="handleDialog(scope.row, 'jobJournal')") 工作日志
-                    el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top")
-                        el-button(size="mini" @click="handleDialog(scope.row, 'design')") 设计/报价
-                    el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top")
-                        el-button(size="mini" @click="handleDialog(scope.row, 'delivery')") 发货
+                    template(v-for="item in permissions")
+                        el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top" v-if="inPermission('auth', item)")
+                            el-button(size="mini" @click="handleDialog(scope.row, 'auth')")  {{actionMap[item]}}
+                        el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top" v-if="inPermission('sign', item)")
+                            el-button(size="mini" @click="handleDialog(scope.row, 'sign')") {{actionMap[item]}}
+                        el-tooltip.item(effect="light" content="申请售后服务" placement="top" v-if="inPermission('afterMarket', item)")
+                            router-link(:to="{name: 'home'}")
+                                el-button(size="mini") {{actionMap[item]}}
+                        el-tooltip.item(effect="light" content="审批或者驳回项目" placement="top" v-if="inPermission('audit', item)")
+                            el-button(size="mini" @click="handleDialog(scope.row, 'audit')") {{actionMap[item]}}
+                        el-tooltip.item(effect="light" content="申请协助并留下协助记录" placement="top" v-if="inPermission('assist', item)")
+                            el-button(size="mini" @click="handleDialog(scope.row, 'assist')") {{actionMap[item]}}
+                        el-tooltip.item(effect="light" content="记录每天的工作情况" placement="top" v-if="inPermission('jobJournal', item)")
+                            el-button(size="mini" @click="handleDialog(scope.row, 'jobJournal')") {{actionMap[item]}}
+                        el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top" v-if="inPermission('design', item)")
+                            el-button(size="mini" @click="handleDialog(scope.row, 'design')") {{actionMap[item]}}
+                        el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top" v-if="inPermission('delivery', item)")
+                            el-button(size="mini" @click="handleDialog(scope.row, 'delivery')") {{actionMap[item]}}
         el-pagination.mt5(v-show="show.pagination" @current-change="Project.list" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
 
         el-dialog(title="项目授权" :visible.sync="dialog.auth")
