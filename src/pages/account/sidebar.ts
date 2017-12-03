@@ -59,11 +59,7 @@ const SIDEBAR = [
         title: "项目中心",
         sub: [
             {
-                name: "download",
-                title: "文档下载"
-            },
-            {
-                name: "projectDocument",
+                name: "project.documents",
                 title: "项目资料"
             },
             {
@@ -133,8 +129,8 @@ const SIDEBAR = [
     }
 ];
 /**
-* 给name和index做个映射关系，存储的是{user: 1} 这样的，用于sidebar默认打开某个menu
-*/
+ * 给name和index做个映射关系，存储的是{user: 1} 这样的，用于sidebar默认打开某个menu
+ */
 const IndexMap: { [key: string]: string } = {};
 SIDEBAR.map((item, index) => {
     item.sub.map((x, i) => {

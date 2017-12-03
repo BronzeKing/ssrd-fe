@@ -61,6 +61,10 @@ const actions = {
         });
         Cart.create({ content: state.cart });
     },
+    async updateCart({ dispatch, commit, state }: any, carts: any) {
+        commit("cart", carts);
+        Cart.create({ content: carts });
+    },
     cart({ commit, state }: any) {
         Cart.retrieve().then((r: Array<any>) => {
             commit("cart", r);
