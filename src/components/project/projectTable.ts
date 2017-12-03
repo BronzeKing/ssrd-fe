@@ -72,9 +72,6 @@ export default class ProjectTable extends Vue {
             this.$router.push({ name: "projectDetail", params: { id: row.id } });
         }
     }
-    clickTab(tab: any, event: any) {
-        Project.list();
-    }
     makeContent(row: any, column: any, cellValue: any): string {
         let result = cellValue
             .map((item: any) => {

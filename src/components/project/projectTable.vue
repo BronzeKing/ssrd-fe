@@ -4,7 +4,7 @@
         el-table.mt10(:data="Project.t.Records" stripe highlight-current-row @row-click="rowClick" style="width: 100%")
             el-table-column(property="name" label="名称")
             el-table-column(property="type" label="项目类型")
-            el-table-column(property="content" label="事项"  :formatter='makeContent')
+            el-table-column(property="content" label="事项" :formatter='makeContent')
             el-table-column(label="操作")
                 template(slot-scope="scope")
                     template(v-for="item in permissions")

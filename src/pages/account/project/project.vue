@@ -28,9 +28,6 @@ export default class ProjectList extends Vue
     @Provide() Project = Project;
     @Provide() activeTab = 0;
     @Provide() tabs = ['全部项目', '进度类', '维护类', '签证类'];
-    protected created (): void {
-        Project.list();
-    }
     rowClick (m: Payload): void {
     }
     clickTab (tab: any, event: any): void {

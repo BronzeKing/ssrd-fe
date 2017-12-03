@@ -13,6 +13,6 @@ import  { Documents } from 'components';
 })
 export default class DocumentsView extends Vue
 {
-    @Provide() breadcrumb = [{name: 'persional', title: '个人中心'}, {name: 'project', title: '项目中心'}, {name: 'project.documents', title: '项目资料'}]
+    @Provide() breadcrumb = [{name: 'home', title: '首页'}, {name: 'project', title: '项目中心'}, {name: 'project.documents', title: '项目资料'}]
 };
 </script>
