@@ -19,7 +19,7 @@ export default class ProjectTable extends Vue {
 
     // auth 项目授权
     // sign 项目签证
-    // afterSale 售后申请
+    // afterMarket 售后申请
     // audit 项目审核
     // assist 项目协助
     // jobJournal 工作日志
@@ -30,7 +30,7 @@ export default class ProjectTable extends Vue {
     dialog: { [x: string]: Boolean } = {
         auth: false,
         sign: false,
-        afterSale: false,
+        afterMarket: false,
         audit: false,
         assist: false,
         jobJournal: false,
@@ -205,7 +205,10 @@ export default class ProjectTable extends Vue {
             }
         });
     }
-    handleAfterSave() {}
+    handleAfterMarket(row: any) {
+        this.Project.m.populate(row);
+        this.$router.push({ name: "afterMarket" });
+    }
     handleDialog(row: any, dialog: string): void {
         this.dialog[dialog] = true;
         Project.m = row;

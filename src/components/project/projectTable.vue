@@ -13,8 +13,7 @@
                         el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top" v-if="inPermission('sign', item)")
                             el-button(size="mini" @click="handleDialog(scope.row, 'sign')") {{actionMap[item]}}
                         el-tooltip.item(effect="light" content="申请售后服务" placement="top" v-if="inPermission('afterMarket', item)")
-                            router-link(:to="{name: 'home'}")
-                                el-button(size="mini") {{actionMap[item]}}
+                            el-button(size="mini" @click="handleAfterMarket(scope.row)") {{actionMap[item]}}
                         el-tooltip.item(effect="light" content="审批或者驳回项目" placement="top" v-if="inPermission('audit', item)")
                             el-button(size="mini" @click="handleDialog(scope.row, 'audit')") {{actionMap[item]}}
                         el-tooltip.item(effect="light" content="申请协助并留下协助记录" placement="top" v-if="inPermission('assist', item)")

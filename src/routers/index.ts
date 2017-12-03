@@ -14,15 +14,16 @@ Vue.use(Router);
 let isReady = false; // 用于判断是否已经加载env和user接口
 
 async function user() {
+    let profile;
     if (localStorage.token) {
         await Login.retrieve().then((payload: Payload) => {
             // 如果返回url的话 说明需要重定向 登录不成功
-            let { profile, ...r } = payload;
-            if (r.url) {
+            profile = payload.profile;
+            if (payload.url) {
                 store.commit("logout");
             } else {
                 Profile.m.populate(profile);
-                store.commit("login", r);
+                store.commit("login", payload);
             }
         });
     } else {

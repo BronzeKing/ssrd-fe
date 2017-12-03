@@ -29,15 +29,15 @@ const mutations = {
     },
     // 添加到购物车
     [types.ADDCART](state: any, payload: any) {
-        state.cart.push(payload)
+        state.cart.push(payload);
     },
     // 清空购物车
     [types.CLEARCART](state: any) {
-        state.cart = []
+        state.cart = [];
     },
     // 从后台获取购物车数据
     [types.CART](state: any, payload: Array<any>) {
-        state.cart = payload
+        state.cart = payload;
     }
 };
 
@@ -52,18 +52,19 @@ const actions = {
         });
     },
     // 添加到购物车
-    async addCart ({ dispatch, commit, state }: any, cart: any) {
-        await System.list().then((r: any) => { // 从后台获取购物车的图片
-            let map = makeMap(r.Records)
-            cart['picture'] = map[cart.name].picture
-            commit(types.ADDCART, cart)
+    async addCart({ dispatch, commit, state }: any, cart: any) {
+        await System.list().then((r: any) => {
+            // 从后台获取购物车的图片
+            let map = makeMap(r.Records);
+            cart["picture"] = map[cart.name].picture;
+            commit(types.ADDCART, cart);
         });
-        Cart.create({content: state.cart})
+        Cart.create({ content: state.cart });
     },
-    cart ({commit, state}: any) {
+    cart({ commit, state }: any) {
         Cart.retrieve().then((r: Array<any>) => {
-            commit('cart', r)
-        })
+            commit("cart", r);
+        });
     }
 };
 
@@ -72,8 +73,8 @@ const getters = {
     authenticated: (state: any) => state.authenticated,
     cart: (state: any) => {
         return state.cart.map((item: any) => {
-            return {content: makeContent(item), ...item}
-        })
+            return { content: makeContent(item), ...item };
+        });
     }
 };
 
