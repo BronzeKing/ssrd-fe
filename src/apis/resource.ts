@@ -156,7 +156,7 @@ export class Resource<T extends Model> {
             }
         });
         // 但使用get请求时，把结果给缓存了，但使用post put请求时，把缓存的结果清空
-        if (this.cache && isInArray(["list", "retrieve"], action)) {
+        if (this.cache && isInArray(["list"], action)) {
             this.cached[action] = response;
         } else {
             this.cached = {};

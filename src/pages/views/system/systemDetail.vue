@@ -7,7 +7,7 @@
                     span.ml20 爱心社区 / 
                     span.f16 &nbsp Caring community 
                 .menu-left-body
-                    .menu-list(v-for="n in 5")
+                    .menu-list(v-for="n in 1")
                         .menu-list-img
                             img(src="https://static.mum5.cn/data/default_Xl5YxUf.png")
                         .menu-list-info
@@ -60,7 +60,7 @@
                                             span {{ x.created }}
 
 
-            menu-box(:menuData="menuData" @linkTo="linkTo")
+            menu-box(:menuData="menuData")
             .dot-menu
                 ul
                     li( v-for="(item,index) in dotMenu" :class="{active: activeDotTab===index}" @click="handDot(index)")
