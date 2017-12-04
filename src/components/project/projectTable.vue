@@ -40,7 +40,7 @@
                 el-form-item(label="项目名称")
                     p 项目名称 {{Project.m.name}}
                 el-form-item(label="签字文件" prop="attatchment" :error="ProjectLog.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="ProjectLog.m.attatchment" action="uploadUrl" :auto-upload="false")
+                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="ProjectLog.m.attatchment" :action="uploadUrl")
                         el-button(size="small" type="primary") 点击上传
                         div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
             el-button(@click="dialog.sign = false") 取消
@@ -77,7 +77,7 @@
                 el-form-item(label="照片类型")
                     el-cascader(:options="jobJournal.options" v-model="jobJournal.data.type")
                 el-form-item(label="工作照片" prop="attatchment" :error="jobJournal.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="jobJournal.data.attatchment" action="uploadUrl" :auto-upload="false")
+                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="jobJournal.data.attatchment" :action="uploadUrl")
                         el-button(size="small" type="primary") 点击上传
                         div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
             el-button(@click="dialog.jobJournal = false") 取消
@@ -90,7 +90,7 @@
                 el-form-item(label="报价" prop="content" :error="design.errors.content")
                     el-input(v-model="design.data.content" auto-complete="off")
                 el-form-item(label="设计文件" prop="attatchment" :error="design.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="design.data.attatchment" action="uploadUrl" :auto-upload="false")
+                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="design.data.attatchment" :action="uploadUrl")
                         el-button(size="small" type="primary") 点击上传
                         div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
             el-button(@click="dialog.design = false") 取消
@@ -106,7 +106,7 @@
                         el-input-number(v-model="delivery.data.number" controls-position="right" :min="1")
                         p 项
                 el-form-item(label="缺货清单文件" prop="attatchment" :error="delivery.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="delivery.data.attatchment" action="uploadUrl" :auto-upload="false")
+                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="delivery.data.attatchment" :action="uploadUrl")
                         el-button(size="small" type="primary") 点击上传
                         div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
             el-button(@click="dialog.delivery = false") 取消

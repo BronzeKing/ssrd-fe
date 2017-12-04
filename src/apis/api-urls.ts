@@ -53,6 +53,9 @@ export default {
   */
     documents: `${apiUrl}/documents`,
 
+    // 上传文件的地址 如项目签证等
+    docs: `${apiUrl}/users/documents`,
+
     /**
   * 系统展示
   */
