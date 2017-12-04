@@ -37,9 +37,6 @@ export default [
             {
                 path: "",
                 redirect: "companyProfile"
-                // meta: {
-                //     headerMenuIndex: 6
-                // }
             },
             {
                 path: "companyProfile",
@@ -47,7 +44,6 @@ export default [
                 component: companyProfile,
                 meta: {
                     title: "公司简介",
-                    activeTab: 1
                 }
             },
             {
@@ -56,7 +52,6 @@ export default [
                 component: corporateCulture,
                 meta: {
                     title: "公司文化",
-                    activeTab: 2
                 }
             },
             {
@@ -65,7 +60,6 @@ export default [
                 component: honor,
                 meta: {
                     title: "荣誉资质",
-                    activeTab: 3
                 }
             },
             {
@@ -74,7 +68,6 @@ export default [
                 component: cooperativePartner,
                 meta: {
                     title: "合作伙伴",
-                    activeTab: 4
                 }
             },
             {
@@ -83,7 +76,6 @@ export default [
                 component: recruit,
                 meta: {
                     title: "招贤纳士",
-                    activeTab: 5
                 }
             },
             {
@@ -92,7 +84,6 @@ export default [
                 component: contactUs,
                 meta: {
                     title: "联系我们",
-                    activeTab: 6
                 }
             }
         ]

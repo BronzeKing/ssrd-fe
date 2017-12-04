@@ -23,7 +23,7 @@ export default [
     {
         path: "/support",
         name: "support",
-        redirect: "/support/faqs",
+        redirect: {name: 'faqs'},
         component: support,
         children: [
             {
