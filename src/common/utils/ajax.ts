@@ -117,7 +117,7 @@ Axios.interceptors.response.use(
             case 401:
                 router.push({
                     name: "login",
-                    query: { redirect: router.currentRoute.fullPath }
+                    query: { next: router.currentRoute.fullPath }
                 });
                 break;
             default:
