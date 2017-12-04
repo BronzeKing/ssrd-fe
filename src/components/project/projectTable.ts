@@ -17,6 +17,7 @@ export default class ProjectTable extends Vue {
     @Provide() delivery = data.delivery;
     @Provide() permissions: Array<string> = [];
     @Provide() actionMap = actionMap;
+    @Provide() documents = [];
 
     // auth 项目授权
     // sign 项目签证
@@ -101,8 +102,10 @@ export default class ProjectTable extends Vue {
         this.$refs.SignForm.validate((v: Boolean) => {
             if (v) {
                 ProjectLog.create({
-                    attatchment: ProjectLog.m.attatchment,
-                    action: this.env.projectLog["签字"],
+                    attatchment: this.documents.map((item: any) => {
+                        return item.response.id;
+                    }),
+                    action: "签字",
                     projectId: Project.m.id
                 }).then(r => {
                     this.dialog.sign = false;
@@ -119,7 +122,7 @@ export default class ProjectTable extends Vue {
             if (v) {
                 ProjectLog.create({
                     content: this.audit.data.content,
-                    action: this.env.projectLog["审核"],
+                    action: "审核",
                     projectId: Project.m.id
                 }).then(r => {
                     this.dialog.audit = false;
@@ -136,7 +139,7 @@ export default class ProjectTable extends Vue {
             if (v) {
                 ProjectLog.create({
                     content: this.audit.data.content,
-                    action: this.env.projectLog["协助申请"],
+                    action: "协助申请",
                     projectId: Project.m.id
                 }).then(r => {
                     this.dialog.assist = false;
@@ -155,7 +158,7 @@ export default class ProjectTable extends Vue {
                     date: this.jobJournal.data.date,
                     content: this.jobJournal.data.content,
                     attatchment: this.jobJournal.data.attatchment,
-                    action: this.env.projectLog["工作日志"],
+                    action: "工作日志",
                     projectId: Project.m.id
                 }).then(r => {
                     this.dialog.jobJournal = false;
@@ -173,7 +176,7 @@ export default class ProjectTable extends Vue {
                 ProjectLog.create({
                     content: this.design.data.content,
                     attatchment: ProjectLog.m.attatchment,
-                    action: this.env.projectLog["设计报价"],
+                    action: "设计报价",
                     projectId: Project.m.id
                 }).then(r => {
                     this.dialog.design = false;
@@ -191,7 +194,7 @@ export default class ProjectTable extends Vue {
                 ProjectLog.create({
                     number: this.delivery.data.number,
                     attatchment: ProjectLog.m.attatchment,
-                    action: this.env.projectLog["发货"],
+                    action: "发货",
                     projectId: Project.m.id
                 }).then(r => {
                     this.dialog.delivery = false;
@@ -209,9 +212,10 @@ export default class ProjectTable extends Vue {
     }
     handleDialog(row: any, dialog: string): void {
         this.dialog[dialog] = true;
-        Project.m = row;
+        Project.m.populate(row);
+        this.documents = [];
     }
     handleChange(file: any, fileList: any): void {
-        ProjectLog.m.attatchment = fileList;
+        this.documents = fileList;
     }
 }

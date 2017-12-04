@@ -16,10 +16,7 @@
 
 </template>
 <script lang="ts">
-// 新建项目
-/**
-* #TODO 目前el-col样式未完成，直接用的官网的demo
-*/
+// 远程终端访问平台
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Terminal } from 'apis';
 @Component

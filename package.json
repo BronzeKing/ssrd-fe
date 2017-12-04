@@ -21,7 +21,7 @@
         "@types/qs": "^6.5.1",
         "axios": "^0.16.2",
         "babel-runtime": "^6.26.0",
-        "element-ui": "^2.0.3",
+        "element-ui": "^2.0.7",
         "image-webpack-loader": "^3.4.2",
         "imagemin-webpack-plugin": "^1.5.2",
         "marked": "^0.3.6",
