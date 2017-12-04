@@ -136,7 +136,7 @@ export default class ProjectTable extends Vue {
             if (v) {
                 ProjectLog.create({
                     content: this.audit.data.content,
-                    action: this.env.projectLog["审核"],
+                    action: this.env.projectLog["协助申请"],
                     projectId: Project.m.id
                 }).then(r => {
                     this.dialog.assist = false;
@@ -191,7 +191,7 @@ export default class ProjectTable extends Vue {
                 ProjectLog.create({
                     number: this.delivery.data.number,
                     attatchment: ProjectLog.m.attatchment,
-                    action: this.env.projectLog["发送成功"],
+                    action: this.env.projectLog["发货"],
                     projectId: Project.m.id
                 }).then(r => {
                     this.dialog.delivery = false;
