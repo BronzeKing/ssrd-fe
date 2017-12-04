@@ -26,7 +26,11 @@
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import  { Collect } from 'apis';
 @Component
+<<<<<<< HEAD
 export default class MyHistory extends Vue
+=======
+export default class HistoryView extends Vue
+>>>>>>> 0da50091992b880af13d869efd52605d687b999b
 {
     @Provide() Collect = Collect;
     protected created () {

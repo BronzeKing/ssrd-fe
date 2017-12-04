@@ -2,11 +2,12 @@ import { Component, Provide, Vue, Prop } from "vue-property-decorator";
 import { Project, AuthorizeCode, ProjectLog } from "apis";
 import { makeContent as _makeContent } from "utils/extends";
 import { data, permissionMap, actionMap } from "./data";
+import API from "apis/api-urls"; // 接口URL
 
 @Component
 export default class ProjectTable extends Vue {
     @Provide() Project = Project;
-    @Provide() uploadUrl = "";
+    @Provide() uploadUrl = API.docs;
     @Provide() ProjectLog = ProjectLog;
     @Provide() AuthorizeCode = AuthorizeCode;
     @Provide() audit = data.audit;
