@@ -29,7 +29,7 @@
                     .tab-item(v-for="(item, index) in statusList" :key="index" :class='{active: Project.t.status === item}') {{item}}
                 router-link(:to="{name: 'project'}")
                     .tab-item.fr  查看全部项目
-            project-table(:show="{search: false, pagination: false}")
+            project-table.personal-project-table(:show="{search: false, pagination: false}")
 </template>
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
@@ -75,6 +75,15 @@ export default class Personal extends Vue
 </script>
 <style lang="scss">
 .page-secure{
+    .personal-project-table{
+        .cell{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+    }
     .secure-wrap{
         // width: 870px;
         background: #fff;
