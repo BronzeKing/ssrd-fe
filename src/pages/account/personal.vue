@@ -20,9 +20,7 @@
             
         .survey-wrap
             el-tabs(v-model="activeName" @tab-click="handleClick")
-                el-tab-pane(label="项目一" name="1") 123123123
-                el-tab-pane(label="项目二" name="2") 567567
-                el-tab-pane(label="项目三" name="3") asdfasdfasdf
+                el-tab-pane(v-for="(item, index) in Project.t.Records" :label="item.name" :name="String(index)" :key="index") {{item.name}}
         .project-wrap
             .tab-list
                 .left-list
@@ -43,7 +41,7 @@ import { Project } from 'apis';
 })
 export default class Personal extends Vue
 {
-    @Provide() activeName: string = "1";
+    @Provide() activeName = 0;
     @Provide() Project = Project;
     @Provide() statusList = ['全部项目', '跟进中', '维护中', '沟通中', '已完成'];
     @Provide() tableData: Array<any> = [

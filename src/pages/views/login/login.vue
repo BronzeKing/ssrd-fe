@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import { Login }from "apis";
+import { Login, Env }from "apis";
 
 @Component
 export default class LoginView extends Vue
@@ -27,12 +27,20 @@ export default class LoginView extends Vue
     @Provide() $refs: {
         LoginForm: HTMLFormElement
     };
-    mounted() {
-        this.$store.commit('logout');
+    protected mounted() {
+        let pushed = this.$route.query.next ? {path: this.$route.query.next} : {name: 'home'} 
+        Env.retrieve().then(() => {
+            this.pushRouter()
+        }).catch(() => {
+            this.$store.commit('logout');
+        })
+    }
+    pushRouter() {
+        let pushed = this.$route.query.next ? {path: this.$route.query.next} : {name: 'home'} 
+        this.$router.push(pushed)
     }
 
     loginSubmit () {
-        let pushed = this.$route.query.next ? {path: this.$route.query.next} : {name: 'home'} 
         this.$refs.LoginForm.validate((valid: Boolean) => {
             if (!valid) {
                 return;
@@ -42,7 +50,7 @@ export default class LoginView extends Vue
                     message: '登录成功',
                     type: 'success'
                 });
-                this.$router.push(pushed)
+                this.pushRouter()
             })
         });
     }
