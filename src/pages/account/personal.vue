@@ -4,7 +4,7 @@
             .secure-info
                 .user-wrap
                     .user-face
-                        img(src="http://static.fallchat.com/dist/timg.jpg")
+                        img(:src="user.profile.avator")
                     .user-btn.mt10
                         router-link(:to="{name: 'profile'}")
                             span.line 个人资料
