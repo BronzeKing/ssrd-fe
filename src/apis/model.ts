@@ -1516,6 +1516,7 @@ export class Register extends Model {
     public username: string;
     public password: string;
     public mobile: string;
+    public group: string;
     public constructor(data = {}) {
         super(data);
         this.defineField("username", {
@@ -1524,8 +1525,11 @@ export class Register extends Model {
         this.defineField("password", {
             type: "String"
         });
-        this.defineField("email", {
-            type: "mobile"
+        this.defineField("mobile", {
+            type: "String"
+        });
+        this.defineField("group", {
+            type: "String"
         });
     }
 }

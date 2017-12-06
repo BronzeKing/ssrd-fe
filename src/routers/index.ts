@@ -60,16 +60,20 @@ const route = new Router({
 
 route.beforeEach((to: Route, from: Route, next: any) => {
     // 判断该路由是否需要登录权限
-    ready().then(() => {
-        if (to.matched.some(m => m.meta.auth) && !store.getters.authenticated) {
-            next({
-                name: "login",
-                query: { next: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
-            });
-        } else {
+    ready()
+        .then(() => {
+            if (to.matched.some(m => m.meta.auth) && !store.getters.authenticated) {
+                next({
+                    name: "login",
+                    query: { next: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+                });
+            } else {
+                next();
+            }
+        })
+        .catch(() => {
             next();
-        }
-    });
+        });
 });
 
 route.afterEach((to: Route, from: Route) => {
