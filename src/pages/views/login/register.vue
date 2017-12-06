@@ -4,8 +4,8 @@
             h3.title 系统注册
             el-form-item(prop='username' :error='Register.errors.username')
                 el-input(type='text' v-model='Register.m.username' auto-complete='off' placeholder='用户名')
-            el-form-item(prop='email' :error='Register.errors.email')
-                el-input(type='text' v-model='Register.m.email' auto-complete='off' placeholder='邮箱')
+            el-form-item(prop='mobile' :error='Register.errors.mobile')
+                el-input(type='text' v-model='Register.m.mobile' auto-complete='off' placeholder='手机号')
             el-form-item(prop='role')
                 el-select(v-model='Register.m.role' placeholder='请选择客户类型' style='width:100%;')
                     el-option(v-for="role in roles" :key="role.value" :label="role.name" :value="role.value")

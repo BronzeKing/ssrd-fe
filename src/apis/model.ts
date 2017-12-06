@@ -1499,11 +1499,11 @@ export class Default extends Model {
 }
 
 export class Login extends Model {
-    public email: string;
+    public mobile: string;
     public password: string;
     public constructor(data = {}) {
         super(data);
-        this.defineField("email", {
+        this.defineField("mobile", {
             type: "String"
         });
         this.defineField("password", {
@@ -1515,7 +1515,7 @@ export class Login extends Model {
 export class Register extends Model {
     public username: string;
     public password: string;
-    public email: string;
+    public mobile: string;
     public constructor(data = {}) {
         super(data);
         this.defineField("username", {
@@ -1525,7 +1525,7 @@ export class Register extends Model {
             type: "String"
         });
         this.defineField("email", {
-            type: "String"
+            type: "mobile"
         });
     }
 }
@@ -1583,7 +1583,6 @@ export class Cart extends Model {
         this.commit();
     }
 }
-
 
 export class TokenVerify extends Model {
     public token: string;

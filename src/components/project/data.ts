@@ -1,6 +1,6 @@
-// 用户权限
+// 用户权限, 用来控制 某个用户有哪些按钮
 export const permissionMap: { [key: string]: Array<string> } = {
-    客户: ["auth", "sign", "afterMarket"],
+    客户: ["auth", "sign", "audit", "afterMarket"],
     设计部: ["design"],
     商务部: ["auth", "sign", "audit"],
     工程部: ["jobJournal", "assist"],

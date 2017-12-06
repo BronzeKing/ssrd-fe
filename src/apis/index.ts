@@ -11,7 +11,7 @@ import { Resource } from "./resource"; // 改为ts后的Resoure
 /* 登录注册相关接口 */
 // 接口用大写
 export const Login = new Resource(API.login, new m.Login({})); // 登录接口
-export const TokenVerify = new Resource(API.verifyToken, new m.TokenVerify());   //  token验证
+export const TokenVerify = new Resource(API.verifyToken, new m.TokenVerify()); //  token验证
 export const Register = new Resource(API.register, new m.Register({})); // 注册接口
 export const Env = new Resource(API.env, new m.Default({}), {}, true); // 获取系统配置
 
@@ -58,5 +58,6 @@ export const Invitation = new Resource(API.invitation, new m.Invitation({})); //
 export const AuthorizeCode = new Resource(API.authorizeCode, new m.AuthorizeCode({})); // 授权码
 export const Profile = new Resource(API.profile, new m.Profile({}), {}, true); // 个人资料
 export const ProjectLog = new Resource(API.projectLog, new m.ProjectLog({})); // 项目日志
+export const JobLog = new Resource(API.jobLog, new m.ProjectLog({})); // 工作日志
 export const Project = new Resource(API.project, new m.Project({}), r.Project); // 项目
 export const ProjectCreate = new Resource(API.project, new m.Project({})); // 新建项目用到的model，用于与项目详情区别开

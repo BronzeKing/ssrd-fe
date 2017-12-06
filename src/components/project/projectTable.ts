@@ -15,7 +15,7 @@ export default class ProjectTable extends Vue {
     @Provide() jobJournal = data.jobJournal;
     @Provide() design = data.design;
     @Provide() delivery = data.delivery;
-    @Provide() permissions: Array<string> = [];
+    @Provide() permissions: Array<string> = []; // 存储用户有哪些按钮， eg: [授权，审核]
     @Provide() actionMap = actionMap;
     @Provide() documents = [];
 

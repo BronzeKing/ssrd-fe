@@ -2,8 +2,8 @@
     .login-content
         el-form.demo-loginForm.login-container(:model='Login.m' :rules='Login.rules' ref='LoginForm' label-position='left' label-width='0px' @keyup.enter.native="loginSubmit")
             h3.title 系统登录
-            el-form-item(prop='email' :error='Login.errors.email')
-                el-input(type='text' v-model='Login.m.email' auto-complete='off' placeholder='手机、邮箱或授权码')
+            el-form-item(prop='mobile' :error='Login.errors.mobile')
+                el-input(type='text' v-model='Login.m.mobile' auto-complete='off' placeholder='手机、邮箱或授权码')
             el-form-item(prop='password' :error='Login.errors.password')
                 el-input(type='password' v-model='Login.m.password' auto-complete='off' placeholder='密码')
             el-form-item(style='width:100%;')
@@ -29,13 +29,15 @@ export default class LoginView extends Vue
     };
     protected mounted() {
         let token = (localStorage.token || ' ').split(' ')[1]
-        TokenVerify.create({
-            token: token
-        }).then(() => {
-            this.pushRouter()
-        }).catch(() => {
-            this.$store.commit('logout');
-        })
+        if (token) {
+            TokenVerify.create({
+                token: token
+            }).then(() => {
+                this.pushRouter()
+            }).catch(() => {
+                this.$store.commit('logout');
+            })
+        }
     }
     pushRouter() {
         let pushed = this.$route.query.next ? {path: this.$route.query.next} : {name: 'home'} 

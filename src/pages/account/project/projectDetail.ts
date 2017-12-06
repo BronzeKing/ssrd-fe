@@ -1,16 +1,18 @@
 // 项目详情页面
 import { Component, Provide, Vue } from "vue-property-decorator";
 import { makeContent as _makeContent } from "common/utils/extends";
-import { Project, ProjectLog } from "apis";
+import { Project, ProjectLog, JobLog, Job } from "apis";
 
 @Component
 export default class ProjectDetail extends Vue {
     @Provide() activeName = "1";
     @Provide() Project = Project;
     @Provide() ProjectLog = ProjectLog;
+    @Provide() JobLog = JobLog;
     protected created() {
         Project.retrieve({ id: this.$route.params.id });
         ProjectLog.list({ projectId: this.$route.params.id });
+        JobLog.list({ projectId: this.$route.params.id });
     }
     makeContent(): string {
         let content = Project.m.content || [];
@@ -21,7 +23,7 @@ export default class ProjectDetail extends Vue {
             .join("\n");
     }
     makeAction(row: any, column: any, action: number) {
-        let env = this.$store.state.home.env
-        return env.projectLogReverse[action]
+        let env = this.$store.state.home.env;
+        return env.projectLogReverse[action];
     }
 }

@@ -137,6 +137,9 @@ export default {
      * 项目日志
      */
     projectLog: `${apiUrl}/projects/:projectId/logs`,
+
+    //工作日志
+    jobLog: `${apiUrl}/projects/:projectId/logs?action=4`,
     /**
      * 授权码
      */

@@ -11,8 +11,6 @@ import { Env, Login, Profile } from 'apis';
 
 @Component
 export default class App extends Vue {
-    protected created () {
-    }
 };
 </script>
 
