@@ -42,14 +42,13 @@ export default class GroupView extends Vue {
     public get env() {
         return this.$store.state.home.env;
     }
-    groupList () {
-        Group.list()
+    groupList() {
+        this.Group.list()
     }
     handleCreate() {
         this.dialog.group = true;
         this.action = "create";
         Group.m.reset();
-
     }
     handleUpdate() {
         this.dialog.group = true;

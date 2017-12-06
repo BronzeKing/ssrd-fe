@@ -48,12 +48,12 @@ export class Resource<T extends Model> {
     };
     private cached: { [key: string]: any } = {}; //用于存储缓存的结果
     /**
-    *
-    * @param url rest对应的url
-    * @param m  rest对应资源的model,用于存储单条资源的数据
-    * @param rules 校验规则，用于form表单
-    * @param cache 用于判断是否缓存结果,当资源为静态资源，没有搜索、分页等动态条件时打开
-    */
+     *
+     * @param url rest对应的url
+     * @param m  rest对应资源的model,用于存储单条资源的数据
+     * @param rules 校验规则，用于form表单
+     * @param cache 用于判断是否缓存结果,当资源为静态资源，没有搜索、分页等动态条件时打开
+     */
     constructor(
         private url: string,
         public m: T,
@@ -81,10 +81,10 @@ export class Resource<T extends Model> {
     }
 
     /**
-    * @说明 当请求为post、put的时候，默认把model中的值放到FormData里
-    *
-    * @参数 body: 请求的body
-    */
+     * @说明 当请求为post、put的时候，默认把model中的值放到FormData里
+     *
+     * @参数 body: 请求的body
+     */
     formData(data: Payload): Payload {
         Object.keys(data).forEach(x => {
             let obj = data[x];
@@ -103,21 +103,18 @@ export class Resource<T extends Model> {
     }
 
     /**
-    * @说明 
-    *
-    * @参数 body 请求body
-    * @参数 config request配置
-    * @参数 action 请求方法
-    */
+     * @说明
+     *
+     * @参数 body 请求body
+     * @参数 config request配置
+     * @参数 action 请求方法
+     */
     request(body: Payload, config: Payload, action: string): AxiosPromise {
         let method = _methodMap[action];
         let response: AxiosPromise;
         let id: string;
         let value: string;
         let url = this.url;
-        if (isInArray(["destroy", "update", "create"], action)) {
-            body = assign({}, this.m.serialize(), body);
-        }
 
         // @brief 替换url中的 /:{var}参数，以及当action为update，destroy, retrieve时，如果body中有{id},则把{id}放到拼接到url中
         this._pathArgv.forEach((x: string) => {
@@ -156,7 +153,7 @@ export class Resource<T extends Model> {
             }
         });
         // 但使用get请求时，把结果给缓存了，但使用post put请求时，把缓存的结果清空
-        if (this.cache && isInArray(["list"], action)) {
+        if (this.cache && "list" === action) {
             this.cached[action] = response;
         } else {
             this.cached = {};

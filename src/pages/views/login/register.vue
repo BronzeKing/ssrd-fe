@@ -42,7 +42,7 @@ export default class RegisterView extends Vue
     RegisterSubmit () {
         this.$refs.RegisterForm.validate((valid: Boolean) => {
             if (valid) {
-                Register.create().then(r => {
+                Register.create(Register.m.serialize()).then(r => {
                     this.$confirm('恭喜您注册成功！', '成功', {
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',

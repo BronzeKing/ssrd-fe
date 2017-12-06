@@ -12,6 +12,7 @@
                 el-input(placeholder="请输入要搜索的部门名称" suffix-icon="el-icon-search" v-model="User.t.search" @change="userList")
                 el-table.mt10(:data="User.t.Records" stripe @current-change="handleCurrentChange" highlight-current-row style="width: 100%")
                     el-table-column(property="username" label="用户名")
+                    el-table-column(property="group.name" label="部门")
                     el-table-column(property="created" label="创建时间")
                     el-table-column(label="操作")
                         template(slot-scope="scope")

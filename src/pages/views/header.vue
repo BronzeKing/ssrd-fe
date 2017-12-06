@@ -8,8 +8,8 @@
                     router-link.user-option-item(v-show="!user.authenticated" :to="{name: 'register'}") [ 注册 ]
                     router-link.user-option-item(:to="{name: 'personal' }") 个人中心
                     a.user-option-item(v-show="user.authenticated" href="javascript: void(0);" @click='logout') 注销
-                    a.user-option-item(href="javascript: void(0);") 购物车
-                    a.user-option-item(href="javascript: void(0);") 快捷下单
+                    router-link.user-option-item(:to="{name: 'cart' }") 购物车
+                    router-link.user-option-item(:to="{name: 'quick' }") 快捷下单
         .container.flex.pt10.pb10
             img(src="~assets/logo-large.png")
             .div
