@@ -10,6 +10,8 @@ export default {
      * 登录
      */
     login: `${apiUrl}/login`,
+
+    verifyToken: `${apiUrl}/token/verify`,
     /**
      * 登出
      */

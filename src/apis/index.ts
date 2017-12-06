@@ -11,6 +11,7 @@ import { Resource } from "./resource"; // 改为ts后的Resoure
 /* 登录注册相关接口 */
 // 接口用大写
 export const Login = new Resource(API.login, new m.Login({})); // 登录接口
+export const TokenVerify = new Resource(API.verifyToken, new m.TokenVerify());   //  token验证
 export const Register = new Resource(API.register, new m.Register({})); // 注册接口
 export const Env = new Resource(API.env, new m.Default({}), {}, true); // 获取系统配置
 

@@ -1583,3 +1583,16 @@ export class Cart extends Model {
         this.commit();
     }
 }
+
+
+export class TokenVerify extends Model {
+    public token: string;
+    public constructor(data = {}) {
+        super(data);
+        this.defineField("token", {
+            type: "String"
+        });
+        this.populate(data);
+        this.commit();
+    }
+}

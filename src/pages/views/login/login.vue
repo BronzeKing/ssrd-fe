@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import { Login, Env }from "apis";
+import { Login, Env, TokenVerify }from "apis";
 
 @Component
 export default class LoginView extends Vue
@@ -28,8 +28,10 @@ export default class LoginView extends Vue
         LoginForm: HTMLFormElement
     };
     protected mounted() {
-        let pushed = this.$route.query.next ? {path: this.$route.query.next} : {name: 'home'} 
-        Env.retrieve().then(() => {
+        let token = (localStorage.token || ' ').split(' ')[1]
+        TokenVerify.create({
+            token: token
+        }).then(() => {
             this.pushRouter()
         }).catch(() => {
             this.$store.commit('logout');
