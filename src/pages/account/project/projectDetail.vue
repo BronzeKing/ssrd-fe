@@ -35,8 +35,8 @@
                         i.header-icon.el-icon-information
                     el-table.mt10(:data="ProjectLog.t.Records" stripe highlight-current-row style="width: 100%")
                         el-table-column(property="created" label="日期")
-                        el-table-column(property="project.user.username" label="姓名")
-                        el-table-column(property="content" label="事项")
+                        el-table-column(property="project.user.username" label="提交者")
+                        el-table-column(property="action" label="类型" :formatter="makeAction")
                         el-table-column(label="附件")
                             template(slot-scope="scope")
                                 a(:href="scope.row.attatchment[0].file") {{scope.row.attatchment[0].name}}
@@ -46,7 +46,7 @@
                         i.header-icon.el-icon-information
                     el-table.mt10(:data="ProjectLog.t.Records" stripe highlight-current-row style="width: 100%")
                         el-table-column(property="created" label="日期")
-                        el-table-column(property="project.user.username" label="姓名")
+                        el-table-column(property="project.user.username" label="提交者")
                         el-table-column(property="content" label="事项")
                         el-table-column(label="附件")
                             template(slot-scope="scope")

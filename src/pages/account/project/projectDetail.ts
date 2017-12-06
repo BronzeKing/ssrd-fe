@@ -20,4 +20,8 @@ export default class ProjectDetail extends Vue {
             })
             .join("\n");
     }
+    makeAction(row: any, column: any, action: number) {
+        let env = this.$store.state.home.env
+        return env.projectLogReverse[action]
+    }
 }

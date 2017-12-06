@@ -9,14 +9,14 @@ export const permissionMap: { [key: string]: Array<string> } = {
 
 // 行为映射关系
 export const actionMap = {
-    auth: "项目授权",
-    sign: "项目签证",
+    auth: "授权",
+    sign: "签字",
     afterMarket: "售后申请",
-    audit: "项目审核",
-    assist: "项目协助",
+    audit: "审核",
+    assist: "协助申请",
     jobJournal: "工作日志",
-    design: "上传设计",
-    delivery: "仓库发货"
+    design: "设计报价",
+    delivery: "发货"
 };
 export const data = {
     audit: {
