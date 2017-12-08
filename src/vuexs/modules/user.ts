@@ -8,7 +8,7 @@ import { System, Login, Cart } from "apis";
 import { type } from "os";
 
 const state = {
-    user: { verified: { email: false, mobile: false } },
+    user: { verified: { email: false, mobile: false }, profile: {}, group: {} },
     authenticated: Boolean(localStorage.token),
     cart: []
 };
