@@ -5,6 +5,7 @@
             el-table-column(property="name" label="名称")
             el-table-column(property="type" width="100" label="项目类型")
             el-table-column(property="content" label="事项" :formatter='makeContent')
+            el-table-column(property="status" label="状态" :formatter='makeStatus')
             el-table-column(label="操作")
                 template(slot-scope="scope")
                     template(v-for="item in permissions")
