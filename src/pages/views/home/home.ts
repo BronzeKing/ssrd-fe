@@ -12,8 +12,8 @@ import { crashBall } from "components";
 export default class Home extends Vue {
     @Provide()
     homeBanners: Array<any> = [
-        require("assets/home_banner.png"),
         require("assets/home_banner1.png"),
+        require("assets/home_banner.png"),
         require("assets/home_banner2.png")
     ];
     @Provide() IndustryLink = IndustryLink;
