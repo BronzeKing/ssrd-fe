@@ -39,7 +39,7 @@ export default class Home extends Vue {
         if (next) {
             this.$router.push(next);
         }
-        News.list({ PageSize: 3 });
+        News.list({ PageSize: 3, type: '首页公告' });
         IndustryLink.list();
         SystemCase.list({ PageSize: 3 });
     }
