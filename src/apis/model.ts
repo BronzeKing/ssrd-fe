@@ -872,18 +872,8 @@ export class Product extends Model {
     public name: string;
     // 产品描述
     public description: string;
-    // 产品概述
-    public summary: string;
-    // 技术参数
-    public techParameter: string;
-    // 应用领域
-    public domain: string;
-    // 其他
-    public other: string;
-    // 背景图片
-    public background: any;
-    // 产品分类
-    public category: ProductCategory;
+    public content: any;
+    public category: Category;
     // 创建时间
     public created: string;
     // 更新时间
@@ -905,17 +895,8 @@ export class Product extends Model {
         this.defineField("description", {
             type: "String"
         });
-        this.defineField("summary", {
-            type: "String"
-        });
-        this.defineField("techParameter", {
-            type: "String"
-        });
-        this.defineField("domain", {
-            type: "String"
-        });
-        this.defineField("other", {
-            type: "String"
+        this.defineField("content", {
+            type: "Any"
         });
         this.defineField("background", {
             type: "Any"
@@ -1594,6 +1575,26 @@ export class TokenVerify extends Model {
         super(data);
         this.defineField("token", {
             type: "String"
+        });
+        this.populate(data);
+        this.commit();
+    }
+}
+
+export class Category extends Model {
+    public id: number;
+    public sub: Array<Category>;
+    public name: string;
+    public constructor(data = {}) {
+        super(data);
+        this.defineField("name", {
+            type: "String"
+        });
+        this.defineField("id", {
+            type: "Number"
+        });
+        this.defineField("sub", {
+            type: [Category]
         });
         this.populate(data);
         this.commit();

@@ -7,18 +7,15 @@
                         p.f18 产品展示 /
                             span.f14  Product display
                     .product-menu-body
-                        el-collapse(v-model="activeNames")
-                            el-collapse-item(title="智能化视屏监控" name="1")
-                                ul
-                                    li 前台设备
-                                    li 后台设备
-                                    li 传输设备
-                            el-collapse-item(title="综合数据采集远程传输" name="2")
-                                
-                            el-collapse-item(title="专业工地车辆出入管理" name="3")
-                                
-                            el-collapse-item(title="塔防安全防碰撞系统" name="4")
-                                
+                        el-menu(
+                        class="el-menu-vertical-demo"
+                        @select="handleSelect")
+                            el-submenu(v-for="(first, firstIndex) in Category.t.Records" :index="String(first.id)" :key="firstIndex")
+                                template(slot="title")
+                                    span(slot="title") {{first.name}}
+                                el-submenu(v-for="(second, secondIndex) in first.sub" :index="String(second.id)" :key="secondIndex")
+                                    template(slot="title") {{second.name}}
+                                    el-menu-item(v-for="(third, thirdIndex) in second.sub" :index="String(third.id)" :key="thirdIndex") {{third.name}}
             .right-product
                 transition(name="router-fade" mode="out-in")
                     router-view
@@ -28,17 +25,22 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Product } from 'apis';
+import  { Product, Category } from 'apis';
 
 @Component
 export default class ProductView extends Vue
 {
     @Provide() Product = Product;
+    @Provide() Category = Category;
     @Provide() activeNames = '';
     @Provide() searchValue = '';
 
     protected created () {
         Product.list();
+        Category.list();
+    }
+    handleSelect(key: string) {
+        Product.list({category: key})
     }
 };
 </script>

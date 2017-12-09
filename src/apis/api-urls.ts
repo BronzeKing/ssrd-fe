@@ -84,6 +84,7 @@ export default {
      * 产品
      */
     product: `${apiUrl}/products`,
+    category: `${apiUrl}/categories`,
     /**
      * 收藏
      */
