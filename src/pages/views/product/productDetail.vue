@@ -7,19 +7,20 @@
                 el-breadcrumb-item {{Product.m.category.name}}
         .detail-header
             .detail-content-img
-                img(class="lookpic-picture" :src="Product.m.background")
+                div(class="lookpic-picture" :style="{backgroundImage: `url(${Product.m.background})`}")
+                div.image-list
+                    div.lookpic-picture-mini(v-for="(item, index) in 4" @click="changePic" :key="index" :style="{backgroundImage: `url(${Product.m.background})`}")
             .product-detail-info
                 h3.mb10 {{Product.m.name}}
                 p 产品描述:
                 p.detail-text(v-html="Product.m.description")
-                .mt30
-                    el-input-number(v-model="num" :min="1" :max="10" )
-                    el-button(@click="put2Chart") 加入购物车
-                    el-button(@click="Collect.create({productId: Product.m.id})") 收藏
-        template(v-for="(item, index) in content")
-            p(v-html="item.name")
-            p(v-html="item.value")
-
+                .mt50
+                    el-input-number.mr15(v-model="num" size="mini" :min="1" :max="10" )
+                    el-button(size="mini" @click="put2Chart") 加入购物车
+                    el-button(size="mini" @click="Collect.create({productId: Product.m.id})") 收藏
+        el-tabs
+            el-tab-pane(v-for="(item, index) in content" :key="index" :label="item.name")
+                div.pb30(v-html="item.value")
 </template>
 
 <script lang="ts">
@@ -45,5 +46,14 @@ export default class ProductDetailView extends Vue
     }
     put2Chart (item: any) {
     }
+    // 点击主图下面的小图切换主图逻辑。
+    changePic(){
+        console.log("这里写切换图片的逻辑.");
+    }
 };
 </script>
+
+<style lang="scss">
+    @import '~scss/pages/views/product/product-detail'; 
+</style>
+

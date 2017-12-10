@@ -1,0 +1,22 @@
+
+@charset 'UTF-8';
+@import "~scss/base/mixins";
+
+.image-list{
+    margin-top: 10px;
+    .lookpic-picture-mini{
+        display: inline-block;
+        border: 1px solid $border-color;
+        width: 22%;
+        height: 58px;
+        overflow: hidden;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 4%;
+        cursor: pointer;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}

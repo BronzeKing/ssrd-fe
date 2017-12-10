@@ -62,8 +62,14 @@
                     justify-content: space-between;
                     .detail-content-img{
                         width: 335px;
-                        img{
+                        .lookpic-picture{
+                            border: 1px solid $border-color;
                             width: 100%;
+                            height: 258px;
+                            overflow: hidden;
+                            background-position: center center;
+                            background-size: cover;
+                            background-repeat: no-repeat;
                         }
                     }
                     .product-detail-info{

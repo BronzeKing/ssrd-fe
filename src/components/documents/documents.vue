@@ -16,7 +16,6 @@
                                 p.mb10 下载
                     el-table-column(property="updated" label="更新时间")
                 el-pagination.mt5(@current-change="Documents.list" :page-size="Documents.t.pageSize" layout="prev, pager, next, jumper" :total="Documents.t.PageCount" :current-page.sync="Documents.t.pageIndex")
-        
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Prop, Watch } from 'vue-property-decorator';
