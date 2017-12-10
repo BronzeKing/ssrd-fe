@@ -9,7 +9,7 @@
             .detail-content-img
                 div(class="lookpic-picture" :style="{backgroundImage: `url(${Product.m.background})`}")
                 div.image-list
-                    div.lookpic-picture-mini(v-for="(item, index) in 4" @click="changePic" :key="index" :style="{backgroundImage: `url(${Product.m.background})`}")
+                    div.lookpic-picture-mini(v-for="(item, index) in Product.m.pictures" @click="changePic" :key="index" :style="{backgroundImage: `url(${item.image})`}")
             .product-detail-info
                 h3.mb10 {{Product.m.name}}
                 p 产品描述:
