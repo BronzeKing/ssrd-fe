@@ -16,8 +16,8 @@
                 p.detail-text(v-html="Product.m.description")
                 .mt50
                     el-input-number.mr15(v-model="num" size="mini" :min="1" :max="10" )
-                    el-button(size="mini" @click="put2Chart") 加入购物车
-                    el-button(size="mini" @click="Collect.create({productId: Product.m.id})") 收藏
+                    el-button(size="mini" type="primary" @click="put2Chart") 加入购物车
+                    el-button(size="mini" type="info" @click="Collect.create({productId: Product.m.id})") 收藏
         el-tabs
             el-tab-pane(v-for="(item, index) in content" :key="index" :label="item.name")
                 div.pb30(v-html="item.value")
