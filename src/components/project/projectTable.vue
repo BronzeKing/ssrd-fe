@@ -55,7 +55,7 @@
                     el-input(v-model="audit.data.content" auto-complete="off" type="textarea")
             el-button(@click="dialog.audit = false") 取消
             el-button(@click="dialog.audit = false") 驳回
-            el-button(type="primary" @click="handleAudit") 通过
+            el-button(type="primary" @click="handleAudit") 提交
 
         el-dialog(title="协助申请" :visible.sync="dialog.assist")
             el-form(ref="AssistForm" :model="assist.data" :rules="assist.rules" label-width="120px" label-position="right")
