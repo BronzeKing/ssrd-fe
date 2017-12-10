@@ -12,8 +12,8 @@ import { crashBall } from "components";
 export default class Home extends Vue {
     @Provide()
     homeBanners: Array<any> = [
-        require("assets/home_banner1.png"),
         require("assets/home_banner.png"),
+        require("assets/home_banner1.png"),
         require("assets/home_banner2.png")
     ];
     @Provide() IndustryLink = IndustryLink;
@@ -39,7 +39,7 @@ export default class Home extends Vue {
         if (next) {
             this.$router.push(next);
         }
-        News.list({ PageSize: 3, type: '首页公告' });
+        News.list({ PageSize: 3, type: "首页公告" });
         IndustryLink.list();
         SystemCase.list({ PageSize: 3 });
     }
