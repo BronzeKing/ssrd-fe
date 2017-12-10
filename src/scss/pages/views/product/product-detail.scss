@@ -4,16 +4,18 @@
 
 .image-list{
     margin-top: 10px;
+    display: flex;
     .lookpic-picture-mini{
         display: inline-block;
         border: 1px solid $border-color;
-        width: 22%;
-        height: 58px;
+        // width: 22%;
+        flex: 1;
+        height: 60px;
         overflow: hidden;
         background-position: center center;
         background-size: contain;
         background-repeat: no-repeat;
-        margin-right: 4%;
+        margin-right: 10px;
         cursor: pointer;
         &:last-child{
             margin-right: 0;
