@@ -39,8 +39,7 @@ const menu = [
     { name: 'support', title: '服务与支持' },
     { name: 'support', title: '展会协助' },
     { name: 'about', title: '关于我们' },
-    { name: 'information', title: '资讯生活' },
-    { name: 'caringCommunity', title: '爱心社区' }
+    { name: 'information', title: '资讯生活' }
 ];
 const menuMap: {[key: string]: number} = {}
 menu.forEach((element: {name: string, title: string}, index: number) => {

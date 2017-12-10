@@ -25,6 +25,7 @@ const mutations = {
     [types.LOGOUT](state: any) {
         state.user = {};
         state.authenticated = false;
+        state.cart = [];
         delete localStorage.token;
     },
     // 添加到购物车

@@ -49,7 +49,7 @@ export default class RegisterView extends Vue
                         type: 'success'
                     });
                     this.$store.dispatch('login', Register.m.serialize()).then(() => {
-                        this.$router.push({name: 'home'});
+                        this.$router.push({name: 'profile'});
                     })
                 }).catch((err: any) => {
                     this.$message.error(err.msg);

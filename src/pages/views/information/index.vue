@@ -30,7 +30,7 @@ export default class Information extends Vue
 {
     @Provide() name = 'support';
     @Provide() index = 1;
-    @Provide() menu = [{title: '公司新闻', name: 'news'}];
+    @Provide() menu = [{title: '公司新闻', name: 'news'}, {title: '公益咨询', name: 'caringNews'}];
 };
 </script>
 <style lang="scss">

@@ -10,7 +10,7 @@
                 h3.f16 {{News.m.title}}
                 p.f12.mb10.mt10 {{News.m.created}}
             .line.mt10 
-            p.mb10 {{News.m.content}}
+            p.mb10(v-html="News.m.content")
                 
         
 </template>
