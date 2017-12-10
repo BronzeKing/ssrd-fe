@@ -12,13 +12,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Provide, Vue } from 'vue-property-decorator';
+import { Component, Provide, Vue, Prop, Watch } from 'vue-property-decorator';
 import  { Product } from 'apis';
 @Component
 export default class ProductListView extends Vue
 {
     @Provide() Product = Product;
-    @Provide() activeNames = '';
+    @Prop()
+    category: string;
+    @Watch('category')
+    onCategoryChange() {
+        Product.list({category: this.category})
+    }
     protected created () {
         Product.list();
     }

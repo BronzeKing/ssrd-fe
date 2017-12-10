@@ -18,29 +18,26 @@
                                     el-menu-item(v-for="(third, thirdIndex) in second.sub" :index="String(third.id)" :key="thirdIndex") {{third.name}}
             .right-product
                 transition(name="router-fade" mode="out-in")
-                    router-view
+                    router-view(:category="category")
         
     
 </template>
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Product, Category } from 'apis';
+import  { Category } from 'apis';
 
 @Component
 export default class ProductView extends Vue
 {
-    @Provide() Product = Product;
     @Provide() Category = Category;
-    @Provide() activeNames = '';
-    @Provide() searchValue = '';
+    @Provide() category = '';
 
     protected created () {
-        Product.list();
         Category.list();
     }
     handleSelect(key: string) {
-        Product.list({category: key})
+        this.category = key;
     }
 };
 </script>
