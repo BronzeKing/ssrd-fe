@@ -10,14 +10,11 @@
                     .systems-item
                         i(class="iconfont font-sea" :class="icons[item.name]")
                         p.fb.f16.mb5 {{item.name}}
-                        p.system-introduce {{item.summary.slice(0, 80)}}...
-                        i.iconfont.icon-right.font-grey.f24
             .systems-list.mt30
                 router-link(v-for="(item, index) in System.t.Records.slice(3, 6)" :key="item.id" :to="{ name:'systemDetail', params: { id: item.id} }")
                     .systems-item
                         i(class="iconfont font-sea" :class="icons[item.name]")
                         p.fb.f16.mb5 {{item.name}}
-                        p {{item.summary.slice(0, 80)}}...
                         i.iconfont.icon-right.font-grey.f24
             //- .header 
             //-     h1 经典案例

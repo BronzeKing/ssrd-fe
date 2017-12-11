@@ -26,7 +26,8 @@ export default class DocumentsView extends Vue
 {
     @Provide() Documents: any = Documents;
     @Provide() activeTab: string = '';
-    @Provide() tabs: Array<string> = ['全部文档', '说明文档', '常用软件', '设计方案', '合同', '签证'];
+    @Prop()
+    tabs: Array<string>;
     @Prop()
     breadcrumb: Array<{name: string, title: string}>;
 
