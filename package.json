@@ -37,6 +37,7 @@
         "tslint-config-standard": "^7.0.0",
         "tslint-loader": "^3.5.3",
         "typedoc": "^0.9.0",
+        "typescript": "^2.6.2",
         "typescript-loader": "^1.1.3",
         "viewerjs": "^0.8.0",
         "vue": "^2.5.3",

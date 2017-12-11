@@ -1,14 +1,12 @@
 <template lang="pug">
     div.page-product-list
-        img(src="~assets/product-show.png")
         .product-content.mt15
             div.product-list-item(v-for="item in Product.t.Records" :key="item.id")
                 router-link(:to="{name: 'productDetail', params: {id: item.id} }")
                     div.product-image-box
                         img.product-image(:src="item.background")
                     p.product-name {{item.name}}
-        el-pagination.mt20.tc(@current-change="Product.list" :page-size="Product.t.pageSize" layout="prev, pager, next, jumper" :total="Product.t.PageCount" :current-page.sync="Product.t.pageIndex")
-        
+        el-pagination.mt20.tc(background @current-change="productList" :page-size="Product.t.pageSize" :total="Product.t.PageCount" :current-page.sync="Product.t.pageIndex")
     
 </template>
 
@@ -23,10 +21,13 @@ export default class ProductListView extends Vue
     category: string;
     @Watch('category')
     onCategoryChange() {
+        this.productList()
+    }
+    productList() {
         Product.list({category: this.category})
     }
     protected created () {
-        Product.list();
+        this.productList()
     }
 };
 </script>

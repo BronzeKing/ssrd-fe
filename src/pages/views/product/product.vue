@@ -38,6 +38,9 @@ export default class ProductView extends Vue
     }
     handleSelect(key: string) {
         this.category = key;
+        if (this.$route.name === 'productDetail') {
+            this.$router.push({name: 'productList'})
+        }
     }
 };
 </script>
