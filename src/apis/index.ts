@@ -42,6 +42,7 @@ export const Video = new Resource(API.opVideo, new m.Documents({})); // 操作�
 export const Partner = new Resource(API.documents, new m.Documents({})); // 合作伙伴
 export const Honor = new Resource(API.documents, new m.Documents({})); // 荣誉资质
 export const Download = new Resource(API.download, new m.Documents({})); // 文档下载
+export const Docs = new Resource(API.docs, new m.Documents({})); // 文档下载
 
 export const Product = new Resource(API.product, new m.Product({})); // 产品
 export const Category = new Resource(API.category, new m.Category()); // 产品目录
