@@ -1600,3 +1600,37 @@ export class Category extends Model {
         this.commit();
     }
 }
+
+export class FAQs extends Model {
+    // ID
+    public id: number;
+    // 标题
+    public question: string;
+    // 内容
+    public answer: string;
+    // 创建时间
+    public created: string;
+    // 排序
+    public rank: number;
+
+    public constructor(data = {}) {
+        super(data);
+        this.defineField("id", {
+            type: "Number"
+        });
+        this.defineField("question", {
+            type: "String"
+        });
+        this.defineField("answer", {
+            type: "String"
+        });
+        this.defineField("created", {
+            type: "String"
+        });
+        this.defineField("rank", {
+            type: "Number"
+        });
+        this.populate(data);
+        this.commit();
+    }
+}

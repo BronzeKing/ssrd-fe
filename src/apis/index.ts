@@ -19,7 +19,7 @@ export const Env = new Resource(API.env, new m.Default({}), {}, true); // 获取
 export const AboutUs = new Resource(API.aboutUs, new m.AboutUs({}), {}, true);
 /* 关于新闻公告 */
 export const News = new Resource(API.news, new m.News({}));
-export const Faqs = new Resource(API.news, new m.News({})); // 常见问题解答
+export const Faqs = new Resource(API.faqs, new m.FAQs({})); // 常见问题解答
 
 /* 新闻 */
 export const Recruitment = new Resource(API.recruitments, new m.Recruitment({}));
