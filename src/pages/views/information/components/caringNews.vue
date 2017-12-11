@@ -24,7 +24,7 @@ export default class NewsView extends Vue
 {
     @Provide() News = News;
     protected created(): void {
-        News.list({type: 2});
+        News.list({type: '公益咨询'});
     }
 
     rowClick(data: any) {

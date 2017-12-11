@@ -117,15 +117,6 @@ const SIDEBAR = [
                 title: "远程终端访问平台"
             }
         ]
-    },
-    {
-        title: "合作伙伴",
-        sub: [
-            {
-                name: "cooperationGuide",
-                title: "合作指南"
-            }
-        ]
     }
 ];
 /**
