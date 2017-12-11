@@ -3,10 +3,11 @@
         .title.f18 我的购物车
         .order-item
                 el-table(:data="carts" style="width: 100%")
-                    el-table-column(label="产品")
-                        template(slot-scope="scope")
-                            img(:src="scope.row.picture", alt="" style="width:100%;")
-                            p {{scope.row.name}}
+                    el-table-column(label="产品" width="180" )
+                        template(slot-scope="scope" )
+                            div(style="text-align: center;")
+                                img(:src="scope.row.picture", alt="" style="width:100%;")
+                                p {{scope.row.name}}
                     el-table-column(prop="text" label="事项")
                         template(slot-scope="scope")
                             p(v-html="n2br(scope.row.content)")

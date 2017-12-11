@@ -2,17 +2,17 @@
     .page-system-detail
         infoBanner
         .container
-            .menu-left
-                .menu-left-header
-                    span.ml20 爱心社区 / 
-                    span.f16 &nbsp Caring community 
-                .menu-left-body
-                    .menu-list(v-for="n in 1")
-                        .menu-list-img
-                            img(src="https://static.mum5.cn/data/default_Xl5YxUf.png")
-                        .menu-list-info
-                            a
-                                span 深锐观察：智能家居如何走向平民化？
+            //- .menu-left
+            //-     .menu-left-header
+            //-         span.ml20 爱心社区 / 
+            //-         span.f16 &nbsp Caring community 
+            //-     .menu-left-body
+            //-         .menu-list(v-for="n in 1")
+            //-             .menu-list-img
+            //-                 img(src="https://static.mum5.cn/data/default_Xl5YxUf.png")
+            //-             .menu-list-info
+            //-                 a
+            //-                     span 深锐观察：智能家居如何走向平民化？
             .system-content
                 .system-wrap
                     .system-title
@@ -61,11 +61,11 @@
 
 
             menu-box(:menuData="menuData")
-            .dot-menu
-                ul
-                    li( v-for="(item,index) in dotMenu" :class="{active: activeDotTab===index}" @click="handDot(index)")
-                        .dot
-                        span {{item}}
+            //- .dot-menu
+            //-     ul
+            //-         li( v-for="(item,index) in dotMenu" :class="{active: activeDotTab===index}" @click="handDot(index)")
+            //-             .dot
+            //-             span {{item}}
 
 
 </template>
