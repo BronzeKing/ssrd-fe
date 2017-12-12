@@ -15,10 +15,6 @@
                     .systems-item
                         i(class="iconfont font-sea" :class="icons[item.name]")
                         p.fb.f16.mb5 {{item.name}}
-                        i.iconfont.icon-right.font-grey.f24
-            //- .header 
-            //-     h1 经典案例
-            //-     p.font-lightgrey CLASSIC CASE
 
             .header 
                 router-link(:to="{name: 'systemCase'}")
