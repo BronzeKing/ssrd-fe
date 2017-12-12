@@ -6,6 +6,8 @@ const recruit = (r: any) =>
     require.ensure([], () => r(require("pages/admin/components/recruit")), "admin"); //招聘信息
 const system = (r: any) =>
     require.ensure([], () => r(require("pages/admin/components/system")), "admin"); //系统管理（方案管理)
+const product = (r: any) =>
+    require.ensure([], () => r(require("pages/admin/components/product")), "admin"); //产品管理
 const video = (r: any) =>
     require.ensure([], () => r(require("pages/admin/components/video")), "admin"); // 视频管理
 const documents = (r: any) =>
@@ -39,6 +41,11 @@ export default {
             path: "system",
             name: "admin.system",
             component: system
+        },
+        {
+            path: "product",
+            name: "admin.product",
+            component: product
         },
         {
             path: "documents",
