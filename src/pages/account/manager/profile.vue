@@ -35,7 +35,8 @@ export default class ProfileView extends Vue
     public created () {
     }
     submit () {
-        Profile.create({userId: Profile.m.user.id}).then((r: any) => {
+        let {company, position, address, birthday, gender, name, ...rest} = Profile.m.serialize()
+        Profile.create({ userId: Profile.m.user.id, company, position, address, birthday, gender, name}).then((r: any) => {
             this.$message({
                 message: '保存成功',
                 type: 'success'
