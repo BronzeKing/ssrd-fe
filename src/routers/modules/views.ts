@@ -13,6 +13,7 @@ import system from "./system";
 import login from "./login";
 import information from "./information";
 import support from "./support";
+import exhibition from "./exhibition";
 
 export default {
     // path: '/',
@@ -20,5 +21,14 @@ export default {
     // name: 'views',
     component: views,
     redirect: "home",
-    children: [...homes, ...about, ...product, ...system, ...login, ...information, ...support]
+    children: [
+        ...homes,
+        ...about,
+        ...product,
+        ...system,
+        ...login,
+        ...information,
+        ...support,
+        ...exhibition
+    ]
 };

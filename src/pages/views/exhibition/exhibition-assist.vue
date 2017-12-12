@@ -1,0 +1,38 @@
+<template lang="pug">
+    .page-exhibition-assist
+        .exhibution-banner
+            .container
+                h1.exhibution-banner-title 盛世润达合作伙伴计划
+                p.exhibution-banner-content 只要是采用我司产品系统的单位，如有展示需要，我司可提供系统展示方案，参展设备且我司工程师全程参与。
+                    br 
+                    | 包括展品的调试、安装、解说、拆解、撤回，这些都由我们解决，可最大程度上帮助各单位解决参展观摩需要。
+                div
+                    el-button.mr20(type="primary") 立即申请
+                    el-button(plain) 登录管理后台
+        .exhibution-content.container
+            .exhibution-joinus
+                h3.font-grey.exhibution-item-title 分销网店加盟
+                p.exhibution-item-desc 如果您关注建筑工地，对建筑工地数字化和智能化发展保持长期的兴趣，不论是个人还是子机构我们都欢迎您的加入！
+                .joinus-item-list
+                    .joinus-item(v-for="item in 5" :key="item")
+                        .joinus-item-image(:style="{backgroundImage: `url(https://static.mum5.cn/201310230225529371_HS5UqXg.JPG)`}")
+                        p.joinus-item-title 广告，网站宣传支持
+            .exhibution-join-flow.tc
+                h3.font-grey.exhibution-item-title 合作流程
+</template>
+<script>
+export default {
+    name: "exhibition-assist",
+    data () {
+        return {
+
+        };
+    },
+    components:{
+
+    }
+}
+</script>
+<style lang="scss">
+    @import "~scss/pages/views/exhibition/exhibition-assist";
+</style>
