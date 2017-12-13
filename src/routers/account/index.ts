@@ -11,8 +11,8 @@ import order from "./order";
 
 export default {
     path: "/usercenter/",
+    name: "account",
     component: index,
-    // redirect: "/account/order",
     meta: { auth: true },
     children: [
         {

@@ -15,7 +15,6 @@ export default class Slider extends Vue {
     @Watch("$route")
     onRouteChange() {
         this.activeMenu = IndexMap[this.$route.name || "order"];
-        // console.log(this.activeMenu);
     }
     handleOpen(key: string, keyPath: string) {}
     handleClose(key: string, keyPath: string) {}
@@ -24,6 +23,7 @@ export default class Slider extends Vue {
 const SIDEBAR = [
     {
         title: "订单中心",
+        name: "order",
         sub: [
             {
                 name: "projectCreate", //路由信息
@@ -57,6 +57,7 @@ const SIDEBAR = [
     },
     {
         title: "项目中心",
+        name: "project",
         sub: [
             {
                 name: "project.documents",
@@ -70,6 +71,7 @@ const SIDEBAR = [
     },
     {
         title: "服务中心",
+        name: "",
         sub: [
             {
                 name: "servicePromise",
@@ -87,6 +89,7 @@ const SIDEBAR = [
     },
     {
         title: "管理中心",
+        name: "manager",
         sub: [
             {
                 name: "secure",
@@ -124,7 +127,9 @@ const SIDEBAR = [
  */
 const IndexMap: { [key: string]: string } = {};
 SIDEBAR.map((item, index) => {
+    IndexMap[item.name] = String(index) + "-0";
     item.sub.map((x, i) => {
         IndexMap[x.name] = String(index) + "-" + String(i);
     });
 });
+IndexMap["account"] = IndexMap["personal"] = IndexMap["manager"];

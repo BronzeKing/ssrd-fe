@@ -37,7 +37,7 @@ const menu = [
     { name: 'product', title: '系统产品' },
     { name: 'product', title: '设备辅件' },
     { name: 'support', title: '服务与支持' },
-    { name: 'support', title: '展会协助' },
+    { name: 'exhibition', title: '展会协助' },
     { name: 'about', title: '关于我们' },
     { name: 'information', title: '资讯生活' }
 ];
