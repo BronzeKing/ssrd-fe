@@ -878,6 +878,7 @@ export class Product extends Model {
     public created: string;
     // 更新时间
     public updated: string;
+    public code: string;
     // 产品插图
     public pictures: [Images];
 
@@ -890,6 +891,9 @@ export class Product extends Model {
             type: "Number"
         });
         this.defineField("name", {
+            type: "String"
+        });
+        this.defineField("code", {
             type: "String"
         });
         this.defineField("description", {

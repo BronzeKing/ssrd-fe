@@ -1,19 +1,18 @@
-const index = (r: any) =>
-    require.ensure([], () => r(require("pages/views/exhibition/index")), "exhibition");
-const detail = (r: any) =>
-    require.ensure([], () => r(require("pages/views/exhibition/detail")), "exhibition");
+/**
+ * 首页相关路由
+ */
+
+// 首页
+const exhibition = (r: any) =>
+    require.ensure([], () => r(require("pages/views/exhibition/exhibition-assist")), "home");
 
 export default [
     {
-        path: "exhibition",
+        path: "/exhibition",
         name: "exhibition",
-        component: index,
-        children: [
-            {
-                path: ":id",
-                name: "exhibitionDetail",
-                component: detail
-            }
-        ]
+        component: exhibition,
+        meta: {
+            headerMenuIndex: 5
+        }
     }
 ];
