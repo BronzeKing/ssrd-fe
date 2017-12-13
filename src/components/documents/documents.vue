@@ -5,8 +5,10 @@
                 el-breadcrumb-item(v-for="(item, index) in breadcrumb" :key="index" :to="{ name: item.name}") {{item.title}}
         .about-wrap.mt10.p15
             div
-                el-tabs(tpye="card" v-model="activeTab"  @tab-click="clickTab")
+                el-tabs(tpye="card" v-model="activeTab"  @tab-click="documentsList")
                     el-tab-pane(v-for="(item, index) in tabs" :key="index" :name="item" :label="item")
+                el-select(v-model="selectProject" placeholder="请选择项目" v-if="show.project" @change='documentsList')
+                    el-option(v-for="item in Project.t.Records" :key='item.id' :label='item.name' :value='item.id')
                 el-input(placeholder="请输入要搜索的文档名称" suffix-icon="el-icon-search" v-model="Documents.t.search" @change="documentsList")
                 el-table.mt10(:data="Documents.t.Records" stripe highlight-current-row style="width: 100%")
                     el-table-column(property="name", label="文件名称")
@@ -19,30 +21,36 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Prop, Watch } from 'vue-property-decorator';
-import  { Docs as Documents } from 'apis';
+import  { Docs as Documents, Project } from 'apis';
 
 @Component
 export default class DocumentsView extends Vue
 {
     @Provide() Documents: any = Documents;
-    @Provide() activeTab: string = '';
-    @Prop()
+    @Provide() activeTab = '全部文档';
+    @Provide() Project = Project;
+    @Provide() selectProject = '';
+
+    @Prop({default: []})
     tabs: Array<string>;
+
     @Prop()
     breadcrumb: Array<{name: string, title: string}>;
 
+	@Prop({ default: { project: false} })
+	show: { project: Boolean};
+
     protected created () {
         this.documentsList()
+        if (this.show.project) {
+            Project.list()
+        }
     }
     public get env() {
         return this.$store.state.home.env
     }
     documentsList() {
-        Documents.list({type: this.activeTab});
-
-    }
-    clickTab (tab: any, event: any) {
-        this.documentsList()
+        Documents.list({type: this.activeTab, projectId: this.selectProject});
     }
 };
 </script>

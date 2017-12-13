@@ -32,8 +32,6 @@ export default class Support extends Vue
     @Provide() menu: Array<{title: string, name: string}> = [
         {title: '常见问题解答', name: 'faqs'},
         {title: '服务承诺', name: 'servicePromise'},
-        {title: '意见反馈', name: 'feedback'},
-        {title: '客户满意度调查', name: 'survey'},
         {title: '服务网点', name: 'serviceNet'},
         {title: '文档下载', name: 'download'},
         {title: '操作视频', name: 'opVideo'}
