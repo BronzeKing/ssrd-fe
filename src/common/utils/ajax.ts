@@ -10,6 +10,7 @@ import logger from "./logger";
 import member from "./member";
 import router from "routers";
 import Vue from "vue";
+import store from "vuexs";
 import { AxiosRequestConfig, AxiosInstance } from "axios";
 
 const _priviate: {
@@ -115,9 +116,11 @@ Axios.interceptors.response.use(
                 });
                 break;
             case 401:
+                let route = router.currentRoute;
+                let query = route.query.next ? {} : { next: route.fullPath };
                 router.push({
                     name: "login",
-                    query: { next: router.currentRoute.fullPath }
+                    query: query
                 });
                 break;
             default:
