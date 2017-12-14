@@ -1,0 +1,66 @@
+@charset 'UTF-8';
+@import "~scss/base/mixins";
+
+// 合作指南
+.guide-page{
+    text-align: center;
+    color: #666666;
+    .guide-header{
+        // background-color: #f9f9f9;
+        
+        .condition-container{
+            display: flex;
+            justify-content: space-between;
+            .condition-left{
+                width: 40%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                
+                img{
+                    width: 100%;
+                }
+                .btn-box{
+                    width: 240px;
+                    height: 150px;
+                    border: 1px solid #eeeeee;
+                    padding: 20px 15px;
+                    background: rgba(255,255,255,.5);
+                    position: absolute;
+                }
+            }
+            .condition-right{
+                margin-top: 30px;
+                width: 55%;
+                text-align: left;
+            }
+        }
+        
+    }
+    .guide-body{
+        padding: 10px 10px;
+        .img-list{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .img-item{
+                width: 30%;
+                border: 1px solid #eeeeee;
+                .img-content{
+                    width: 100%;
+                    height: 150px;
+                    background-image: url(https://static.mum5.cn/data/systemDemonstration/%E6%B7%B1%E5%9C%B3%E7%9A%87%E5%BA%AD%E5%A4%A7%E5%8E%A6/bg_bF9NiiG.jpg);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+                .pattern-title{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 5px 10px;
+                }
+            }
+        }
+    }
+}

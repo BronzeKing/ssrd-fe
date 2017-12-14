@@ -1,5 +1,5 @@
 <template lang="pug">
-    .page-system
+    .page-exhibition
         info-banner(:image='image')
         .container
             .header 
@@ -26,7 +26,7 @@ export default class ExhibitionView extends Vue
 </script>
 <style lang="scss">
 @import "~scss/pages/views/system/system";
-    .page-system{
+    .page-exhibition{
         background: #fff;
     }
     

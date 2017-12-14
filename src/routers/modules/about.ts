@@ -27,6 +27,9 @@ const recruit = (r: any) =>
 // 联系我们
 const contactUs = (r: any) =>
     require.ensure([], () => r(require("pages/views/about/components/contact-us")), "about");
+// 合作指南
+const guide = (r: any) =>
+    require.ensure([], () => r(require("pages/views/about/components/guide")), "about");
 export default [
     {
         path: "/about",
@@ -43,7 +46,7 @@ export default [
                 name: "companyProfile",
                 component: companyProfile,
                 meta: {
-                    title: "公司简介",
+                    title: "公司简介"
                 }
             },
             {
@@ -51,7 +54,7 @@ export default [
                 name: "corporateCulture",
                 component: corporateCulture,
                 meta: {
-                    title: "公司文化",
+                    title: "公司文化"
                 }
             },
             {
@@ -59,7 +62,7 @@ export default [
                 name: "honor",
                 component: honor,
                 meta: {
-                    title: "荣誉资质",
+                    title: "荣誉资质"
                 }
             },
             {
@@ -67,7 +70,7 @@ export default [
                 name: "cooperativePartner",
                 component: cooperativePartner,
                 meta: {
-                    title: "合作伙伴",
+                    title: "合作伙伴"
                 }
             },
             {
@@ -75,7 +78,7 @@ export default [
                 name: "recruit",
                 component: recruit,
                 meta: {
-                    title: "招贤纳士",
+                    title: "招贤纳士"
                 }
             },
             {
@@ -83,7 +86,15 @@ export default [
                 name: "contactUs",
                 component: contactUs,
                 meta: {
-                    title: "联系我们",
+                    title: "联系我们"
+                }
+            },
+            {
+                path: "guide",
+                name: "guide",
+                component: guide,
+                meta: {
+                    title: "合作指南"
                 }
             }
         ]

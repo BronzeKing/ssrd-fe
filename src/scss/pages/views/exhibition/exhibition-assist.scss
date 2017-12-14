@@ -36,14 +36,27 @@
 
     .joinus-item-list{
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 200px;
+        
     }
 
     .joinus-item{
-        flex: 1;
+        margin-top: 25px;
+        width: 300px;
+        cursor: pointer;
+        transition: all .3s ease;
+        &:hover{
+            box-shadow: 0 0 5px 3px #eee;
+        }
         &:last-child{
             .joinus-item-title{
                 border-right-width: 0;
             }
+        }
+        p{
+            padding-bottom: 10px;
         }
     }
 
@@ -56,8 +69,5 @@
         background-size: contain;
     }
 
-    .joinus-item-title{
-        margin: 15px 0;
-        border-right: 1px solid #ddd;
-    }
+
 }

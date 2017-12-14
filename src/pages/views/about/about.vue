@@ -16,8 +16,8 @@
                                 router-link(:to="{name: item.name}")
                                     span {{item.title}}
                                     i.iconfont.icon-arrow-right
-                .about-case
-                    .case-title
+                //- .about-case
+                //-     .case-title
 
                 .about-info.mt5
                     transition(name="router-fade" mode="out-in")
@@ -32,7 +32,8 @@ const menu = [
     { name: "honor", title: "荣誉资质" },
     { name: "cooperativePartner", title: "合作伙伴" },
     { name: "recruit", title: "招贤纳士" },
-    { name: "contactUs", title: "联系我们" }
+    { name: "contactUs", title: "联系我们" },
+    { name: "guide", title: "合作指南" }
 ];
 @Component
 export default class AboutView extends Vue {
