@@ -8,7 +8,10 @@
         div
             el-form(ref="form" :model="Project.m" label-width="80px")
                 el-form-item(label="项目名称" :error="Project.errors.name")
-                    el-input(v-model="Project.m.name" placeholder="请输入项目名称")
+                    el-input(v-model="Project.m.name" placeholder="请输入项目名称" @blur="onNameChange")
+                el-form-item(label="项目组名称" :error="Project.errors.group")
+                    el-select(v-model="group" placeholder="请输入或选择项目组" allow-create filterable)
+                        el-option(v-for="item in ProjectGroup.t.Records" :key='item.name' :label='item.name' :value='item.name')
                 el-form-item(label="地址" :error="Project.errors.address")
                     el-input(v-model="Project.m.address" placeholder="请输入地址")
                 el-form-item(label="手机" prop='mobile' :error='Project.errors.mobile')
@@ -28,17 +31,17 @@
                 el-form-item(label="需求描述")
                     el-input(v-model="Project.m.remark" type="textarea")
                 el-form-item(label="材料上传" :error="Project.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-change="handleChange" :file-list="Project.m.attatchment" :action="uploadUrl")
+                    el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="Project.m.attatchment" :action="uploadUrl")
                         el-button(size="small" type="primary") 点击上传
                         div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
                 el-button(type="primary" @click="submit") 保存
 </template>
 <script lang="ts">
 // 快捷下单页面
-import { Component, Provide, Vue } from 'vue-property-decorator';
-import { Option } from "common/utils/extends";
-import  { System, Project, Profile } from 'apis';
-import API from "apis/api-urls"; // 接口URL
+import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
+import { Option } from 'common/utils/extends';
+import  { System, Project, ProjectGroup, Profile } from 'apis';
+import API from 'apis/api-urls'; // 接口URL
 
 @Component
 export default class QuickView extends Vue
@@ -50,6 +53,8 @@ export default class QuickView extends Vue
     @Provide() uploadUrl = API.docs + '?type=项目材料';
     @Provide() System = System;
     @Provide() Project = Project;
+    @Provide() ProjectGroup = ProjectGroup;
+    @Provide() group = '';
     @Provide() 
     $refs: {
         form: HTMLFormElement;
@@ -59,8 +64,14 @@ export default class QuickView extends Vue
     };
     protected created () {
         System.list();
+        ProjectGroup.list();
         let {name, user, ...profile} = Profile.m.serialize()
         Project.m.populate({linkman: name, mobile: user.mobile, ...profile})
+    }
+    onNameChange() {  // 项目组名称默认等于项目名称
+        if (!this.group) {
+            this.group = Project.m.name
+        }
     }
     submit () {
         this.$refs.form.validate((valid: Boolean) => {
@@ -73,12 +84,14 @@ export default class QuickView extends Vue
                     message: '提交成功',
                     type: 'success'
                 });
+                Project.m.reset()
+                this.$router.push({name: 'projectList'})
             })
         })
     }
 
-  handleChange(file: any, fileList: any): void {
-    Project.m.attatchment = fileList;
+  handleChange(response: any, file: any, fileList: any): void {
+    Project.m.attatchment = fileList.map((item: any) => {return item.response});
   }
 };
 </script>

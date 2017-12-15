@@ -62,4 +62,5 @@ export const Profile = new Resource(API.profile, new m.Profile({}), {}, true); /
 export const ProjectLog = new Resource(API.projectLog, new m.ProjectLog({})); // 项目日志
 export const JobLog = new Resource(API.jobLog, new m.ProjectLog({})); // 工作日志
 export const Project = new Resource(API.project, new m.Project({}), r.Project); // 项目
+export const ProjectGroup = new Resource(API.projectGroup, new m.ProjectGroup()); // 项目
 export const ProjectCreate = new Resource(API.project, new m.Project({})); // 新建项目用到的model，用于与项目详情区别开

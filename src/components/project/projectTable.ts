@@ -217,6 +217,8 @@ export default class ProjectTable extends Vue {
         Project.m = row;
     }
     handleChange(file: any, fileList: any): void {
-        ProjectLog.m.attatchment = fileList;
+        Project.m.attatchment = fileList.map((item: any) => {
+            return item.response;
+        });
     }
 }

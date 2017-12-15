@@ -134,6 +134,7 @@ export default {
      * 项目列表
      */
     project: `${apiUrl}/projects`,
+    projectGroup: `${apiUrl}/projectGroups`,
     /**
      * 项目日志
      */

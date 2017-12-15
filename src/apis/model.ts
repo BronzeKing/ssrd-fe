@@ -750,6 +750,7 @@ export class Documents extends Model {
     public created: string;
     // 更新时间
     public updated: string;
+    public type: string;
 
     public constructor(data = {}) {
         super(data);
@@ -766,6 +767,9 @@ export class Documents extends Model {
             type: "Number"
         });
         this.defineField("name", {
+            type: "String"
+        });
+        this.defineField("type", {
             type: "String"
         });
         this.defineField("file", {
@@ -1633,6 +1637,34 @@ export class FAQs extends Model {
         });
         this.defineField("rank", {
             type: "Number"
+        });
+        this.populate(data);
+        this.commit();
+    }
+}
+
+export class ProjectGroup extends Model {
+    // ID
+    public id: number;
+    // name
+    public name: string;
+    // permissions
+    public permissions: Permission;
+    public user: User;
+
+    public constructor(data = {}) {
+        super(data);
+        this.defineField("id", {
+            type: "Number"
+        });
+        this.defineField("user", {
+            type: User
+        });
+        this.defineField("name", {
+            type: "String"
+        });
+        this.defineField("permissions", {
+            type: Permission
         });
         this.populate(data);
         this.commit();
