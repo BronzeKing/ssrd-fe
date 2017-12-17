@@ -5,5 +5,15 @@ import infoBanner from "./info-banner";
 import piclook from "./pic-look";
 import projectTable from "./project";
 import Documents from "./documents";
+import ResourceMixin from "./mixins";
 
-export { LineThrough, crashBall, menuBox, infoBanner, projectTable, Documents, piclook };
+export {
+    LineThrough,
+    crashBall,
+    menuBox,
+    infoBanner,
+    projectTable,
+    Documents,
+    piclook,
+    ResourceMixin
+};
