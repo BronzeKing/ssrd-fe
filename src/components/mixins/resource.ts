@@ -2,10 +2,13 @@ import { Component, Provide, Vue, Watch } from "vue-property-decorator";
 import { Resource } from "src/apis/resource";
 import { Model } from "src/apis/baseModel";
 import API from "apis/api-urls"; // 接口URL
+/*
+*/
 
 interface Query {
     // 存放resourceList 中的参数
-    source: number; // documents中的来源
+    source: string; // documents中的来源
+    type: string; // 查询参数中的类型
 }
 
 @Component
@@ -39,6 +42,10 @@ export default class ResourceMixin extends Vue {
     handleDestroy(data: any) {
         this.resource.destroy(data).then((r: any) => {
             this.resource.list();
+            this.$message({
+                message: "删除成功",
+                type: "success"
+            });
         });
     }
     handleSubmit() {
