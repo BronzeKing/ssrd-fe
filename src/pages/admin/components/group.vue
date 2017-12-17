@@ -13,8 +13,11 @@
                     el-table-column(property="updated" label="更新时间")
                     el-table-column(label="操作")
                         template(slot-scope="scope")
-                            el-button(suffix-icon='el-icon-delete' @click="handleDestroy(scope.row)") 删除
-                            el-button(suffix-icon='el-icon-delete' @click="handleUpdate") 编辑
+                            el-button-group
+                                el-tooltip.item(effect="light" content="编辑" placement="top")
+                                    el-button(icon='el-icon-edit' @click="handleUpdate")
+                                el-tooltip.item(effect="light" content="删除" placement="top")
+                                    el-button(icon='el-icon-delete' @click="handleDestroy(scope.row)")
                 el-pagination.mt5(@current-change="Group.list" :page-size="Group.t.pageSize" layout="prev, pager, next, jumper" :total="Group.t.PageCount" :current-page.sync="Group.t.pageIndex")
                 el-dialog(title="部门管理" :visible.sync="dialog.group")
                     el-form(ref="GroupForm" :model="Group.m" :rules="Group.rules" label-width="120px" label-position="right")

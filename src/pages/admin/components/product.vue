@@ -17,8 +17,11 @@
                 el-table-column(property="updated" label="更新时间")
                 el-table-column(label="操作")
                     template(slot-scope="scope")
-                        el-button(suffix-icon='el-icon-delete' @click="handleDestroy(scope.row)") 删除
-                        el-button(suffix-icon='el-icon-delete' @click="handleUpdate") 编辑
+                        el-button-group
+                            el-tooltip.item(effect="light" content="编辑" placement="top")
+                                el-button(icon='el-icon-edit' @click="handleUpdate")
+                            el-tooltip.item(effect="light" content="删除" placement="top")
+                                el-button(icon='el-icon-delete' @click="handleDestroy(scope.row)")
             el-pagination.mt5(@current-change="productList" :page-size="Product.t.pageSize" layout="prev, pager, next, jumper" :total="Product.t.PageCount" :current-page.sync="Product.t.pageIndex")
             el-dialog(title="系统产品" :visible.sync="dialog")
                 el-form(ref="form" :model="Product.m" :rules="Product.rules" label-width="120px" label-position="right")

@@ -30,8 +30,11 @@
                                 p {{scope.row.funtionalFeature.slice(0,20)}}...
                 el-table-column(label="操作")
                     template(slot-scope="scope")
-                        el-button(suffix-icon='el-icon-delete' @click="handleDestroy(scope.row)") 删除
-                        el-button(suffix-icon='el-icon-delete' @click="handleUpdate") 编辑
+                        el-button-group
+                            el-tooltip.item(effect="light" content="编辑" placement="top")
+                                el-button(icon='el-icon-edit' @click="handleUpdate")
+                            el-tooltip.item(effect="light" content="删除" placement="top")
+                                el-button(icon='el-icon-delete' @click="handleDestroy(scope.row)")
             el-pagination.mt5(@current-change="System.list" :page-size="System.t.pageSize" layout="prev, pager, next, jumper" :total="System.t.PageCount" :current-page.sync="System.t.pageIndex")
             el-dialog(title="方案管理" :visible.sync="dialog.system")
                 el-form(ref="SystemForm" :model="System.m" :rules="System.rules" label-width="120px" label-position="right")

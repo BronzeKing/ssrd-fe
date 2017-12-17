@@ -15,9 +15,13 @@
                     el-table-column(property="updated" label="更新时间")
                     el-table-column(label="操作")
                         template(slot-scope="scope")
-                            el-button(@click="player(scope.row)") 播放
-                            el-button(suffix-icon='el-icon-delete' @click="handleDestroy(scope.row)") 删除
-                            el-button(suffix-icon='el-icon-delete' @click="handleUpdate") 编辑
+                            el-button-group
+                                el-tooltip.item(effect="light" content="播放" placement="top")
+                                    el-button(icon='el-icon-caret-right' @click="player(scope.row)")
+                                el-tooltip.item(effect="light" content="编辑" placement="top")
+                                    el-button(icon='el-icon-edit' @click="handleUpdate")
+                                el-tooltip.item(effect="light" content="删除" placement="top")
+                                    el-button(icon='el-icon-delete' @click="handleDestroy(scope.row)")
                 el-pagination.mt5(@current-change="Video.list" :page-size="Video.t.pageSize" layout="prev, pager, next, jumper" :total="Video.t.PageCount" :current-page.sync="Video.t.pageIndex")
                 el-dialog(title="方案管理" :visible.sync="dialog.video")
                     el-form(ref="VideoForm" :model="Video.m" :rules="Video.rules" label-width="120px" label-position="right")

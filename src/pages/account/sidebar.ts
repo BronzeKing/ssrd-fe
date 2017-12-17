@@ -1,29 +1,64 @@
 // 侧边栏
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-
+interface Item {
+    title: string;
+    name: string;
+    group?: Array<string>;
+}
+interface Side extends Item {
+    sub: Array<Item>;
+}
+interface Index {
+    [key: string]: string;
+}
+const filter = (group: string, item: Item) => {
+    if (item.group && item.group.indexOf(group) < 0) {
+        return false;
+    }
+    return true;
+};
 @Component
 export default class Slider extends Vue {
-    @Provide() sidebar = SIDEBAR;
+    @Provide() sidebar: Array<Side> = [];
     @Provide() isCollapse = false;
     @Provide() activeMenu = "0-1";
+    @Provide() IndexMap: Index = {};
+    @Provide()
+    icons = {
+        manager: "el-icon-setting",
+        project: "el-icon-view",
+        order: "el-icon-tickets",
+        service: "el-icon-message"
+    };
 
     protected created() {
-        this.activeMenu = IndexMap[this.$route.name || "order"];
+        let group = this.$store.getters.user.group.name;
+        let _filter = filter.bind(null, group);
+        this.sidebar = SIDEBAR.filter((item: Side) => {
+            if (!_filter(item)) {
+                return false;
+            }
+            item.sub = item.sub.filter(_filter);
+            return true;
+        });
+        this.IndexMap = getIndexMap(this.sidebar);
+        this.activeMenu = this.IndexMap[this.$route.name || "order"];
         // console.log(this.$route.name, this.activeMenu);
     }
 
     @Watch("$route")
     onRouteChange() {
-        this.activeMenu = IndexMap[this.$route.name || "order"];
+        this.activeMenu = this.IndexMap[this.$route.name || "order"];
     }
     handleOpen(key: string, keyPath: string) {}
     handleClose(key: string, keyPath: string) {}
 }
 // 侧边栏的配置信息，包括标题
-const SIDEBAR = [
+const SIDEBAR: Array<Side> = [
     {
         title: "订单中心",
         name: "order",
+        group: ["客户"],
         sub: [
             {
                 name: "projectCreate", //路由信息
@@ -71,7 +106,8 @@ const SIDEBAR = [
     },
     {
         title: "服务中心",
-        name: "",
+        name: "service",
+        group: ["客户"],
         sub: [
             {
                 name: "servicePromise",
@@ -97,10 +133,12 @@ const SIDEBAR = [
             },
             {
                 name: "user",
+                group: ["客户"],
                 title: "子账号管理"
             },
             {
                 name: "authorizeCode",
+                group: ["客户"],
                 title: "授权码管理"
             },
             {
@@ -113,11 +151,13 @@ const SIDEBAR = [
             },
             {
                 name: "companyProfile",
-                title: "企业信息"
+                title: "企业信息",
+                group: ["客户"]
             },
             {
                 name: "terminal",
-                title: "远程终端访问平台"
+                title: "远程终端访问平台",
+                group: ["客户"]
             }
         ]
     }
@@ -125,11 +165,14 @@ const SIDEBAR = [
 /**
  * 给name和index做个映射关系，存储的是{user: 1} 这样的，用于sidebar默认打开某个menu
  */
-const IndexMap: { [key: string]: string } = {};
-SIDEBAR.map((item, index) => {
-    IndexMap[item.name] = String(index) + "-0";
-    item.sub.map((x, i) => {
-        IndexMap[x.name] = String(index) + "-" + String(i);
+const getIndexMap = function(sidebar: Array<Side>): Index {
+    const IndexMap: Index = {};
+    sidebar.map((item, index) => {
+        IndexMap[item.name] = String(index) + "-0";
+        item.sub.map((x, i) => {
+            IndexMap[x.name] = String(index) + "-" + String(i);
+        });
     });
-});
-IndexMap["account"] = IndexMap["personal"] = IndexMap["manager"];
+    IndexMap["account"] = IndexMap["personal"] = IndexMap["manager"];
+    return IndexMap;
+};

@@ -13,8 +13,11 @@
                 el-table-column(property="created" label="发布时间")
                 el-table-column(label="操作")
                     template(slot-scope="scope")
-                        el-button(suffix-icon='el-icon-delete' @click="handleDestroy(scope.row)") 删除
-                        el-button(suffix-icon='el-icon-delete' @click="handleUpdate") 编辑
+                        el-button-group
+                            el-tooltip.item(effect="light" content="编辑" placement="top")
+                                el-button(icon='el-icon-edit' @click="handleUpdate")
+                            el-tooltip.item(effect="light" content="删除" placement="top")
+                                el-button(icon='el-icon-delete' @click="handleDestroy(scope.row)")
             el-pagination.mt5(@current-change="Recruitment.list" :page-size="Recruitment.t.pageSize" layout="prev, pager, next, jumper" :total="Recruitment.t.PageCount" :current-page.sync="Recruitment.t.pageIndex")
             el-dialog(title="招聘信息" :visible.sync="dialog.recruit")
                 el-form(ref="RecruitForm" :model="Recruitment.m" :rules="Recruitment.rules" label-width="120px" label-position="right")
