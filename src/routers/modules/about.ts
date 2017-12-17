@@ -26,6 +26,8 @@ const recruit = (r: any) =>
 // 联系我们
 const contactUs = (r: any) =>
     require.ensure([], () => r(require("pages/views/about/components/contact-us")), "about");
+const guide = (r: any) =>
+    require.ensure([], () => r(require("pages/views/about/components/guide")), "about");
 export default [
     {
         path: "/about",
@@ -83,6 +85,14 @@ export default [
                 component: contactUs,
                 meta: {
                     title: "联系我们"
+                }
+            },
+            {
+                path: "guide",
+                name: "guide",
+                component: guide,
+                meta: {
+                    title: "合作指南"
                 }
             }
         ]

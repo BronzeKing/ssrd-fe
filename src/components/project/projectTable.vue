@@ -9,22 +9,23 @@
             el-table-column(label="操作")
                 template(slot-scope="scope")
                     template(v-for="item in permissions")
-                        el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top" v-if="inPermission('auth', item)")
-                            a.mr10.font-blue(href="javascript:;" @click="handleDialog(scope.row, 'auth')")  {{actionMap[item]}}
-                        el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top" v-if="inPermission('sign', item)")
-                            a.mr10.font-blue(href="javascript:;" @click="handleDialog(scope.row, 'sign')") {{actionMap[item]}}
-                        el-tooltip.item(effect="light" content="申请售后服务" placement="top" v-if="inPermission('afterMarket', item)")
-                            a.mr10.font-blue(href="javascript:;" @click="handleAfterMarket(scope.row)") {{actionMap[item]}}
-                        el-tooltip.item(effect="light" content="审批或者驳回项目" placement="top" v-if="inPermission('audit', item)")
-                            a.mr10.font-blue(href="javascript:;" @click="handleDialog(scope.row, 'audit')") {{actionMap[item]}}
-                        el-tooltip.item(effect="light" content="申请协助并留下协助记录" placement="top" v-if="inPermission('assist', item)")
-                            a.mr10.font-blue(href="javascript:;" @click="handleDialog(scope.row, 'assist')") {{actionMap[item]}}
-                        el-tooltip.item(effect="light" content="记录每天的工作情况" placement="top" v-if="inPermission('jobJournal', item)")
-                            a.mr10.font-blue(href="javascript:;" @click="handleDialog(scope.row, 'jobJournal')") {{actionMap[item]}}
-                        el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top" v-if="inPermission('design', item)")
-                            a.mr10.font-blue(href="javascript:;" @click="handleDialog(scope.row, 'design')") {{actionMap[item]}}
-                        el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top" v-if="inPermission('delivery', item)")
-                            a.mr10.font-blue(href="javascript:;" @click="handleDialog(scope.row, 'delivery')") {{actionMap[item]}}
+                        el-button-group
+                            el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top" v-if="inPermission('auth', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'auth')")  {{actionMap[item]}}
+                            el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top" v-if="inPermission('sign', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'sign')") {{actionMap[item]}}
+                            el-tooltip.item(effect="light" content="申请售后服务" placement="top" v-if="inPermission('afterMarket', item)")
+                                el-button(type="text" href="javascript:;" @click="handleAfterMarket(scope.row)") {{actionMap[item]}}
+                            el-tooltip.item(effect="light" content="审批或者驳回项目" placement="top" v-if="inPermission('audit', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'audit')") {{actionMap[item]}}
+                            el-tooltip.item(effect="light" content="申请协助并留下协助记录" placement="top" v-if="inPermission('assist', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'assist')") {{actionMap[item]}}
+                            el-tooltip.item(effect="light" content="记录每天的工作情况" placement="top" v-if="inPermission('jobJournal', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'jobJournal')") {{actionMap[item]}}
+                            el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top" v-if="inPermission('design', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'design')") {{actionMap[item]}}
+                            el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top" v-if="inPermission('delivery', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'delivery')") {{actionMap[item]}}
         el-pagination.mt5(v-show="show.pagination" @current-change="Project.list" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
 
         el-dialog(title="项目授权" :visible.sync="dialog.auth")

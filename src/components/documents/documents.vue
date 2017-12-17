@@ -8,7 +8,7 @@
                 el-tabs(tpye="card" v-model="activeTab"  @tab-click="documentsList")
                     el-tab-pane(v-for="(item, index) in tabs" :key="index" :name="item" :label="item")
                 el-select(v-model="selectType" placeholder="请选择项目组" v-if="show.project" @change='documentsList')
-                    el-option(v-for="item in ProjectGroup" :key='item' :label='item' :value='item')
+                    el-option(v-for="item in ProjectGroup.t.Records" :key='item' :label='item' :value='item')
                 el-select(v-model="selectProject" placeholder="请选择项目" v-if="show.project" @change='documentsList')
                     el-option(v-for="item in Project.t.Records" :key='item.id' :label='item.name' :value='item.id')
                 el-select(v-model="selectType" placeholder="请选择项目类型" v-if="show.project" @change='documentsList')
@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Prop, Watch } from 'vue-property-decorator';
-import  { Docs as Documents, Project } from 'apis';
+import  { Docs as Documents, Project, ProjectGroup } from 'apis';
 
 @Component
 export default class DocumentsView extends Vue
@@ -33,7 +33,7 @@ export default class DocumentsView extends Vue
     @Provide() Documents: any = Documents;
     @Provide() activeTab = '全部文档';
     @Provide() Project = Project;
-    @Provide() ProjectGroup = ['腾讯大厦', '宝丽来']
+    @Provide() ProjectGroup = ProjectGroup;
     @Provide() selectProject = '';
     @Provide() selectType = '';
 
@@ -48,6 +48,7 @@ export default class DocumentsView extends Vue
 
     protected created () {
         this.documentsList()
+        ProjectGroup.list()
         if (this.show.project) {
             Project.list()
         }
