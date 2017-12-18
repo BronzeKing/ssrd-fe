@@ -12,10 +12,10 @@
                             span 我的收益
                 .secure-warp
                     p.mb10 账户安全：
-                    p.mb10(v-show="user.mobile") 绑定手机：{{user.mobile}}
-                    p.mb10(v-show="!user.mobile") 绑定手机：尚未绑定手机
-                    p.mb10(v-show="user.email") 绑定邮箱：{{user.email}}
-                    p.mb10(v-show="!user.email") 绑定手机：尚未绑定邮箱
+                    p.mb10(v-if="user.mobile") 绑定手机：{{user.mobile}}
+                    p.mb10(v-if="!user.mobile") 绑定手机：尚未绑定手机
+                    p.mb10(v-if="user.email") 绑定邮箱：{{user.email}}
+                    p.mb10(v-if="!user.email") 绑定邮箱：尚未绑定邮箱
                     
             
         .survey-wrap

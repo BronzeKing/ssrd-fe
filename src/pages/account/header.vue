@@ -10,9 +10,12 @@
                     ul.user-box(v-if="item.name === 'account' ")
                         li.user-box-header
                             p.f14 {{user.username}}
-                            p.font-green.f12 √ 已实名认证
+                            p.font-green.f12(v-if="user.mobile") 绑定手机：{{user.mobile}}
+                            p.font-green.f12(v-if="!user.mobile") 绑定手机：尚未绑定手机
+                            p.font-green.f12(v-if="user.email") 绑定邮箱：{{user.email}}
+                            p.font-green.f12(v-if="!user.email") 绑定邮箱：尚未绑定邮箱
                         li.user-box-item 
-                            a.user-box-item(href="javascript: void(0);")
+                            a.user-box-item(href="javascript: void(0);" @click="link2message")
                                 span 
                                     i.iconfont.icon-mail.font-base.f22.fl
                                     | 未读消息
@@ -41,19 +44,16 @@ export default class AccountHeader extends Vue {
         { name: 'account', title: "个人中心", link: false}
     ];
     @Provide() messages: Array<any> = []
-    public get user() {
-        return this.$store.getters.user
-
-    }
+    @Provide() user = {email: '', username: '', mobile: '', group: {name: ''}}
     protected created() {
-        let user = this.user
-        this.navs[3].title = user.username
-        if (user.group.name === '客户') {
+        this.user = this.$store.getters.user
+        this.navs[3].title = this.user.username
+        if (this.user.group.name === '客户') {
             this.navs.concat({name: 'cart', title: '购物车', link: true})
         }
     }
     link2message() {
-        this.$router.push({name: 'messages'})
+        this.$router.push({name: 'message'})
     }
 
     logout () {
