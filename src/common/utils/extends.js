@@ -106,10 +106,10 @@ const n2br = text => {
  * @参数 value 返回的value的默认值
  * @返回值  eg. {items: [{name: 'xxx', value: 'xxx'}], value: xxx}
  */
-const Option = function(options, defaultValue, value) {
+const Option = function(options, defaultValue, value, nameKey = "name") {
     return {
         items: options.map(x => {
-            return { name: x, value: String(defaultValue === null ? x : defaultValue) };
+            return { [name]: x, value: String(defaultValue === null ? x : defaultValue) };
         }),
         value: value
     };
