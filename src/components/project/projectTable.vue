@@ -10,109 +10,50 @@
                 template(slot-scope="scope")
                     template(v-for="item in permissions")
                         el-button-group
-                            el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top" v-if="inPermission('auth', item)")
-                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'auth')")  {{actionMap[item]}}
-                            el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top" v-if="inPermission('sign', item)")
-                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'sign')") {{actionMap[item]}}
-                            el-tooltip.item(effect="light" content="申请售后服务" placement="top" v-if="inPermission('afterMarket', item)")
-                                el-button(type="text" href="javascript:;" @click="handleAfterMarket(scope.row)") {{actionMap[item]}}
-                            el-tooltip.item(effect="light" content="审批或者驳回项目" placement="top" v-if="inPermission('audit', item)")
-                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'audit')") {{actionMap[item]}}
-                            el-tooltip.item(effect="light" content="申请协助并留下协助记录" placement="top" v-if="inPermission('assist', item)")
-                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'assist')") {{actionMap[item]}}
-                            el-tooltip.item(effect="light" content="记录每天的工作情况" placement="top" v-if="inPermission('jobJournal', item)")
-                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'jobJournal')") {{actionMap[item]}}
-                            el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top" v-if="inPermission('design', item)")
-                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'design')") {{actionMap[item]}}
-                            el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top" v-if="inPermission('delivery', item)")
-                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, 'delivery')") {{actionMap[item]}}
+                            el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top" v-if="inPermission('授权', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, item)")  {{item}}
+                            el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top" v-if="inPermission('签字', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, item)") {{item}}
+                            el-tooltip.item(effect="light" content="申请售后服务" placement="top" v-if="inPermission('售后申请', item)")
+                                el-button(type="text" href="javascript:;" @click="handleAfterMarket(scope.row)") {{item}}
+                            el-tooltip.item(effect="light" content="审批或者驳回项目" placement="top" v-if="inPermission('审核', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, item)") {{item}}
+                            el-tooltip.item(effect="light" content="申请协助并留下协助记录" placement="top" v-if="inPermission('协助申请', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, item)") {{item}}
+                            el-tooltip.item(effect="light" content="记录每天的工作情况" placement="top" v-if="inPermission('工作日志', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, item)") {{item}}
+                            el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top" v-if="inPermission(' 设计报价', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, item)") {{item}}
+                            el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top" v-if="inPermission('发货', item)")
+                                el-button(type="text" href="javascript:;" @click="handleDialog(scope.row, item)") {{item}}
         el-pagination.mt5(v-show="show.pagination" @current-change="Project.list" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
 
-        el-dialog(title="项目授权" :visible.sync="dialog.auth")
-            el-form(ref="AuthForm" :model="AuthorizeCode.m" :rules="AuthorizeCode.rules" label-width="120px" label-position="right")
-                el-form-item(label="项目名称")
-                    p 项目名称 {{Project.m.name}}
-                el-form-item(label="授权码名称" prop="name" :error="AuthorizeCode.errors.name")
-                    el-input(v-model="AuthorizeCode.m.name" auto-complete="off")
-            el-button(@click="dialog.auth = false") 取消
-            el-button(type="primary" @click="handleAuth") 确定
-
-        el-dialog(title="项目签字" :visible.sync="dialog.sign")
-            el-form(ref="SignForm" :model="ProjectLog.m" :rules="ProjectLog.rules" label-width="120px" label-position="right")
-                el-form-item(label="项目名称")
-                    p 项目名称 {{Project.m.name}}
-                el-form-item(label="签字文件" prop="attatchment" :error="ProjectLog.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="ProjectLog.m.attatchment" :action="uploadUrl('签证')")
-                        el-button(size="small" type="primary") 点击上传
-                        div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
-            el-button(@click="dialog.sign = false") 取消
-            el-button(type="primary" @click="handleSign") 确定
-            
-        el-dialog(title="项目审核" :visible.sync="dialog.audit")
-            el-form(ref="AuditForm" :model="audit.data" :rules="audit.rules" label-width="120px" label-position="right")
-                el-form-item(label="项目名称")
-                    p 项目名称 {{Project.m.name}}
-                el-form-item(label="审核内容" prop="content" :error="audit.errors.content")
-                    el-input(v-model="audit.data.content" auto-complete="off" type="textarea")
-            el-button(@click="dialog.audit = false") 取消
-            el-button(@click="dialog.audit = false") 驳回
-            el-button(type="primary" @click="handleAudit") 提交
-
-        el-dialog(title="协助申请" :visible.sync="dialog.assist")
-            el-form(ref="AssistForm" :model="assist.data" :rules="assist.rules" label-width="120px" label-position="right")
-                el-form-item(label="项目名称")
-                    p 项目名称 {{Project.m.name}}
-                el-form-item(label="协助内容" prop="content" :error="assist.errors.content")
-                    el-input(v-model="assist.data.content" auto-complete="off" type="textarea")
-            el-button(@click="dialog.assist = false") 取消
-            el-button(type="primary" @click="handleAssist") 确认
-
-        el-dialog(title="工作日志" :visible.sync="dialog.jobJournal")
-            el-form(ref="JobJournalForm" :model="jobJournal.data" :rules="jobJournal.rules" label-width="120px" label-position="right")
-                el-form-item(label="项目名称")
-                    p 项目名称 {{Project.m.name}}
-                el-form-item(label="工作日期")
-                    el-col(:span="11")
-                        el-date-picker(type="date" placeholder="选择日期" v-model="jobJournal.data.date" style="width: 100%;")
-                el-form-item(label="工作内容" prop="content" :error="jobJournal.errors.content")
-                    el-input(v-model="jobJournal.data.content" auto-complete="off" type="textarea")
-                el-form-item(label="照片类型")
-                    el-cascader(:options="jobJournal.options" v-model="jobJournal.data.type")
-                el-form-item(label="工作照片" prop="attatchment" :error="jobJournal.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="jobJournal.data.attatchment" :action="uploadUrl('工作日志')")
-                        el-button(size="small" type="primary") 点击上传
-                        div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
-            el-button(@click="dialog.jobJournal = false") 取消
-            el-button(type="primary" @click="handleJobJournal") 确认
-
-        el-dialog(title="上传设计文件及报价" :visible.sync="dialog.design")
-            el-form(ref="DesignForm" :model="design.data" :rules="design.rules" label-width="120px" label-position="right")
-                el-form-item(label="项目名称")
-                    p 项目名称 {{Project.m.name}}
-                el-form-item(label="报价" prop="content" :error="design.errors.content")
-                    el-input(v-model="design.data.content" auto-complete="off")
-                el-form-item(label="设计文件" prop="attatchment" :error="design.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="design.data.attatchment" :action="uploadUrl('设计报价')")
-                        el-button(size="small" type="primary") 点击上传
-                        div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
-            el-button(@click="dialog.design = false") 取消
-            el-button(type="primary" @click="handleDesign") 确认
-
-        el-dialog(title="项目发货记录" :visible.sync="dialog.delivery")
-            el-form(ref="DeliveryForm" :model="delivery.data" :rules="delivery.rules" label-width="120px" label-position="right")
-                el-form-item(label="项目名称")
-                    p 项目名称 {{Project.m.name}}
-                el-form-item(label="缺货清单" prop="number" :error="delivery.errors.number")
-                    div
-                        p 共计缺货
-                        el-input-number(v-model="delivery.data.number" controls-position="right" :min="1")
-                        p 项
-                el-form-item(label="缺货清单文件" prop="attatchment" :error="delivery.errors.attatchment")
-                    el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="delivery.data.attatchment" :action="uploadUrl('发货')")
-                        el-button(size="small" type="primary") 点击上传
-                        div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
-            el-button(@click="dialog.delivery = false") 取消
-            el-button(type="primary" @click="handleDelivery") 确认
+        el-dialog(:title="formConfig.title" :visible.sync="dialog.show")
+            el-form(ref="from" :model="formData" :rules="rules" label-width="120px" label-position="right")
+                template(v-for="(item, index) in formConfig.value")
+                    el-form-item(:label="item.title" v-if="item.key === 'name'")
+                        p {{Project.m.name}}
+                    el-form-item(:label="item.name" v-if="item.key === 'dateType'")
+                        el-col(:span="11")
+                            el-date-picker(type="date" placeholder="选择日期" v-model="jobJournal.data.date" style="width: 100%;")
+                    el-form-item(:label="item.title" :error="AuthorizeCode.errors.name" v-if="item.key === 'auth'")
+                        el-input(v-model="AuthorizeCode.m.name" auto-complete="off")
+                    el-form-item(:label="item.title" prop="content" v-if="item.key === 'content'")
+                        el-input(v-model="formData.content" auto-complete="off" type="textarea")
+                    el-form-item(:label="item.title" v-if="item.key === 'dateType'")
+                        el-cascader(:options="options.dateType" v-model="jobJournal.data.type")
+                    el-form-item(:label="item.title" prop="lackingList" :error="errors.lackingList" v-if="item.key === 'lackingList'")
+                        div
+                            p 共计缺货
+                            el-input-number(v-model="formData.lackingList" controls-position="right" :min="1")
+                            p 项
+                    el-form-item(:label="item.title" prop="attatchment" :error="ProjectLog.errors.attatchment" v-if="item.key === 'attatchment'")
+                        el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="ProjectLog.m.attatchment" :action="uploadUrl(item.name)")
+                            el-button(size="small" type="primary") 点击上传
+                            div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
+                    el-button(@click="handleClose" v-if="item.key === 'close'") {{item.title}}
+                    el-button(@click="handleRejected" v-if="item.key === 'rejected'") {{item.title}}
+                    el-button(type='primary' @click="handleSubmit" v-if="item.key === 'submit'") {{item.title}}
 </template>
 
 <script src="./projectTable.ts" lang="ts">

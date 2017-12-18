@@ -8,7 +8,7 @@
                 el-tabs(tpye="card" v-model="activeTab"  @tab-click="documentsList")
                     el-tab-pane(v-for="(item, index) in tabs" :key="index" :name="item" :label="item")
                 el-select(v-model="selectType" placeholder="请选择项目组" v-if="show.project" @change='documentsList')
-                    el-option(v-for="item in ProjectGroup.t.Records" :key='item' :label='item' :value='item')
+                    el-option(v-for="item in ProjectGroup.t.Records" :key='item.id' :label='item.name' :value='item.id')
                 el-select(v-model="selectProject" placeholder="请选择项目" v-if="show.project" @change='documentsList')
                     el-option(v-for="item in Project.t.Records" :key='item.id' :label='item.name' :value='item.id')
                 el-select(v-model="selectType" placeholder="请选择项目类型" v-if="show.project" @change='documentsList')

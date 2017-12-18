@@ -1,53 +1,27 @@
 import { Component, Provide, Vue, Prop } from "vue-property-decorator";
 import { Project, AuthorizeCode, ProjectLog } from "apis";
 import { makeContent as _makeContent } from "utils/extends";
-import { data, permissionMap, actionMap } from "./data";
+import { permissionMap, options, errors, rules } from "./data";
 import API from "apis/api-urls"; // 接口URL
+import { debug } from "util";
 
 @Component
 export default class ProjectTable extends Vue {
     @Provide() Project = Project;
     @Provide() ProjectLog = ProjectLog;
     @Provide() AuthorizeCode = AuthorizeCode;
-    @Provide() audit = data.audit;
-    @Provide() assist = data.assist;
-    @Provide() jobJournal = data.jobJournal;
-    @Provide() design = data.design;
-    @Provide() delivery = data.delivery;
     @Provide() permissions: Array<string> = [];
-    @Provide() actionMap = actionMap;
+    @Provide() formConfig: FormConfig = {} as FormConfig;
+    @Provide() formData = { date: new Date(), number: 0, dateType: "" };
+    @Provide() options = options;
+    @Provide() errors = errors;
+    @Provide() rules = rules;
 
-    // auth 项目授权
-    // sign 项目签证
-    // send 需求转发
-    // afterMarket 售后申请
-    // audit 项目审核
-    // assist 项目协助
-    // jobJournal 工作日志
-    // design 上传设计
-    // delivery 仓库发货
-    // 该属性用于控制dialog是否显示
-    @Provide()
-    dialog: { [x: string]: Boolean } = {
-        auth: false,
-        sign: false,
-        afterMarket: false,
-        audit: false,
-        assist: false,
-        jobJournal: false,
-        design: false,
-        delivery: false
-    };
+    @Provide() dialog = { name: "", show: false };
 
     @Provide()
     $refs: {
-        AuthForm: HTMLFormElement;
-        SignForm: HTMLFormElement;
-        AuditForm: HTMLFormElement;
-        AssistForm: HTMLFormElement;
-        JobJournalForm: HTMLFormElement;
-        DesignForm: HTMLFormElement;
-        DeliveryForm: HTMLFormElement;
+        form: HTMLFormElement;
     };
     public uploadUrl(type: string) {
         return API.docs + "?type=" + type;
@@ -88,138 +62,142 @@ export default class ProjectTable extends Vue {
         return this.env.projectStatusReverse[cellValue];
     }
     handleAuth() {
-        this.$refs.AuthForm.validate((v: Boolean) => {
-            if (v) {
-                AuthorizeCode.create({
-                    name: AuthorizeCode.m.name,
-                    projectId: Project.m.id
-                }).then(r => {
-                    this.dialog.auth = false;
-                    this.$message({
-                        message: "授权成功",
-                        type: "success"
-                    });
-                });
-            }
+        AuthorizeCode.create({
+            name: AuthorizeCode.m.name,
+            projectId: Project.m.id
+        }).then(r => {
+            this.$message({
+                message: "授权成功",
+                type: "success"
+            });
         });
-    }
-    handleSign() {
-        this.$refs.SignForm.validate((v: Boolean) => {
-            if (v) {
-                ProjectLog.create({
-                    attatchment: ProjectLog.m.attatchment,
-                    action: this.env.projectLog["签字"],
-                    projectId: Project.m.id
-                }).then(r => {
-                    this.dialog.sign = false;
-                    this.$message({
-                        message: "签字成功",
-                        type: "success"
-                    });
-                });
-            }
-        });
-    }
-    handleAudit() {
-        this.$refs.AuditForm.validate((v: Boolean) => {
-            if (v) {
-                ProjectLog.create({
-                    content: this.audit.data.content,
-                    action: this.env.projectLog["审核"],
-                    projectId: Project.m.id
-                }).then(r => {
-                    this.dialog.audit = false;
-                    this.$message({
-                        message: "审核成功",
-                        type: "success"
-                    });
-                });
-            }
-        });
-    }
-    handleAssist() {
-        this.$refs.AssistForm.validate((v: Boolean) => {
-            if (v) {
-                ProjectLog.create({
-                    content: this.audit.data.content,
-                    action: this.env.projectLog["审核"],
-                    projectId: Project.m.id
-                }).then(r => {
-                    this.dialog.assist = false;
-                    this.$message({
-                        message: "申请成功",
-                        type: "success"
-                    });
-                });
-            }
-        });
-    }
-    handleJobJournal() {
-        this.$refs.JobJournalForm.validate((v: Boolean) => {
-            if (v) {
-                ProjectLog.create({
-                    date: this.jobJournal.data.date,
-                    content: this.jobJournal.data.content,
-                    attatchment: this.jobJournal.data.attatchment,
-                    action: this.env.projectLog["工作日志"],
-                    projectId: Project.m.id
-                }).then(r => {
-                    this.dialog.jobJournal = false;
-                    this.$message({
-                        message: "提交成功",
-                        type: "success"
-                    });
-                });
-            }
-        });
-    }
-    handleDesign() {
-        this.$refs.DesignForm.validate((v: Boolean) => {
-            if (v) {
-                ProjectLog.create({
-                    content: this.design.data.content,
-                    attatchment: ProjectLog.m.attatchment,
-                    action: this.env.projectLog["设计报价"],
-                    projectId: Project.m.id
-                }).then(r => {
-                    this.dialog.design = false;
-                    this.$message({
-                        message: "上传成功",
-                        type: "success"
-                    });
-                });
-            }
-        });
-    }
-    handleDelivery() {
-        this.$refs.DeliveryForm.validate((v: Boolean) => {
-            if (v) {
-                ProjectLog.create({
-                    number: this.delivery.data.number,
-                    attatchment: ProjectLog.m.attatchment,
-                    action: this.env.projectLog["发货"],
-                    projectId: Project.m.id
-                }).then(r => {
-                    this.dialog.delivery = false;
-                    this.$message({
-                        message: "提交成功",
-                        type: "success"
-                    });
-                });
-            }
-        });
+        this.dialog = { name: "", show: false };
     }
     handleAfterMarket(row: any) {
         this.Project.m.populate(row);
         this.$router.push({ name: "afterMarket" });
     }
-    handleDialog(row: any, dialog: string): void {
-        this.dialog[dialog] = true;
-        Project.m = row;
+    handleDialog(row: any, name: string): void {
+        this.dialog = { name: name, show: true };
+        this.formConfig = FormConfig[name];
+        Project.m.populate(row);
+    }
+    handleSubmit() {
+        this.$refs.form.validate((v: Boolean) => {
+            if (!v) {
+                return;
+            }
+            if (this.dialog.name === "授权") {
+                return this.handleAuth();
+            }
+            ProjectLog.create({
+                attatchment: ProjectLog.m.attatchment,
+                action: this.dialog,
+                projectId: Project.m.id
+            })
+                .then(r => {
+                    this.dialog = { name: "", show: false };
+                    this.$message({
+                        message: "提交成功",
+                        type: "success"
+                    });
+                })
+                .catch(() => {
+                    this.$message({
+                        message: "提交失败",
+                        type: "error"
+                    });
+                });
+        });
+    }
+    handleRejected() {}
+    handleClose() {
+        this.dialog = { name: "", show: false };
+        this.$refs.form.resetFields();
+        Project.m.populate({ attatchment: [] });
     }
     handleChange(file: any, fileList: any): void {
         Project.m.attatchment = fileList.map((item: any) => {
             return item.response;
         });
     }
+    post() {}
 }
+
+interface FormConfig {
+    title: string;
+    value: Array<{ key: string; title: string }>;
+}
+const FormConfig: { [key: string]: FormConfig } = {
+    授权: {
+        title: "项目授权",
+        value: [
+            { key: "name", title: "项目名称" },
+            { key: "auth", title: "授权码名称" },
+            { key: "close", title: "取消" },
+            { key: "submit", title: "确认" }
+        ]
+    },
+    签字: {
+        title: "项目签字",
+        value: [
+            { key: "name", title: "项目名称" },
+            { key: "attatchment", title: "附件" },
+            { key: "close", title: "取消" },
+            { key: "submit", title: "确认" }
+        ]
+    },
+    审核: {
+        title: "项目审核",
+        value: [
+            { key: "name", title: "项目名称" },
+            { key: "content", title: "审核意见" },
+            { key: "attatchment", title: "附件" },
+            { key: "close", title: "取消" },
+            { key: "rejected", title: "驳回" },
+            { key: "submit", title: "确认" }
+        ]
+    },
+    协助申请: {
+        title: "协助申请",
+        value: [
+            { key: "name", title: "项目名称" },
+            { key: "content", title: "工作内容" },
+            { key: "attatchment", title: "附件" },
+            { key: "close", title: "取消" },
+            { key: "submit", title: "确认" }
+        ]
+    },
+    工作日志: {
+        title: "工作日志",
+        value: [
+            { key: "name", title: "项目名称" },
+            { key: "date", title: "工作日期" },
+            { key: "content", title: "协助内容" },
+            { key: "dateType", title: "照片类型" },
+            { key: "attatchment", title: "工作照片" },
+            { key: "close", title: "取消" },
+            { key: "submit", title: "确认" }
+        ]
+    },
+    设计报价: {
+        title: "上传设计及报价",
+        value: [
+            { key: "name", title: "项目名称" },
+            { key: "content", title: "报价" },
+            { key: "attatchment", title: "设计文件" },
+            { key: "close", title: "取消" },
+            { key: "submit", title: "确认" }
+        ]
+    },
+    发货: {
+        title: "项目发货记录",
+        value: [
+            { key: "name", title: "项目名称" },
+            { key: "lackingList", title: "缺货清单" },
+            { key: "attatchment", title: "缺货清单文件" },
+            { key: "close", title: "取消" },
+            { key: "submit", title: "确认" }
+        ]
+    }
+};
