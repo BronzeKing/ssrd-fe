@@ -29,7 +29,7 @@
         el-pagination.mt5(v-show="show.pagination" @current-change="Project.list" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
 
         el-dialog(:title="formConfig.title" :visible.sync="dialog.show")
-            el-form(ref="from" :model="formData" :rules="rules" label-width="120px" label-position="right")
+            el-form(ref="form" :model="formData" :rules="rules" label-width="120px" label-position="right")
                 template(v-for="(item, index) in formConfig.value")
                     el-form-item(:label="item.title" v-if="item.key === 'name'")
                         p {{Project.m.name}}

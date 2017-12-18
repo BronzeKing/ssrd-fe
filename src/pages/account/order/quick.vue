@@ -63,6 +63,7 @@ export default class QuickView extends Vue
         return this.$store.state.home.env;
     };
     protected created () {
+        this.group = Project.m.name
         System.list();
         ProjectGroup.list();
         let {name, user, ...profile} = Profile.m.serialize()
