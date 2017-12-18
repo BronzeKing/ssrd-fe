@@ -11,7 +11,7 @@
         .exhibution-content.container
             .exhibution-joinus
                 .joinus-item-list
-                    .joinus-item(v-for="item in 4" :key="item")
+                    .joinus-item(v-for="item in 6" :key="item")
                         .joinus-item-image(:style="{backgroundImage: `url(https://static.mum5.cn/201310230225529371_HS5UqXg.JPG)`}")
                         p.joinus-item-title 广告，网站宣传支持
 </template>

@@ -9,25 +9,24 @@
                 router-link(v-for="(item, index) in navs" class="user-header-link" :class="item.name" :key="index" :to="{name: item.link ? item.name : ''}" @click.native="clickLinks") {{item.title}}
                     ul.user-box(v-if="item.name === 'account' ")
                         li.user-box-header
-                            p.f14 康康
+                            p.f14 {{user.username}}
                             p.font-green.f12 √ 已实名认证
                         li.user-box-item 
                             a.user-box-item(href="javascript: void(0);")
                                 span 
                                     i.iconfont.icon-mail.font-base.f22.fl
-                                    | 消费记录
-                                span.fr.box-item-bedg 4
+                                    | 未读消息
+                                span.fr.box-item-bedg {{messages.length}}
                         li.user-box-footer
-                            a.fr.user-box-logout(href="javascript: void(0);") 退出
+                            a.fr.user-box-logout(@click="logout") 退出
                     ul.message-box(v-if="item.name === 'message' ")
                         li.message-box-header 
                             span 站内消息通知
-                            a.font-blue.fr(href="javascript: void(0);") 消息接收管理
                         li.message-box-item
-                            a.box-item-link(href="javascript: void(0);")
-                                p.f12.font-blue 网站添加解析消息通知
-                                p.f12 2017-12-18 14:22:63
-                        li.message-box-footer.f12.font-blue 查看更多
+                            router-link.box-item-link(v-for="item in messages" :key="item.id" :to="{name: 'message', query: {id: item.id}}")
+                                p.f12.font-blue {{item.title}}
+                                p.f12 {{item.created}}
+                        li.message-box-footer.f12.font-blue(@click='link2message')
 </template>
 
 <script lang="ts">
@@ -41,10 +40,29 @@ export default class AccountHeader extends Vue {
         { name: "message", title: "我的消息", link: true},
         { name: 'account', title: "个人中心", link: false}
     ];
+    @Provide() messages: Array<any> = []
+    public get user() {
+        return this.$store.getters.user
+
+    }
     protected created() {
-        if (this.$store.getters.user.group.name === '客户') {
+        let user = this.user
+        this.navs[3].title = user.username
+        if (user.group.name === '客户') {
             this.navs.concat({name: 'cart', title: '购物车', link: true})
         }
+    }
+    link2message() {
+        this.$router.push({name: 'messages'})
+    }
+
+    logout () {
+        this.$store.commit('logout');
+          this.$message({
+            message: "注销成功",
+            type: "success"
+          });
+        this.$router.push({name: 'home'})
     }
 
     clickLinks(e: ElementEventMap){
