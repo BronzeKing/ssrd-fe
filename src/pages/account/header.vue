@@ -17,7 +17,7 @@ export default class AccountHeader extends Vue {
     @Provide() navs = [
         { name: "home", title: "首页" },
         { name: "secure", title: "账户设置" },
-        { name: "message", title: "首页" }
+        { name: "message", title: "我的消息" }
     ];
     protected created() {
         if (this.$store.getters.user.group.name === '客户') {

@@ -16,6 +16,7 @@
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import { Login, Env, TokenVerify }from "apis";
+import  storage  from 'common/utils/member'
 
 @Component
 export default class LoginView extends Vue
@@ -28,7 +29,7 @@ export default class LoginView extends Vue
         LoginForm: HTMLFormElement
     };
     protected mounted() {
-        let token = (localStorage.token || ' ').split(' ')[1]
+        let token = (storage.getCredential() || ' ').split(' ')[1]
         if (token) {
             TokenVerify.create({
                 token: token

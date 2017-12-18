@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router, { Route } from "vue-router";
 import store from "vuexs";
+import storage from "common/utils/member";
 import User from "vuexs/modules/user";
 import { Env, Login, Profile } from "apis";
 
@@ -15,7 +16,7 @@ let isReady = false; // 用于判断是否已经加载env和user接口
 
 async function user() {
     let profile;
-    if (localStorage.token) {
+    if (storage.getCredential()) {
         await Login.retrieve().then((payload: Payload) => {
             // 如果返回url的话 说明需要重定向 登录不成功
             profile = payload.profile;

@@ -5,11 +5,12 @@
 import * as types from "./types";
 import { assign, makeContent, makeMap } from "common/utils/extends";
 import { System, Login, Cart } from "apis";
+import storage from "common/utils/member";
 import { type } from "os";
 
 const state = {
     user: { verified: { email: false, mobile: false }, profile: {}, group: {} },
-    authenticated: Boolean(localStorage.token),
+    authenticated: Boolean(storage.getCredential()),
     cart: []
 };
 
@@ -20,13 +21,13 @@ const mutations = {
         state.authenticated = true;
     },
     [types.TOKEN](state: any, payload: any) {
-        localStorage.token = "Bearer " + payload.token;
+        storage.setCredential("Bearer " + payload.token);
     },
     [types.LOGOUT](state: any) {
         state.user = {};
         state.authenticated = false;
         state.cart = [];
-        delete localStorage.token;
+        storage.clear();
     },
     // 添加到购物车
     [types.ADDCART](state: any, payload: any) {
