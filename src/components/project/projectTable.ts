@@ -1,7 +1,16 @@
 import { Component, Provide, Vue, Prop } from "vue-property-decorator";
 import { Project, AuthorizeCode, ProjectLog } from "apis";
 import { makeContent as _makeContent } from "utils/extends";
-import { permissionMap, options, errors, rules } from "./data";
+import {
+    TT,
+    permissionMap,
+    options,
+    errors,
+    rules,
+    Permission,
+    FormConfig,
+    FormConfigs
+} from "./data";
 import API from "apis/api-urls"; // 接口URL
 import { debug } from "util";
 
@@ -10,12 +19,20 @@ export default class ProjectTable extends Vue {
     @Provide() Project = Project;
     @Provide() ProjectLog = ProjectLog;
     @Provide() AuthorizeCode = AuthorizeCode;
-    @Provide() permissions: Array<string> = [];
-    @Provide() formConfig: FormConfig = {} as FormConfig;
+    @Provide() permissions: Array<Permission> = [];
+    @Provide()
+    formConfig: FormConfig = {
+        value: [],
+        title: "",
+        active: (status: number) => {
+            return true;
+        }
+    };
     @Provide() formData = { date: new Date(), number: 0, dateType: "" };
     @Provide() options = options;
     @Provide() errors = errors;
     @Provide() rules = rules;
+    @Provide() TT = TT;
 
     @Provide() dialog = { name: "", show: false };
 
@@ -41,7 +58,7 @@ export default class ProjectTable extends Vue {
         Project.list();
         this.permissions = permissionMap[this.user.group.name] || [];
     }
-    inPermission(key: string, item: string): Boolean {
+    showing(key: string, item: string): Boolean {
         return key === item;
     }
 
@@ -79,7 +96,7 @@ export default class ProjectTable extends Vue {
     }
     handleDialog(row: any, name: string): void {
         this.dialog = { name: name, show: true };
-        this.formConfig = FormConfig[name];
+        this.formConfig = FormConfigs[name];
         Project.m.populate(row);
     }
     handleSubmit() {
@@ -92,7 +109,7 @@ export default class ProjectTable extends Vue {
             }
             ProjectLog.create({
                 attatchment: ProjectLog.m.attatchment,
-                action: this.dialog,
+                action: this.dialog.name,
                 projectId: Project.m.id
             })
                 .then(r => {
@@ -110,7 +127,10 @@ export default class ProjectTable extends Vue {
                 });
         });
     }
-    handleRejected() {}
+    handleRejected() {
+        this.dialog.name = "驳回";
+        this.handleSubmit();
+    }
     handleClose() {
         this.dialog = { name: "", show: false };
         this.$refs.form.resetFields();
@@ -121,83 +141,4 @@ export default class ProjectTable extends Vue {
             return item.response;
         });
     }
-    post() {}
 }
-
-interface FormConfig {
-    title: string;
-    value: Array<{ key: string; title: string }>;
-}
-const FormConfig: { [key: string]: FormConfig } = {
-    授权: {
-        title: "项目授权",
-        value: [
-            { key: "name", title: "项目名称" },
-            { key: "auth", title: "授权码名称" },
-            { key: "close", title: "取消" },
-            { key: "submit", title: "确认" }
-        ]
-    },
-    签字: {
-        title: "项目签字",
-        value: [
-            { key: "name", title: "项目名称" },
-            { key: "attatchment", title: "附件" },
-            { key: "close", title: "取消" },
-            { key: "submit", title: "确认" }
-        ]
-    },
-    审核: {
-        title: "项目审核",
-        value: [
-            { key: "name", title: "项目名称" },
-            { key: "content", title: "审核意见" },
-            { key: "attatchment", title: "附件" },
-            { key: "close", title: "取消" },
-            { key: "rejected", title: "驳回" },
-            { key: "submit", title: "确认" }
-        ]
-    },
-    协助申请: {
-        title: "协助申请",
-        value: [
-            { key: "name", title: "项目名称" },
-            { key: "content", title: "工作内容" },
-            { key: "attatchment", title: "附件" },
-            { key: "close", title: "取消" },
-            { key: "submit", title: "确认" }
-        ]
-    },
-    工作日志: {
-        title: "工作日志",
-        value: [
-            { key: "name", title: "项目名称" },
-            { key: "date", title: "工作日期" },
-            { key: "content", title: "协助内容" },
-            { key: "dateType", title: "照片类型" },
-            { key: "attatchment", title: "工作照片" },
-            { key: "close", title: "取消" },
-            { key: "submit", title: "确认" }
-        ]
-    },
-    设计报价: {
-        title: "上传设计及报价",
-        value: [
-            { key: "name", title: "项目名称" },
-            { key: "content", title: "报价" },
-            { key: "attatchment", title: "设计文件" },
-            { key: "close", title: "取消" },
-            { key: "submit", title: "确认" }
-        ]
-    },
-    发货: {
-        title: "项目发货记录",
-        value: [
-            { key: "name", title: "项目名称" },
-            { key: "lackingList", title: "缺货清单" },
-            { key: "attatchment", title: "缺货清单文件" },
-            { key: "close", title: "取消" },
-            { key: "submit", title: "确认" }
-        ]
-    }
-};

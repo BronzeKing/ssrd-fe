@@ -24,6 +24,7 @@ async function user() {
                 store.commit("logout");
             } else {
                 Profile.m.populate(profile);
+                Profile.retrieve({ userId: payload.id });
                 store.commit("login", payload);
             }
         });

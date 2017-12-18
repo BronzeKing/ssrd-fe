@@ -33,6 +33,7 @@ export default class ProfileView extends Vue
 {
     @Provide() Profile = Profile;
     public created () {
+        Profile.retrieve({userId: this.$store.getters.user.id})
     }
     submit () {
         let {company, position, address, birthday, gender, name, ...rest} = Profile.m.serialize()
