@@ -56,4 +56,3 @@ export default class ProductDetailView extends Vue
 <style lang="scss">
     @import '~scss/pages/views/product/product-detail'; 
 </style>
-

@@ -20,7 +20,7 @@
             
         .survey-wrap
             el-tabs(v-model="activeName" @tab-click="handleClick")
-                el-tab-pane(v-for="(item, index) in Project.t.Records" :label="item.name" :name="String(index)" :key="index") {{item.name}}
+                el-tab-pane(v-for="(item, index) in Project.t.Records.slice(0,3)" :label="item.name" :name="String(index)" :key="index") {{item.name}}
         .project-wrap
             .tab-list
                 .left-list
