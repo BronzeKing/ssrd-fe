@@ -6,8 +6,20 @@
                 i.user-header-line
                 h2 个人中心
             nav
-                router-link(v-for="(item, index) in navs" class="user-header-link" :class="item.name" :key="index" :to="{name: item.link ? item.name : ''}" @click.native="clickLinks") {{item.title}}
-                    ul.user-box(v-if="item.name === 'account' ")
+                router-link.user-header-link(class="home" :to="{name: 'home'}") 首页
+                router-link.user-header-link(class="secure" :to="{name: 'home'}") 账户设置
+                router-link.user-header-link(class="cart" :to="{name: 'cart'}" v-if="user.group.name === '客户'") 购物车
+                a.user-header-link(class='message' href="javascript: void(0);") 我的消息
+                    ul.message-box
+                        li.message-box-header
+                            span 站内消息通知
+                        li.message-box-item
+                            router-link.box-item-link(v-for="item in messages" :key="item.id" :to="{name: 'message', query: {id: item.id}}")
+                                p.f12.font-blue {{item.title}}
+                                p.f12 {{item.created}}
+                        li.message-box-footer.f12.font-blue(@click='link2message')
+                a.user-header-link(class='account' href="javascript: void(0);") {{user.username}}
+                    ul.user-box
                         li.user-box-header
                             p.f14 {{user.username}}
                             p.font-green.f12(v-if="user.mobile") 绑定手机：{{user.mobile}}
@@ -22,14 +34,6 @@
                                 span.fr.box-item-bedg {{messages.length}}
                         li.user-box-footer
                             a.fr.user-box-logout(@click="logout") 退出
-                    ul.message-box(v-if="item.name === 'message' ")
-                        li.message-box-header 
-                            span 站内消息通知
-                        li.message-box-item
-                            router-link.box-item-link(v-for="item in messages" :key="item.id" :to="{name: 'message', query: {id: item.id}}")
-                                p.f12.font-blue {{item.title}}
-                                p.f12 {{item.created}}
-                        li.message-box-footer.f12.font-blue(@click='link2message')
 </template>
 
 <script lang="ts">
@@ -37,20 +41,10 @@ import { Component, Provide, Vue } from "vue-property-decorator";
 
 @Component
 export default class AccountHeader extends Vue {
-    @Provide() navs = [
-        { name: "home", title: "首页", link: true},
-        { name: "secure", title: "账户设置", link: true},
-        { name: "message", title: "我的消息", link: true},
-        { name: 'account', title: "个人中心", link: false}
-    ];
     @Provide() messages: Array<any> = []
     @Provide() user = {email: '', username: '', mobile: '', group: {name: ''}}
     protected created() {
         this.user = this.$store.getters.user
-        this.navs[3].title = this.user.username
-        if (this.user.group.name === '客户') {
-            this.navs.concat({name: 'cart', title: '购物车', link: true})
-        }
     }
     link2message() {
         this.$router.push({name: 'message'})
@@ -63,10 +57,6 @@ export default class AccountHeader extends Vue {
             type: "success"
           });
         this.$router.push({name: 'home'})
-    }
-
-    clickLinks(e: ElementEventMap){
-        console.log(e)
     }
 }
 </script>

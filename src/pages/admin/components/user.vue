@@ -19,10 +19,10 @@
                     el-table-column(property="created" label="创建时间")
                     el-table-column(label="操作")
                         template(slot-scope="scope")
+                            el-select(v-model="scope.row.status" @change="userUpdate(scope.row)")
+                                el-option(label="启用" :value="1")
+                                el-option(label="停用" :value="0")
                             el-button-group
-                                el-select(v-model="scope.row.status" @change="userUpdate(scope.row)")
-                                    el-option(label="启用" :value="1")
-                                    el-option(label="停用" :value="0")
                                 el-tooltip.item(effect="light" content="编辑" placement="top")
                                     el-button(icon='el-icon-edit' @click="handleUpdate")
                                 el-tooltip.item(effect="light" content="删除" placement="top")
