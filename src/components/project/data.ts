@@ -181,13 +181,13 @@ export const Step: { [key: string]: Permission } = {
     sign: {
         title: TT.sign,
         disable: (status: number) => {
-            return [5, 9].indexOf(status) < 0;
+            return [4, 8].indexOf(status) < 0;
         }
     },
     audit: {
         title: TT.audit,
         disable: (status: number) => {
-            return 6 < status || status < 4;
+            return 6 < status || status < 3;
         }
     },
     assist: {
@@ -199,19 +199,19 @@ export const Step: { [key: string]: Permission } = {
     jobJournal: {
         title: TT.jobJournal,
         disable: (status: number) => {
-            return status < 8;
+            return status < 7;
         }
     },
     design: {
         title: TT.design,
         disable: (status: number) => {
-            return status !== 3;
+            return status !== 2;
         }
     },
     delivery: {
         title: TT.delivery,
         disable: (status: number) => {
-            return status < 7;
+            return status < 6;
         }
     },
     afterMarket: {

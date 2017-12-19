@@ -9,7 +9,7 @@ import storage from "common/utils/member";
 import { type } from "os";
 
 const state = {
-    user: { verified: { email: false, mobile: false }, profile: {}, group: {} },
+    user: { verified: { email: false, mobile: false }, profile: { avator: "" }, group: {} },
     authenticated: Boolean(storage.getCredential()),
     cart: []
 };

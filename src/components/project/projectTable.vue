@@ -24,7 +24,7 @@
                                 el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="记录每天的工作情况" placement="top" v-if="showing(TT.jobJournal, item.title)")
                                 el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
-                            el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top" v-if="showing('TT.design', item.title)")
+                            el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top" v-if="showing(TT.design, item.title)")
                                 el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top" v-if="showing(TT.delivery, item.title)")
                                 el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}

@@ -6,6 +6,8 @@
                 el-breadcrumb-item 用户(员工)管理
         .about-wrap.mt10.p15
             div
+                el-select(v-model="selectGroup" placeholder="全部部门" @change='userList')
+                    el-option(v-for="item in Group.t.Records" :key='item.id' :label='item.name' :value='item.id')
                 el-select.mr15(v-model="User.t.status" placeholder="全部用户" @change="userList")
                     el-option(v-for="item in statusList" :key="item.label" :label="item.label" :value="item.value")
                 el-button(suffix-icon='el-icon-edit' @click="handleCreate") 新建
@@ -46,6 +48,7 @@ import { User, Group } from "apis";
 @Component
 export default class UserView extends Vue {
     @Provide() statusList = ['-1', '1', '0'].map(x => { return { value: x, label: this.env.status[x] + '账号' }; });
+    @Provide() selectGroup = '';
     @Provide() User = User;
     @Provide() Group = Group;
     @Provide() dialog = { user: false };
@@ -61,7 +64,8 @@ export default class UserView extends Vue {
         return this.$store.state.home.env;
     }
     userList () {
-        User.list()
+        const query = {group: this.selectGroup}
+        User.list(query)
     }
     handleCreate() {
         this.dialog.user = true;
