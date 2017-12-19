@@ -3,6 +3,7 @@
  */
 import * as types from "./types";
 import { assign } from "common/utils/extends";
+import { Env } from "apis";
 
 const state = {
     homeData: "loading",
@@ -24,7 +25,11 @@ const mutations = {
 
 const actions = {
     updateHome: ({ commit }: any, payload: any) => commit("GLOABAL_UPDATE_HOME", payload),
-    env: ({ commit }: any, payload: any) => commit(types.ENV, payload)
+    async env({ commit }: any) {
+        Env.retrieve().then((payload: any) => {
+            commit(types.ENV, payload);
+        });
+    }
 };
 
 const getters = {

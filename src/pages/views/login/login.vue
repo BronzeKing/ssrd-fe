@@ -50,6 +50,7 @@ export default class LoginView extends Vue
             if (!valid) {
                 return;
             };
+            this.$store.dispatch('env')
             this.$store.dispatch('login', Login.m.serialize()).then(() => {
                 this.$message({
                     message: '登录成功',

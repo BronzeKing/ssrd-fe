@@ -3,7 +3,7 @@ import Router, { Route } from "vue-router";
 import store from "vuexs";
 import storage from "common/utils/member";
 import User from "vuexs/modules/user";
-import { Env, Login, Profile } from "apis";
+import { Login, Profile } from "apis";
 
 import views from "./modules/views";
 import account from "./account";
@@ -32,15 +32,10 @@ async function user() {
         store.commit("logout");
     }
 }
-async function env() {
-    Env.retrieve().then((r: any) => {
-        store.commit("env", r);
-    });
-}
 async function ready() {
     if (!isReady) {
         let userResposne = user();
-        let envRresponse = env();
+        let envRresponse = store.dispatch("env");
         isReady = true;
         await userResposne;
         await envRresponse;

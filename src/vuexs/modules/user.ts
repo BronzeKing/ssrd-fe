@@ -49,7 +49,7 @@ const actions = {
         await Login.create(payload).then((r: Payload) => {
             commit(types.TOKEN, r);
         });
-        await Login.retrieve().then((r: any) => {
+        Login.retrieve().then((r: any) => {
             commit(types.LOGIN, r);
         });
     },
