@@ -49,7 +49,8 @@ const actions = {
         await Login.create(payload).then((r: Payload) => {
             commit(types.TOKEN, r);
         });
-        Login.retrieve().then((r: any) => {
+        await Login.retrieve().then((r: any) => {
+            // 等待获取用户数据完毕
             commit(types.LOGIN, r);
         });
     },

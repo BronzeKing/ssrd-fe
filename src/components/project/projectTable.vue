@@ -11,21 +11,23 @@
                     template(v-for="item in permissions")
                         el-button-group
                             el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top" v-if="showing(TT.auth, item.title)")
-                                el-button(type="text" :disabled="item.active(Project.m.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)")  {{item.title}}
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)")  {{item.title}}
                             el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top" v-if="showing(TT.sign, item.title)")
-                                el-button(type="text" :disabled="item.active(Project.m.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="申请售后服务" placement="top" v-if="showing(TT.afterMarket, item.title)")
-                                el-button(type="text" :disabled="item.active(Project.m.status)" href="javascript:;" @click="handleAfterMarket(scope.row)") {{item.title}}
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleAfterMarket(scope.row)") {{item.title}}
+                            el-tooltip.item(effect="light" content="转发" placement="top" v-if="showing(TT.send, item.title)")
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="审批或者驳回项目" placement="top" v-if="showing(TT.audit, item.title)")
-                                el-button(type="text" :disabled="item.active(Project.m.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="申请协助并留下协助记录" placement="top" v-if="showing(TT.assist, item.title)")
-                                el-button(type="text" :disabled="item.active(Project.m.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="记录每天的工作情况" placement="top" v-if="showing(TT.jobJournal, item.title)")
-                                el-button(type="text" :disabled="item.active(Project.m.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="上传设计文件并报价" placement="top" v-if="showing('TT.design', item.title)")
-                                el-button(type="text" :disabled="item.active(Project.m.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top" v-if="showing(TT.delivery, item.title)")
-                                el-button(type="text" :disabled="item.active(Project.m.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
+                                el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
         el-pagination.mt5(v-show="show.pagination" @current-change="Project.list" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
 
         el-dialog(:title="formConfig.title" :visible.sync="dialog.show")

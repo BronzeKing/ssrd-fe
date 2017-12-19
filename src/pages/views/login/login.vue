@@ -28,7 +28,7 @@ export default class LoginView extends Vue
     @Provide() $refs: {
         LoginForm: HTMLFormElement
     };
-    protected mounted() {
+    protected created() {
         let token = (storage.getCredential() || ' ').split(' ')[1]
         if (token) {
             TokenVerify.create({

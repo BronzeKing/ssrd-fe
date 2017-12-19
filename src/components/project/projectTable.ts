@@ -55,8 +55,11 @@ export default class ProjectTable extends Vue {
     show: { search: Boolean; pagination: Boolean };
 
     created() {
-        Project.list();
+        this.projectList();
         this.permissions = permissionMap[this.user.group.name] || [];
+    }
+    projectList() {
+        Project.list();
     }
     showing(key: string, item: string): Boolean {
         return key === item;
@@ -64,6 +67,7 @@ export default class ProjectTable extends Vue {
 
     rowClick(row: any, event: any, column: any) {
         if (column.label !== "操作") {
+            Project.m.populate(row);
             this.$router.push({ name: "projectDetail", params: { id: row.id } });
         }
     }
@@ -113,6 +117,7 @@ export default class ProjectTable extends Vue {
                 projectId: Project.m.id
             })
                 .then(r => {
+                    this.projectList();
                     this.dialog = { name: "", show: false };
                     this.$message({
                         message: "提交成功",

@@ -162,69 +162,69 @@ export const FormConfigs: { [key: string]: FormConfig } = {
     }
 };
 export interface Permission {
-    active: (status: number) => Boolean;
+    disable: (status: number) => Boolean;
     title?: string;
 }
-export const Perm: { [key: string]: Permission } = {
+export const Step: { [key: string]: Permission } = {
     auth: {
         title: TT.auth,
-        active: (status: number) => {
+        disable: (status: number) => {
             return false;
         }
     },
     send: {
         title: TT.send,
-        active: (status: number) => {
-            return status !== 2;
+        disable: (status: number) => {
+            return status !== 1;
         }
     },
     sign: {
         title: TT.sign,
-        active: (status: number) => {
+        disable: (status: number) => {
             return [5, 9].indexOf(status) < 0;
         }
     },
     audit: {
         title: TT.audit,
-        active: (status: number) => {
+        disable: (status: number) => {
             return 6 < status || status < 4;
         }
     },
     assist: {
         title: TT.assist,
-        active: (status: number) => {
+        disable: (status: number) => {
             return status < 7;
         }
     },
     jobJournal: {
         title: TT.jobJournal,
-        active: (status: number) => {
+        disable: (status: number) => {
             return status < 8;
         }
     },
     design: {
         title: TT.design,
-        active: (status: number) => {
+        disable: (status: number) => {
             return status !== 3;
         }
     },
     delivery: {
         title: TT.delivery,
-        active: (status: number) => {
+        disable: (status: number) => {
             return status < 7;
         }
     },
     afterMarket: {
         title: TT.afterMarket,
-        active: (status: number) => {
+        disable: (status: number) => {
             return false;
         }
     }
 };
 export const permissionMap: { [key: string]: Array<Permission> } = {
-    客户: [Perm.auth, Perm.sign, Perm.audit, Perm.afterMarket],
-    设计部: [Perm.design],
-    商务部: [Perm.auth, Perm.send, Perm.audit],
-    工程部: [Perm.jobJournal, Perm.assist],
-    仓库: [Perm.delivery]
+    客户: [Step.auth, Step.afterMarket, Step.sign, Step.audit],
+    设计部: [Step.design],
+    商务部: [Step.auth, Step.send, Step.audit],
+    工程部: [Step.jobJournal, Step.assist],
+    仓库: [Step.delivery]
 };
