@@ -8,7 +8,7 @@
             el-table-column(property="status" label="状态" :formatter='makeStatus')
             el-table-column(label="操作")
                 template(slot-scope="scope")
-                    template(v-for="item in permissions")
+                    template(v-for="item in steps")
                         el-button-group
                             el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top" v-if="showing(TT.auth, item.title)")
                                 el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)")  {{item.title}}

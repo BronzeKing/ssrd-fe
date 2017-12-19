@@ -161,11 +161,11 @@ export const FormConfigs: { [key: string]: FormConfig } = {
         ]
     }
 };
-export interface Permission {
+export interface Step {
     disable: (status: number) => Boolean;
     title?: string;
 }
-export const Step: { [key: string]: Permission } = {
+export const Step: { [key: string]: Step } = {
     auth: {
         title: TT.auth,
         disable: (status: number) => {
@@ -221,10 +221,10 @@ export const Step: { [key: string]: Permission } = {
         }
     }
 };
-export const permissionMap: { [key: string]: Array<Permission> } = {
+export const stepMap: { [key: string]: Array<Step> } = {
     客户: [Step.auth, Step.afterMarket, Step.sign, Step.audit],
     设计部: [Step.design],
     商务部: [Step.auth, Step.send, Step.audit],
     工程部: [Step.jobJournal, Step.assist],
-    仓库: [Step.delivery]
+    管理员: [Step.auth, Step.afterMarket, Step.sign, Step.audit]
 };

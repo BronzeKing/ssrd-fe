@@ -1,16 +1,7 @@
 import { Component, Provide, Vue, Prop } from "vue-property-decorator";
 import { Project, AuthorizeCode, ProjectLog } from "apis";
 import { makeContent as _makeContent } from "utils/extends";
-import {
-    TT,
-    permissionMap,
-    options,
-    errors,
-    rules,
-    Permission,
-    FormConfig,
-    FormConfigs
-} from "./data";
+import { TT, stepMap, options, errors, rules, Step, FormConfig, FormConfigs } from "./data";
 import API from "apis/api-urls"; // 接口URL
 import { debug } from "util";
 
@@ -19,7 +10,7 @@ export default class ProjectTable extends Vue {
     @Provide() Project = Project;
     @Provide() ProjectLog = ProjectLog;
     @Provide() AuthorizeCode = AuthorizeCode;
-    @Provide() permissions: Array<Permission> = [];
+    @Provide() steps: Array<Step> = [];
     @Provide()
     formConfig: FormConfig = {
         value: [],
@@ -56,7 +47,7 @@ export default class ProjectTable extends Vue {
 
     created() {
         this.projectList();
-        this.permissions = permissionMap[this.user.group.name] || [];
+        this.steps = stepMap[this.user.group.name] || [];
     }
     projectList() {
         Project.list();
