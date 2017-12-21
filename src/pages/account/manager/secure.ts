@@ -20,6 +20,7 @@ export default class Secure extends Vue {
     public get user() {
         return this.$store.state.user.user;
     }
+    protected created() {}
 
     changePassword() {
         this.$refs.passForm.validate((valid: Boolean) => {

@@ -1,22 +1,25 @@
-import { Component, Provide, Vue } from "vue-property-decorator";
-import { AuthorizeCode } from "apis";
+import { Component, Provide, Vue, Watch } from "vue-property-decorator";
+import { AuthorizeCode, Project, ProjectGroup } from "apis";
+import { ResourceMixin } from "components";
 @Component
-export default class AuthorizeCodeView extends Vue {
-    @Provide()
-    statusList = ["-1", "1", "0"].map(x => {
-        return {
-            value: x,
-            label: this.env.status[x] + "授权码"
-        };
-    });
+export default class AuthorizeCodeView extends ResourceMixin {
+    @Provide() statusList = ["全部", "启用", "停用"];
     @Provide() AuthorizeCode = AuthorizeCode;
+    @Provide() Project = Project;
+    @Provide() ProjectGroup = ProjectGroup;
+    @Provide() projects = [];
+    @Provide() projectGroup = "";
 
-    public get env() {
-        return this.$store.state.home.env;
+    @Watch("projectGroup")
+    onGroupChange() {
+        Project.list({ group: this.projectGroup });
     }
 
     protected created() {
-        AuthorizeCode.list();
+        this.resource = AuthorizeCode;
+        this.resourceList();
+        ProjectGroup.list();
+        Project.list();
     }
 
     authoriazeCodeList() {

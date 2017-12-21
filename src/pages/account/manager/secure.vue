@@ -25,7 +25,7 @@
             el-dialog(title="修改邮箱" :visible.sync="changeEmailDialog")
                 el-form(:model="Email" ref="changeEmailForm" :rules="Email.rules")
                     el-form-item(label="我的邮箱" prop="email" :error="Email.errors.email")
-                        el-input(v-model="Email.m.email" auto-complete="off" :placeholder="user.email || '请输入您的常用邮箱'")
+                        el-input(v-model="Email.m.email" auto-complete="off" placeholder="请输入您的常用邮箱")
                     el-form-item(label="验证码" prop='captcha' :error="Email.errors.captcha")
                         el-input(v-model="Email.m.captcha" auto-complete="off")
                         el-button(@click="sendCaptcha('email')") 发送验证邮件
@@ -45,7 +45,7 @@
             el-dialog(title="修改手机" :visible.sync="dialog.mobile")
                 el-form(:model="Email" ref="changeMobileForm" :rules="Email.rules")
                     el-form-item(label="手机" prop="mobile" :error="Email.errors.mobile")
-                        el-input(v-model="Email.m.mobile" auto-complete="off" :disabled='Boolean(user.mobile)' :placeholder='user.mobile')
+                        el-input(v-model="Email.m.mobile" auto-complete="off" placeholder='请填写手机号')
                     el-form-item(label="验证码" prop='captcha' :error="Email.errors.captcha")
                         el-input(v-model="Email.m.captcha" auto-complete="off")
                         el-button(@click="sendCaptcha('mobile')") 发送验证码
