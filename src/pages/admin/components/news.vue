@@ -30,7 +30,7 @@
                             el-input(type="textarea" autosize v-model="resource.m.title" auto-complete="off" placeholder="请填写标题")
                         el-form-item(label="内容")
                             el-input(type="textarea" autosize v-model="resource.m.content" auto-complete="off" placeholder="请填写内容")
-                    el-button(@click="dialog= false") 取消
+                    el-button(@click="handleClose") 取消
                     el-button(type="primary" @click="handleSubmit") 确定
 
 </template>

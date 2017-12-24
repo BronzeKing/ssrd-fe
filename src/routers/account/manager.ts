@@ -24,7 +24,7 @@ export default [
         redirect: { name: "secure" },
         children: [
             {
-                path: "secure",
+                path: "",
                 name: "secure",
                 component: secure
             },

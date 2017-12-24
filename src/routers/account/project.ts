@@ -19,7 +19,7 @@ export default [
                 component: documents
             },
             {
-                path: "dynamic",
+                path: "",
                 name: "projectList",
                 component: project
             },

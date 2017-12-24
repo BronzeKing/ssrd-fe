@@ -1,7 +1,9 @@
 <template lang="pug">
     div
-        el-input(v-show="show.search" placeholder="请输入要搜索的项目名称" suffix-icon="el-icon-search" v-model="Project.t.search" @change="Project.list()")
-        el-table.mt10(:data="Project.t.Records" stripe highlight-current-row @row-click="rowClick" style="width: 100%")
+        el-select(v-if="show.status" tpye="card" v-model="query.type" placeholder="请选择项目类型" @change="resourceList")
+            el-option(v-for="x in types" :key="x" :label="x" :value="x")
+        el-input(v-if="show.search" placeholder="请输入要搜索的项目名称" suffix-icon="el-icon-search" v-model="query.search" @change="resourceList")
+        el-table.mt10(v-loading="loading" :data="Project.t.Records" stripe highlight-current-row @row-click="rowClick" style="width: 100%")
             el-table-column(property="name" label="名称")
             el-table-column(property="type" width="100" label="项目类型")
             el-table-column(property="content" label="事项" :formatter='makeContent')
@@ -28,9 +30,9 @@
                                 el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
                             el-tooltip.item(effect="light" content="发货并上传缺货清单" placement="top" v-if="showing(TT.delivery, item.title)")
                                 el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)") {{item.title}}
-        el-pagination.mt5(v-show="show.pagination" @current-change="Project.list" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
+        el-pagination.mt5(v-show="show.pagination" @current-change="resourceList" :page-size="Project.t.pageSize" layout="prev, pager, next, jumper" :total="Project.t.PageCount" :current-page.sync="Project.t.pageIndex")
 
-        el-dialog(:title="formConfig.title" :visible.sync="dialog.show")
+        el-dialog(:title="formConfig.title" :visible.sync="dialog")
             el-form(ref="form" :model="formData" :rules="rules" label-width="120px" label-position="right")
                 template(v-for="(item, index) in formConfig.value")
                     el-form-item(:label="item.title" v-if="item.key === 'name'")
@@ -50,7 +52,7 @@
                             el-input-number(v-model="formData.lackingList" controls-position="right" :min="1")
                             p 项
                     el-form-item(:label="item.title" prop="attatchment" :error="ProjectLog.errors.attatchment" v-if="item.key === 'attatchment'")
-                        el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="ProjectLog.m.attatchment" :action="uploadUrl(item.name)")
+                        el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="ProjectLog.m.attatchment" :action="getUploadUrl(formConfig.name)")
                             el-button(size="small" type="primary") 点击上传
                             div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
                     el-button(@click="handleClose" v-if="item.key === 'close'") {{item.title}}
@@ -60,3 +62,12 @@
 
 <script src="./projectTable.ts" lang="ts">
 </script>
+
+<style lang="scss">
+    .survey-wrap{
+        background-color: #fff;
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+</style>

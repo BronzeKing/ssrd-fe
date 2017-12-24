@@ -14,8 +14,8 @@
                     el-table-column(property="name", label="文件名称")
                     el-table-column(label="操作")
                         template(slot-scope="scope")
-                            el-button(size="small" @click="player(scope.row)")
-                                p.mb10 播放
+                            el-tooltip.item(effect="light" content="播放" placement="top")
+                                el-button(icon='el-icon-caret-right' @click="location.href=scope.row.file")
                     el-table-column(property="updated" label="更新时间")
                 el-pagination.mt5(@current-change="Video.list" :page-size="Video.t.pageSize" layout="prev, pager, next, jumper" :total="Video.t.PageCount" :current-page.sync="Video.t.pageIndex")
 </template>

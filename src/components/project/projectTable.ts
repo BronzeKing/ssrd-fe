@@ -1,19 +1,21 @@
-import { Component, Provide, Vue, Prop } from "vue-property-decorator";
+import { Component, Provide, Vue, Prop, Watch } from "vue-property-decorator";
 import { Project, AuthorizeCode, ProjectLog } from "apis";
 import { makeContent as _makeContent } from "utils/extends";
 import { TT, stepMap, options, errors, rules, Step, FormConfig, FormConfigs } from "./data";
 import API from "apis/api-urls"; // 接口URL
-import { debug } from "util";
+import ResourceMixin, { Query } from "src/components/mixins";
 
 @Component
-export default class ProjectTable extends Vue {
+export default class ProjectTableView extends ResourceMixin {
     @Provide() Project = Project;
     @Provide() ProjectLog = ProjectLog;
     @Provide() AuthorizeCode = AuthorizeCode;
     @Provide() steps: Array<Step> = [];
+    @Provide() types = ["全部项目", "进度类", "维护类", "签证类"];
     @Provide()
     formConfig: FormConfig = {
         value: [],
+        name: "",
         title: "",
         active: (status: number) => {
             return true;
@@ -25,32 +27,20 @@ export default class ProjectTable extends Vue {
     @Provide() rules = rules;
     @Provide() TT = TT;
 
-    @Provide() dialog = { name: "", show: false };
+    @Provide() dialogName = "";
 
-    @Provide()
-    $refs: {
-        form: HTMLFormElement;
-    };
-    public uploadUrl(type: string) {
+    public getUploadUrl(type: string) {
         return API.docs + "?type=" + type;
-    }
-    public get env() {
-        return this.$store.state.home.env;
-    }
-    public get user() {
-        return this.$store.state.user.user;
     }
 
     // search: 是否显示搜索控件， pagination: 是否显示分页控件
-    @Prop({ default: { search: false, pagination: false } })
-    show: { search: Boolean; pagination: Boolean };
+    @Prop({ default: { search: false, pagination: false, status: false } })
+    show: { search: Boolean; pagination: Boolean; status: Boolean };
 
     created() {
-        this.projectList();
+        this.resource = Project;
+        this.resourceList();
         this.steps = stepMap[this.user.group.name] || [];
-    }
-    projectList() {
-        Project.list();
     }
     showing(key: string, item: string): Boolean {
         return key === item;
@@ -73,6 +63,10 @@ export default class ProjectTable extends Vue {
     makeStatus(row: any, column: any, cellValue: any): string {
         return this.env.projectStatusReverse[cellValue];
     }
+    setDialog(dialog: boolean = false, dialogName: string = "") {
+        this.dialogName = dialogName;
+        this.dialog = dialog;
+    }
     handleAuth() {
         AuthorizeCode.create({
             name: AuthorizeCode.m.name,
@@ -83,14 +77,14 @@ export default class ProjectTable extends Vue {
                 type: "success"
             });
         });
-        this.dialog = { name: "", show: false };
+        this.setDialog();
     }
     handleAfterMarket(row: any) {
         this.Project.m.populate(row);
         this.$router.push({ name: "afterMarket" });
     }
     handleDialog(row: any, name: string): void {
-        this.dialog = { name: name, show: true };
+        this.setDialog(true, name);
         this.formConfig = FormConfigs[name];
         Project.m.populate(row);
     }
@@ -99,17 +93,17 @@ export default class ProjectTable extends Vue {
             if (!v) {
                 return;
             }
-            if (this.dialog.name === "授权") {
+            if (this.dialogName === "授权") {
                 return this.handleAuth();
             }
             ProjectLog.create({
                 attatchment: ProjectLog.m.attatchment,
-                action: this.dialog.name,
+                action: this.dialogName,
                 projectId: Project.m.id
             })
                 .then(r => {
-                    this.projectList();
-                    this.dialog = { name: "", show: false };
+                    this.resourceList();
+                    this.setDialog();
                     this.$message({
                         message: "提交成功",
                         type: "success"
@@ -124,17 +118,11 @@ export default class ProjectTable extends Vue {
         });
     }
     handleRejected() {
-        this.dialog.name = "驳回";
+        this.dialogName = "驳回";
         this.handleSubmit();
     }
     handleClose() {
-        this.dialog = { name: "", show: false };
+        this.setDialog();
         this.$refs.form.resetFields();
-        Project.m.populate({ attatchment: [] });
-    }
-    handleChange(file: any, fileList: any): void {
-        Project.m.attatchment = fileList.map((item: any) => {
-            return item.response;
-        });
     }
 }

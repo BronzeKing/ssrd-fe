@@ -1,6 +1,6 @@
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
 import { AuthorizeCode, Project, ProjectGroup } from "apis";
-import { ResourceMixin } from "components";
+import ResourceMixin from "src/components/mixins";
 @Component
 export default class AuthorizeCodeView extends ResourceMixin {
     @Provide() statusList = ["全部", "启用", "停用"];

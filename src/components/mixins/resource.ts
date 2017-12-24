@@ -1,15 +1,11 @@
-import { Component, Provide, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Provide, Vue, Watch } from "vue-property-decorator";
 import { Resource } from "src/apis/resource";
 import { Model } from "src/apis/baseModel";
 import API from "apis/api-urls"; // 接口URL
+import { Loading } from "element-ui";
+import { Query } from "./";
 /*
 */
-
-interface Query {
-    // 存放resourceList 中的参数
-    source: string; // documents中的来源
-    type: string; // 查询参数中的类型
-}
 
 @Component
 export default class ResourceMixin extends Vue {
@@ -19,15 +15,24 @@ export default class ResourceMixin extends Vue {
     @Provide() fileList: Array<any> = [];
     @Provide() uploadUrl = API.docs;
     @Provide() dialog = false;
+    @Provide() loading = true;
     @Provide() action = "";
+    @Provide()
     $refs: {
-        from: HTMLFormElement;
+        form: HTMLFormElement;
     };
     public get env() {
         return this.$store.state.home.env;
     }
+    public get user() {
+        return this.$store.state.user.user;
+    }
     resourceList() {
-        this.resource.list(this.query);
+        this.loading = true;
+        this.resource.list(this.query).then((r: any) => {
+            this.loading = false;
+            return r;
+        });
     }
 
     handleCreate() {
@@ -49,7 +54,7 @@ export default class ResourceMixin extends Vue {
         });
     }
     handleSubmit() {
-        this.$refs.from.validate((valid: Boolean) => {
+        this.$refs.form.validate((valid: Boolean) => {
             if (!valid) {
                 return;
             }
@@ -98,6 +103,11 @@ export default class ResourceMixin extends Vue {
     }
     handleChange(file: any, fileList: any): void {
         this.fileList = fileList;
+    }
+    handleClose() {
+        this.dialog = false;
+        this.$refs.form.resetFields();
+        this.fileList = [];
     }
     handleCurrentChange(data: any) {
         this.resource.m.reset();

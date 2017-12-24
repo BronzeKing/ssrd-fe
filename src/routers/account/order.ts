@@ -57,12 +57,12 @@ export default [
                 component: history
             },
             {
-                path: "projectCreate",
+                path: "",
                 name: "projectCreate",
                 component: projectCreate
             },
             {
-                path: "projectCreate/:id",
+                path: "project/:id",
                 name: "projectCreateDetail",
                 component: projectCreateDetail
             },

@@ -1,17 +1,24 @@
 import { Option } from "utils/extends";
 
 // 用户权限, 用来控制 某个用户有哪些按钮
-export const TT = {
-    auth: "授权",
-    sign: "签字",
-    audit: "审核",
-    afterMarket: "售后申请",
-    design: "设计报价",
-    send: "转发",
-    jobJournal: "工作日志",
-    assist: "协助申请",
-    delivery: "发货"
-};
+export enum TT {
+    auth = "授权",
+    sign = "签字",
+    audit = "审核",
+    afterMarket = "售后申请",
+    design = "设计报价",
+    send = "转发",
+    jobJournal = "工作日志",
+    assist = "协助申请",
+    delivery = "发货"
+}
+export enum Group {
+    custom = "客户",
+    design = "设计部",
+    market = "商务部",
+    engineer = "工程部",
+    admin = "管理员"
+}
 // 行为映射关系
 export const options = {
     dateType: [
@@ -51,6 +58,7 @@ export const errors = {
 
 export interface FormConfig {
     title: string;
+    name: string;
     active: (status: number) => Boolean;
     value: Array<{ key: string; title: string }>;
 }
@@ -58,6 +66,7 @@ export interface FormConfig {
 export const FormConfigs: { [key: string]: FormConfig } = {
     [TT.auth]: {
         title: "项目授权",
+        name: TT.auth,
         active: (status: number) => {
             return true;
         },
@@ -70,8 +79,9 @@ export const FormConfigs: { [key: string]: FormConfig } = {
     },
     [TT.send]: {
         title: "需求转发",
+        name: TT.send,
         active: (status: number) => {
-            return status === 2;
+            return status === 1;
         },
         value: [
             { key: "name", title: "项目名称" },
@@ -82,8 +92,9 @@ export const FormConfigs: { [key: string]: FormConfig } = {
     },
     [TT.sign]: {
         title: "项目签字",
+        name: TT.sign,
         active: (status: number) => {
-            return [5, 9].indexOf(status) > -1;
+            return [4, 7].indexOf(status) > -1;
         },
         value: [
             { key: "name", title: "项目名称" },
@@ -94,8 +105,9 @@ export const FormConfigs: { [key: string]: FormConfig } = {
     },
     [TT.audit]: {
         title: "项目审核",
+        name: TT.audit,
         active: (status: number) => {
-            return 7 < status && status > 3;
+            return status != 3;
         },
         value: [
             { key: "name", title: "项目名称" },
@@ -108,8 +120,9 @@ export const FormConfigs: { [key: string]: FormConfig } = {
     },
     [TT.assist]: {
         title: "协助申请",
+        name: TT.assist,
         active: (status: number) => {
-            return status > 6;
+            return status != 5;
         },
         value: [
             { key: "name", title: "项目名称" },
@@ -121,8 +134,9 @@ export const FormConfigs: { [key: string]: FormConfig } = {
     },
     [TT.jobJournal]: {
         title: "工作日志",
+        name: TT.jobJournal,
         active: (status: number) => {
-            return status > 7;
+            return status > 5;
         },
         value: [
             { key: "name", title: "项目名称" },
@@ -136,6 +150,7 @@ export const FormConfigs: { [key: string]: FormConfig } = {
     },
     [TT.design]: {
         title: "上传设计及报价",
+        name: TT.design,
         active: (status: number) => {
             return status === 3;
         },
@@ -149,6 +164,7 @@ export const FormConfigs: { [key: string]: FormConfig } = {
     },
     [TT.delivery]: {
         title: "项目发货记录",
+        name: TT.delivery,
         active: (status: number) => {
             return status > 6;
         },
@@ -222,9 +238,9 @@ export const Step: { [key: string]: Step } = {
     }
 };
 export const stepMap: { [key: string]: Array<Step> } = {
-    客户: [Step.auth, Step.afterMarket, Step.sign, Step.audit],
-    设计部: [Step.design],
-    商务部: [Step.auth, Step.send, Step.audit],
-    工程部: [Step.jobJournal, Step.assist],
-    管理员: [Step.auth, Step.afterMarket, Step.sign, Step.audit]
+    [Group.custom]: [Step.auth, Step.afterMarket, Step.sign, Step.audit],
+    [Group.design]: [Step.design],
+    [Group.market]: [Step.auth, Step.send, Step.audit],
+    [Group.engineer]: [Step.jobJournal, Step.assist],
+    [Group.admin]: [Step.auth, Step.afterMarket, Step.sign, Step.audit]
 };
