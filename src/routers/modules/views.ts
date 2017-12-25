@@ -20,7 +20,7 @@ export default {
     path: "/",
     // name: 'views',
     component: views,
-    redirect: "home",
+    redirect: { name: "home" },
     children: [
         ...homes,
         ...about,

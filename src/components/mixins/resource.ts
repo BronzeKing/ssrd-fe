@@ -6,21 +6,13 @@ import { Loading } from "element-ui";
 import { Query } from "./";
 /*
 */
-
+// 处理table的mixin
 @Component
-export default class ResourceMixin extends Vue {
+export class ResourceListMixin extends Vue {
     @Provide() query: Query = {} as Query;
-
-    public resource: Resource<Model>;
-    @Provide() fileList: Array<any> = [];
-    @Provide() uploadUrl = API.docs;
-    @Provide() dialog = false;
     @Provide() loading = true;
-    @Provide() action = "";
-    @Provide()
-    $refs: {
-        form: HTMLFormElement;
-    };
+    public resource: Resource<Model>;
+
     public get env() {
         return this.$store.state.home.env;
     }
@@ -34,6 +26,23 @@ export default class ResourceMixin extends Vue {
             return r;
         });
     }
+    handleCurrentChange(data: any) {
+        this.resource.m.reset();
+        this.resource.m.populate(data);
+    }
+}
+
+// 处理新建、编辑的dialog的mixin
+@Component
+export class ResourceMixin extends ResourceListMixin {
+    @Provide() fileList: Array<any> = [];
+    @Provide() uploadUrl = API.docs;
+    @Provide() dialog = false;
+    @Provide() action = "";
+    @Provide()
+    $refs: {
+        form: HTMLFormElement;
+    };
 
     handleCreate() {
         this.dialog = true;
@@ -108,9 +117,5 @@ export default class ResourceMixin extends Vue {
         this.dialog = false;
         this.$refs.form.resetFields();
         this.fileList = [];
-    }
-    handleCurrentChange(data: any) {
-        this.resource.m.reset();
-        this.resource.m.populate(data);
     }
 }

@@ -132,6 +132,19 @@ const SIDEBAR: Array<Side> = [
                 title: "安全设置"
             },
             {
+                name: "profile",
+                title: "个人资料"
+            },
+            {
+                name: "message",
+                title: "我的消息"
+            },
+            {
+                name: "companyProfile",
+                title: "企业信息",
+                group: ["客户"]
+            },
+            {
                 name: "user",
                 group: ["客户"],
                 title: "子账号管理"
@@ -140,19 +153,6 @@ const SIDEBAR: Array<Side> = [
                 name: "authorizeCode",
                 group: ["客户"],
                 title: "授权码管理"
-            },
-            {
-                name: "message",
-                title: "我的消息"
-            },
-            {
-                name: "profile",
-                title: "个人资料"
-            },
-            {
-                name: "companyProfile",
-                title: "企业信息",
-                group: ["客户"]
             },
             {
                 name: "terminal",
