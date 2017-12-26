@@ -29,7 +29,7 @@ import  { Docs as Documents, Project, ProjectGroup } from 'apis';
 
 export default class DocumentsView extends Vue
 {
-    @Provide() Documents: any = Documents;
+    @Provide() Documents = Documents;
     @Provide() activeTab = '全部文档';
     @Provide() Project = Project;
     @Provide() ProjectGroup = ProjectGroup;
@@ -42,13 +42,13 @@ export default class DocumentsView extends Vue
     @Prop()
     breadcrumb: Array<{name: string, title: string}>;
 
-	@Prop({ default: { project: false} })
-	show: { project: Boolean};
+    @Prop({ default: { project: false }} )
+    show: { project: Boolean};
 
     protected created () {
         this.documentsList()
-        ProjectGroup.list()
         if (this.show.project) {
+            ProjectGroup.list()
             Project.list()
         }
     }

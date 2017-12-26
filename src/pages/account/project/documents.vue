@@ -1,9 +1,10 @@
 <template lang="pug">
     documents(:breadcrumb='breadcrumb' :tabs='tabs' :show='show')
 </template>
+
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
-import  { Documents } from 'components';
+import  { Documents } from 'src/components';
 
 @Component
 ({
