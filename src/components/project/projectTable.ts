@@ -3,10 +3,10 @@ import { Project, AuthorizeCode, ProjectLog } from "apis";
 import { makeContent as _makeContent } from "utils/extends";
 import { TT, stepMap, options, errors, rules, Step, FormConfig, FormConfigs } from "./data";
 import API from "apis/api-urls"; // 接口URL
-import ResourceMixin, { Query } from "src/components/mixins";
+import { Query, ResourceListMixin } from "src/common/mixins";
 
 @Component
-export default class ProjectTableView extends ResourceMixin {
+export default class ProjectTableView extends ResourceListMixin {
     @Provide() Project = Project;
     @Provide() ProjectLog = ProjectLog;
     @Provide() AuthorizeCode = AuthorizeCode;

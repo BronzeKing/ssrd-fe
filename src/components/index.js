@@ -5,7 +5,6 @@ import infoBanner from "./info-banner";
 import piclook from "./pic-look";
 import projectTable from "./project";
 import Documents from "./documents";
-import ResourceMixin from "./mixins";
 
 export {
     LineThrough,
@@ -15,5 +14,5 @@ export {
     projectTable,
     Documents,
     piclook,
-    ResourceMixin
+    ResourceListMixin
 };

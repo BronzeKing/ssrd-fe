@@ -9,9 +9,14 @@ import { Query } from "./";
 // 处理table的mixin
 @Component
 export class ResourceListMixin extends Vue {
+    public resource: Resource<Model>;
     @Provide() query: Query = {} as Query;
     @Provide() loading = true;
-    public resource: Resource<Model>;
+    @Provide() dialog = false;
+    @Provide()
+    $refs: {
+        form: HTMLFormElement;
+    };
 
     public get env() {
         return this.$store.state.home.env;
@@ -37,12 +42,7 @@ export class ResourceListMixin extends Vue {
 export class ResourceMixin extends ResourceListMixin {
     @Provide() fileList: Array<any> = [];
     @Provide() uploadUrl = API.docs;
-    @Provide() dialog = false;
     @Provide() action = "";
-    @Provide()
-    $refs: {
-        form: HTMLFormElement;
-    };
 
     handleCreate() {
         this.dialog = true;

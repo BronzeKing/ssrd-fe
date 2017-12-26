@@ -37,7 +37,7 @@
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
 import { News} from "apis";
-import  { ResourceMixin } from 'components';
+import { Query, ResourceMixin } from 'src/common/mixins';
 
 @Component
 export default class NewsView extends ResourceMixin {

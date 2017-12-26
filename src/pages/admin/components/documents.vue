@@ -39,7 +39,7 @@
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
 import { Documents } from "apis";
-import  { ResourceMixin } from 'components';
+import { Query, ResourceMixin } from 'src/common/mixins';
 
 @Component
 export default class DocumentsView extends ResourceMixin {
