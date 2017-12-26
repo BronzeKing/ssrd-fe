@@ -33,7 +33,7 @@
                 el-form-item(label="材料上传" :error="Project.errors.attatchment")
                     el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="Project.m.attatchment" :action="uploadUrl")
                         el-button(size="small" type="primary") 点击上传
-                        div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
+                        div(slot="tip" class="el-upload__tip")
                 el-button(type="primary" @click="submit") 保存
 </template>
 <script lang="ts">

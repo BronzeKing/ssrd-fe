@@ -25,7 +25,7 @@
                         el-form-item(label="视频上传")
                             el-upload(class="upload-demo" multiple :on-change="handleChange" action="" :file-list="Honor.m.file" :auto-upload="false")
                                 el-button(size="small" type="primary") 点击上传
-                                div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
+                                div(slot="tip" class="el-upload__tip")
                     el-button(@click="dialog.honor = false") 取消
                     el-button(type="primary" @click="handleHonor") 确定
 

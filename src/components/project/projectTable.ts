@@ -52,6 +52,16 @@ export default class ProjectTableView extends ResourceListMixin {
             this.$router.push({ name: "projectDetail", params: { id: row.id } });
         }
     }
+    _makeContent(item: any) {
+        return _makeContent(item);
+    }
+    getName(content: any) {
+        return content
+            .map((x: any) => {
+                return x.name;
+            })
+            .join("、");
+    }
     makeContent(row: any, column: any, cellValue: any): string {
         let result = cellValue
             .map((item: any) => {

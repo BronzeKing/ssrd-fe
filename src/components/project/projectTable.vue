@@ -6,7 +6,12 @@
         el-table.mt10(v-loading="loading" :data="Project.t.Records" stripe highlight-current-row @row-click="rowClick" style="width: 100%")
             el-table-column(property="name" label="名称")
             el-table-column(property="type" width="100" label="项目类型")
-            el-table-column(property="content" label="事项" :formatter='makeContent')
+            el-table-column(property="content" label="事项")
+                template(slot-scope="scope")
+                    el-popover(trigger="hover" placement="top")
+                        p(v-for="(item, index) in scope.row.content" :key="index") {{item.name}}: {{ _makeContent(item) }}
+                        div(slot="reference" class="name-wrapper")
+                            p {{getName(scope.row.content)}}
             el-table-column(property="status" label="状态" :formatter='makeStatus')
             el-table-column(label="操作")
                 template(slot-scope="scope")
@@ -54,7 +59,7 @@
                     el-form-item(:label="item.title" prop="attatchment" :error="ProjectLog.errors.attatchment" v-if="item.key === 'attatchment'")
                         el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="ProjectLog.m.attatchment" :action="getUploadUrl(formConfig.name)")
                             el-button(size="small" type="primary") 点击上传
-                            div(slot="tip" class="el-upload__tip") 只能上传jpg/png文件，且不超过500kb
+                            div(slot="tip" class="el-upload__tip")
                     el-button(@click="handleClose" v-if="item.key === 'close'") {{item.title}}
                     el-button(@click="handleRejected" v-if="item.key === 'rejected'") {{item.title}}
                     el-button(type='primary' @click="handleSubmit" v-if="item.key === 'submit'") {{item.title}}
