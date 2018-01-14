@@ -130,6 +130,7 @@ export default {
      * 邀请码
      */
     invitation: `${apiUrl}/invitations`,
+    exhibition: `${apiUrl}/exhibitions`,
     /**
      * 项目列表
      */

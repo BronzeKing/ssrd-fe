@@ -11,15 +11,20 @@
         .exhibution-content.container
             .exhibution-joinus
                 .joinus-item-list
-                    .joinus-item(v-for="item in 6" :key="item")
+                    .joinus-item(v-for="item in Exhibition.t.Records" :key="item.id")
                         .joinus-item-image(:style="{backgroundImage: `url(https://static.mum5.cn/201310230225529371_HS5UqXg.JPG)`}")
-                        p.joinus-item-title 广告，网站宣传支持
+                        p.joinus-item-title {{item.name}}
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import  { Project } from 'apis';
+import  { Project, Exhibition } from 'apis';
 @Component
 export default class ExhibitionView extends Vue {
+    @Provide() Exhibition=Exhibition;
+
+    created () {
+        Exhibition.list({type: '1'})
+    }
     handleClick() {
         Project.m.populate({name: '展会协助', type: '展会协助'})
         this.$router.push({name: 'quick'})

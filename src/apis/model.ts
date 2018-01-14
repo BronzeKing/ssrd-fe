@@ -1670,3 +1670,27 @@ export class ProjectGroup extends Model {
         this.commit();
     }
 }
+
+export class Exhibition extends Model {
+    // ID
+    public id: number;
+    // name
+    public name: string;
+    // permissions
+    public picture: any;
+
+    public constructor(data = {}) {
+        super(data);
+        this.defineField("id", {
+            type: "Number"
+        });
+        this.defineField("name", {
+            type: "String"
+        });
+        this.defineField("picture", {
+            type: "Any"
+        });
+        this.populate(data);
+        this.commit();
+    }
+}

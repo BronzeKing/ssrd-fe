@@ -63,3 +63,4 @@ export const ProjectLog = new Resource(API.projectLog, new m.ProjectLog({})); //
 export const Project = new Resource(API.project, new m.Project({}), r.Project); // 项目
 export const ProjectGroup = new Resource(API.projectGroup, new m.ProjectGroup()); // 项目
 export const ProjectCreate = new Resource(API.project, new m.Project({})); // 新建项目用到的model，用于与项目详情区别开
+export const Exhibition = new Resource(API.exhibition, new m.Exhibition({})); // 新建项目用到的model，用于与项目详情区别开
