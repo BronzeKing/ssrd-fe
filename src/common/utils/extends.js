@@ -156,7 +156,7 @@ function makeContent(item) {
             }
         })
         .filter(x => x)
-        .join("\n");
+        .join("");
 }
 
 export {

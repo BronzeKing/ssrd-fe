@@ -12,7 +12,7 @@
             .exhibution-joinus
                 .joinus-item-list
                     .joinus-item(v-for="item in Exhibition.t.Records" :key="item.id")
-                        .joinus-item-image(:style="{backgroundImage: `url(https://static.mum5.cn/201310230225529371_HS5UqXg.JPG)`}")
+                        .joinus-item-image(:style="{backgroundImage: `url(${item.picture})`}")
                         p.joinus-item-title {{item.name}}
 </template>
 <script lang="ts">

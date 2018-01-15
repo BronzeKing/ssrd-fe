@@ -1,7 +1,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require("path");
 
-_configMap = {
+var _configMap = {
     development: {
         target: "https://api.mum5.cn",
         secure: true

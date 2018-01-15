@@ -11,7 +11,7 @@
                     el-popover(trigger="hover" placement="top")
                         p(v-for="(item, index) in scope.row.content" :key="index") {{item.name}}: {{ _makeContent(item) }}
                         div(slot="reference" class="name-wrapper")
-                            p {{getName(scope.row.content)}}
+                            el-tag(v-for="(name, i) in scope.row.content" :key="i") {{name.name}}
             el-table-column(property="status" label="状态" :formatter='makeStatus')
             el-table-column(label="操作")
                 template(slot-scope="scope")

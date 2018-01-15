@@ -62,14 +62,6 @@ export default class ProjectTableView extends ResourceListMixin {
             })
             .join("、");
     }
-    makeContent(row: any, column: any, cellValue: any): string {
-        let result = cellValue
-            .map((item: any) => {
-                return _makeContent(item);
-            })
-            .join("\n");
-        return result;
-    }
     makeStatus(row: any, column: any, cellValue: any): string {
         return this.env.projectStatusReverse[cellValue];
     }
