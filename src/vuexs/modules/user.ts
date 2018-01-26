@@ -47,8 +47,11 @@ const actions = {
     logout: ({ commit }: any) => commit(types.LOGOUT),
     async login({ dispatch, commit }: any, payload: any) {
         await Login.create(payload).then((r: Payload) => {
-            commit(types.TOKEN, r);
+            dispatch("token", r);
         });
+    },
+    async token({ dispatch, commit }: any, token: any) {
+        commit(types.TOKEN, token);
         await Login.retrieve().then((r: any) => {
             // 等待获取用户数据完毕
             commit(types.LOGIN, r);

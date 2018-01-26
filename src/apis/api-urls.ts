@@ -12,6 +12,7 @@ export default {
     login: `${apiUrl}/login`,
 
     verifyToken: `${apiUrl}/token/verify`,
+    token: `${apiUrl}/token/`,
     /**
      * 登出
      */

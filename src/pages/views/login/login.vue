@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import { Login, Env, TokenVerify }from "apis";
+import { Login, Env, TokenVerify, Token }from "apis";
 import  storage  from 'common/utils/member'
 
 @Component
@@ -29,6 +29,15 @@ export default class LoginView extends Vue
         LoginForm: HTMLFormElement
     };
     protected created() {
+        if (this.$route.query.do) { // 微博微信登录
+            Token.create().then((r: any) => {
+                if (r.token) {
+                    this.$store.dispatch('token', r).then(() => {
+                        this.pushRouter()
+                    });
+                }
+            })
+        }
         let token = (storage.getCredential() || ' ').split(' ')[1]
         if (token) {
             TokenVerify.create({
