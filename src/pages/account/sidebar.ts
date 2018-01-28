@@ -27,8 +27,8 @@ export default class Slider extends Vue {
     icons = {
         manager: "el-icon-setting",
         project: "el-icon-view",
-        order: "el-icon-tickets",
-        service: "el-icon-message"
+        order: "el-icon-menu",
+        service: "el-icon-service"
     };
 
     protected created() {

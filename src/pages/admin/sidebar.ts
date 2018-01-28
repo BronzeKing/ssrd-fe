@@ -6,6 +6,12 @@ export default class Slider extends Vue {
     @Provide() sidebar = SIDEBAR;
     @Provide() isCollapse = false;
     @Provide() activeMenu = "0-1";
+    @Provide()
+    icons = {
+        "admin.home": "el-icon-menu",
+        "admin.about": "el-icon-setting",
+        "admin.account": "el-icon-tickets"
+    };
 
     protected created() {
         this.activeMenu = IndexMap[this.$route.name || "order"];
@@ -24,6 +30,7 @@ export default class Slider extends Vue {
 const SIDEBAR = [
     {
         title: "首页管理",
+        name: "admin.home",
         sub: [
             {
                 name: "admin.system", //路由信息
@@ -53,6 +60,7 @@ const SIDEBAR = [
     },
     {
         title: "基本信息",
+        name: "admin.about",
         sub: [
             {
                 name: "admin.honor",
@@ -70,6 +78,7 @@ const SIDEBAR = [
     },
     {
         title: "用户管理",
+        name: "admin.account",
         sub: [
             {
                 name: "admin.group",
