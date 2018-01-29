@@ -29,7 +29,7 @@
                    div(v-for="x in SystemCase.m.systems")
                         router-link(:to="{name: 'systemDetail', params: {id: x.id}}")
                             div.image-container
-                                img(:name="x.name" :src="x.summaryPicture" @click="imageShow(x.summaryPicture)")
+                                img(:name="x.name" :src="x.picture" @click="imageShow(x.picture)")
                                 .img-info
                                     p {{x.name}}
                 i.iconfont.icon-arrow-right.font-grey(@click="scrollRight")
