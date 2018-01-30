@@ -66,10 +66,10 @@ export default class Secure extends Vue {
         Email.errors = Credential.errors;
     }
     /**
-  * 获取验证码
-  *
-  * @param type email: 更改邮箱的时候传email， 更改手机的时传mobile
-  */
+     * 获取验证码
+     *
+     * @param type email: 更改邮箱的时候传email， 更改手机的时传mobile
+     */
     sendCaptcha(type: string): void {
         let payload = {};
         if (type === "email") {
@@ -82,8 +82,8 @@ export default class Secure extends Vue {
                 message: "校验码已发出，请注意查收",
                 type: "success"
             });
+            Email.errors = Captcha.errors;
         });
-        Email.errors = Captcha.errors;
     }
     handleClick() {}
 }
