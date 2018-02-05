@@ -12,9 +12,13 @@
             el-form-item(prop='password' :error='Register.errors.password')
                 el-input(type='password' v-model='Register.m.password' auto-complete='off' placeholder='密码')
             el-button(type='primary' style='width:100%;' @click.native.prevent='RegisterSubmit' :loading='logining') 注 册
-        .last-item
-            a.font-black(v-for="x in this.env" :key="x.name" :href="x.url")
-                i.iconfont(:class="icons[x.name]")
+
+            .login-type-box.mt15
+                a.login-type-icon.font-black(v-for="x in $store.state.home.env.oauth" :key="x.name" :href="x.url")
+                    i.iconfont(:class="icons[x.name]")
+        //- .last-item
+        //-     a.font-black(v-for="x in this.env" :key="x.name" :href="x.url")
+        //-         i.iconfont(:class="icons[x.name]")
 </template>
 
 <script lang="ts">
