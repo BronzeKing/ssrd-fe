@@ -1,33 +1,42 @@
 <template lang="pug">
-    div(id="media-manager")
+    div
+        el-select(tpye="card" v-model="query.projectId" filterable placeholder="请选择或搜索项目" @change='createMM')
+            el-option(v-for="x in Project.t.Records" :key="x.id" :label="x.name" :value="x.id")
+        div(id="media-manager" :showBreadcrumb=false)
 </template>
 
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
-import  { Documents } from 'src/components';
 import {MM} from 'src/components/mm/src/main.js'
 import { apiUrl } from "src/common/settings";
+import { Project } from "apis";
+import { Query } from "src/common/mixins";
 
 
 @Component
-({
-    components: {
-        Documents
-    }
-})
 export default class DocumentsView extends Vue
 {
     @Provide() breadcrumb = [{name: 'home', title: '首页'}, {name: 'project', title: '项目中心'}, {name: 'project.documents', title: '项目资料'}]
     @Provide() tabs: Array<string> = ['全部文档', '签证', '设计方案', '合同'];
     @Provide() show = {project: true};
     @Provide() mm: any;
+    @Provide() Project = Project;
+    @Provide() query: Query = {} as Query;
 
-    mounted() {
+    created () {
+        this.Project.list();
+        this.createMM();
+    }
+
+   createMM() {
+        let projectId = this.query.projectId || '';
+        let baseUrl = `api/medias`;
+        let listUrl = `?projectId=${projectId}`;
         this.mm = new MM({
             el: '#media-manager',
             api: {
-                baseUrl: 'api/medias',
-                listUrl: '',
+                baseUrl: baseUrl,
+                listUrl: listUrl,
                 downloadUrl: 'download',  // optionnal
                 uploadUrl: 'upload',      // optionnal
                 deleteUrl: 'delete'       // optionnal

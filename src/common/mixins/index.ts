@@ -8,5 +8,6 @@ export interface Query {
     source: string; // documents中的来源
     type: string; // 查询参数中的类型
     search: string; // 搜索字段
+    projectId: string;
 }
 export { ResourceListMixin, ResourceMixin };
