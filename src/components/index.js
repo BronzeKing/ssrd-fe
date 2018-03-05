@@ -5,7 +5,6 @@ import infoBanner from "./info-banner";
 import piclook from "./pic-look";
 import projectTable from "./project";
 import Documents from "./documents";
-import MM from "./mm/src/main.js";
 
 export {
     LineThrough,
@@ -15,6 +14,5 @@ export {
     projectTable,
     Documents,
     piclook,
-    ResourceListMixin,
-    MM
+    ResourceListMixin
 };

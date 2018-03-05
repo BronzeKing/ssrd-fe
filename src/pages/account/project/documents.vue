@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
-import {MM} from 'src/components/mm/src/main.js'
+import {MM} from 'mm/main.js'
 import { apiUrl } from "src/common/settings";
 import { Project } from "apis";
 import { Query } from "src/common/mixins";
@@ -25,6 +25,9 @@ export default class DocumentsView extends Vue
 
     created () {
         this.Project.list();
+    }
+
+    mounted() {
         this.createMM();
     }
 
@@ -38,7 +41,7 @@ export default class DocumentsView extends Vue
                 baseUrl: baseUrl,
                 listUrl: listUrl,
                 downloadUrl: 'download',  // optionnal
-                uploadUrl: 'upload',      // optionnal
+                uploadUrl: '',      // optionnal
                 deleteUrl: 'delete'       // optionnal
             }
         });
