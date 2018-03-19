@@ -55,6 +55,7 @@ export default {
      * 文档列表(荣誉资质和合作伙伴)
      */
     documents: `${apiUrl}/documents`,
+    medias: `${apiUrl}/medias`,
 
     // 上传文件的地址 如项目签证等
     docs: `${apiUrl}/attatchment`,

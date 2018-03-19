@@ -8,8 +8,8 @@
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
 import {MM} from 'mm/main.js'
-import { apiUrl } from "src/common/settings";
 import { Project } from "apis";
+import api from "apis/api-urls.ts";
 import { Query } from "src/common/mixins";
 
 
@@ -28,12 +28,13 @@ export default class DocumentsView extends Vue
     }
 
     mounted() {
+        console.log('create mm');
         this.createMM();
     }
 
    createMM() {
         let projectId = this.query.projectId || '';
-        let baseUrl = `api/medias`;
+        let baseUrl = api.medias;
         let listUrl = `?projectId=${projectId}`;
         this.mm = new MM({
             el: '#media-manager',
