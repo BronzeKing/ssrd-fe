@@ -119,7 +119,7 @@ Axios.interceptors.response.use(
                 break;
             case 401:
                 let route = router.currentRoute;
-                let query = route.query.next ? {} : { next: route.fullPath };
+                let query = route.query.next ? { next: "" } : { next: route.fullPath };
                 router.push({
                     name: "login",
                     query: query
