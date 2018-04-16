@@ -12,7 +12,7 @@ export default class ProjectDetail extends Vue {
     protected created() {
         Project.retrieve({ id: this.$route.params.id });
         ProjectLog.list({ projectId: this.$route.params.id });
-        ProjectLog.list({ action: "工作日志", projectId: this.$route.params.id }).then((r: any) => {
+        ProjectLog.list({ projectId: this.$route.params.id }).then((r: any) => {
             this.jobLog = r.Records;
         });
     }

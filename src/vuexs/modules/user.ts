@@ -59,12 +59,16 @@ const actions = {
     },
     // 添加到购物车
     async addCart({ dispatch, commit, state }: any, cart: any) {
-        await System.list().then((r: any) => {
-            // 从后台获取购物车的图片
-            let map = makeMap(r.Records);
-            cart["picture"] = map[cart.name].picture;
+        if (cart.name !== "product") {
+            await System.list().then((r: any) => {
+                // 从后台获取购物车的图片
+                let map = makeMap(r.Records);
+                cart["picture"] = map[cart.name].picture;
+                commit(types.ADDCART, cart);
+            });
+        } else {
             commit(types.ADDCART, cart);
-        });
+        }
         Cart.create({ content: state.cart });
     },
     async updateCart({ dispatch, commit, state }: any, carts: any) {

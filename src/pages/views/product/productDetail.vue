@@ -16,8 +16,8 @@
                 p.detail-text(v-html="Product.m.description")
                 .mt50
                     el-input-number.mr15(v-model="num" size="mini" :min="1" :max="10" )
-                    el-button(size="mini" type="primary" @click="put2Chart") 加入购物车
-                    el-button(size="mini" type="info" @click="Collect.create({productId: Product.m.id})") 收藏
+                    el-button(size="mini" type="primary" @click="addCart") 加入购物车
+                    el-button(size="mini" type="info" @click="collecting") 收藏
         el-tabs
             el-tab-pane(v-for="(item, index) in content" :key="index" :label="item.name")
                 div.pb30(v-html="item.value")
@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Product, Collect } from 'apis';
+import  { Product, Collect, Cart } from 'apis';
 
 @Component
 export default class ProductDetailView extends Vue
@@ -44,7 +44,24 @@ export default class ProductDetailView extends Vue
             })
         })
     }
-    put2Chart (item: any) {
+    collecting () {
+        Collect.create({productId: this.Product.m.id}).then(() => {
+            this.$message({
+                message: '收藏成功',
+                type: 'success'
+            });
+        })
+    }
+    addCart () {
+        let product = this.Product.m
+        let picture = (product.pictures.length && product.pictures[0]) || ''
+        let item = {name: 'product', id: product.id, num: this.num || 1, picture: picture}
+        this.$store.dispatch('addCart', item).then(() => {
+            this.$message({
+                message: '添加成功',
+                type: 'success'
+            });
+        })
     }
     // 点击主图下面的小图切换主图逻辑。
     changePic(){
