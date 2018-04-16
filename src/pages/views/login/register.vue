@@ -6,9 +6,9 @@
                 el-input(type='text' v-model='Register.m.username' auto-complete='off' placeholder='用户名')
             el-form-item(prop='mobile' :error='Register.errors.mobile')
                 el-input(type='text' v-model='Register.m.mobile' auto-complete='off' placeholder='手机号')
-            el-form-item(prop='group')
-                el-select(v-model='Register.m.group' placeholder='请选择客户类型' style='width:100%;')
-                    el-option(v-for="group in groups" :key="group.value" :label="group.name" :value="group.value")
+            el-form-item(prop='role')
+                el-select(v-model='Register.m.role' placeholder='请选择客户类型' style='width:100%;')
+                    el-option(v-for="role in roles" :key="role.value" :label="role.name" :value="role.value")
             el-form-item(prop='password' :error='Register.errors.password')
                 el-input(type='password' v-model='Register.m.password' auto-complete='off' placeholder='密码')
             el-button(type='primary' style='width:100%;' @click.native.prevent='RegisterSubmit' :loading='logining') 注 册
@@ -28,7 +28,7 @@ import  { Register } from 'apis';
 export default class RegisterView extends Vue
 {
   @Provide() activeType: string = "index";
-    @Provide() groups: Array<{name: string, value: string}> = [
+    @Provide() roles: Array<{name: string, value: string}> = [
         { name: '个人用户', value: '个人用户' },
         { name: '常规用户', value: '常规用户'},
         { name: '行业用户', value: '行业用户' },
@@ -46,6 +46,7 @@ export default class RegisterView extends Vue
     RegisterSubmit () {
         this.$refs.RegisterForm.validate((valid: Boolean) => {
             if (valid) {
+                Register.m.group = '客户';
                 Register.create(Register.m.serialize()).then(r => {
                     this.$confirm('恭喜您注册成功！', '成功', {
                         confirmButtonText: '确定',

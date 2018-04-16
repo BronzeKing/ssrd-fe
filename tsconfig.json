@@ -1,25 +1,18 @@
 {
-    "include": [
-        "src/**/*.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ],
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"],
     "compilerOptions": {
         // "experimentalAsyncFunctions": true,
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
+        "strictPropertyInitialization": false,
         "allowJs": true,
         "module": "es2015",
         "target": "es5",
         "strict": true,
         "moduleResolution": "node",
         // "isolatedModules": true,
-        "lib": [
-            "dom",
-            "es5",
-            "es2015.promise"
-        ],
+        "lib": ["dom", "es5", "es2015.promise"],
         "sourceMap": true,
         "pretty": true,
         "baseUrl": ".",

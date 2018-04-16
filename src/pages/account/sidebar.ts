@@ -58,7 +58,7 @@ const SIDEBAR: Array<Side> = [
     {
         title: "订单中心",
         name: "order",
-        group: ["客户"],
+        group: ["客户", "个人用户", "常规用户", "行业用户", "分销商", "商务部"],
         sub: [
             {
                 name: "projectCreate", //路由信息
@@ -107,7 +107,7 @@ const SIDEBAR: Array<Side> = [
     {
         title: "服务中心",
         name: "service",
-        group: ["客户"],
+        group: ["客户", "个人用户", "常规用户", "行业用户", "分销商", "商务部"],
         sub: [
             {
                 name: "servicePromise",
@@ -142,22 +142,22 @@ const SIDEBAR: Array<Side> = [
             {
                 name: "companyProfile",
                 title: "企业信息",
-                group: ["客户"]
+                group: ["客户", "个人用户", "常规用户", "行业用户", "分销商"]
             },
             {
                 name: "user",
-                group: ["客户"],
+                group: ["客户", "个人用户", "常规用户", "行业用户", "分销商", "商务部"],
                 title: "子账号管理"
             },
             {
                 name: "authorizeCode",
-                group: ["客户"],
+                group: ["客户", "个人用户", "常规用户", "行业用户", "分销商", "商务部"],
                 title: "授权码管理"
             },
             {
                 name: "terminal",
                 title: "远程终端访问平台",
-                group: ["客户"]
+                group: ["客户", "个人用户", "常规用户", "行业用户", "分销商", "商务部"]
             }
         ]
     }
