@@ -14,7 +14,7 @@
                         li.message-box-header
                             span 站内消息通知
                         li.message-box-item
-                            router-link.box-item-link(v-for="item in messages" :key="item.id" :to="{name: 'message', query: {id: item.id}}")
+                            router-link.box-item-link(v-for="item in Message.t.Records" :key="item.id" :to="{name: 'messageDetail', params: {id: item.id}}")
                                 p.f12.font-blue {{item.title}}
                                 p.f12 {{item.created}}
                         li.message-box-footer.f12.font-blue(@click='link2message')
@@ -31,20 +31,22 @@
                                 span 
                                     i.iconfont.icon-mail.font-base.f22.fl
                                     | 未读消息
-                                span.fr.box-item-bedg {{messages.length}}
+                                span.fr.box-item-bedg {{Message.t.Records.length}}
                         li.user-box-footer
                             a.fr.user-box-logout(@click="logout") 退出
 </template>
 
 <script lang="ts">
 import { Component, Provide, Vue } from "vue-property-decorator";
+import { Message } from "apis";
 
 @Component
 export default class AccountHeader extends Vue {
-    @Provide() messages: Array<any> = []
+    @Provide() Message = Message;
     @Provide() user = {email: '', username: '', mobile: '', group: {name: ''}}
     protected created() {
         this.user = this.$store.getters.user
+        Message.list()
     }
     link2message() {
         this.$router.push({name: 'message'})
