@@ -10,7 +10,7 @@
                                 p {{scope.row.name}}
                     el-table-column(prop="text" label="事项")
                         template(slot-scope="scope")
-                            p(v-html="n2br(scope.row.content)")
+                            p(v-html="scope.row.text")
                     el-table-column(prop="remark" label="备注" width="100")
                     el-table-column(label="操作" width="100")
                         template(slot-scope="scope")
@@ -21,7 +21,7 @@
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
 import { System } from "apis";
-import { n2br, makeMap, typeOf } from 'utils/extends';
+import { typeOf } from 'utils/extends';
 
 @Component
 export default class CartView extends Vue {
