@@ -34,6 +34,7 @@ export default class ProjectCreateDetailView extends Vue {
         dataSet.forEach(x => {
             if (x.name === System.m.name) {
                 item = x;
+                item["id"] = String(System.m.id);
                 item["picture"] = System.m.picture;
             }
         });
@@ -51,108 +52,234 @@ export default class ProjectCreateDetailView extends Vue {
         this.$refs.form.resetFields();
     }
 }
-
+/*
+ * multiInput 多输入
+ * multiCheck 多选
+ * input    输入数字
+ * inputText    输入文字
+ * checkBox 单选
+ */
 const dataSet = [
     {
         name: "可视化劳务管理",
         picture: "",
-        content: {
-            区域选择: Option(["施工区", "生活区", "其他"], ""), // 区域选择
-            闸机: Option(["三辊闸", "翼闸", "摆动闸"], ""), //闸机
-            通行方式: Option(["IC卡", "人脸识别"], ""), // 通行方式
-            扩展功能: Option(["通道抓拍", "LED实时显示", "LED大屏显示"], null, []), // 扩展功能
-            发卡中心: Option(["岗亭", "办公室", "其他"], null, []), // 发卡中心
-            入场劳务人员数量: "", //入场劳务人员数量,
-            remark: "" // 备注
-        }
+        type: "system",
+        id: "",
+        content: [
+            {
+                name: "区域大门数量",
+                type: "multiInput",
+                value: [],
+                items: [
+                    { name: "施工区", unit: "个", value: "" },
+                    { name: "生活区", unit: "个", value: "" },
+                    { name: "其他", unit: "个", value: "" }
+                ]
+            },
+            {
+                name: "闸机",
+                type: "multiInput",
+                items: [
+                    { name: "三辊闸", unit: "个", value: "" },
+                    { name: "翼闸", unit: "个", value: "" },
+                    { name: "摆动闸", unit: "个", value: "" }
+                ]
+            },
+            {
+                name: "通行方式",
+                type: "multiInput",
+                items: [
+                    { name: "IC卡", unit: "张", value: "" },
+                    { name: "人脸识别", unit: "个", value: "" }
+                ]
+            },
+            {
+                name: "扩展功能",
+                type: "multiCheck",
+                value: [],
+                items: [{ name: "通道抓拍" }, { name: "LED实时显示" }, { name: "LED大屏显示" }]
+            },
+            {
+                name: "发卡中心",
+                type: "multiCheck",
+                value: [],
+                items: [{ name: "岗亭" }, { name: "办公室" }, { name: "其他" }]
+            },
+            { name: "入场劳务人员数量", type: "input", value: "", unit: "人" },
+            { name: "备注", type: "inputText", value: "" }
+        ]
     },
     {
         name: "智能化视频监控",
         picture: "",
-        content: {
-            区域选择: Option(["施工区", "生活区", "其他"], ""), // 区域选择
-            监控位置: Option(
-                [
-                    "塔吊监控",
-                    "人员通道",
-                    "车辆出入口",
-                    "围墙监控",
-                    "材料堆场",
-                    "就餐区监控",
-                    "地磅监控",
-                    "电梯口",
-                    "高空抛物"
-                ],
-                ""
-            ), //监控位置
-            现场施工图纸: Option(["有", "无", "其他"], ""), // 现场施工图纸
-            remark: "" // 备注
-        }
+        type: "system",
+        id: "",
+        content: [
+            {
+                name: "区域选择",
+                type: "multiCheck",
+                value: [],
+                items: [
+                    { name: "施工区", num: "" },
+                    { name: "生活区", num: "" },
+                    { name: "其他", num: "" }
+                ]
+            },
+            {
+                name: "监控位置",
+                type: "multiInput",
+                items: [
+                    { name: "塔吊监控", unit: "个", value: "" },
+                    { name: "人员通道", unit: "个", value: "" },
+                    { name: "车辆出入口", unit: "个", value: "" },
+                    { name: "围墙监控", unit: "个", value: "" },
+                    { name: "材料堆场", unit: "个", value: "" },
+                    { name: "就餐区监控", unit: "个", value: "" },
+                    { name: "地磅监控", unit: "个", value: "" },
+                    { name: "电梯口", unit: "个", value: "" },
+                    { name: "高空抛物", unit: "个", value: "" }
+                ]
+            },
+            {
+                name: "现场施工图纸",
+                type: "checkBox",
+                value: "",
+                items: [{ name: "有" }, { name: "无" }, { name: "其他" }]
+            },
+            { name: "备注", type: "inputText", value: "" }
+        ]
     },
     {
         name: "专业工地车辆出入管理",
         picture: "",
-        content: {
-            大门数量: "", //大门数量
-            尺寸: Option(["长", "宽", "高"], ""), //尺寸
-            模式选择: Option(["双枪击模式", "四枪机模式"], null, []), // 模式选择
-            功能选择: Option(["车牌抓拍", "车身抓拍"], null, []), // 功能选择
-            remark: "" // 备注
-        }
+        type: "system",
+        id: "",
+        content: [
+            { name: "大门数量", type: "input", value: "" },
+            {
+                name: "尺寸",
+                type: "multiInput",
+                items: [
+                    { name: "长", value: "" },
+                    { name: "宽", value: "" },
+                    { name: "高", value: "" }
+                ]
+            },
+            {
+                name: "模式选择",
+                type: "multiCheck",
+                value: [],
+                items: [{ name: "双枪击模式" }, { name: "四枪机模式" }]
+            },
+            {
+                name: "功能选择",
+                type: "multiCheck",
+                value: [],
+                items: [{ name: "车牌抓拍" }, { name: "车身抓拍" }]
+            },
+            { name: "备注", type: "inputText", value: "" }
+        ]
     },
     {
         name: "综合数据采集远程传输",
         picture: "",
-        content: {
-            区域选择: Option(["施工区", "生活区", "其他"], null, []), // 区域选择
-            功能选择: Option(
-                [
-                    "噪声采集",
-                    "粉尘采集",
-                    "风速采集",
-                    "风向采集",
-                    "温度采集",
-                    "湿度采集",
-                    "PM值采集",
-                    "PM2.5采集"
-                ],
-                null,
-                []
-            ), // 功能选择
-            显示方式: Option(["LED屏显示", "后台LCD显示"], null, []), // 显示方式
-            remark: "" // 备注
-        }
+        type: "system",
+        id: "",
+        content: [
+            {
+                name: "区域选择",
+                type: "multiInput",
+                items: [
+                    { name: "施工区", value: "" },
+                    { name: "生活区", value: "" },
+                    { name: "其他", value: "" }
+                ]
+            },
+            {
+                name: "功能选择",
+                type: "multiCheck",
+                value: [],
+                items: [
+                    { name: "噪声采集" },
+                    { name: "粉尘采集" },
+                    { name: "风速采集" },
+                    { name: "风向采集" },
+                    { name: "温度采集" },
+                    { name: "湿度采集" },
+                    { name: "PM值采集" },
+                    { name: "PM2.5采集" }
+                ]
+            },
+            {
+                name: "显示方式",
+                type: "multiCheck",
+                value: [],
+                items: [{ name: "LED屏显示" }, { name: "后台LCD显示" }]
+            },
+            { name: "备注", type: "inputText", value: "" }
+        ]
     },
     {
         name: "塔机安全防碰撞系统",
         picture: "",
-        content: {
-            类型: Option(["塔吊防碰撞", "升降机监控"], ""),
-            可选功能: Option(
-                [
-                    "倾角传感器",
-                    "风速传感器",
-                    "防碰撞模块",
-                    "人脸识别机",
-                    "重量传感器及安装支架",
-                    "高度速度传感器",
-                    "轿厢抓拍",
-                    "其他"
-                ],
-                null,
-                []
-            ),
-            remark: "" // 备注
-        }
+        type: "system",
+        id: "",
+        content: [
+            {
+                name: "类型",
+                type: "multiInput",
+                items: [
+                    { name: "塔吊防碰撞", unit: "台", value: "" },
+                    { name: "升降机监控", unit: "台", value: "" }
+                ]
+            },
+            {
+                name: "可选功能",
+                type: "multiCheck",
+                value: [],
+                items: [
+                    { name: "倾角传感器" },
+                    { name: "风速传感器" },
+                    { name: "防碰撞模块" },
+                    { name: "人脸识别机" },
+                    { name: "重量传感器及安装支架" },
+                    { name: "高度速度传感器" },
+                    { name: "轿厢抓拍" },
+                    { name: "其他" }
+                ]
+            },
+            { name: "备注", type: "inputText", value: "" }
+        ]
     },
     {
         name: "多媒体音视频输出体系",
         picture: "",
-        content: {
-            房间数量: "",
-            房间尺寸: Option(["长", "宽", "高"], ""), //尺寸
-            功能选择: Option(["投影", "扩声", "远程视频", "LED屏显示", "其他"], null, []), // 功能选择
-            remark: "" // 备注
-        }
+        type: "system",
+        id: "",
+        content: [
+            { name: "房间数量", type: "input", unit: "间", value: "" },
+            {
+                name: "房间尺寸",
+                type: "multiInput",
+                items: [
+                    { name: "长", unit: "米", value: "" },
+                    { name: "宽", unit: "米", value: "" },
+                    { name: "高", unit: "米", value: "" }
+                ]
+            },
+            {
+                name: "功能选择",
+                type: "multiCheck",
+                value: [],
+                items: [
+                    { name: "投影" },
+                    { name: "扩声" },
+                    { name: "远程视频" },
+                    { name: "LED屏显示" },
+                    { name: "其他" }
+                ]
+            },
+            { name: "备注", type: "inputText", value: "" }
+        ]
     }
 ];

@@ -5,7 +5,7 @@
                 el-table(:data="carts" style="width: 100%")
                     el-table-column(label="产品" width="180" )
                         template(slot-scope="scope" )
-                            div(style="text-align: center;")
+                            div(style="text-align: center;" @click="handleClick(scope.row)")
                                 img(:src="scope.row.picture", alt="" style="width:100%;")
                                 p {{scope.row.name}}
                     el-table-column(prop="text" label="事项")
@@ -25,15 +25,6 @@ import { typeOf } from 'utils/extends';
 
 @Component
 export default class CartView extends Vue {
-    @Provide() tableData = [{
-            img: 'http://element.eleme.io/static/guide.0a8462c.png',
-            text: '多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体',
-            des: '备注：无'
-          }, {
-            img: 'http://element.eleme.io/static/guide.0a8462c.png',
-            text: '多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体多媒体',
-            des: '备注：无'
-    }];
     public get carts () {
         return this.$store.getters.cart || []
     }
@@ -45,6 +36,9 @@ export default class CartView extends Vue {
         let carts = this.$store.getters.cart || [];
         carts.pop(index);
         this.$store.dispatch('updateCart', carts);
+    }
+    public handleClick(row: any) {
+        this.$router.push({name: row.type + 'Detail', params: {id: row.id}});
     }
     public submit () {
         this.$router.push({ name: "settleCart" });

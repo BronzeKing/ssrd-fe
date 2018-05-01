@@ -55,7 +55,7 @@ export default class ProductDetailView extends Vue
     addCart () {
         let product = this.Product.m;
         let picture = (product.pictures.length && product.pictures[0]) || '';
-        let item = {type: 'product', name: product.name, id: product.id, content: {数量: this.num || 1}, picture: picture.image};
+        let item = {type: 'product', name: product.name, id: product.id, content: [{name: '数量', value: this.num || 0, type: 'input'}], picture: picture.image};
         this.$store.dispatch('addCart', item).then(() => {
             this.$message({
                 message: '添加成功',

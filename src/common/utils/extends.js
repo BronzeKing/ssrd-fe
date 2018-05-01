@@ -130,33 +130,36 @@ const makeMap = function(objs, key = "name") {
     return response;
 };
 
-function makeContent(item) {
-    if (!item) {
-        return "";
-    }
-    let { name, picture, remark, content, ...rest } = item;
-    return Object.keys(rest)
-        .map(key => {
-            let ele = rest[key];
-            let type = typeOf(ele);
-            if (type !== "object") {
-                // 直接输入数字或文字
-                return ele ? key + ": " + ele : "";
-            } else if (typeOf(ele.value) === "array") {
-                // 多选checkbox
-                return ele.value ? key + ": " + ele.value.join(",") || "无" : "";
+function makeContent(items) {
+    return items
+        .map(item => {
+            if (item.type === "inputText") {
+                return item.name + "：" + item.value;
+            } else if (item.type === "input") {
+                return item.name + "：" + item.value + item.unit || "个";
+            } else if (item.type === "checkBox") {
+                return item.name + "：" + item.value;
+            } else if (item.type === "multiCheck") {
+                return item.name + "：" + item.value.join("，");
+            } else if (item.type === "multiInput") {
+                return (
+                    item.name +
+                    "：" +
+                    item.items
+                        .map(x => {
+                            if (!x.value) {
+                                return "";
+                            }
+                            return x.name + " " + x.value + " " + x.unit;
+                        })
+                        .filter(x => x)
+                        .join(",")
+                );
             } else {
-                //多选输入， 如输入长宽高, 过滤未选中的表单，当没有一个选中时 显示  `无`
-                let txt = ele.items
-                    .map(x => {
-                        return x.value ? x.name + " " + x.value : "";
-                    })
-                    .filter(x => x);
-                return key + ": " + (txt.join(",") || "无");
+                return "";
             }
         })
-        .filter(x => x)
-        .join("");
+        .join("\n");
 }
 
 export {

@@ -11,11 +11,11 @@
                 el-col(:span="8" v-for="(item, index) in Collect.t.Records" :key="index")
                     router-link(:to="{name: 'product', params: {id: index}}")
                         el-card(:body-style="{ padding: '0px' }")
-                            img(:src="item.picture" class="image")
+                            img(:src="item.product.background" class="image")
                             div(style="padding: 14px;")
-                                span {{item.name}}
+                                span {{item.product.name}}
                                 div(class="bottom clearfix")
-                                    el-button(type="text" class="button") 取消收藏
+                                    el-button(type="text" class="button" @click="destroy(item.id)") 取消收藏
 
 </template>
 <script lang="ts">
@@ -31,6 +31,11 @@ export default class MyCollection extends Vue
     @Provide() Collect = Collect;
     protected created () {
         Collect.list();
+    }
+    public destroy(id: number) {
+        Collect.destroy({id: id}).then(() => {
+            Collect.list();
+        })
     }
 };
 </script>
