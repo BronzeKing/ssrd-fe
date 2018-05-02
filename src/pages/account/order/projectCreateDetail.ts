@@ -160,9 +160,9 @@ const dataSet = [
                 name: "尺寸",
                 type: "multiInput",
                 items: [
-                    { name: "长", value: "" },
-                    { name: "宽", value: "" },
-                    { name: "高", value: "" }
+                    { name: "长", unit: "米", value: "" },
+                    { name: "宽", unit: "米", value: "" },
+                    { name: "高", unit: "米", value: "" }
                 ]
             },
             {

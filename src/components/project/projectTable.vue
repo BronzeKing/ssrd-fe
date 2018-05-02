@@ -9,7 +9,7 @@
             el-table-column(property="content" label="事项")
                 template(slot-scope="scope")
                     el-popover(trigger="hover" placement="top")
-                        p(v-for="(item, index) in scope.row.content" :key="index") {{item.name}}: {{ _makeContent(item) }}
+                        p(v-for="(item, index) in scope.row.content" :key="index") {{item.name}}: {{ (item.text) }}
                         div(slot="reference" class="name-wrapper")
                             el-tag(v-for="(name, i) in scope.row.content" :key="i") {{name.name}}
             el-table-column(property="status" label="状态" :formatter='makeStatus')

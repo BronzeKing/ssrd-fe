@@ -20,6 +20,7 @@ export default class ProjectCreateDetail extends Vue {
 
     submit() {
         let content = this.$store.getters.cart;
+        debugger;
         this.$refs.form.validate((valid: Boolean) => {
             if (!valid) {
                 return false;

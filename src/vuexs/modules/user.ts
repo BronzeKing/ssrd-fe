@@ -66,6 +66,12 @@ const actions = {
         commit("cart", carts);
         Cart.create({ content: carts });
     },
+    async destroyCart({ dispatch, commit, status }: any) {
+        state.cart.map((item: any) => {
+            Cart.destroy({ id: item.id });
+        });
+        commit("cart", []);
+    },
     cart({ commit, state }: any) {
         Cart.retrieve().then((r: Array<any>) => {
             commit("cart", r);

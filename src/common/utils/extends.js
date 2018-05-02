@@ -134,9 +134,9 @@ function makeContent(items) {
     return items
         .map(item => {
             if (item.type === "inputText") {
-                return item.name + "：" + item.value;
+                return item.name + "：" + (item.value || "无");
             } else if (item.type === "input") {
-                return item.name + "：" + item.value + item.unit || "个";
+                return item.name + "：" + item.value + (item.unit || "个");
             } else if (item.type === "checkBox") {
                 return item.name + "：" + item.value;
             } else if (item.type === "multiCheck") {
@@ -148,9 +148,10 @@ function makeContent(items) {
                     item.items
                         .map(x => {
                             if (!x.value) {
+                                // 去除0个的选项
                                 return "";
                             }
-                            return x.name + " " + x.value + " " + x.unit;
+                            return x.name + " " + x.value + " " + (x.unit || "个");
                         })
                         .filter(x => x)
                         .join(",")
