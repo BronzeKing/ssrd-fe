@@ -3,7 +3,7 @@
  */
 
 import * as types from "./types";
-import { assign, makeContent, makeMap } from "common/utils/extends";
+import { assign, makeContent, makeMap, n2br } from "common/utils/extends";
 import { System, Login, Cart } from "apis";
 import storage from "common/utils/member";
 import { type } from "os";
@@ -59,21 +59,18 @@ const actions = {
     },
     // 添加到购物车
     async addCart({ dispatch, commit, state }: any, cart: any) {
-        if (cart.name !== "product") {
-            await System.list().then((r: any) => {
-                // 从后台获取购物车的图片
-                let map = makeMap(r.Records);
-                cart["picture"] = map[cart.name].picture;
-                commit(types.ADDCART, cart);
-            });
-        } else {
-            commit(types.ADDCART, cart);
-        }
+        commit(types.ADDCART, cart);
         Cart.create({ content: state.cart });
     },
     async updateCart({ dispatch, commit, state }: any, carts: any) {
         commit("cart", carts);
         Cart.create({ content: carts });
+    },
+    async destroyCart({ dispatch, commit, status }: any) {
+        state.cart.map((item: any) => {
+            Cart.destroy({ id: item.id });
+        });
+        commit("cart", []);
     },
     cart({ commit, state }: any) {
         Cart.retrieve().then((r: Array<any>) => {
@@ -87,7 +84,7 @@ const getters = {
     authenticated: (state: any) => state.authenticated,
     cart: (state: any) => {
         return state.cart.map((item: any) => {
-            return { content: makeContent(item), ...item };
+            return { text: n2br(makeContent(item.content)), ...item };
         });
     }
 };
