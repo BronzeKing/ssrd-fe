@@ -57,7 +57,7 @@
                         p.f14.mb10 官方微信公众号
                         img.right-sub-img(src="~assets/qrcode.png")
         .container-next-part
-            p.f14 版权所有 Copyright &copy; 2006 2017 深圳市盛世润达智能科技有限公司 粤ICP备06083171号
+            p.f14 版权所有 Copyright &copy; 2006 {{year}} 深圳市盛世润达智能科技有限公司 粤ICP备06083171号
                 .network-icnon.mt10
                 a(href="https://szcert.ebs.org.cn/1c48b07e-59b5-465f-822e-5516a71d59b4" target="_blank")
                     img(src="https://szcert.ebs.org.cn/Images/newGovIcon.gif")
@@ -75,6 +75,7 @@ export default class Views extends Vue
         {name: 'honor', title: '荣誉资质'},
         {name: 'cooperativePartner', title: '合作伙伴'}
     ]
+    @Provide() year = (new Date()).getFullYear();
     @Provide() System = System
     protected created () {
         System.list();

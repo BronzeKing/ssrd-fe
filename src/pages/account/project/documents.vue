@@ -36,12 +36,13 @@ export default class DocumentsView extends Vue
         let projectId = this.query.projectId || '';
         let baseUrl = api.medias;
         let listUrl = `?projectId=${projectId}`;
+        let downloadUrl = api.medias + `/download/${projectId}/`;
         this.mm = new MM({
             el: '#media-manager',
             api: {
                 baseUrl: baseUrl,
                 listUrl: listUrl,
-                downloadUrl: 'download',  // optionnal
+                downloadUrl: downloadUrl,
                 uploadUrl: '',      // optionnal
                 deleteUrl: 'delete'       // optionnal
             }

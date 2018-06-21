@@ -102,7 +102,22 @@ def main(src, dist):
         custom and fd.write(custom)
 
 
+def replace():
+    with open('index.html', 'r') as fd:
+        content = fd.read()
+        src = '<!-- <script src="<%= webpackConfig.output.publicPath %>static/js/vendor.dll.js"></script> -->'
+        target = '<script src="<%= webpackConfig.output.publicPath %>static/js/vendor.dll.js"></script>'
+        content = content.replace(src, target)
+                        
+    with open('index.html', 'w') as fd:
+        fd.write(content)
+
+
+
 if __name__ == '__main__':
+    if 'replace' in sys.argv:
+        replace()
+        sys.exit()
     if len(sys.argv) == 2:
         print('''src: 源json文件
               dist: 目标ts文件''')

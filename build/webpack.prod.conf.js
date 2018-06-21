@@ -82,7 +82,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // see https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
             filename: process.env.NODE_ENV === "testing" ? "index.html" : config.build.index,
-            template: "index2.html",
+            template: "index.html",
             inject: true,
             minify: {
                 removeComments: true,
@@ -119,10 +119,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             disable: process.env.NODE_ENV !== "production", // Disable during development
             test: /\.(jpe?g|png|gif|svg)$/i,
             minFileSize: 70000, // 大于70k的会被压缩
-            jpegtran: { progressive: true },
-            pngquant: {
-                quality: "80-90" // 压缩质量
-            }
+            jpegtran: { progressive: true }
         }),
 
         // webpack.DllPlugin.js
