@@ -1,9 +1,10 @@
 import { Component, Provide, Vue, Prop, Watch } from "vue-property-decorator";
-import { Project, AuthorizeCode, ProjectLog } from "apis";
+import { Media, Project, AuthorizeCode, ProjectLog } from "apis";
 import { makeContent as _makeContent } from "utils/extends";
 import { TT, stepMap, options, errors, rules, Step, FormConfig, FormConfigs } from "./data";
 import API from "apis/api-urls"; // 接口URL
 import { Query, ResourceListMixin } from "src/common/mixins";
+import storage from "common/utils/member";
 
 @Component
 export default class ProjectTableView extends ResourceListMixin {
@@ -126,5 +127,11 @@ export default class ProjectTableView extends ResourceListMixin {
     handleClose() {
         this.setDialog();
         this.$refs.form.resetFields();
+    }
+    handleDocument(projectId: string) {
+        const token = storage.getCredential();
+        const mediaUrl = API.media + `?token=${token}&projectId=${projectId}`;
+        // window.location.href = mediaUrl;
+        window.open(mediaUrl, "_blank");
     }
 }

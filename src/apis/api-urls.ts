@@ -146,5 +146,6 @@ export default {
     /**
      * 授权码
      */
-    authorizeCode: `${apiUrl}/authorizeCodes`
+    authorizeCode: `${apiUrl}/authorizeCodes`,
+    media: `${apiUrl}/media`
 };

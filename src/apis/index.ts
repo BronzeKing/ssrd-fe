@@ -10,6 +10,7 @@ import { Resource } from "./resource"; // 改为ts后的Resoure
 
 /* 登录注册相关接口 */
 // 接口用大写
+export const Media = new Resource(API.media, new m.Login());
 export const Login = new Resource(API.login, new m.Login({})); // 登录接口
 export const TokenVerify = new Resource(API.verifyToken, new m.TokenVerify()); //  token验证
 export const Token = new Resource(API.token, new m.Default({})); //  token生成，用于oauth登录

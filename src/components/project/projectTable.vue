@@ -5,7 +5,7 @@
         el-input(v-if="show.search" placeholder="请输入要搜索的项目名称" suffix-icon="el-icon-search" v-model="query.search" @change="resourceList")
         el-table.mt10(v-loading="loading" :data="Project.t.Records" stripe highlight-current-row @row-click="rowClick" style="width: 100%")
             el-table-column(property="name" label="名称")
-            el-table-column(property="type" width="100" label="项目类型")
+            el-table-column(property="type" label="项目类型")
             el-table-column(property="content" label="事项")
                 template(slot-scope="scope")
                     el-popover(trigger="hover" placement="top")
@@ -15,8 +15,9 @@
             el-table-column(property="status" label="状态" :formatter='makeStatus')
             el-table-column(label="操作")
                 template(slot-scope="scope")
-                    template(v-for="item in steps")
-                        el-button-group
+                    el-button-group
+                        el-button(type="text" @click="handleDocument(scope.row.id)") 资料
+                        template(v-for="item in steps")
                             el-tooltip.item(effect="light" content="授权项目并生成授权码" placement="top" v-if="showing(TT.auth, item.title)")
                                 el-button(type="text" :disabled="item.disable(scope.row.status)" href="javascript:;" @click="handleDialog(scope.row, item.title)")  {{item.title}}
                             el-tooltip.item(effect="light" content="项目签字并上传签字文件" placement="top" v-if="showing(TT.sign, item.title)")

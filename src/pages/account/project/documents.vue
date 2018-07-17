@@ -11,6 +11,7 @@ import {MM} from 'mm/main.js'
 import { Project } from "apis";
 import api from "apis/api-urls.ts";
 import { Query } from "src/common/mixins";
+import ajax from "utils/ajax";
 
 
 @Component
