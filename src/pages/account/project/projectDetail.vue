@@ -48,7 +48,7 @@
                         el-table-column(property="created" label="日期")
                         el-table-column(property="project.user.username" label="提交者")
                         el-table-column(property="action" label="类型" :formatter="makeAction")
-                        el-table-column(property="content" label="事项")
+                        el-table-column(property="content.content" label="事项")
                         el-table-column(label="附件")
                             template(slot-scope="scope")
                                 a(v-for="attatchment in scope.row.attatchment" :href="attatchment0.file") {{attatchment.name}}

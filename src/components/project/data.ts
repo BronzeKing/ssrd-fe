@@ -6,7 +6,7 @@ export enum TT {
     sign = "签字",
     audit = "审核",
     afterMarket = "售后申请",
-    design = "设计报价",
+    design = "设计方案",
     send = "转发",
     jobJournal = "工作日志",
     assist = "协助申请",
@@ -25,12 +25,22 @@ export const options = {
         {
             name: "进场照片",
             label: "进场照片",
-            children: Option(["进场凭证", "施工凭证", "竣工凭证", "验收凭证", "其他"], null, null, "label").items
+            children: Option(
+                ["进场凭证", "施工凭证", "竣工凭证", "验收凭证", "其他"],
+                null,
+                null,
+                "label"
+            ).items
         },
         {
             name: "进场照片",
             label: "离场照片",
-            children: Option(["进场凭证", "施工凭证", "竣工凭证", "验收凭证", "其他"], null, null, "label").items
+            children: Option(
+                ["进场凭证", "施工凭证", "竣工凭证", "验收凭证", "其他"],
+                null,
+                null,
+                "label"
+            ).items
         }
     ]
 };

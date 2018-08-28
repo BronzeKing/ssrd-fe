@@ -95,10 +95,6 @@ const SIDEBAR: Array<Side> = [
         name: "project",
         sub: [
             {
-                name: "project.documents",
-                title: "项目资料"
-            },
-            {
                 name: "projectList",
                 title: "项目动态"
             }
