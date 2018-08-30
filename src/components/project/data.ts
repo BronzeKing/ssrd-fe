@@ -213,7 +213,7 @@ export const Step: { [key: string]: Step } = {
     audit: {
         title: TT.audit,
         disable: (status: number) => {
-            return 6 < status || status < 3;
+            return status !== 3;
         }
     },
     assist: {

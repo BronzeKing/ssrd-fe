@@ -32,7 +32,8 @@ export default class ProjectTableView extends ResourceListMixin {
     @Provide() dialogName = "";
 
     public getUploadUrl(type: string) {
-        return API.docs + "?type=" + type;
+        const projectId = Project.m.id;
+        return `${API.docs}?type=${type}&projectId=${projectId}`;
     }
 
     // search: 是否显示搜索控件， pagination: 是否显示分页控件
