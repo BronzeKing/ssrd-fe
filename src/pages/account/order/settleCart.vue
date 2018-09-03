@@ -22,7 +22,9 @@
             el-form-item(label="备注")
                 el-input(type="textarea" v-model="Project.m.input" style="width:500px")
             el-form-item(label="补充文件")
-                el-button(plain) 上传文件
+                el-upload(class="upload-demo" multiple :on-success="handleChange" :file-list="Project.m.attatchment" :action="getUploadUrl('项目材料')")
+                    el-button(size="small" type="primary") 上传文件
+                    div(slot="tip" class="el-upload__tip")
             el-form-item
                 el-button(type="primary" @click="submit") 提交
                 el-button(plain) 取消

@@ -23,7 +23,7 @@ export default class ProjectTableView extends ResourceListMixin {
         }
     };
     @Provide()
-    formData = { date: new Date(), number: 0, dateType: "", content: "", attatchment: "" };
+    formData = { date: new Date(), number: 0, dateType: "", content: "", attatchment: [] };
     @Provide() options = options;
     @Provide() errors = errors;
     @Provide() rules = rules;
@@ -101,8 +101,6 @@ export default class ProjectTableView extends ResourceListMixin {
             if (this.dialogName === "授权") {
                 return this.handleAuth();
             }
-            console.log(this.formData.content);
-            console.log(this.formData.attatchment);
             ProjectLog.create({
                 attatchment: this.formData.attatchment,
                 action: this.dialogName,
@@ -133,8 +131,8 @@ export default class ProjectTableView extends ResourceListMixin {
         this.setDialog();
         this.$refs.form.resetFields();
     }
-    handleUploadSuccess(res: any, file: any) {
-        this.formData.attatchment = res.id;
+    handleUploadChange(response: any, file: any, fileList: any) {
+        this.formData.attatchment = fileList.map((item: any) => item.response);
     }
     handleDocument(projectId: string) {
         const token = storage.getCredential();

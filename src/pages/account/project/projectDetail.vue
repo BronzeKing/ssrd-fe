@@ -31,17 +31,6 @@
             el-collapse(v-model="activeName" accordion)
                 el-collapse-item
                     template(slot="title")
-                        p 项目文档
-                        i.header-icon.el-icon-information
-                    el-table.mt10(:data="ProjectLog.t.Records" stripe highlight-current-row style="width: 100%")
-                        el-table-column(property="created" label="日期")
-                        el-table-column(property="project.user.username" label="提交者")
-                        el-table-column(property="action" label="类型" :formatter="makeAction")
-                        el-table-column(label="附件")
-                            template(slot-scope="scope")
-                                a(v-for="attatchment in scope.row.attatchment" :href="attatchment0.file") {{attatchment.name}}
-                el-collapse-item
-                    template(slot="title")
                         p 工作日志
                         i.header-icon.el-icon-information
                     el-table.mt10(:data="jobLog" stripe highlight-current-row style="width: 100%")
@@ -51,7 +40,7 @@
                         el-table-column(property="content.content" label="事项")
                         el-table-column(label="附件")
                             template(slot-scope="scope")
-                                a(v-for="attatchment in scope.row.attatchment" :href="attatchment0.file") {{attatchment.name}}
+                                a(v-for="attatchment in scope.row.attatchment" :href="attatchment.file") {{attatchment.name}}
 
 </template>
 <script lang="ts" src="./projectDetail.ts">

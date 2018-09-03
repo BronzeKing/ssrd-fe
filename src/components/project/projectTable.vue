@@ -58,7 +58,7 @@
                             el-input-number(v-model="formData.lackingList" controls-position="right" :min="1")
                             p 项
                     el-form-item(:label="item.title" prop="attatchment" :error="ProjectLog.errors.attatchment" v-if="item.key === 'attatchment'")
-                        el-upload(class="upload-demo" multiple :on-success="handleUploadSuccess" :file-list="ProjectLog.m.attatchment" :action="getUploadUrl(formConfig.name)")
+                        el-upload(class="upload-demo" multiple :on-success="handleUploadChange" :file-list="formData.attatchment" :action="getUploadUrl(formConfig.name)")
                             el-button(size="small" type="primary") 点击上传
                             div(slot="tip" class="el-upload__tip")
                     el-button(@click="handleClose" v-if="item.key === 'close'") {{item.title}}
