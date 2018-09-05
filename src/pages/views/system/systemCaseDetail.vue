@@ -67,7 +67,7 @@
                 align-items: center;
                 position: relative;
                 img{
-                    width: 100%;
+                    width: 50%;
                 }
                 .image-container{
                     position: relative;
