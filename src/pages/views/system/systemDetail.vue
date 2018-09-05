@@ -15,37 +15,10 @@
             //-                     span 深锐观察：智能家居如何走向平民化？
             .system-content
                 .system-wrap
-                    .system-title
-                        h2 行业现状
-                    .system-top-info
-                        .left-info.p10
-                            .system-content-text
-                                p {{System.m.summary}}
-                        .img-wrap
-                            img(:src="System.m.picture") 
                     .system-body-info.p10
                         .cutoff-line
-                            h4 系统介绍：
-                            .line
-                        .system-content-text(id="text0")
-                            p {{System.m.introduction}}
-                        .cutoff-line
-                            h4 系统结构
-                            .line
-                        .system-content-text(id="text1")
-                            p {{System.m.structure}}
-                        .cutoff-line
-                            h4 功能特性
-                            .line
-                        .system-content-text(id="text2")
-                            p {{System.m.funtionalFeature}}
-                        .cutoff-line
-                            h4 现场图片
-                            .line
-                        .system-content-text(id="text3")
-                            .sceneImgList
-                                .scene-img(v-for="(item, index) in System.m.pictures" :key="index")
-                                    img(:src="item.image")
+                          p(v-html="System.m.introduction")
+
                         .cutoff-line
                             h4 相关案例
                             .line
