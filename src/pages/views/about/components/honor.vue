@@ -29,7 +29,7 @@ export default class Honor extends Vue
         picklool: piclook
     };
     created (): void {
-        Documents.list({source: 0});
+        Documents.list({source: 0, pageSize: 100});
     }
     imageShow (pic: any) {
         this.$refs.picklool.show({

@@ -164,7 +164,7 @@ export class Resource<T extends Model> {
     list(params: Payload = {}, config: Payload = {}): Payload {
         // 默认把this.t里的search, pageIndex, pageSize以及来自model的值作为参数传到list方法里
         Object.keys(this.t).forEach((x: string) => {
-            if (this.t[x] && !isInArray(["Records", "RecordCount"], x)) {
+            if (this.t[x] && !isInArray(["Records", "RecordCount"], x) && !params[x]) {
                 params[x] = this.t[x];
             }
         });
