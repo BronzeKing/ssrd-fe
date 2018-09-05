@@ -7,7 +7,7 @@
                 h2 个人中心
             nav
                 router-link.user-header-link(class="home" :to="{name: 'home'}") 首页
-                router-link.user-header-link(class="secure" :to="{name: 'home'}") 账户设置
+                router-link.user-header-link(class="secure" :to="{name: 'account'}") 账户设置
                 router-link.user-header-link(class="cart" :to="{name: 'cart'}" v-if="user.group.name === '客户'") 购物车
                 a.user-header-link(class='message' href="javascript: void(0);") 我的消息
                     ul.message-box
