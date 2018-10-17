@@ -39,7 +39,6 @@
 <script lang="ts">
 // 快捷下单页面
 import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
-import { Option } from 'common/utils/extends';
 import  { System, Project, ProjectGroup, Profile } from 'apis';
 import API from 'apis/api-urls'; // 接口URL
 

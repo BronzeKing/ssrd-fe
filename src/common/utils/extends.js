@@ -109,7 +109,7 @@ const n2br = text => {
 const Option = function(options, defaultValue, value, nameKey = "name") {
     return {
         items: options.map(x => {
-            return { [name]: x, value: String(defaultValue === null ? x : defaultValue) };
+            return { name: x, value: String(defaultValue === null ? x : defaultValue) };
         }),
         value: value
     };

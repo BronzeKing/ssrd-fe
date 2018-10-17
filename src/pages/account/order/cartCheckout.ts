@@ -1,5 +1,4 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Option } from "common/utils/extends";
 import { System, ProjectCreate as Project, Profile } from "apis";
 //结算购物车页面
 

@@ -45,7 +45,7 @@ export default class AfterMarket extends Vue
 {
     @Provide() Project = Project;
     @Provide() option = {
-        type: Option(['故障维护', '迁移', '拆除'])
+        type: Option(['故障维护', '迁移、拆除', '展会协助'])
     }
     @Provide()
     data = {
@@ -60,12 +60,14 @@ export default class AfterMarket extends Vue
         attatchment: [] //材料
     };
     public get user() {
+        console.log(this.option.type);
         return this.$store.state.user.user
     }
     protected created () {
         this.data.name = Project.m.name
         this.data.address = Project.m.address
         Project.list();
+        console.log(this.option.type);
     }
     submit () {
         Project.create({linkman: this.user.profile.name, ...this.data}).then(() => {

@@ -1,0 +1,13 @@
+{
+    "ProjectType": [
+        { "name": "create", "value": "新建项目" },
+        { "name": "maintain", "value": "故障维护" },
+        { "name": "remove", "value": "迁移、拆除" },
+        { "name": "exhibition", "value": "展会协助" }
+    ],
+    "Status": [
+        { "name": "全部", "value": -1 },
+        { "name": "启用", "value": 1 },
+        { "name": "停用", "value": 0 }
+    ]
+}
