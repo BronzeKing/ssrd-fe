@@ -6,6 +6,7 @@ var baseWebpackConfig = require("./webpack.base.conf");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 var TypedocWebpackPlugin = require("typedoc-webpack-plugin");
+const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin");
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function(name) {
@@ -31,7 +32,7 @@ module.exports = merge(baseWebpackConfig, {
             template: "index.html",
             inject: true
         }),
-        new FriendlyErrorsPlugin()
+        new FriendlyErrorsPlugin(),
         // new TypedocWebpackPlugin({
         // name: "Ssrd",
         // mode: "file",
@@ -40,5 +41,17 @@ module.exports = merge(baseWebpackConfig, {
         // excludeExternals: true,
         // exclude: "**/node_modules/**/*.*"
         // })
+        new ParallelUglifyPlugin({
+            cacheDir: ".cache/",
+            uglifyJS: {
+                output: {
+                    comments: false,
+                    beautify: false
+                },
+                compress: {
+                    warnings: false
+                }
+            }
+        })
     ]
 });
