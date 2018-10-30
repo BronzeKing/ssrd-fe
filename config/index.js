@@ -1,7 +1,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require("path");
 
-var _configMap = {
+const _configMap = {
     development: {
         target: "https://api.mum5.cn",
         secure: true
@@ -15,7 +15,7 @@ var _configMap = {
         secure: false
     }
 };
-var _config = _configMap[process.env.NODE_ENV || "production"];
+const _config = _configMap["local"]
 module.exports = {
     build: {
         env: require("./prod.env"),
