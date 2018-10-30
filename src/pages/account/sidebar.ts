@@ -136,6 +136,11 @@ const SIDEBAR: Array<Side> = [
                 title: "我的消息"
             },
             {
+                name: "invitation",
+                title: "我的收益",
+                group: ["客户", "个人用户", "常规用户", "行业用户", "分销商"]
+            },
+            {
                 name: "companyProfile",
                 title: "企业信息",
                 group: ["客户", "个人用户", "常规用户", "行业用户", "分销商"]

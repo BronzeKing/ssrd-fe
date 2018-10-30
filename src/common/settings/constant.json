@@ -2,7 +2,8 @@
     "ProjectType": [
         { "name": "create", "value": "新建项目" },
         { "name": "maintain", "value": "故障维护" },
-        { "name": "remove", "value": "迁移、拆除" },
+        { "name": "migrate", "value": "变更、迁移" },
+        { "name": "remove", "value": "拆除类" },
         { "name": "exhibition", "value": "展会协助" }
     ],
     "Status": [

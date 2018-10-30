@@ -45,7 +45,7 @@ export default class AfterMarket extends Vue
 {
     @Provide() Project = Project;
     @Provide() option = {
-        type: Option(['故障维护', '迁移、拆除', '展会协助'])
+        type: Option(['故障维护', '变更、迁移', '拆除类'])
     }
     @Provide()
     data = {
