@@ -1,5 +1,7 @@
 {
-    "extends": "tslint-config-standard",
+      "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"],
     "globals": {
         "require": true
     }

@@ -3,7 +3,6 @@ var utils = require("./utils");
 var webpack = require("webpack");
 var config = require("../config");
 var vueLoaderConfig = require("./vue-loader.conf");
-const { VueLoaderPlugin } = require('vue-loader')
 
 
 function resolve(dir) {
@@ -27,7 +26,6 @@ module.exports = {
         alias: {
             vue$: "vue/dist/vue.esm.js",
             src: resolve("src"),
-            mm: resolve("mm/src"),
             apis: resolve("src/apis"),
             assets: resolve("src/assets"),
             common: resolve("src/common"),
