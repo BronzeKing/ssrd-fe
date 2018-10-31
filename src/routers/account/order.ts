@@ -1,24 +1,24 @@
 const index = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/index")), "order");
+    require.ensure([], () => r(require("src/pages/account/order/index")), "order");
 const projectCreate = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/projectCreate")), "order");
+    require.ensure([], () => r(require("src/pages/account/order/projectCreate")), "order");
 const projectCreateDetail = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/projectCreateDetail")), "order");
+    require.ensure([], () => r(require("src/pages/account/order/projectCreateDetail")), "order");
 const afterMarket = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/afterMarket")), "order"); //售后申请
+    require.ensure([], () => r(require("src/pages/account/order/afterMarket")), "order"); //售后申请
 const quick = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/quick")), "order"); //快捷下单
+    require.ensure([], () => r(require("src/pages/account/order/quick")), "order"); //快捷下单
 const mineOrder = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/mineOrder")), "order"); //我的订单
+    require.ensure([], () => r(require("src/pages/account/order/mineOrder")), "order"); //我的订单
 const orderDetail = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/orderDetail")), "order"); //订单详情
-const cart = (r: any) => require.ensure([], () => r(require("pages/account/order/cart")), "Cart"); //我的购物车
+    require.ensure([], () => r(require("src/pages/account/order/orderDetail")), "order"); //订单详情
+const cart = (r: any) => require.ensure([], () => r(require("src/pages/account/order/cart")), "Cart"); //我的购物车
 const settleCart = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/settleCart")), "settleCart"); //结算购物车
+    require.ensure([], () => r(require("src/pages/account/order/settleCart")), "settleCart"); //结算购物车
 const collect = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/collect")), "order"); //我的收藏
+    require.ensure([], () => r(require("src/pages/account/order/collect")), "order"); //我的收藏
 const history = (r: any) =>
-    require.ensure([], () => r(require("pages/account/order/history")), "order"); //我的浏览记录
+    require.ensure([], () => r(require("src/pages/account/order/history")), "order"); //我的浏览记录
 export default [
     {
         path: "order",

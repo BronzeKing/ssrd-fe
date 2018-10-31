@@ -1,5 +1,5 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Captcha, Password, Email, Credential } from "apis";
+import { Captcha, Password, Email, Credential } from "src/apis";
 
 @Component
 export default class Secure extends Vue {

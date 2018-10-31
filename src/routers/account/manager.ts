@@ -1,21 +1,21 @@
 const index = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/index")), "manager");
+    require.ensure([], () => r(require("src/pages/account/manager/index")), "manager");
 const secure = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/secure")), "manager");
+    require.ensure([], () => r(require("src/pages/account/manager/secure")), "manager");
 const user = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/user")), "manager");
+    require.ensure([], () => r(require("src/pages/account/manager/user")), "manager");
 const message = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/message")), "manager");
+    require.ensure([], () => r(require("src/pages/account/manager/message")), "manager");
 const messageDetail = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/messageDetail")), "manager");
+    require.ensure([], () => r(require("src/pages/account/manager/messageDetail")), "manager");
 const authorizeCode = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/authorizeCode")), "manager");
+    require.ensure([], () => r(require("src/pages/account/manager/authorizeCode")), "manager");
 const invitation = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/invitation")), "manager");
+    require.ensure([], () => r(require("src/pages/account/manager/invitation")), "manager");
 const profile = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/profile")), "manager");
+    require.ensure([], () => r(require("src/pages/account/manager/profile")), "manager");
 const terminal = (r: any) =>
-    require.ensure([], () => r(require("pages/account/manager/terminal")), "manager"); //远程终端访问平台
+    require.ensure([], () => r(require("src/pages/account/manager/terminal")), "manager"); //远程终端访问平台
 export default [
     {
         path: "account",

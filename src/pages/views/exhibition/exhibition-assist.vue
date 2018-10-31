@@ -17,7 +17,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import  { Project, Exhibition } from 'apis';
+import  { Project, Exhibition } from 'src/apis';
 @Component
 export default class ExhibitionView extends Vue {
     @Provide() Exhibition=Exhibition;

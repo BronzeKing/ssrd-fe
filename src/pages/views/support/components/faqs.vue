@@ -20,7 +20,7 @@
 </template>
 <script lang="ts">
 import { Watch, Component, Provide, Vue } from 'vue-property-decorator';
-import  { Faqs } from 'apis';
+import  { Faqs } from 'src/apis';
 @Component
 export default class FaqsView extends Vue
 {

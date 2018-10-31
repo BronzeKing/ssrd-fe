@@ -29,7 +29,7 @@
 <script lang="ts">
 // 系统展示页面
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import { System, SystemCase } from 'apis';
+import { System, SystemCase } from 'src/apis';
 import { infoBanner }   from 'components';
 
 @Component({

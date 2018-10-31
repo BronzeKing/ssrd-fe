@@ -3,9 +3,9 @@
  */
 
 const login = (r: any) =>
-  require.ensure([], () => r(require("pages/views/login/login")), "login");
+  require.ensure([], () => r(require("src/pages/views/login/login")), "login");
 const register = (r: any) =>
-  require.ensure([], () => r(require("pages/views/login/register")), "login");
+  require.ensure([], () => r(require("src/pages/views/login/register")), "login");
 
 export default [
   {

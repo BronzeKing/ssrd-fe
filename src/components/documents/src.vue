@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Prop, Watch } from 'vue-property-decorator';
-import  { Docs as Documents, Project, ProjectGroup } from 'apis';
+import  { Docs as Documents, Project, ProjectGroup } from 'src/apis';
 
 @Component
 export default class DocumentsView extends Vue

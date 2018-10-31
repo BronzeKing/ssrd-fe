@@ -40,7 +40,7 @@
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import { infoBanner, piclook }   from 'components';
-import { SystemCase }    from 'apis';
+import { SystemCase }    from 'src/apis';
 
     // 资讯生活-公司新闻页面
 @Component({

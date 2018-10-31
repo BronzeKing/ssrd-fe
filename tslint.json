@@ -4,5 +4,15 @@
     "tslint-config-prettier"],
     "globals": {
         "require": true
-    }
+    },
+        "rules": {
+        "no-implicit-dependencies": false,
+        "object-literal-sort-keys": false
+    },
+     "ordered-imports": [true, {
+   "import-sources-order": "any",
+   "named-imports-order": "any",
+   "grouped-imports": false,
+   "module-source-path": "basename"
+ }]
 }

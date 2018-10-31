@@ -1,6 +1,6 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
 
-import { IndustryLink, News, SystemCase } from "apis";
+import { IndustryLink, News, SystemCase } from "src/apis";
 
 import { crashBall } from "components";
 

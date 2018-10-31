@@ -37,8 +37,8 @@
 <script lang="ts">
 // 售后申请页面
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import { Option } from "common/utils/extends";
-import { Project } from 'apis';
+import { Option } from "src/common/utils/extends";
+import { Project } from 'src/apis';
 
 @Component
 export default class AfterMarket extends Vue

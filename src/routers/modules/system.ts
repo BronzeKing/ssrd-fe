@@ -2,23 +2,23 @@
  * 系统展示相关路由
  */
 const system = (r: any) =>
-  require.ensure([], () => r(require("pages/views/system/system")), "system");
+  require.ensure([], () => r(require("src/pages/views/system/system")), "system");
 const systemDetail = (r: any) =>
   require.ensure(
     [],
-    () => r(require("pages/views/system/systemDetail")),
+    () => r(require("src/pages/views/system/systemDetail")),
     "system"
   );
 const systemCase = (r: any) =>
   require.ensure(
     [],
-    () => r(require("pages/views/system/systemCase")),
+    () => r(require("src/pages/views/system/systemCase")),
     "system"
   );
 const systemCaseDetail = (r: any) =>
   require.ensure(
     [],
-    () => r(require("pages/views/system/systemCaseDetail")),
+    () => r(require("src/pages/views/system/systemCaseDetail")),
     "system"
   );
 export default [

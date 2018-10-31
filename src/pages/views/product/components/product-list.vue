@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue, Prop, Watch } from 'vue-property-decorator';
-import  { Product } from 'apis';
+import  { Product } from 'src/apis';
 @Component
 export default class ProductListView extends Vue
 {

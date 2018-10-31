@@ -32,7 +32,7 @@
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
 import { projectTable } from 'components';
-import { Project } from 'apis';
+import { Project } from 'src/apis';
 @Component
 ({
     components:{

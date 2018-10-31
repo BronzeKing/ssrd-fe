@@ -3,9 +3,9 @@
  */
 
 import * as types from "./types";
-import { assign, makeContent, makeMap, n2br } from "common/utils/extends";
-import { System, Login, Cart } from "apis";
-import storage from "common/utils/member";
+import { assign, makeContent, makeMap, n2br } from "src/common/utils/extends";
+import { System, Login, Cart } from "src/apis";
+import storage from "src/common/utils/member";
 import { type } from "os";
 
 const state = {

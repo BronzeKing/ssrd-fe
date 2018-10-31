@@ -1,5 +1,5 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { System } from "apis";
+import { System } from "src/apis";
 /**
  * 后台管理系统管理页面
  * 

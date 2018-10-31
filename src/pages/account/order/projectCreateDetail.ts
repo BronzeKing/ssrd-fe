@@ -1,5 +1,5 @@
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { System, ProjectCreate as Project, Profile } from "apis";
+import { System, ProjectCreate as Project, Profile } from "src/apis";
 
 @Component
 export default class ProjectCreateDetailView extends Vue {

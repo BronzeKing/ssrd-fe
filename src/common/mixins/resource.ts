@@ -1,7 +1,7 @@
 import { Component, Prop, Provide, Vue, Watch } from "vue-property-decorator";
 import { Resource } from "src/apis/resource";
 import { Model } from "src/apis/baseModel";
-import API from "apis/api-urls"; // 接口URL
+import API from "src/apis/api-urls"; // 接口URL
 // import { Loading } from "element-ui";
 import { Query } from "./";
 /*

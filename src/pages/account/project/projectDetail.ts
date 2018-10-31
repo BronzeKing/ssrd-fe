@@ -1,7 +1,7 @@
 // 项目详情页面
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { makeContent as _makeContent } from "common/utils/extends";
-import { Project, ProjectLog, Job } from "apis";
+import { makeContent as _makeContent } from "src/common/utils/extends";
+import { Project, ProjectLog, Job } from "src/apis";
 
 @Component
 export default class ProjectDetail extends Vue {

@@ -1,5 +1,5 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { System } from "apis";
+import { System } from "src/apis";
 @Component
 export default class ProjectCreateView extends Vue {
     @Provide() System = System;

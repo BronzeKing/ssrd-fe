@@ -24,7 +24,7 @@
 * #TODO 目前el-col样式未完成，直接用的官网的demo
 */
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Collect } from 'apis';
+import  { Collect } from 'src/apis';
 @Component
 export default class HistoryView extends Vue
 {

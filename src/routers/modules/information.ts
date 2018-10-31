@@ -1,24 +1,24 @@
 const information = (r: any) =>
-    require.ensure([], () => r(require("pages/views/information/index")), "information");
+    require.ensure([], () => r(require("src/pages/views/information/index")), "information");
 const news = (r: any) =>
-    require.ensure([], () => r(require("pages/views/information/components/news")), "information");
+    require.ensure([], () => r(require("src/pages/views/information/components/news")), "information");
 const newsDetail = (r: any) =>
     require.ensure(
         [],
-        () => r(require("pages/views/information/components/newsDetail")),
+        () => r(require("src/pages/views/information/components/newsDetail")),
         "information"
     );
 const caringNews = (r: any) =>
     require.ensure(
         [],
-        () => r(require("pages/views/information/components/caringNews")),
+        () => r(require("src/pages/views/information/components/caringNews")),
         "community"
     );
 
 const caringNewsDetail = (r: any) =>
     require.ensure(
         [],
-        () => r(require("pages/views/information/components/caringNewsDetail")),
+        () => r(require("src/pages/views/information/components/caringNewsDetail")),
         "community"
     );
 export default [

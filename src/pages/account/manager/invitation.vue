@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Invitation } from 'apis';
+import  { Invitation } from 'src/apis';
 @Component
 export default class InvitationView extends Vue
 {

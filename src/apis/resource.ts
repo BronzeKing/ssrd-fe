@@ -1,8 +1,8 @@
 /*
  * 基于RESTFUL封装ajax
  */
-import ajax from "utils/ajax";
-import { assign } from "utils/extends";
+import ajax from "src/common/utils/ajax";
+import { assign } from "src/common/utils/extends";
 import { Model } from "./baseModel";
 import { AxiosPromise, AxiosInstance } from "axios";
 

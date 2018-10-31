@@ -1,6 +1,6 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Project, Profile } from "apis";
-import API from "apis/api-urls"; // 接口URL
+import { Project, Profile } from "src/apis";
+import API from "src/apis/api-urls"; // 接口URL
 // 结算购物车
 
 @Component

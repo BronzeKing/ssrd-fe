@@ -1,24 +1,24 @@
 import { Route } from "vue-router";
 const support = (r: any) =>
-    require.ensure([], () => r(require("pages/views/support/index")), "support");
+    require.ensure([], () => r(require("src/pages/views/support/index")), "support");
 const faqs = (r: any) =>
-    require.ensure([], () => r(require("pages/views/support/components/faqs")), "support");
+    require.ensure([], () => r(require("src/pages/views/support/components/faqs")), "support");
 const servicePromise = (r: any) =>
     require.ensure(
         [],
-        () => r(require("pages/views/support/components/servicePromise")),
+        () => r(require("src/pages/views/support/components/servicePromise")),
         "support"
     );
 const feedback = (r: any) =>
-    require.ensure([], () => r(require("pages/views/support/components/feedback")), "support");
+    require.ensure([], () => r(require("src/pages/views/support/components/feedback")), "support");
 const survey = (r: any) =>
-    require.ensure([], () => r(require("pages/views/support/components/survey")), "support");
+    require.ensure([], () => r(require("src/pages/views/support/components/survey")), "support");
 const serviceNet = (r: any) =>
-    require.ensure([], () => r(require("pages/views/support/components/serviceNet")), "support");
+    require.ensure([], () => r(require("src/pages/views/support/components/serviceNet")), "support");
 const opVideo = (r: any) =>
-    require.ensure([], () => r(require("pages/views/support/components/opVideo")), "support");
+    require.ensure([], () => r(require("src/pages/views/support/components/opVideo")), "support");
 const download = (r: any) =>
-    require.ensure([], () => r(require("pages/views/support/components/download")), "support");
+    require.ensure([], () => r(require("src/pages/views/support/components/download")), "support");
 export default [
     {
         path: "/support",

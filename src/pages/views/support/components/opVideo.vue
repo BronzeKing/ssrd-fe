@@ -21,7 +21,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
-import  { Video } from 'apis';
+import  { Video } from 'src/apis';
 
 @Component
 export default class VideoView extends Vue

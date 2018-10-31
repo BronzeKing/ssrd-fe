@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Product, Collect, Cart } from 'apis';
+import  { Product, Collect, Cart } from 'src/apis';
 
 @Component
 export default class ProductDetailView extends Vue

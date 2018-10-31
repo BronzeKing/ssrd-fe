@@ -15,8 +15,8 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import { Login, Env, TokenVerify, Token }from "apis";
-import  storage  from 'common/utils/member'
+import { Login, Env, TokenVerify, Token }from "src/apis";
+import  storage  from 'src/common/utils/member'
 
 @Component
 export default class LoginView extends Vue

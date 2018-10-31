@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import { News } from "apis";
+import { News } from "src/apis";
 
 @Component
 export default class NewsView extends Vue

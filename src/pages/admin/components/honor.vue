@@ -32,7 +32,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { Honor } from "apis";
+import { Honor } from "src/apis";
 
 @Component
 export default class HonorView extends Vue {

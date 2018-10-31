@@ -32,7 +32,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { Partner } from "apis";
+import { Partner } from "src/apis";
 
 @Component
 export default class PartnerView extends Vue {

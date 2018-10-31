@@ -10,8 +10,8 @@ import logger from "./logger";
 import member from "./member";
 import router from "routers";
 import Vue from "vue";
-import store from "vuexs";
-import storage from "common/utils/member";
+import store from "src/vuexs";
+import storage from "src/common/utils/member";
 import { AxiosRequestConfig, AxiosInstance } from "axios";
 
 const _priviate: {

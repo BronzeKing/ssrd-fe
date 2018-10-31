@@ -25,7 +25,7 @@
 <script lang="ts">
 //子账号管理
 import { Component, Provide, Vue } from "vue-property-decorator";
-import  { User } from 'apis';
+import  { User } from 'src/apis';
 @Component
 export default class UserView extends Vue {
     @Provide() statusList = ['-1', '1', '0'].map(x => { return { value: x, label: this.env.status[x] + '账号' }; });

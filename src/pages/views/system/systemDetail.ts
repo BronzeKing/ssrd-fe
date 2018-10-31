@@ -2,7 +2,7 @@ import { Component, Provide, Watch, Vue } from "vue-property-decorator";
 import { Route } from "vue-router";
 // 系统展示页面
 import { menuBox, infoBanner } from "components";
-import { System } from "apis";
+import { System } from "src/apis";
 @Component({
     components: {
         menuBox,

@@ -3,8 +3,8 @@
  */
 
 // 首页
-const views = (r: any) => require.ensure([], () => r(require("pages/views/views")), "views");
-const home = (r: any) => require.ensure([], () => r(require("pages/views/home/home")), "views");
+const views = (r: any) => require.ensure([], () => r(require("src/pages/views/views")), "views");
+const home = (r: any) => require.ensure([], () => r(require("src/pages/views/home/home")), "views");
 
 import homes from "./home";
 import about from "./about";

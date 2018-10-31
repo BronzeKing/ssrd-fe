@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Env, Login, Profile } from 'apis';
+import { Env, Login, Profile } from 'src/apis';
 
 @Component
 export default class App extends Vue {

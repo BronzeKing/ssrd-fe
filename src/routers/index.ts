@@ -1,15 +1,15 @@
 import Vue from "vue";
 import Router, { Route } from "vue-router";
-import store from "vuexs";
-import storage from "common/utils/member";
-import User from "vuexs/modules/user";
-import { Login, Profile } from "apis";
+import store from "src/vuexs";
+import storage from "src/common/utils/member";
+import User from "src/vuexs/modules/user";
+import { Login, Profile } from "src/apis";
 
 import views from "./modules/views";
 import account from "./account";
 import admin from "./admin";
-const error = (r: any) => require.ensure([], () => r(require("pages/views/error")), "views");
-// const viewsPage = r => require.ensure([], () => r(require('pages/views/views')), 'views');
+const error = (r: any) => require.ensure([], () => r(require("src/pages/views/error")), "views");
+// const viewsPage = r => require.ensure([], () => r(require('src/pages/views/views')), 'views');
 
 Vue.use(Router);
 let isReady = false; // 用于判断是否已经加载env和user接口

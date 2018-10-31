@@ -29,7 +29,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { Group } from "apis";
+import { Group } from "src/apis";
 
 @Component
 export default class GroupView extends Vue {

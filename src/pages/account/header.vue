@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Message } from "apis";
+import { Message } from "src/apis";
 
 @Component
 export default class AccountHeader extends Vue {

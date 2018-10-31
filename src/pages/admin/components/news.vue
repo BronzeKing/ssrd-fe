@@ -36,7 +36,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { News} from "apis";
+import { News} from "src/apis";
 import { Query, ResourceMixin } from 'src/common/mixins';
 
 @Component

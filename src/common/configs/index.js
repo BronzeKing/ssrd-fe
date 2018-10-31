@@ -5,7 +5,7 @@ import Vue from "vue";
 import * as filters from "filters";
 import { LineThrough } from "components";
 import * as enums from "enums";
-import { n2br } from "utils/extends";
+import { n2br } from "src/common/utils/extends";
 import Raven from "raven-js";
 import RavenVue from "raven-js/plugins/vue";
 
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 
 // import Core from './core';
 import Core from "./core";
-import axiosPlugin from "utils/ajax.ts";
+import axiosPlugin from "src/common/utils/ajax.ts";
 
 // ajax封装
 Vue.use(axiosPlugin);

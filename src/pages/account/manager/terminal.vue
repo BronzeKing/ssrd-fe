@@ -18,7 +18,7 @@
 <script lang="ts">
 // 远程终端访问平台
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Terminal } from 'apis';
+import  { Terminal } from 'src/apis';
 @Component
 export default class TerminalView extends Vue
 {

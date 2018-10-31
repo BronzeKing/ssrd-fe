@@ -4,17 +4,17 @@
 
 // 爱心社区
 const caringCommunity = (r: any) =>
-    require.ensure([], () => r(require("pages/views/community/index")), "community");
+    require.ensure([], () => r(require("src/pages/views/community/index")), "community");
 const news = (r: any) =>
-    require.ensure([], () => r(require("pages/views/community/news")), "community");
+    require.ensure([], () => r(require("src/pages/views/community/news")), "community");
 
 const newsDetail = (r: any) =>
-    require.ensure([], () => r(require("pages/views/community/newsDetail")), "community");
+    require.ensure([], () => r(require("src/pages/views/community/newsDetail")), "community");
 
 const action = (r: any) =>
-    require.ensure([], () => r(require("pages/views/community/action")), "community");
+    require.ensure([], () => r(require("src/pages/views/community/action")), "community");
 const description = (r: any) =>
-    require.ensure([], () => r(require("pages/views/community/description")), "community");
+    require.ensure([], () => r(require("src/pages/views/community/description")), "community");
 
 export default [
     {

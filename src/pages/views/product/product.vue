@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Category } from 'apis';
+import  { Category } from 'src/apis';
 
 @Component
 export default class ProductView extends Vue

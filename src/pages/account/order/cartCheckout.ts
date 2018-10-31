@@ -1,5 +1,5 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { System, ProjectCreate as Project, Profile } from "apis";
+import { System, ProjectCreate as Project, Profile } from "src/apis";
 //结算购物车页面
 
 @Component

@@ -2,8 +2,8 @@
  * 全局vuex方法
  */
 import * as types from "./types";
-import { assign } from "common/utils/extends";
-import { Env } from "apis";
+import { assign } from "src/common/utils/extends";
+import { Env } from "src/apis";
 
 const state = {
     homeData: "loading",

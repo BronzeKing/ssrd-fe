@@ -14,7 +14,7 @@
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
 
-import  { Documents } from 'apis';
+import  { Documents } from 'src/apis';
 import { piclook }   from 'components';
 @Component
 ({

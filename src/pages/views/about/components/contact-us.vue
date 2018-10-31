@@ -51,7 +51,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import { AboutUs } from 'apis';
+import { AboutUs } from 'src/apis';
 
 import { BaiduMap, BmGeolocation, BmMarker, BmLabel } from 'vue-baidu-map';
 import { baiduMapAk } from 'settings';

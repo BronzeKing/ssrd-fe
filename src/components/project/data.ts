@@ -1,4 +1,4 @@
-import { Option } from "utils/extends";
+import { Option } from "src/common/utils/extends";
 
 // 用户权限, 用来控制 某个用户有哪些按钮
 export enum TT {

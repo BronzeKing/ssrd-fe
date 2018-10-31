@@ -3,7 +3,7 @@
  */
 
 // 首页
-const home = (r: any) => require.ensure([], () => r(require("pages/views/home/home")), "home");
+const home = (r: any) => require.ensure([], () => r(require("src/pages/views/home/home")), "home");
 
 export default [
     {

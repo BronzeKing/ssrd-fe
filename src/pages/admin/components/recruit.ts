@@ -1,5 +1,5 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Recruitment } from "apis";
+import { Recruitment } from "src/apis";
 /**
  * 后台管理招聘信息页面
  * 

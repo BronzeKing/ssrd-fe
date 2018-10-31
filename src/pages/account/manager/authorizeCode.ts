@@ -1,5 +1,5 @@
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { AuthorizeCode, Project, ProjectGroup } from "apis";
+import { AuthorizeCode, Project, ProjectGroup } from "src/apis";
 import { Query, ResourceMixin } from "src/common/mixins";
 @Component
 export default class AuthorizeCodeView extends ResourceMixin {

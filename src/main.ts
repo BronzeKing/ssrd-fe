@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 
 import router from "routers"; // 所有路由文件配置
-import store from "vuexs"; // 所有vuex文件
+import store from "src/vuexs"; // 所有vuex文件
 
 import "configs"; // 第三方插件引用以及全局函数挂载
 

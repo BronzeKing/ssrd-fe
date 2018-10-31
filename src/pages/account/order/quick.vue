@@ -39,8 +39,8 @@
 <script lang="ts">
 // 快捷下单页面
 import { Component, Provide, Vue, Watch } from 'vue-property-decorator';
-import  { System, Project, ProjectGroup, Profile } from 'apis';
-import API from 'apis/api-urls'; // 接口URL
+import  { System, Project, ProjectGroup, Profile } from 'src/apis';
+import API from 'src/apis/api-urls'; // 接口URL
 
 @Component
 export default class QuickView extends Vue

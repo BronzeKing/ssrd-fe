@@ -1,10 +1,10 @@
 import { Component, Provide, Vue, Prop, Watch } from "vue-property-decorator";
-import { Media, Project, AuthorizeCode, ProjectLog } from "apis";
-import { makeContent as _makeContent } from "utils/extends";
+import { Media, Project, AuthorizeCode, ProjectLog } from "src/apis";
+import { makeContent as _makeContent } from "src/common/utils/extends";
 import { TT, stepMap, options, errors, rules, Step, FormConfig, FormConfigs } from "./data";
-import API from "apis/api-urls"; // 接口URL
+import API from "src/apis/api-urls"; // 接口URL
 import { Query, ResourceListMixin } from "src/common/mixins";
-import storage from "common/utils/member";
+import storage from "src/common/utils/member";
 
 @Component
 export default class ProjectTableView extends ResourceListMixin {

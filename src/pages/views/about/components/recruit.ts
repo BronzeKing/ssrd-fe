@@ -1,5 +1,5 @@
 import { Component, Provide, Vue } from "vue-property-decorator";
-import { Recruitment, Job } from "apis";
+import { Recruitment, Job } from "src/apis";
 
 @Component
 export default class Recruit extends Vue

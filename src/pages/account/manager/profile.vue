@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator';
-import  { Profile } from 'apis';
+import  { Profile } from 'src/apis';
 @Component
 export default class ProfileView extends Vue
 {

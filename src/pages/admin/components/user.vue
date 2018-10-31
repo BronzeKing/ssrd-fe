@@ -43,7 +43,7 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { User, Group } from "apis";
+import { User, Group } from "src/apis";
 
 @Component
 export default class UserView extends Vue {

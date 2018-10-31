@@ -20,8 +20,8 @@
 </template>
 <script lang="ts">
 import { Component, Provide, Vue, Watch } from "vue-property-decorator";
-import { System } from "apis";
-import { typeOf } from 'utils/extends';
+import { System } from "src/apis";
+import { typeOf } from "src/common/utils/extends";
 
 @Component
 export default class CartView extends Vue {

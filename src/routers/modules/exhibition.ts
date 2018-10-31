@@ -4,7 +4,7 @@
 
 // 首页
 const exhibition = (r: any) =>
-    require.ensure([], () => r(require("pages/views/exhibition/exhibition-assist")), "home");
+    require.ensure([], () => r(require("src/pages/views/exhibition/exhibition-assist")), "home");
 
 export default [
     {
